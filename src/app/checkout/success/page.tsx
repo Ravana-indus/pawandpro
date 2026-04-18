@@ -10,7 +10,17 @@ export default async function CheckoutSuccessPage({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }> 
 }) {
   const resolvedSearchParams = await searchParams;
-  const order_id = resolvedSearchParams.order_id as string;
+  const order_id_raw = resolvedSearchParams.order_id;
+  const order_id = Array.isArray(order_id_raw) ? order_id_raw[0] : order_id_raw;
+
+  if (!order_id) {
+    return (
+      <div className="pt-32 text-center">
+        <h1 className="text-2xl font-bold">Order ID missing</h1>
+        <Link href="/marketplace" className="text-primary hover:underline">Return to Marketplace</Link>
+      </div>
+    );
+  }
   
   const supabase = await createClient();
   

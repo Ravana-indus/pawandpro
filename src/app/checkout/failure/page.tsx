@@ -1,7 +1,16 @@
 import React from "react";
 import Link from "next/link";
 
-export default function CheckoutFailurePage() {
+interface CheckoutFailurePageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export default async function CheckoutFailurePage({
+  searchParams
+}: CheckoutFailurePageProps) {
+  const resolvedSearchParams = await searchParams;
+  const errorType = resolvedSearchParams.error_type as string;
+  const errorMessage = resolvedSearchParams.error_message as string;
   return (
     <div className="min-h-screen pt-24 pb-32 px-6 flex items-center justify-center relative overflow-hidden">
       {/* Ambient background */}
@@ -19,15 +28,23 @@ export default function CheckoutFailurePage() {
             <p className="text-lg text-on-surface-variant max-w-md mx-auto">We couldn't process your payment. No charges were made to your account. Please review your details and try again.</p>
          </div>
 
-         <div className="bg-error/5 border border-error/20 rounded-2xl p-6 mb-10">
-            <h3 className="font-bold text-error mb-2 text-sm uppercase tracking-widest flex items-center gap-2">
-               <span className="material-symbols-outlined text-[18px]">info</span> Error Details
-            </h3>
-            <p className="text-sm font-medium text-error flex justify-between items-center bg-white/50 px-4 py-3 rounded-xl border border-error/10">
-               <span>Transaction declined by issuer.</span>
-               <span className="font-mono text-xs opacity-70">ERR_DECL_04</span>
-            </p>
-         </div>
+          <div className="bg-error/5 border border-error/20 rounded-2xl p-6 mb-10">
+             <h3 className="font-bold text-error mb-2 text-sm uppercase tracking-widest flex items-center gap-2">
+                <span className="material-symbols-outlined text-[18px]">info</span> Error Details
+             </h3>
+             <p className="text-sm font-medium text-error flex justify-between items-center bg-white/50 px-4 py-3 rounded-xl border border-error/10">
+                <span>{errorMessage || "Transaction declined by issuer."}</span>
+                <span className="font-mono text-xs opacity-70">{errorType || "ERR_DECL_04"}</span>
+             </p>
+             {errorType === "MERCHANT_ERROR" && (
+               <div className="mt-4 p-4 bg-error/10 border border-error/20 rounded-xl">
+                 <p className="text-sm text-error font-medium">
+                   <span className="material-symbols-outlined text-[16px] mr-1">business</span>
+                   This appears to be a merchant configuration issue. Please contact the store administrator or PayHere support.
+                 </p>
+               </div>
+             )}
+          </div>
 
          <div className="flex flex-col sm:flex-row gap-4">
             <Link href="/checkout" className="flex-1 bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg transition-transform active:scale-[0.98] text-center flex items-center justify-center gap-2">

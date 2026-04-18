@@ -54,7 +54,14 @@ export function CheckoutClient({ initialData }: CheckoutClientProps) {
       }
 
       const params = await response.json();
-      if (params.error) throw new Error(params.error);
+      if (params.error) {
+        // Check for PayHere merchant errors
+        if (params.error.includes('merchant') || params.error.includes('business')) {
+          router.push(`/checkout/failure?error_type=MERCHANT_ERROR&error_message=${encodeURIComponent(params.error)}`);
+          return;
+        }
+        throw new Error(params.error);
+      }
 
       setPayhereParams(params);
     } catch (error: any) {

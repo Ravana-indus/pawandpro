@@ -47,16 +47,16 @@ export async function POST(req: Request) {
         .select('*')
         .eq('id', pet_listing_id)
         .single();
-      
+
       if (petError || !pet) return NextResponse.json({ error: 'Pet not found' }, { status: 404 });
-      
-      totalAmount = Number(pet.price);
+
+      totalAmount = Number((pet as any).price);
       orderItems.push({
-        pet_listing_id: pet.id,
+        pet_listing_id: (pet as any).id,
         quantity: 1,
-        price_at_purchase: pet.price
+        price_at_purchase: (pet as any).price
       });
-      itemsDescription = `Pet Reservation: ${pet.name} (${pet.breed})`;
+      itemsDescription = `Pet Reservation: ${(pet as any).name} (${(pet as any).breed})`;
     } else {
       // Standard Cart Flow
       const cart = await getCartContent();
@@ -80,7 +80,7 @@ export async function POST(req: Request) {
         buyer_id,
         total_amount: totalAmount,
         status: 'Processing'
-      })
+      } as any)
       .select()
       .single();
 
@@ -89,7 +89,7 @@ export async function POST(req: Request) {
     // 3. Create Order Items
     const { error: itemsError } = await adminSupabase
       .from('order_items')
-      .insert(orderItems.map(item => ({ ...item, order_id: order.id })));
+      .insert(orderItems.map(item => ({ ...item, order_id: (order as any).id })) as any);
 
     if (itemsError) throw itemsError;
 
@@ -102,10 +102,10 @@ export async function POST(req: Request) {
     const hash = crypto
       .createHash('md5')
       .update(
-        merchant_id + 
-        order.id + 
-        amount_formatted + 
-        currency + 
+        merchant_id +
+        (order as any).id +
+        amount_formatted +
+        currency +
         crypto.createHash('md5').update(merchant_secret).digest('hex').toUpperCase()
       )
       .digest('hex')
@@ -114,10 +114,10 @@ export async function POST(req: Request) {
     // 5. Build PayHere Params
     const payhereParams = {
       merchant_id,
-      return_url: `${process.env.NEXT_PUBLIC_APP_URL}/checkout/success?order_id=${order.id}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/cart`,
+      return_url: `${process.env.NEXT_PUBLIC_APP_URL}/checkout/success?order_id=${(order as any).id}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/checkout/failure?error_type=PAYMENT_CANCELLED&error_message=${encodeURIComponent('Payment was cancelled by user')}`,
       notify_url: `${process.env.NEXT_PUBLIC_APP_URL}/api/payment/notify`,
-      order_id: order.id,
+      order_id: (order as any).id,
       items: itemsDescription,
       currency,
       amount: amount_formatted,
@@ -130,6 +130,12 @@ export async function POST(req: Request) {
       country: 'Sri Lanka',
       hash
     };
+
+    // 6. Validate PayHere Configuration (Basic Check)
+    // Note: Full validation happens when PayHere processes the form
+    if (!merchant_id || merchant_id === '1224574') {
+      console.warn('Using demo/test merchant ID. This may cause "can not find a business" errors.');
+    }
 
     return NextResponse.json(payhereParams);
 
