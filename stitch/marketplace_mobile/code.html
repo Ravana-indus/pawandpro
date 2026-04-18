@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#001f28",
+                    "surface-container": "#e7eefe",
+                    "background": "#f9f9ff",
+                    "surface-tint": "#006780",
+                    "secondary-fixed": "#dce2f7",
+                    "on-surface": "#151c27",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-primary-fixed-variant": "#004e61",
+                    "primary-fixed": "#b7eaff",
+                    "tertiary": "#006947",
+                    "on-secondary-container": "#5c6274",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2a313d",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#dce2f3",
+                    "secondary-container": "#d9dff5",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#00647c",
+                    "surface-container-high": "#e2e8f8",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#00855b",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-background": "#151c27",
+                    "on-primary-container": "#fafdff",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-surface-variant": "#3e484d",
+                    "surface-variant": "#dce2f3",
+                    "primary-fixed-dim": "#6cd3f7",
+                    "on-tertiary-fixed": "#002113",
+                    "on-secondary-fixed": "#141b2b",
+                    "surface-container-low": "#f0f3ff",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#ebf1ff",
+                    "secondary": "#575e70",
+                    "surface": "#f9f9ff",
+                    "outline-variant": "#bdc8ce",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "surface-bright": "#f9f9ff",
+                    "inverse-primary": "#6cd3f7",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "surface-dim": "#d3daea",
+                    "outline": "#6e797e",
+                    "on-tertiary-container": "#f5fff6",
+                    "primary-container": "#007f9d",
+                    "on-secondary-fixed-variant": "#404758"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#F9F9FF] dark:bg-[#151C27]">
+<div class="flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#00647C] dark:text-[#0891B2]" style="font-variation-settings: 'FILL' 1;">pets</span>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight text-2xl font-black tracking-tighter text-[#151C27] dark:text-[#F9F9FF]">Paws &amp; Pro</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="active:scale-95 duration-200 text-[#151C27] dark:text-[#F9F9FF] opacity-60">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</div>
+<div class="bg-[#E7EEFE] dark:bg-[#1F2937] h-[1px] w-full opacity-50"></div>
+</header>
+<main class="pt-24 pb-32 px-6">
+<!-- Search Anchor -->
+<section class="mb-8">
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full bg-surface-container border-none rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all placeholder:text-outline/60 text-on-surface" placeholder="Search premium nutrition, toys..." type="text"/>
+</div>
+</section>
+<!-- Category Horizontal Toggle -->
+<section class="mb-10 -mx-6 overflow-hidden">
+<div class="flex overflow-x-auto no-scrollbar px-6 gap-3">
+<button class="flex-shrink-0 px-6 py-3 rounded-full bg-primary text-on-primary font-semibold transition-all">Dogs</button>
+<button class="flex-shrink-0 px-6 py-3 rounded-full bg-surface-container-low text-on-surface-variant font-medium hover:bg-surface-container-high transition-all">Cats</button>
+<button class="flex-shrink-0 px-6 py-3 rounded-full bg-surface-container-low text-on-surface-variant font-medium hover:bg-surface-container-high transition-all">Birds</button>
+<button class="flex-shrink-0 px-6 py-3 rounded-full bg-surface-container-low text-on-surface-variant font-medium hover:bg-surface-container-high transition-all">Small Pets</button>
+<button class="flex-shrink-0 px-6 py-3 rounded-full bg-surface-container-low text-on-surface-variant font-medium hover:bg-surface-container-high transition-all">Aquatic</button>
+</div>
+</section>
+<!-- Quick Reorder (Editorial Style) -->
+<section class="mb-12">
+<div class="flex justify-between items-end mb-6">
+<div>
+<span class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary mb-1 block">Your Favorites</span>
+<h2 class="font-headline text-2xl font-extrabold tracking-tight">Quick Reorder</h2>
+</div>
+<button class="text-primary font-bold text-sm flex items-center gap-1">View All <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
+</div>
+<div class="flex gap-4 overflow-x-auto no-scrollbar -mx-6 px-6">
+<div class="flex-shrink-0 w-64 bg-surface-container-low p-4 rounded-lg flex items-center gap-4">
+<div class="w-20 h-20 bg-surface-container-lowest rounded-md overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="close up of premium organic dog food kibble in a white ceramic bowl minimalist studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRzx_YWg9-_UUSgKMMdPcJKY1jFIed7xWNv7qIWS9mXcHR884b-RqZ2SUltT_HwCuIcQCr0cJST0YXZ-ZrEm0kA0nAJRoq-lESlAVhK5VhotyOmk0wFv06-JpSCi0gXIR4DQUyqkjlbGLh8nkGcFUtkxA2q2ZC9UpiN5LNyLlc64yqJkY6BLhwMXaSxCH1PDxrtkC5Hq_qONOPlWyyOv12-ttQaBfkvu6TsgKVNmO9GlEqiEN0phOrJ7w79GKp_xKfkjzyyHSGmq8"/>
+</div>
+<div class="flex flex-col justify-center">
+<h4 class="font-bold text-sm leading-tight mb-1">Arctic Salmon Kibble</h4>
+<p class="text-xs text-on-surface-variant mb-2">Last ordered 12 days ago</p>
+<button class="bg-primary text-on-primary py-2 px-4 rounded-full text-xs font-bold w-fit">Add again</button>
+</div>
+</div>
+<div class="flex-shrink-0 w-64 bg-surface-container-low p-4 rounded-lg flex items-center gap-4 opacity-80">
+<div class="w-20 h-20 bg-surface-container-lowest rounded-md overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="vibrant colored braided rope pet toy for large dogs high contrast studio photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnqft9wYtqJ5IbPknGtUhx4QxXSep78EWyRP6jFATorXIOJTRYYDbJtFAgRV9IVWw6IItFyXXubkgJgzK6nzbE_j0QatSmhTn1aUlnuCuI31IQqG86-ASXMjOCiSSqqwdTSxu3W8XOyNotemwWsyZsbQ4B0cfpwlaXje51IF9cpQDLSPM-_qsO3wCPBCymDl22pshjVx0W1q_sNRcPFZKX6ts6N3jpch0p87RBjBcWxv23B7GNRJEfmEmi3Yv7iz1cHBNfjShmobs"/>
+</div>
+<div class="flex flex-col justify-center">
+<h4 class="font-bold text-sm leading-tight mb-1">Tough-Tug Rope</h4>
+<p class="text-xs text-on-surface-variant mb-2">Last ordered 1 month ago</p>
+<button class="bg-primary text-on-primary py-2 px-4 rounded-full text-xs font-bold w-fit">Add again</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Grid -->
+<section>
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline text-2xl font-extrabold tracking-tight">Curated Essentials</h2>
+<button class="bg-surface-container-high p-2 rounded-full">
+<span class="material-symbols-outlined text-xl">tune</span>
+</button>
+</div>
+<div class="grid grid-cols-1 gap-10">
+<!-- Product Card 1 -->
+<div class="group">
+<div class="relative aspect-[4/5] rounded-lg overflow-hidden mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="luxury pet supplement bottle with elegant label design sitting on a marble surface soft window lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsbNv2_O13K2L9NYJy41kSkgVZCsyFB5kqoI_pwQNp8idZ2-Uy1J3MSQHlRjaSeosYy6-nn7M6H2UuO_eUhM6s4nYXvPdeilHRILvqfm49ZgOFAwIpAMNVtYTTpruoncyirMzi31I--MZECAyM5ZFE2F2jWnnudKhUYx2xnLFZY2SLWPoiqeLaq2zfm3HvkrKSUwBBvmpui-XgNdhq8KbgK8a7Vzr7M5s76df_vlEQQewMR0YRi4vwKzuTzpocVTf5Q76RKKDX8iA"/>
+<div class="absolute top-4 right-4">
+<button class="w-10 h-10 bg-surface/80 backdrop-blur-md rounded-full flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-tertiary/90 backdrop-blur-md text-on-tertiary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Vet Recommended</span>
+</div>
+</div>
+<div class="flex flex-col">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline font-bold text-lg leading-tight">Elite Joint Vitality+</h3>
+<span class="font-bold text-primary">$48.00</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-4">60 soft chews for mobility support.</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary font-bold py-4 rounded-xl active:scale-95 transition-all">Buy Now</button>
+<button class="flex-1 bg-surface-container text-primary font-bold py-4 rounded-xl active:scale-95 transition-all flex flex-col items-center justify-center leading-tight">
+<span class="text-[10px] uppercase opacity-70">Subscribe</span>
+<span class="text-sm">Save 15%</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group">
+<div class="relative aspect-[4/5] rounded-lg overflow-hidden mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="sleek modern black and wood pet feeding station with ceramic bowls minimalist interior background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGIcdE9RQzTtrs99nJ0rZ4JldCk8yndisz51XDzEv2uvfceaVWUvSQ9TaQLghSXsOzq9YvvLVKawoQ1E0OF_cR_fBvWWidorCcQNxYkGP-_P2gal29ID3zHJ82R62P05kFFdWKsc9oTd6y1mmfwmdnNv3uyNSl8wMemRAtJRZPWRQ4rrTlWQ0L03W5ZjyjDD1rrURe_euKGtBKIBUHu5k4wCcXE52HlXBsHz1AThbY-XvYz0wQoAgpU3iSrBgODLHieYrHQ2qC44g"/>
+<div class="absolute top-4 right-4">
+<button class="w-10 h-10 bg-surface/80 backdrop-blur-md rounded-full flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline font-bold text-lg leading-tight">Zen Bowl Elevation</h3>
+<span class="font-bold text-primary">$85.00</span>
+</div>
+<p class="text-on-surface-variant text-sm mb-4">Ergonomic ceramic feeding station.</p>
+<div class="flex gap-2">
+<button class="flex-1 bg-primary text-on-primary font-bold py-4 rounded-xl active:scale-95 transition-all">Buy Now</button>
+<button class="flex-1 bg-surface-container text-primary font-bold py-4 rounded-xl active:scale-95 transition-all flex flex-col items-center justify-center leading-tight">
+<span class="text-[10px] uppercase opacity-70">Custom</span>
+<span class="text-sm">Pre-Order</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Featured Bento Promo -->
+<div class="bg-primary text-on-primary rounded-lg p-8 relative overflow-hidden">
+<div class="relative z-10">
+<span class="text-[10px] uppercase tracking-[0.3em] font-bold mb-4 block">Summer Special</span>
+<h2 class="text-4xl font-extrabold font-headline leading-[0.9] mb-4">Keep it<br/>Cool.</h2>
+<p class="text-primary-fixed text-sm mb-6 max-w-[180px]">Our cooling mats are flying off the shelves. Get yours before they melt away.</p>
+<button class="bg-surface-container-lowest text-primary px-8 py-3 rounded-full font-bold text-sm shadow-xl">Shop Collection</button>
+</div>
+<div class="absolute -right-12 -bottom-8 w-48 h-48 opacity-40 transform rotate-12">
+<span class="material-symbols-outlined text-[12rem]">ac_unit</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 rounded-t-[3rem] bg-[#F9F9FF]/80 dark:bg-[#151C27]/80 backdrop-blur-xl shadow-[0_-8px_32px_rgba(21,28,39,0.04)]">
+<div class="fixed bottom-0 left-0 w-full flex justify-around items-center px-8 pb-8 pt-4">
+<div class="flex flex-col items-center justify-center text-[#00647C] dark:text-[#0891B2] scale-110 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest mt-1">Market</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#151C27] dark:text-[#F9F9FF] opacity-40 hover:opacity-100 transition-all active:scale-90 duration-300 ease-out">
+<span class="material-symbols-outlined">storefront</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest mt-1">Breeders</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#151C27] dark:text-[#F9F9FF] opacity-40 hover:opacity-100 transition-all active:scale-90 duration-300 ease-out">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest mt-1">Health</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#151C27] dark:text-[#F9F9FF] opacity-40 hover:opacity-100 transition-all active:scale-90 duration-300 ease-out">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest mt-1">Profile</span>
+</div>
+</div>
+</nav>
+</body></html>

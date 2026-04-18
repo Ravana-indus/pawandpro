@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#dce2f3",
+                    "secondary-fixed": "#dce2f7",
+                    "primary-fixed-dim": "#6cd3f7",
+                    "inverse-primary": "#6cd3f7",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#b7eaff",
+                    "tertiary-fixed": "#6ffbbe",
+                    "surface": "#f9f9ff",
+                    "on-surface-variant": "#3e484d",
+                    "surface-variant": "#dce2f3",
+                    "primary-container": "#007f9d",
+                    "on-secondary-container": "#5c6274",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f0f3ff",
+                    "tertiary": "#006947",
+                    "on-surface": "#151c27",
+                    "on-secondary-fixed": "#141b2b",
+                    "surface-tint": "#006780",
+                    "tertiary-container": "#00855b",
+                    "secondary": "#575e70",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#004e61",
+                    "on-primary-fixed": "#001f28",
+                    "on-secondary-fixed-variant": "#404758",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "on-tertiary-fixed": "#002113",
+                    "on-tertiary-container": "#f5fff6",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#e7eefe",
+                    "primary": "#00647c",
+                    "on-background": "#151c27",
+                    "inverse-on-surface": "#ebf1ff",
+                    "secondary-container": "#d9dff5",
+                    "background": "#f9f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#e2e8f8",
+                    "surface-dim": "#d3daea",
+                    "inverse-surface": "#2a313d",
+                    "outline": "#6e797e",
+                    "on-primary-container": "#fafdff",
+                    "outline-variant": "#bdc8ce",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f9f9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#F9F9FF]/80 backdrop-blur-xl dark:bg-[#151C27]/80">
+<div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary active:scale-95 transition-transform duration-200">arrow_back</button>
+<h1 class="text-xl font-extrabold text-[#00647C] dark:text-[#F9F9FF] font-['Plus_Jakarta_Sans'] tracking-tight">PetPulse</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#151C27] dark:text-[#F9F9FF] opacity-60 hover:opacity-100 transition-opacity cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-[#151C27] dark:text-[#F9F9FF] opacity-60 hover:opacity-100 transition-opacity cursor-pointer">account_circle</span>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-32 max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Vet Details (8 cols) -->
+<div class="lg:col-span-8 space-y-12">
+<!-- Profile Header Card -->
+<section class="relative bg-surface-container-lowest rounded-lg p-8 overflow-hidden">
+<div class="flex flex-col md:flex-row gap-8 items-center md:items-start relative z-10">
+<div class="w-48 h-48 rounded-lg overflow-hidden shrink-0 shadow-lg">
+<img alt="Dr. Sarah Mitchell" class="w-full h-full object-cover" data-alt="Professional studio portrait of a friendly female veterinarian in a clean clinic environment, soft daylight, professional and approachable expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKfxoNPUL9vRcHxTt3wXTMkS-ApiL1Zw2S_cluJpbXeJWvznw5JeGUZ-bOvTpuXj4z3paWZbAXtZW3pfN6yyor2fhe00egLxVoC0tz1X6dKWmE6VlqdCF45rFktqWd5zrrkrWzNmHAmSlD8r0BV2jF5ym2my8sebIHt2rVC0Nn4PbKfd2B0_MejDWMdw_T9rVWyaNNPCgjZAu4_dV5KFm4pBQEQWQv5-Rk2guUUEX1aeu8OmA3JB-5HkrGZxyT4lHzAolM9H5nF-A"/>
+</div>
+<div class="flex-1 text-center md:text-left">
+<div class="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-2">
+<h2 class="text-3xl font-headline font-extrabold tracking-tight">Dr. Sarah Mitchell</h2>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+                                    VERIFIED EXPERT
+                                </div>
+</div>
+<p class="text-lg text-primary font-semibold mb-4">Senior Veterinary Cardiologist</p>
+<div class="grid grid-cols-3 gap-4 mb-6">
+<div class="text-center md:text-left">
+<p class="text-[10px] font-label font-semibold uppercase tracking-wider text-outline">Experience</p>
+<p class="text-lg font-bold">12+ Yrs</p>
+</div>
+<div class="text-center md:text-left">
+<p class="text-[10px] font-label font-semibold uppercase tracking-wider text-outline">Reviews</p>
+<p class="text-lg font-bold">1.2k</p>
+</div>
+<div class="text-center md:text-left">
+<p class="text-[10px] font-label font-semibold uppercase tracking-wider text-outline">Rating</p>
+<p class="text-lg font-bold flex items-center justify-center md:justify-start gap-1">4.9 <span class="material-symbols-outlined text-sm text-yellow-500" style="font-variation-settings: 'FILL' 1;">star</span></p>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-base">language</span> English, Spanish, French
+                                </span>
+<span class="bg-surface-container px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-base">emergency</span> Emergency Response
+                                </span>
+</div>
+</div>
+</div>
+<!-- Subtle background decoration -->
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+</section>
+<!-- Specialization & Credentials Bento -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-container-low p-6 rounded-lg">
+<h3 class="text-sm font-label font-bold uppercase tracking-widest text-primary mb-6">Specializations</h3>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container">favorite</span>
+</div>
+<div>
+<h4 class="font-bold text-sm">Advanced Cardiology</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Specializing in congenital heart defects and geriatric cardiac care for canine and feline patients.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container">vital_signs</span>
+</div>
+<div>
+<h4 class="font-bold text-sm">Internal Medicine</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Expert diagnosis of chronic conditions through non-invasive imaging techniques.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-6 rounded-lg">
+<h3 class="text-sm font-label font-bold uppercase tracking-widest text-primary mb-6">Credentials</h3>
+<ul class="space-y-4">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">school</span>
+<span class="text-xs font-medium">DVM, Royal Veterinary College, London</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">workspace_premium</span>
+<span class="text-xs font-medium">Board Certified, ACVIM (Cardiology)</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<span class="text-xs font-medium">10+ Published Research Papers</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Reviews Section -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-headline font-bold">Patient Reviews</h3>
+<button class="text-primary font-bold text-sm hover:underline">View All</button>
+</div>
+<div class="space-y-4">
+<div class="bg-surface-container-lowest p-6 rounded-lg">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center font-bold text-xs">JD</div>
+<div>
+<p class="text-sm font-bold">James Dalton</p>
+<p class="text-[10px] text-outline">2 days ago • Golden Retriever</p>
+</div>
+</div>
+<div class="flex text-yellow-500">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">"Dr. Mitchell was incredibly patient with Barnaby. Her explanation of the murmur was clear and the treatment plan is already showing results."</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center font-bold text-xs">MA</div>
+<div>
+<p class="text-sm font-bold">Maria Alva</p>
+<p class="text-[10px] text-outline">1 week ago • Persian Cat</p>
+</div>
+</div>
+<div class="flex text-yellow-500">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">"Excellent teleconsultation. Saved me a long drive and she was able to review the records instantly."</p>
+</div>
+</div>
+</section>
+<!-- Example Summaries -->
+<section>
+<h3 class="text-sm font-label font-bold uppercase tracking-widest text-primary mb-6">Past Treatment Insights</h3>
+<div class="flex overflow-x-auto gap-4 hide-scrollbar pb-4">
+<div class="min-w-[280px] bg-white p-5 rounded-lg border border-outline-variant/10">
+<span class="bg-tertiary/10 text-tertiary px-2 py-1 rounded text-[10px] font-bold uppercase mb-3 inline-block">Post-Consult Summary</span>
+<h4 class="font-bold text-sm mb-2">Cardiac Monitoring Plan</h4>
+<p class="text-xs text-on-surface-variant line-clamp-3 mb-4">Initial assessment suggests Grade 2 murmur. Prescribed daily Atenolol with bi-weekly heart rate monitoring via PetPulse wearable.</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">description</span>
+<span class="text-[10px] font-bold text-primary">DOWNLOAD PDF</span>
+</div>
+</div>
+<div class="min-w-[280px] bg-white p-5 rounded-lg border border-outline-variant/10">
+<span class="bg-primary/10 text-primary px-2 py-1 rounded text-[10px] font-bold uppercase mb-3 inline-block">Dietary Protocol</span>
+<h4 class="font-bold text-sm mb-2">Renal Support Diet</h4>
+<p class="text-xs text-on-surface-variant line-clamp-3 mb-4">Transitioning to low-phosphorus prescription food. Hydration levels to be monitored daily for the next 21 days.</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">description</span>
+<span class="text-[10px] font-bold text-primary">DOWNLOAD PDF</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Booking Module (4 cols) -->
+<aside class="lg:col-span-4 sticky top-24">
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_32px_48px_rgba(21,28,39,0.04)]">
+<h3 class="text-xl font-headline font-bold mb-6">Book Appointment</h3>
+<div class="space-y-6">
+<!-- Consult Type Toggle -->
+<div class="flex p-1 bg-surface-container rounded-full">
+<button class="flex-1 py-2 rounded-full text-xs font-bold bg-primary text-white shadow-sm transition-all">In-Person</button>
+<button class="flex-1 py-2 rounded-full text-xs font-bold text-on-surface-variant hover:text-on-surface transition-all">Teleconsult</button>
+</div>
+<!-- Second Opinion Toggle -->
+<div class="flex items-center justify-between p-4 bg-primary/5 rounded-lg border border-primary/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">find_in_page</span>
+<div>
+<p class="text-xs font-bold">Second Opinion</p>
+<p class="text-[10px] text-on-surface-variant">Prioritize medical history review</p>
+</div>
+</div>
+<div class="w-10 h-5 bg-primary-container rounded-full relative cursor-pointer">
+<div class="absolute right-0.5 top-0.5 w-4 h-4 bg-white rounded-full"></div>
+</div>
+</div>
+<!-- Date Picker Mock -->
+<div>
+<p class="text-[10px] font-label font-bold uppercase tracking-widest text-outline mb-3">Select Date</p>
+<div class="grid grid-cols-4 gap-2">
+<button class="p-2 text-center rounded-lg bg-surface-container hover:bg-primary-container/20 transition-colors">
+<p class="text-[10px] font-bold">MON</p>
+<p class="text-sm font-black">12</p>
+</button>
+<button class="p-2 text-center rounded-lg bg-primary text-white shadow-md">
+<p class="text-[10px] font-bold">TUE</p>
+<p class="text-sm font-black">13</p>
+</button>
+<button class="p-2 text-center rounded-lg bg-surface-container hover:bg-primary-container/20 transition-colors">
+<p class="text-[10px] font-bold">WED</p>
+<p class="text-sm font-black">14</p>
+</button>
+<button class="p-2 text-center rounded-lg bg-surface-container hover:bg-primary-container/20 transition-colors opacity-50 cursor-not-allowed">
+<p class="text-[10px] font-bold">THU</p>
+<p class="text-sm font-black">15</p>
+</button>
+</div>
+</div>
+<!-- Time Slots -->
+<div>
+<p class="text-[10px] font-label font-bold uppercase tracking-widest text-outline mb-3">Available Slots</p>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2 text-xs font-bold rounded-lg border border-outline-variant/30 hover:border-primary hover:text-primary transition-all">09:30 AM</button>
+<button class="py-2 text-xs font-bold rounded-lg border border-outline-variant/30 hover:border-primary hover:text-primary transition-all">11:15 AM</button>
+<button class="py-2 text-xs font-bold rounded-lg bg-primary-container/10 border border-primary-container text-primary">02:45 PM</button>
+<button class="py-2 text-xs font-bold rounded-lg border border-outline-variant/30 hover:border-primary hover:text-primary transition-all">04:30 PM</button>
+</div>
+</div>
+<!-- Pricing Summary -->
+<div class="pt-6 border-t border-surface-container">
+<div class="flex justify-between items-center mb-4">
+<p class="text-xs font-medium text-on-surface-variant">Consultation Fee</p>
+<p class="text-sm font-black">$85.00</p>
+</div>
+<button class="w-full py-4 bg-gradient-to-br from-[#00647C] to-[#007F9D] text-white font-bold rounded-xl active:scale-[0.98] transition-transform shadow-lg shadow-primary/20">
+                                Confirm Appointment
+                            </button>
+</div>
+<p class="text-[10px] text-center text-outline leading-tight">By booking, you agree to PetPulse terms for medical consultations.</p>
+</div>
+</div>
+<!-- Availability status -->
+<div class="mt-4 flex items-center justify-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-pulse"></span>
+<p class="text-[10px] font-bold text-tertiary uppercase tracking-wider">Currently Online for Tele-Consult</p>
+</div>
+</aside>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center pb-8 md:hidden">
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md rounded-full px-4 py-2 bg-[#F9F9FF]/80 backdrop-blur-2xl dark:bg-[#151C27]/80 shadow-[0_32px_48px_rgba(21,28,39,0.08)] flex justify-around items-center">
+<div class="flex flex-col items-center justify-center text-[#151C27] dark:text-[#F9F9FF] opacity-40 p-3 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider">Explore</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-gradient-to-br from-[#00647C] to-[#007F9D] text-white rounded-full p-3 active:scale-90 transition-all duration-300 ease-out">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider">Appointments</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#151C27] dark:text-[#F9F9FF] opacity-40 p-3 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider">Consult</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#151C27] dark:text-[#F9F9FF] opacity-40 p-3 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined">clinical_notes</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider">Records</span>
+</div>
+</div>
+</nav>
+</body></html>

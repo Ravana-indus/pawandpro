@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#dce2f3",
+                    "on-primary-container": "#fafdff",
+                    "tertiary-container": "#00855b",
+                    "surface-container": "#e7eefe",
+                    "surface-container-highest": "#dce2f3",
+                    "surface-container-high": "#e2e8f8",
+                    "on-secondary-fixed": "#141b2b",
+                    "surface-dim": "#d3daea",
+                    "secondary": "#575e70",
+                    "secondary-container": "#d9dff5",
+                    "primary-fixed-dim": "#6cd3f7",
+                    "on-tertiary-container": "#f5fff6",
+                    "surface": "#f9f9ff",
+                    "background": "#f9f9ff",
+                    "on-tertiary-fixed": "#002113",
+                    "on-background": "#151c27",
+                    "primary-container": "#007f9d",
+                    "on-surface-variant": "#3e484d",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "outline": "#6e797e",
+                    "on-error": "#ffffff",
+                    "primary": "#00647c",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#bdc8ce",
+                    "surface-tint": "#006780",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-secondary-container": "#5c6274",
+                    "inverse-surface": "#2a313d",
+                    "tertiary-fixed": "#6ffbbe",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#ebf1ff",
+                    "tertiary": "#006947",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#151c27",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#6cd3f7",
+                    "surface-bright": "#f9f9ff",
+                    "on-primary-fixed": "#001f28",
+                    "on-primary-fixed-variant": "#004e61",
+                    "primary-fixed": "#b7eaff",
+                    "on-secondary-fixed-variant": "#404758",
+                    "secondary-fixed": "#dce2f7",
+                    "surface-container-low": "#f0f3ff",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .brand-font { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#F9F9FF]/80 dark:bg-[#151C27]/80 backdrop-blur-xl">
+<div class="flex justify-between items-center px-6 h-20 max-w-full">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-[#151C27] dark:text-[#F9F9FF] uppercase tracking-tighter">PawConcierge</span>
+<div class="hidden md:flex gap-6 font-['Plus_Jakarta_Sans'] font-bold tracking-tight">
+<a class="text-[#00647C] font-bold border-b-2 border-[#00647C] hover:opacity-80 transition-opacity" href="#">Dashboard</a>
+<a class="text-[#151C27]/60 dark:text-[#F9F9FF]/60 hover:opacity-80 transition-opacity" href="#">Marketplace</a>
+<a class="text-[#151C27]/60 dark:text-[#F9F9FF]/60 hover:opacity-80 transition-opacity" href="#">Veterinary</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#00647C] cursor-pointer hover:opacity-80 transition-opacity">notifications</span>
+<span class="material-symbols-outlined text-[#00647C] cursor-pointer hover:opacity-80 transition-opacity">translate</span>
+<span class="material-symbols-outlined text-[#00647C] cursor-pointer hover:opacity-80 transition-opacity">account_circle</span>
+</div>
+</div>
+<div class="bg-[#E7EEFE] dark:bg-[#151C27] h-[1px] opacity-20"></div>
+</nav>
+<main class="pt-24 pb-32 px-6 lg:px-12 max-w-7xl mx-auto">
+<!-- Hero Section Asymmetric Layout -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 items-start">
+<div class="lg:col-span-7">
+<div class="flex items-center gap-3 mb-4">
+<div class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+                        VERIFIED BREEDER
+                    </div>
+<div class="flex items-center gap-1 text-primary font-bold">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm">4.8/5.0</span>
+<span class="text-on-surface-variant/60 text-xs font-normal ml-1">(124 Reviews)</span>
+</div>
+</div>
+<h1 class="text-5xl lg:text-7xl font-headline font-extrabold tracking-tighter mb-6 text-on-surface leading-tight">
+                    Silverline <br/>Retriever Estates
+                </h1>
+<p class="text-lg text-on-surface-variant max-w-xl mb-8 leading-relaxed font-body">
+                    A multi-generational facility dedicated to the ethical preservation of Golden and Labrador Retrievers. Our "Clinical Concierge" approach ensures every pet begins life with optimal neurological stimulation and veterinary oversight.
+                </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary px-8 py-4 rounded-xl font-bold tracking-tight shadow-lg shadow-primary/20 hover:scale-95 transition-transform duration-300">
+                        View Available Litters
+                    </button>
+<button class="bg-surface-container-highest text-on-surface px-8 py-4 rounded-xl font-bold tracking-tight hover:opacity-80 transition-all">
+                        Inquire Privately
+                    </button>
+</div>
+</div>
+<div class="lg:col-span-5 relative h-[400px] lg:h-[500px]">
+<div class="absolute inset-0 bg-surface-container-low rounded-xl overflow-hidden shadow-2xl rotate-2">
+<img class="w-full h-full object-cover" data-alt="Golden Retriever puppy sitting in a modern, clean indoor facility with soft morning sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEB8c3mRMGe6CDL3V_-0-2056SCjb-LbN7fSAZDulQpC0ITKKcUMQ7LE0cHYaMyYn3oSbDbE_b2aYRSyt1ZxBD_-faqjTZTy9HCQqscMd4MMqdQ4zb3nyx5JAA27xX7wvGti4BYMZd98rn6t2VjMRN99e8SffX2I3pOpe1tEyvEPbJFBWeargb5LgNS60EjOmICeeUPhx23L9oa20VqVOfhiTauUi7xBWM0dy4nXdMgdI3a4cmQ-TJugj0vr4lgUueax1YrD5OQ8g"/>
+</div>
+<div class="absolute top-8 -left-8 bg-surface-container-lowest p-4 rounded-lg shadow-xl -rotate-3 border-ghost">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">health_and_safety</span>
+</div>
+<div>
+<p class="text-xs font-bold text-primary uppercase tracking-widest">Medical Clearance</p>
+<p class="text-sm font-semibold">100% OFA Certified</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Facility Bento Grid -->
+<section class="mb-20">
+<div class="flex justify-between items-end mb-8">
+<div>
+<span class="text-primary font-bold text-xs uppercase tracking-widest mb-2 block">Our Environment</span>
+<h2 class="text-3xl font-headline font-bold">The Facility Gallery</h2>
+</div>
+<a class="text-primary font-bold flex items-center gap-2 hover:underline" href="#">
+                    Explore Virtual Tour <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-[600px]">
+<div class="col-span-2 row-span-2 rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Wide shot of a luxury pet boarding facility with clean white walls and indoor play area" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN6ll1CrNPsVdupqM6idql_cNDNJgrsqw1KtEek05fqBPvijyUwIrdAI2c0uDyjHglIHsT3KxND2bV-oZfDZVmJbU_z02Ia4aIrZydKws1ptmCXemwynIkUJhTo74BTJu3rSFP1vujTekI1OJ0efiVne0cZSewUqj5wZyD1vkofJfiwHwlIoT07PsnotT36DyVJNoFWfb4gH3aOg9wZI5kJ9F7_B_sWcQN08dzBjBRTq8E9WTEHF8lTD-WqBqRvS5BPBaHyAD-peI"/>
+<div class="absolute bottom-4 left-4 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white text-xs font-bold uppercase tracking-widest">Main Lobby</div>
+</div>
+<div class="col-span-1 rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Puppies playing together in a grassy outdoor play area under soft sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0i73hb_83j5NjBB8hMRL7sPztIaltXYAK0Ya2sV_cbrGCKJLiNv6-HZ-e39B96rPcdNhavKgWT1leDjhfic8X81pTyX2CWEypt_pruzmXfe1DHqe1D3I0KhYZC8s8D6ZzJ5noZsa3uhE0VYsrdHEo-ZpEfRdbJ86eCkSWsmK1HNu_cN7S0JUwh9-vYvVWe45Rmk4I43bj8Ih8MATJM9uyuvIDlypeF5IY5quk9ABURzOvoBMtbKMeOuXNGKe7CR6HxWxqc8rmLtg"/>
+</div>
+<div class="col-span-1 rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Modern veterinary examination room inside the breeding facility with high-tech equipment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjKMcnMQ74dW1q8SSh8D2HW5hQtUXjbUR3a2hOMH_ZFZzNth0vRoXbpUFk-68-UO-dGXO9tecnAwR5pyqrUVmP0krt7uKfOoongy6Rv8uI8WfPUxMXF_jMpKuYrunfnTUxA23JkC52YnmllQSom1oEzlXP94c5v8aqv5JBgW8rii2Lor2jGya-BGOpToKt1qsRyyFcFtSxoZqy3EjzfiIbPmCh9_90Cb1VUWYGsLQpbilJ4ctCqaY6siWCD9znlXrBk1-7VfnHQVQ"/>
+</div>
+<div class="col-span-2 rounded-lg overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A clean, organized grooming and washing station for pets with modern stainless steel fixtures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDIYh6jBsFFfq01RIPnWiFMADgoAFkQSRswyNRUiqQm9J6TOLtxCPadNHi7AzpqFVruvWt4zgRgLb5rQlCNF01fJC5VBS0wgEwOQ4N-sBbGDs61cQXr4gKfeGqHFEPnXZNQhph2p_rmToiXXG4kQfke_2S9qpP6wInZrIqqSpFDoOwEVQv9-2AGsfqmmgzbxaoFR4qkcIe8zL1R0BFy2czuVvZ9U4sE1q2TqigTZnbyl1tAnpckNBtDCFsVxPXKau_JYPKK4ZttGM"/>
+</div>
+</div>
+</section>
+<!-- Location & Addresses Asymmetric Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20 items-stretch">
+<div class="lg:col-span-4 bg-surface-container-low p-8 rounded-xl flex flex-col justify-between">
+<div>
+<h3 class="text-2xl font-headline font-bold mb-6">Saved Addresses</h3>
+<div class="space-y-4">
+<div class="bg-surface-container-lowest p-5 rounded-lg flex items-start gap-4 shadow-sm border-l-4 border-primary">
+<span class="material-symbols-outlined text-primary mt-1">home</span>
+<div>
+<p class="font-bold text-on-surface">Primary Estate &amp; Kennel</p>
+<p class="text-sm text-on-surface-variant">1280 Silver Oak Ridge, <br/>Lexington, KY 40502</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest/50 p-5 rounded-lg flex items-start gap-4 opacity-70">
+<span class="material-symbols-outlined text-on-surface-variant mt-1">local_hospital</span>
+<div>
+<p class="font-bold text-on-surface">Associate Vet Clinic</p>
+<p class="text-sm text-on-surface-variant">440 Medical Plaza Drive, <br/>Lexington, KY 40502</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest/50 p-5 rounded-lg flex items-start gap-4 opacity-70">
+<span class="material-symbols-outlined text-on-surface-variant mt-1">shopping_bag</span>
+<div>
+<p class="font-bold text-on-surface">Distribution Hub</p>
+<p class="text-sm text-on-surface-variant">90 Regional Pkwy Suite 4, <br/>Louisville, KY 40202</p>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 flex items-center justify-center gap-2 text-primary font-bold text-sm uppercase tracking-widest border-2 border-primary/10 rounded-full py-3 hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined">add_location_alt</span> Add New Location
+                </button>
+</div>
+<div class="lg:col-span-8 bg-surface-container rounded-xl overflow-hidden min-h-[450px] relative">
+<div class="absolute inset-0 bg-slate-200">
+<img class="w-full h-full object-cover opacity-50 grayscale contrast-125" data-alt="Aerial map view of a suburban area with green parks and winding roads" data-location="Lexington, Kentucky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8PbfEyAKNQW-Khfuw4nPvdc1simE7KfXoAXsiex1seNeBh-INo8NbMMimevMrhuzXkxyFEP1tT8NPtp_HA0kHyRbcm401N0nb4_9Sp_Qo6iZdR_ATECSbw0Zuv_GbMufjVB898jin6Dc27FBKEXq_Cq-fJh1uqeFEJEyDT1N3ND_rMD7lFL6bJQ9U55S-6LCNIA6wgWsKHIrsg4jn7uz_iOBdXLZbOwGEdvRTTwr21TAUXLMdK17LwoUvmfWQRgbZ8V4sIHl7oJU"/>
+</div>
+<!-- Interactive Map UI Overlay -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div class="relative group">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-2xl animate-pulse cursor-pointer">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">pets</span>
+</div>
+<div class="absolute -top-16 left-1/2 -translate-x-1/2 bg-surface-container-lowest px-4 py-2 rounded-lg shadow-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<p class="text-sm font-bold">Main Estate Arrival Gate</p>
+</div>
+</div>
+</div>
+<div class="absolute bottom-6 right-6 bg-surface-container-lowest/90 backdrop-blur-md p-4 rounded-lg flex gap-4 shadow-xl">
+<div class="text-center px-4">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-widest mb-1">Travel Time</p>
+<p class="text-xl font-headline font-black text-primary">12 min</p>
+</div>
+<div class="w-[1px] bg-outline-variant/30"></div>
+<div class="text-center px-4">
+<p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-widest mb-1">Open Status</p>
+<p class="text-xl font-headline font-black text-tertiary">OPEN</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Reviews Editorial Section -->
+<section>
+<div class="flex justify-between items-center mb-12">
+<h2 class="text-4xl font-headline font-extrabold tracking-tight">Client Testimonials</h2>
+<div class="flex gap-2">
+<button class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Review Card 1 -->
+<div class="bg-surface-container-low p-8 rounded-xl relative overflow-hidden group">
+<span class="absolute -top-6 -right-6 material-symbols-outlined text-primary/5 text-9xl">format_quote</span>
+<div class="flex gap-1 mb-4 text-[#00647C]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface-variant mb-8 italic font-body leading-relaxed">
+                        "The transparency is unmatched. We were given weekly 4K video updates of our puppy's development and a full clinical report from their on-site vet before pick-up."
+                    </p>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20" data-alt="Portrait of a woman smiling in outdoor setting with warm natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXomivqoabSHomY3AeWMrO_BxCeIw4FNc9ioF-qD0BUqDs53cBv67tghAjQyBqBhaPmyFJSLzqhn7bz3w-nxgRjcj4GdX9-6nGj4QItSvAjUiMS5qo1xPDn1ql6e9vmsMMUNRmEtsmSSJ5ZXdJp4S8X8urHPCSFE8z2rdYgRCgX7P4SbHdm2xHjwJvLOP-jfnqZ6-N3urXUd3O1sTXyD6UgMm1A9zlDCtQ-Lty_J4j1NP41AZChHZv9Mb3sLz7JGYhieOnKnjxvV0"/>
+<div>
+<p class="font-bold text-sm">Elena Rodriguez</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Verified Adoptor</p>
+</div>
+</div>
+</div>
+<!-- Review Card 2 -->
+<div class="bg-surface-container-low p-8 rounded-xl relative overflow-hidden">
+<span class="absolute -top-6 -right-6 material-symbols-outlined text-primary/5 text-9xl">format_quote</span>
+<div class="flex gap-1 mb-4 text-[#00647C]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-on-surface-variant mb-8 italic font-body leading-relaxed">
+                        "As a practicing veterinarian myself, I am incredibly picky. Silverline exceeds every medical standard I look for in a professional breeding program."
+                    </p>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20" data-alt="Professional portrait of a man in medical scrubs with clinical background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkA_9OfAoBhuWcS7EqfNiWAw2nY3QBfFU1BnGD_Lo-gZ2i8ZNNaCDTZHjx0YDxLcCdxi4nfME-DcLm-9siNGqj_EcO7iGhq9hzQ2vbl2Nx0d5lVS4M4WLaCbuHk2cn4pwxKZ29ORGqvqGxeCxxYHO3FeiyWjCQq51UAZ8nI6q6JLoIh51GVMHh7Ul1AsbfSA2I05jP8VjsAKLOuhHvpmmYuj6l8pdkNqYnh7rBsy9JJpGYPK6eMpWZAZw2aG9zA7V4LDmpHGD9wX8"/>
+<div>
+<p class="font-bold text-sm">Dr. Marcus Thorne</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">DVM, PhD</p>
+</div>
+</div>
+</div>
+<!-- Review Card 3 -->
+<div class="bg-surface-container-low p-8 rounded-xl relative overflow-hidden">
+<span class="absolute -top-6 -right-6 material-symbols-outlined text-primary/5 text-9xl">format_quote</span>
+<div class="flex gap-1 mb-4 text-[#00647C]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 0.5;">star_half</span>
+</div>
+<p class="text-on-surface-variant mb-8 italic font-body leading-relaxed">
+                        "The facility is cleaner than most human hospitals. Their focus on early socialization made bringing our dog home an absolute breeze."
+                    </p>
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover ring-2 ring-primary/20" data-alt="Woman smiling gently in an architectural office setting with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPrnbaNMbxLPEc6zs39AfIOlCFdOweG373YtPqXhIqOhyKEmQYINsHNufh09GiIJh-BotDt9iGXuReGokMw6eVy8E8vosKcjJCZkTf2_SI1e4d2YI0-8TVRCozKM8Ndlw3Fn67rdxO2Rv34t7CZP2WJHunfNJGa49mDGOQj8fF9l6-gOGAi-JEIgQfuleS14tCd8WOkmLwbPBvUA5nqfjNEBrv9h3645FI0nzu6YjyqYHw-Wl4ygQmxoCLKc1n0bophjpc1KombAk"/>
+<div>
+<p class="font-bold text-sm">Sarah Jenkins</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Breeder Liaison</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Mobile Only -->
+<div class="md:hidden">
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-end px-4 pb-6 pt-2 bg-[#F9F9FF]/80 dark:bg-[#151C27]/80 backdrop-blur-2xl z-50 rounded-t-[2.5rem] shadow-[0_-8px_32px_rgba(21,28,39,0.06)]">
+<a class="flex flex-col items-center justify-center text-[#151C27]/40 dark:text-[#F9F9FF]/40 w-14 h-14 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#151C27]/40 dark:text-[#F9F9FF]/40 w-14 h-14 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">health_and_safety</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">Health</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#00647C] text-white rounded-2xl w-14 h-14 mb-2 shadow-lg shadow-[#00647C]/20 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">storefront</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">Market</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#151C27]/40 dark:text-[#F9F9FF]/40 w-14 h-14 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">diversity_1</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">NGO</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#151C27]/40 dark:text-[#F9F9FF]/40 w-14 h-14 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+</div>
+</body></html>

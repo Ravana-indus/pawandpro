@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Health &amp; Vaccinations | Paws &amp; Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#001f28",
+                        "surface-container": "#e7eefe",
+                        "background": "#f9f9ff",
+                        "surface-tint": "#006780",
+                        "secondary-fixed": "#dce2f7",
+                        "on-surface": "#151c27",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-primary-fixed-variant": "#004e61",
+                        "primary-fixed": "#b7eaff",
+                        "tertiary": "#006947",
+                        "on-secondary-container": "#5c6274",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#2a313d",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#dce2f3",
+                        "secondary-container": "#d9dff5",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#00647c",
+                        "surface-container-high": "#e2e8f8",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#00855b",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-background": "#151c27",
+                        "on-primary-container": "#fafdff",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "on-surface-variant": "#3e484d",
+                        "surface-variant": "#dce2f3",
+                        "primary-fixed-dim": "#6cd3f7",
+                        "on-tertiary-fixed": "#002113",
+                        "on-secondary-fixed": "#141b2b",
+                        "surface-container-low": "#f0f3ff",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#ebf1ff",
+                        "secondary": "#575e70",
+                        "surface": "#f9f9ff",
+                        "outline-variant": "#bdc8ce",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "surface-bright": "#f9f9ff",
+                        "inverse-primary": "#6cd3f7",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "surface-dim": "#d3daea",
+                        "outline": "#6e797e",
+                        "on-tertiary-container": "#f5fff6",
+                        "primary-container": "#007f9d",
+                        "on-secondary-fixed-variant": "#404758"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#F9F9FF] dark:bg-[#151C27] flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#00647C] dark:text-[#0891B2]" data-icon="pets">pets</span>
+<span class="text-2xl font-black tracking-tighter text-[#151C27] dark:text-[#F9F9FF] font-['Plus_Jakarta_Sans']">Paws &amp; Pro</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#151C27] dark:text-[#F9F9FF] opacity-60" data-icon="notifications">notifications</span>
+</div>
+</header>
+<main class="pt-24 px-6">
+<!-- Profile Anchor -->
+<div class="mb-8 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden bg-surface-container shadow-sm border-2 border-white">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of a golden beagle dog with soft sunlight on its fur looking curiously at the camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5c3nKVAP2lv3XLt4LPG60HgKNOsMRoroaLORszJnq-rlOoCGAaqxFiZg-V2Wgz8d8cJktM-rDT1buOUcnB6UHye8m3zzb4UGQPPZwGPjvr8e0LLz1IL3QxK3d0Ezbx0fG4XRc4H4BqhaLfRJ1O8ma88dmTBGQQwLCAErxYvTPnIC2rgQL74yC3KumAW6STY0OI_bH9lGn3ySlqsu_3v7J5Ryjm-kQusPpKAyGuhWq4gdMf_5HfomVlS8gYvx0kHHlgIkd3ErE7Pw"/>
+</div>
+<div>
+<h1 class="text-2xl font-bold tracking-tight text-on-surface">Oliver's Health</h1>
+<span class="text-xs font-semibold uppercase tracking-widest text-primary">Beagle • 2 Years</span>
+</div>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-sm" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Verified Healthy</span>
+</div>
+</div>
+<!-- Vaccination Progress (The Bento Focus) -->
+<section class="mb-10">
+<div class="flex justify-between items-end mb-4">
+<h2 class="text-xl font-bold">Vaccination Tracker</h2>
+<span class="text-sm font-semibold text-primary">View All Records</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Core Vaccines Card -->
+<div class="col-span-2 bg-surface-container-lowest p-6 rounded-lg shadow-sm">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1">Core Vaccines</p>
+<p class="text-lg font-bold">Rabies &amp; Distemper</p>
+</div>
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded-full" data-icon="vaccines">vaccines</span>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="font-medium">Rabies (3-Year)</span>
+<span class="font-bold">Next: Aug 2025</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[75%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="font-medium">DHPP Booster</span>
+<span class="font-bold">Next: Oct 2024</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[40%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Trackers -->
+<div class="bg-surface-container-low p-5 rounded-lg flex flex-col justify-between aspect-square">
+<span class="material-symbols-outlined text-tertiary-container" data-icon="bug_report">bug_report</span>
+<div>
+<p class="text-xs font-bold uppercase tracking-tight opacity-60">Lyme Disease</p>
+<p class="text-base font-bold">Up to Date</p>
+<p class="text-[10px] mt-1 text-tertiary">Valid until Mar 2024</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-5 rounded-lg flex flex-col justify-between aspect-square">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="water_drop">water_drop</span>
+<div>
+<p class="text-xs font-bold uppercase tracking-tight opacity-60">Leptospirosis</p>
+<p class="text-base font-bold text-error">Overdue</p>
+<p class="text-[10px] mt-1 text-error">Due 2 weeks ago</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pharmacy & Refills -->
+<section class="mb-10">
+<h2 class="text-xl font-bold mb-4">Active Prescriptions</h2>
+<div class="space-y-4">
+<!-- Prescription Item -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center gap-4 shadow-sm">
+<div class="w-16 h-16 rounded-md bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container text-3xl" data-icon="medication">medication</span>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-sm">Simparica Trio</h3>
+<p class="text-xs text-on-surface-variant">Heartworm &amp; Flea Prevention</p>
+<div class="mt-2 flex items-center gap-2">
+<span class="text-[10px] font-bold px-2 py-0.5 bg-surface-container rounded-full">2 Refills Left</span>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-full text-xs font-bold">Refill</button>
+</div>
+<!-- Prescription Item -->
+<div class="bg-surface-container-lowest p-4 rounded-lg flex items-center gap-4 shadow-sm opacity-60">
+<div class="w-16 h-16 rounded-md bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-3xl" data-icon="pill">pill</span>
+</div>
+<div class="flex-1">
+<h3 class="font-bold text-sm">Apoquel (16mg)</h3>
+<p class="text-xs text-on-surface-variant">Allergy Management</p>
+<div class="mt-2 flex items-center gap-2">
+<span class="text-[10px] font-bold px-2 py-0.5 bg-error-container text-on-error-container rounded-full">Expired</span>
+</div>
+</div>
+<button class="text-primary text-xs font-bold">Renew Rx</button>
+</div>
+</div>
+</section>
+<!-- Medical History -->
+<section class="mb-10">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-xl font-bold">Medical Log</h2>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-outline p-1" data-icon="filter_list">filter_list</span>
+</div>
+</div>
+<div class="space-y-6 relative">
+<!-- Timeline Thread -->
+<div class="absolute left-3 top-2 bottom-0 w-[2px] bg-surface-container-high"></div>
+<!-- Log Entry 1 -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center border-4 border-background">
+<div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+</div>
+<div class="mb-1">
+<span class="text-[10px] font-bold uppercase text-on-surface-variant opacity-50">December 12, 2023</span>
+<h3 class="text-sm font-bold">Annual Wellness Exam</h3>
+</div>
+<p class="text-xs text-on-surface-variant mb-3 leading-relaxed">Routine check-up at Central Vet. Weight: 12.4kg. Heart rate and dental health clear.</p>
+<div class="flex gap-2">
+<div class="bg-surface-container px-3 py-2 rounded-md flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="description">description</span>
+<span class="text-[10px] font-medium">Exam_Results.pdf</span>
+</div>
+</div>
+</div>
+<!-- Log Entry 2 -->
+<div class="relative pl-10">
+<div class="absolute left-0 top-0 w-6 h-6 bg-surface-container-high rounded-full flex items-center justify-center border-4 border-background">
+<div class="w-1.5 h-1.5 bg-outline rounded-full"></div>
+</div>
+<div class="mb-1">
+<span class="text-[10px] font-bold uppercase text-on-surface-variant opacity-50">October 05, 2023</span>
+<h3 class="text-sm font-bold">Flea/Tick Booster</h3>
+</div>
+<p class="text-xs text-on-surface-variant">Administered Simparica Trio home dose.</p>
+</div>
+</div>
+</section>
+<!-- Book Appointment Banner -->
+<div class="bg-primary-container p-6 rounded-lg text-on-primary-container flex justify-between items-center overflow-hidden relative">
+<div class="relative z-10">
+<h2 class="text-lg font-extrabold tracking-tight mb-1">Need a vet?</h2>
+<p class="text-xs opacity-90 mb-4 max-w-[160px]">Schedule a telehealth or in-person visit in minutes.</p>
+<button class="bg-surface-container-lowest text-primary px-5 py-2.5 rounded-full text-xs font-bold shadow-lg">Book Appointment</button>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-20">
+<span class="material-symbols-outlined text-9xl" data-icon="medical_services">medical_services</span>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-8 pb-8 pt-4 bg-[#F9F9FF]/80 dark:bg-[#151C27]/80 backdrop-blur-xl z-50 rounded-t-[3rem] shadow-[0_-8px_32px_rgba(21,28,39,0.04)]">
+<div class="flex flex-col items-center justify-center text-[#151C27] dark:text-[#F9F9FF] opacity-40 hover:opacity-100 transition-all active:scale-90 duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest">Market</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#151C27] dark:text-[#F9F9FF] opacity-40 hover:opacity-100 transition-all active:scale-90 duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="storefront">storefront</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest">Breeders</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#00647C] dark:text-[#0891B2] scale-110 transition-all active:scale-90 duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="medical_services" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest">Health</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#151C27] dark:text-[#F9F9FF] opacity-40 hover:opacity-100 transition-all active:scale-90 duration-300 ease-out">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest">Profile</span>
+</div>
+</nav>
+</body></html>

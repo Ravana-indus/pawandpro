@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#002113",
+                    "tertiary-container": "#00855b",
+                    "surface-container-low": "#f0f3ff",
+                    "on-surface": "#151c27",
+                    "inverse-surface": "#2a313d",
+                    "primary-container": "#007f9d",
+                    "secondary": "#575e70",
+                    "secondary-container": "#d9dff5",
+                    "outline-variant": "#bdc8ce",
+                    "tertiary": "#006947",
+                    "primary-fixed-dim": "#6cd3f7",
+                    "on-primary-fixed": "#001f28",
+                    "surface-container-high": "#e2e8f8",
+                    "outline": "#6e797e",
+                    "surface-variant": "#dce2f3",
+                    "on-tertiary-container": "#f5fff6",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#d3daea",
+                    "primary": "#00647c",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "on-error": "#ffffff",
+                    "surface": "#f9f9ff",
+                    "on-primary": "#ffffff",
+                    "background": "#f9f9ff",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-background": "#151c27",
+                    "on-surface-variant": "#3e484d",
+                    "inverse-on-surface": "#ebf1ff",
+                    "surface-container-highest": "#dce2f3",
+                    "tertiary-fixed": "#6ffbbe",
+                    "inverse-primary": "#6cd3f7",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#404758",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-primary-container": "#fafdff",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#b7eaff",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-secondary-fixed": "#141b2b",
+                    "on-secondary-container": "#5c6274",
+                    "surface-tint": "#006780",
+                    "surface-bright": "#f9f9ff",
+                    "secondary-fixed": "#dce2f7",
+                    "surface-container": "#e7eefe",
+                    "on-primary-fixed-variant": "#004e61"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #00647C 0%, #007F9D 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-primary-gradient {
+            background: linear-gradient(135deg, #00647C 0%, #007F9D 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- Top Navigation Bar -->
+<header class="bg-[#F9F9FF]/80 dark:bg-[#151C27]/80 backdrop-blur-xl fixed top-0 w-full z-50 shadow-sm shadow-cyan-900/5 font-['Plus_Jakarta_Sans'] tracking-tight">
+<nav class="flex justify-between items-center px-8 h-20 w-full max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-12">
+<span class="text-2xl font-bold tracking-tighter text-[#151C27] dark:text-[#F9F9FF]">Paws&amp;Pro</span>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-cyan-700 dark:text-cyan-400 font-semibold border-b-2 border-cyan-700 dark:border-cyan-400 pb-1" href="#">Marketplace</a>
+<a class="text-[#151C27]/60 dark:text-[#F9F9FF]/60 hover:text-cyan-700 transition-all" href="#">Veterinary</a>
+<a class="text-[#151C27]/60 dark:text-[#F9F9FF]/60 hover:text-cyan-700 transition-all" href="#">Breeding</a>
+<a class="text-[#151C27]/60 dark:text-[#F9F9FF]/60 hover:text-cyan-700 transition-all" href="#">Community</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-cyan-50/50 dark:hover:bg-cyan-900/20 transition-all rounded-full scale-95 active:opacity-80">
+<span class="material-symbols-outlined text-on-surface" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-cyan-50/50 dark:hover:bg-cyan-900/20 transition-all rounded-full scale-95 active:opacity-80">
+<span class="material-symbols-outlined text-on-surface" data-icon="favorite">favorite</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="User avatar" data-alt="professional headshot of a smiling man in a clean studio setting with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWg5KvajvQXzp7EWXKKzoE0tSfBZ9fGS6LZlNPbJOjO4AydHTngZ2-Exru1nVmeupTZy-7Cgv6RSJdoVyMEjoJyFuaxzswDEdUTE5MgOazNxPS7-cZP805XQdowRbC1Rjusnl0OGIrzsEQ1GNLlIxGW0Sxr48Fq_n59fdJfIoIOh8LT4SCSqhbTS0hHGx1zh8Uv7VLqf0e2jHngcsoKZj-TNTxXCeT20DkwIUQzAhxBWacYxm1z4Zi7Bvn8K9ohYJ_Ry3eerTIIVw"/>
+</div>
+</div>
+</nav>
+</header>
+<main class="pt-24 pb-20">
+<!-- Hero Section / Editorial Moment -->
+<section class="max-w-screen-2xl mx-auto px-8 mb-16">
+<div class="relative w-full h-[450px] rounded-lg overflow-hidden flex items-center">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="curated collection of high-end pet products arranged artfully on a minimalist marble surface with soft afternoon light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVwSTVY64DSNoKxMsFzlTUrgb7uU-xlB7iJOb5fD_pic3tXbHW2lj5jboLO_ePUfFxBuq0fPvVcbuMKp1CUhTUgAFo4Lpbj-VIWRmJqJfEsw2bjJu8tLnWUdY9UF6atJiisb8MOtaBp4O6FDu5W1_-GMr2Nvpq2zYxbgGsUQeKwrEDL3pOa6BlMM-KLL521LAudCVlJ34olV9G05NIZLzTLlxmeKekXQ8DLSpUzFK-EMa1pAnXO_hm0V1xjoP8bPpg237KG0GYB44"/>
+<div class="absolute inset-0 bg-gradient-to-r from-[#151C27]/80 via-[#151C27]/40 to-transparent"></div>
+<div class="relative z-10 ml-12 md:ml-24 max-w-xl">
+<span class="font-label text-xs uppercase tracking-[0.2em] text-white/70 mb-4 block">New Collection 2024</span>
+<h1 class="font-headline text-5xl md:text-7xl font-extrabold text-white leading-tight tracking-tighter mb-6">Elevate Their <br/> Every Day.</h1>
+<p class="font-body text-white/80 text-lg mb-8 max-w-md">The Paws&amp;Pro In-House collection merges clinical standard nutrition with architectural design aesthetics.</p>
+<button class="btn-primary-gradient px-10 py-4 rounded-xl text-white font-bold flex items-center gap-3 transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-primary/20">
+                        Shop Collection
+                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</section><section class="max-w-screen-2xl mx-auto px-8 mb-12">
+<div class="flex items-center gap-4 overflow-x-auto pb-4 scrollbar-hide">
+<!-- Dogs (Active) -->
+<button class="flex items-center gap-3 px-6 py-3 bg-primary/10 text-primary rounded-full transition-all shrink-0 whitespace-nowrap border-2 border-primary/20">
+<span class="material-symbols-outlined text-xl" data-icon="pets">pets</span>
+<span class="font-headline font-bold text-sm tracking-tight">Dogs</span>
+</button>
+<!-- Cats -->
+<button class="flex items-center gap-3 px-6 py-3 bg-surface-container text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all shrink-0 whitespace-nowrap">
+<span class="material-symbols-outlined text-xl" data-icon="cat">cat</span>
+<span class="font-headline font-bold text-sm tracking-tight">Cats</span>
+</button>
+<!-- Birds -->
+<button class="flex items-center gap-3 px-6 py-3 bg-surface-container text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all shrink-0 whitespace-nowrap">
+<span class="material-symbols-outlined text-xl" data-icon="flutter_dash">flutter_dash</span>
+<span class="font-headline font-bold text-sm tracking-tight">Birds</span>
+</button>
+<!-- Rabbits & Hamsters -->
+<button class="flex items-center gap-3 px-6 py-3 bg-surface-container text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all shrink-0 whitespace-nowrap">
+<span class="material-symbols-outlined text-xl" data-icon="cruelty_free">cruelty_free</span>
+<span class="font-headline font-bold text-sm tracking-tight">Rabbits &amp; Hamsters</span>
+</button>
+<!-- Aquarium -->
+<button class="flex items-center gap-3 px-6 py-3 bg-surface-container text-on-surface-variant hover:bg-surface-container-high rounded-full transition-all shrink-0 whitespace-nowrap">
+<span class="material-symbols-outlined text-xl" data-icon="set_meal">set_meal</span>
+<span class="font-headline font-bold text-sm tracking-tight">Aquarium</span>
+</button>
+</div>
+</section>
+<!-- Marketplace Interaction Layer -->
+<section class="max-w-screen-2xl mx-auto px-8 grid grid-cols-12 gap-12">
+<!-- Side Filters: Professional Sidebar -->
+<aside class="col-span-12 lg:col-span-3 space-y-10">
+<div>
+<h3 class="font-headline text-xl font-bold mb-6">Filter By</h3>
+<div class="space-y-6">
+<div class="bg-surface-container rounded-lg p-6">
+<h4 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Category</h4>
+<div class="space-y-3">
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="w-5 h-5 rounded border-outline bg-surface-container-lowest text-primary focus:ring-primary transition-all" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Clinical Nutrition</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input checked="" class="w-5 h-5 rounded border-outline bg-surface-container-lowest text-primary focus:ring-primary transition-all" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Organic Wellness</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="w-5 h-5 rounded border-outline bg-surface-container-lowest text-primary focus:ring-primary transition-all" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Modular Living</span>
+</label>
+<label class="flex items-center gap-3 group cursor-pointer">
+<input class="w-5 h-5 rounded border-outline bg-surface-container-lowest text-primary focus:ring-primary transition-all" type="checkbox"/>
+<span class="text-sm font-medium group-hover:text-primary transition-colors">Hygiene Tech</span>
+</label>
+</div>
+</div>
+<div class="bg-surface-container rounded-lg p-6">
+<h4 class="font-label text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Price Range</h4>
+<input class="w-full accent-primary" type="range"/>
+<div class="flex justify-between mt-2 text-xs font-medium text-on-surface-variant">
+<span>$10</span>
+<span>$500+</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-headline font-bold">Pro Membership</span>
+</div>
+<p class="text-xs text-on-surface-variant leading-relaxed mb-4">Unlock 15% off all clinical range products and free express shipping.</p>
+<button class="w-full py-2 bg-on-surface text-surface rounded-full text-xs font-bold hover:opacity-90 transition-opacity">Learn More</button>
+</div>
+</div>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="col-span-12 lg:col-span-9">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline text-3xl font-extrabold tracking-tighter">In-House Essentials</h2>
+<p class="text-on-surface-variant mt-1">Showing 24 premium products</p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container text-sm font-semibold rounded-full border-none">
+                            Sort: Featured
+                            <span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- Product Card 1 -->
+<div class="group">
+<div class="relative bg-surface-container-low rounded-lg aspect-[4/5] overflow-hidden mb-4 transition-transform duration-500 group-hover:-translate-y-2">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="minimalist white packaging of premium cat food with sleek cyan typography on a clean studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNoNfEThBGAV8LlKLcVSVvRNvqbleP7_LNppgn1KlePPbZ9JaoU_iBiYO5_HCxi8Qluoe8zrvHv7HsN4e5WZ6o9ike9PwqjDncYjcCcJ-AX7MSeXVuxHP-qDN6mBFj1Vl2Hvcs05AMYPdNH0hI1i2duJ3DlFB5oDcW9nCAPB33t-M2h_AwEowbrwED9NLv15eTDCuj4DBy98Ku41_A53oHokdPBPAaQloEbJnFiaD0siCbNcbFhqt1UCxLdkSjtMJvY8bJpB1jjRg"/>
+<button class="absolute top-4 right-4 h-10 w-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<button class="w-full bg-on-surface text-surface py-3 rounded-xl font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+                                    Quick Add
+                                </button>
+</div>
+</div>
+<div class="px-2">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline font-bold text-lg group-hover:text-primary transition-colors">Clinical Core Kibble</h3>
+<span class="font-headline font-extrabold text-lg">$42.00</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-4">Optimized for senior canine digestion</p>
+<div class="bg-surface-container p-3 rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="sync" style="font-variation-settings: 'FILL' 1;">sync</span>
+<span class="text-xs font-bold text-primary">Subscribe &amp; Save</span>
+</div>
+<span class="text-xs font-bold text-primary">$35.70</span>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group">
+<div class="relative bg-surface-container-low rounded-lg aspect-[4/5] overflow-hidden mb-4 transition-transform duration-500 group-hover:-translate-y-2">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="sculptural designer ceramic pet water fountain in sage green on a light wood floor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD65uDADPBhLzl8hboFnvcQ7sduPafQIq9jjKDAPCer55eZkZmW3fbVoyifq8ZkimHcacrsquiXA03hLM4aNT3flnqsD_D4_Pk6iELuq-TPe9Klegl9bJzykYC7r4PHVQfuxNW1ZdntdsLJu6aM7tGv4JcZUVOVoQrq5GyL6eaLYEUnFIERtGT5TDirDDHnZ2UyP3kS4M-hmHvE4kvrHRB_NCjuDdJmjssW318250v9ieM_3R3Tyk_h3qnaWEQXPggfnhT-Y9om5uI"/>
+<button class="absolute top-4 right-4 h-10 w-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<button class="w-full bg-on-surface text-surface py-3 rounded-xl font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+                                    Quick Add
+                                </button>
+</div>
+</div>
+<div class="px-2">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline font-bold text-lg group-hover:text-primary transition-colors">ZenFlow Fountain</h3>
+<span class="font-headline font-extrabold text-lg">$89.00</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-4">Multi-stage filtration technology</p>
+<div class="bg-surface-container p-3 rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="sync" style="font-variation-settings: 'FILL' 1;">sync</span>
+<span class="text-xs font-bold text-primary">Subscribe &amp; Save</span>
+</div>
+<span class="text-xs font-bold text-primary">$75.65</span>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group">
+<div class="relative bg-surface-container-low rounded-lg aspect-[4/5] overflow-hidden mb-4 transition-transform duration-500 group-hover:-translate-y-2">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="sleek modern bottle of pet supplement oil with dropper on a neutral stone background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnNiYhQuLlCiTyCfbq65LKttSPJfltMUHdpjC4fWpxY9k0OuUp8SV67JzJ5WhXyb0ylU1JqZq_i7vUOifsPcq7sLjdbcvQEk_Bu4LcyMFQLp_ynpWnWuORaQYDJwSjKvqOT2MAyIRtwPJDLpG3QTTOLL_vK_7eZEF7wpCOuGsnrTzs24lDXy2dNkefzFca6cSKvxdFMsah1QZXuiEb_oTJ-ANvwVhGkCl0QWuqqZoFyYZgouoX-G_UM1GUL3ksoaAb2xzkiae9rlc"/>
+<button class="absolute top-4 right-4 h-10 w-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<button class="w-full bg-on-surface text-surface py-3 rounded-xl font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+                                    Quick Add
+                                </button>
+</div>
+</div>
+<div class="px-2">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline font-bold text-lg group-hover:text-primary transition-colors">Omega Serum +</h3>
+<span class="font-headline font-extrabold text-lg">$28.00</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-4">Coat and skin vitality booster</p>
+<div class="bg-surface-container p-3 rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="sync" style="font-variation-settings: 'FILL' 1;">sync</span>
+<span class="text-xs font-bold text-primary">Subscribe &amp; Save</span>
+</div>
+<span class="text-xs font-bold text-primary">$23.80</span>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group">
+<div class="relative bg-surface-container-low rounded-lg aspect-[4/5] overflow-hidden mb-4 transition-transform duration-500 group-hover:-translate-y-2">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="contemporary gray felt cat house with architectural geometric lines in a bright modern living room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDexlzv6MWpcOh2kiV8o3na-SdMmMAWQfD6AcbEriTWNu78T_hIF-4sivNq_aEUyk4ozBuRrYQjW2xv0O9scAr2Kw_En4dGTBQkCU5wC-ksQfLFGwlnTjnAlrenlRJWk62DNVaem02qke6JbtLP7Nyzb2UJvoy7WPAxSB5sOvP532HrX9PgIvjtc1fYyCtiJsEG_Rt0NoNxIL5KqCNK2SQz6Hm07bEyPOtawamaamamMe4caxRljSAxs8EYkZFqUR5FWctjcizohSQ"/>
+<button class="absolute top-4 right-4 h-10 w-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<button class="w-full bg-on-surface text-surface py-3 rounded-xl font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+                                    Quick Add
+                                </button>
+</div>
+</div>
+<div class="px-2">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline font-bold text-lg group-hover:text-primary transition-colors">Nordic Felt Cave</h3>
+<span class="font-headline font-extrabold text-lg">$120.00</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-4">Eco-friendly acoustic felt</p>
+<div class="bg-surface-container p-3 rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="sync" style="font-variation-settings: 'FILL' 1;">sync</span>
+<span class="text-xs font-bold text-primary">Subscribe &amp; Save</span>
+</div>
+<span class="text-xs font-bold text-primary">$102.00</span>
+</div>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group">
+<div class="relative bg-surface-container-low rounded-lg aspect-[4/5] overflow-hidden mb-4 transition-transform duration-500 group-hover:-translate-y-2">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="collection of colorful artisanal rope dog toys arranged on a clean white surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7L6kRTH8PR3NSLH7QFwVWVzPXILTSGQzmeNsmb3SssX4zBuwXzUoX9EVqhH7TJTFz50czPQjjMTZOKmpOG3Ezo6z-WnPOroGTU9r4pUSJslrQTA-Voce1uLhf4XNNXnYOg3r_xphCaYPPxRXQxmILGI71ZkRwcxPXAU9kA1kWHRNvwrHVSKCuHKXlDH09aXDt0NZfGOS5GusuhiXjAhCX16o44FWMZmsQOlWvVdmoaYHXd7TCawEzdB3dcOb_SyF0DQVGJkQldoI"/>
+<button class="absolute top-4 right-4 h-10 w-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<button class="w-full bg-on-surface text-surface py-3 rounded-xl font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+                                    Quick Add
+                                </button>
+</div>
+</div>
+<div class="px-2">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline font-bold text-lg group-hover:text-primary transition-colors">Organic Tugs Set</h3>
+<span class="font-headline font-extrabold text-lg">$34.00</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-4">100% natural dyed cotton rope</p>
+<div class="bg-surface-container p-3 rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="sync" style="font-variation-settings: 'FILL' 1;">sync</span>
+<span class="text-xs font-bold text-primary">Subscribe &amp; Save</span>
+</div>
+<span class="text-xs font-bold text-primary">$28.90</span>
+</div>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="group">
+<div class="relative bg-surface-container-low rounded-lg aspect-[4/5] overflow-hidden mb-4 transition-transform duration-500 group-hover:-translate-y-2">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="luxury leather dog collar with gold-plated hardware on a dark velvet display pad" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRmIP4eVv9x_o8tESBgDqSrz1pz5BQiniJLEtkd-aAeEWiyzoZI2h57NZ9UjiCFGzmL9m835jVE_rvFc-Kh1UBFXF9kLjZz56QsomUPazyqlm7aEoqDIEsbH6NEeg6dJr34H1rEkAT_57lEX3Hb6521zmzs9N55-LurB_R1UT9n8Pn_UxO5ihEIDtlojtUwlXS42Y8nbY0OCfK9ur7ZTWbsiOwTSzyBpemMP4gREwApduii9XLHoYXW07Wvrd7s6hgd6YjlAXfdh0"/>
+<button class="absolute top-4 right-4 h-10 w-10 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<button class="w-full bg-on-surface text-surface py-3 rounded-xl font-bold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="add_shopping_cart">add_shopping_cart</span>
+                                    Quick Add
+                                </button>
+</div>
+</div>
+<div class="px-2">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-headline font-bold text-lg group-hover:text-primary transition-colors">Heirloom Collar</h3>
+<span class="font-headline font-extrabold text-lg">$65.00</span>
+</div>
+<p class="text-sm text-on-surface-variant mb-4">Italian vegetable tanned leather</p>
+<div class="bg-surface-container p-3 rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="sync" style="font-variation-settings: 'FILL' 1;">sync</span>
+<span class="text-xs font-bold text-primary">Subscribe &amp; Save</span>
+</div>
+<span class="text-xs font-bold text-primary">$55.25</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination/Load More -->
+<div class="mt-16 flex justify-center">
+<button class="px-12 py-4 border-2 border-on-surface/10 rounded-full font-bold hover:bg-on-surface hover:text-surface transition-all flex items-center gap-3">
+                        View All Collections
+                        <span class="material-symbols-outlined text-sm" data-icon="arrow_downward">arrow_downward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Newsletter / Community Bento -->
+<section class="max-w-screen-2xl mx-auto px-8 mt-32 mb-16">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 bg-primary-container rounded-lg p-12 text-white relative overflow-hidden flex flex-col justify-between min-h-[350px]">
+<div class="relative z-10">
+<h2 class="font-headline text-4xl font-extrabold tracking-tighter mb-4 leading-none">Join the Inner Circle</h2>
+<p class="text-white/80 max-w-md text-lg">Receive weekly vet-curated health tips and early access to artisanal drops.</p>
+</div>
+<div class="relative z-10 flex gap-4 mt-8">
+<input class="flex-1 bg-white/10 border-white/20 rounded-xl px-6 py-4 focus:ring-white focus:bg-white/20 text-white placeholder:text-white/50" placeholder="Your clinical email" type="email"/>
+<button class="bg-white text-primary px-8 rounded-xl font-bold hover:bg-surface-container-low transition-colors">Subscribe</button>
+</div>
+<div class="absolute -right-20 -bottom-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+</div>
+<div class="bg-surface-container-highest rounded-lg p-10 flex flex-col justify-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-4" data-icon="health_and_safety">health_and_safety</span>
+<h3 class="font-headline text-2xl font-bold mb-4">Safe &amp; Verified</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">Every product is clinical-grade and tested by our network of over 500 certified veterinarians.</p>
+<a class="text-primary font-bold flex items-center gap-2 group" href="#">
+                        View Testing Standards
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#F9F9FF] dark:bg-[#151C27] w-full py-12 border-t border-[#151C27]/10 dark:border-[#F9F9FF]/10 font-['Inter'] text-sm uppercase tracking-widest">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 space-y-4 md:space-y-0 max-w-screen-2xl mx-auto">
+<div class="text-[#151C27]/40 dark:text-[#F9F9FF]/40">
+                © 2024 Paws&amp;Pro. The Clinical Concierge for Pets.
+            </div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-[#151C27]/40 dark:text-[#F9F9FF]/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors" href="#">Privacy Policy</a>
+<a class="text-[#151C27]/40 dark:text-[#F9F9FF]/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors" href="#">Terms of Service</a>
+<a class="text-[#151C27]/40 dark:text-[#F9F9FF]/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors" href="#">Contact Support</a>
+<a class="text-[#151C27]/40 dark:text-[#F9F9FF]/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors" href="#">Vet Portal</a>
+<a class="text-[#151C27]/40 dark:text-[#F9F9FF]/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors" href="#">Careers</a>
+</div>
+</div>
+</footer>
+</body></html>

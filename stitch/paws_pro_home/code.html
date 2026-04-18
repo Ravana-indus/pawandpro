@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Paws&amp;Pro | The Clinical Concierge for Pets</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#002113",
+                    "tertiary-container": "#00855b",
+                    "surface-container-low": "#f0f3ff",
+                    "on-surface": "#151c27",
+                    "inverse-surface": "#2a313d",
+                    "primary-container": "#007f9d",
+                    "secondary": "#575e70",
+                    "secondary-container": "#d9dff5",
+                    "outline-variant": "#bdc8ce",
+                    "tertiary": "#006947",
+                    "primary-fixed-dim": "#6cd3f7",
+                    "on-primary-fixed": "#001f28",
+                    "surface-container-high": "#e2e8f8",
+                    "outline": "#6e797e",
+                    "surface-variant": "#dce2f3",
+                    "on-tertiary-container": "#f5fff6",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#d3daea",
+                    "primary": "#00647c",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "on-error": "#ffffff",
+                    "surface": "#f9f9ff",
+                    "on-primary": "#ffffff",
+                    "background": "#f9f9ff",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-background": "#151c27",
+                    "on-surface-variant": "#3e484d",
+                    "inverse-on-surface": "#ebf1ff",
+                    "surface-container-highest": "#dce2f3",
+                    "tertiary-fixed": "#6ffbbe",
+                    "inverse-primary": "#6cd3f7",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#404758",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-primary-container": "#fafdff",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#b7eaff",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-secondary-fixed": "#141b2b",
+                    "on-secondary-container": "#5c6274",
+                    "surface-tint": "#006780",
+                    "surface-bright": "#f9f9ff",
+                    "secondary-fixed": "#dce2f7",
+                    "surface-container": "#e7eefe",
+                    "on-primary-fixed-variant": "#004e61"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#F9F9FF]/80 dark:bg-[#151C27]/80 backdrop-blur-xl shadow-sm shadow-cyan-900/5 tonal-transition-surface-container-low">
+<div class="flex justify-between items-center px-8 h-20 w-full max-w-screen-2xl mx-auto font-['Plus_Jakarta_Sans'] tracking-tight">
+<div class="flex items-center gap-12">
+<span class="text-2xl font-bold tracking-tighter text-[#151C27] dark:text-[#F9F9FF]">Paws&amp;Pro</span>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-[#151C27]/60 dark:text-[#F9F9FF]/60 hover:text-cyan-700 transition-all" href="#">Marketplace</a>
+<a class="text-[#151C27]/60 dark:text-[#F9F9FF]/60 hover:text-cyan-700 transition-all" href="#">Veterinary</a>
+<a class="text-[#151C27]/60 dark:text-[#F9F9FF]/60 hover:text-cyan-700 transition-all" href="#">Breeding</a>
+<a class="text-[#151C27]/60 dark:text-[#F9F9FF]/60 hover:text-cyan-700 transition-all" href="#">Community</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-cyan-50/50 p-2 rounded-full transition-all" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-cyan-50/50 p-2 rounded-full transition-all" data-icon="favorite">favorite</button>
+<div class="h-10 w-10 rounded-full bg-surface-container overflow-hidden">
+<img alt="User avatar" data-alt="professional headshot of a person with a friendly expression in a clean studio setting with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiTzfB4yrzToeWJXGIq0itmABZWbBGI_zjWPXuxOjAUn8mKTyN-NmsW8RFdJyAT8HasqV8guTKb_Px6NYz1sfstGC-Zb0js4G2djCGDjc3gxnIvakOCmnOEpLTr5tkHDliBa7VT7wMFaSII4H2qb5TM7vlA9hU0AOBlHjEeAAzgj9xsI_kBKfXnueHRANQ1Epx-5wH2EH847GP1oLqElO2jjYwM3baPqbYs2DxMt5PwN4Fr34-hjExYq66tlMTAaUO9jf8ebGnD6g"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section: Editorial Choice -->
+<section class="relative min-h-[870px] flex items-center px-8 max-w-screen-2xl mx-auto overflow-hidden">
+<div class="editorial-grid w-full items-center">
+<div class="col-span-12 lg:col-span-6 z-10 py-12 lg:pr-12">
+<span class="uppercase tracking-[0.3em] text-primary font-bold text-sm mb-6 block">The Clinical Concierge</span>
+<h1 class="font-headline text-6xl md:text-8xl font-extrabold tracking-tighter text-on-surface leading-[0.9] mb-8">
+                        Elevated <span class="text-primary-container">Care</span> <br/>for Every Life.
+                    </h1>
+<p class="text-xl text-on-surface-variant max-w-lg mb-12 leading-relaxed">
+                        Redefining pet wellness through professional veterinary authority and premium lifestyle integration.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-10 py-5 rounded-xl font-bold text-lg shadow-lg shadow-primary/20 scale-100 hover:scale-[1.02] active:scale-95 transition-transform">
+                            Book Consultation
+                        </button>
+<button class="bg-surface-container-highest text-on-surface px-10 py-5 rounded-xl font-bold text-lg hover:bg-surface-container-high transition-colors">
+                            Explore Marketplace
+                        </button>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-6 relative h-[600px] lg:h-full">
+<div class="absolute inset-0 bg-surface-container-low rounded-lg overflow-hidden transform skew-y-2 lg:skew-y-0 lg:-rotate-2">
+<img alt="Luxury pet care" class="w-full h-full object-cover grayscale mix-blend-multiply opacity-80" data-alt="high-end studio photograph of a well-groomed dog sitting elegantly on a minimalist architectural background with dramatic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB20r_s4EKQSyypo328FHPt3Flyfruflk26hkKaz7qrU12eqfzUaOqaULU45l8DNhET2ZvTcBH4Y6ovWuh6ZwtEe9NZ8mifQaOVxYjDzsoq9uKjBlmvWHN7QDIheCbrjISR1YTEp3XRUsg4N-vDOkJQ1jJb7q1k6wEGGbz-HEZYDC-Eg_-AWnHqugRENXsF_AGEUA3BL65ltTKtXCdD4z2fzbhIHsa2VatmO88R9tXiZZ6fo7KFJ7_JP0U2hiz4JnmFkrcqxtcSSMk"/>
+</div>
+<div class="absolute -bottom-10 -right-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"></div>
+</div>
+</div>
+</section>
+<!-- The Choice Bento -->
+<section class="px-8 py-24 max-w-screen-2xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Shop Products -->
+<div class="group relative aspect-square md:aspect-[4/5] bg-surface-container-lowest rounded-lg overflow-hidden p-8 flex flex-col justify-end transition-all hover:shadow-2xl hover:shadow-on-surface/5">
+<img alt="Shop Products" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="minimalist arrangement of premium organic pet grooming products on a clean white surface with natural morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_m8ykKmCPnwcHic1DuhqAQGMnG8V2RepXRJtFomY9aAMU5qsJNadWqT0H_FCpdr0nPL-VwGp2S3KUvPWAIj-ecDgX5_-1ONmXyTvW0IcPS6-JR9EC4rCX5AA5MUwh0xChfuTsFrCNHkumomw1x2sWS5lEShLOsiFUXersSYG_FyR8XYhUdNNL-6kaIv1pDaHrGolXtP0Ejvvl8-2hp3nL4RXIvOHq-NiTHka3ZLVQLhhBU0EOrGpzrykOIXVUDSMn-HTpOdp8BtA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent"></div>
+<div class="relative z-10">
+<h3 class="font-headline text-3xl font-bold text-surface mb-2">Shop Products</h3>
+<p class="text-surface/80 mb-4">Curated collection of medical-grade essentials.</p>
+<span class="inline-flex items-center gap-2 text-primary-fixed-dim font-bold uppercase tracking-widest text-xs">Browse Gallery <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+</div>
+</div>
+<!-- Adopt/Buy -->
+<div class="group relative aspect-square md:aspect-[4/5] bg-surface-container-lowest rounded-lg overflow-hidden p-8 flex flex-col justify-end transition-all hover:shadow-2xl hover:shadow-on-surface/5">
+<img alt="Adopt or Buy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="close-up of a purebred puppy looking curiously at the camera in a bright high-key studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALoGA99uLYTJagin4nF18NBP6UBywWtyWJpBsL-oWFGoRCf3K68kaa4AppFC5Ik3-yTMXZvS8aGIUuG6FSa-s83AekMGpsJbql8qXDWStmOrX4atwTqo8GGks498Mi-LLDDDUmpiwq-vbF_17U41IyzDkHPBdweshMX9j73n6AvKpOFno-iLLBctgEeordaQvo1hQPgCQhSeTa7w37bb7PtTeFPvJxkJ5rPxGpbD7k_PpvJe7pyM7-urD4ZWI9lk7mB8FZg0kSvvw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent"></div>
+<div class="relative z-10">
+<h3 class="font-headline text-3xl font-bold text-surface mb-2">Adopt &amp; Buy</h3>
+<p class="text-surface/80 mb-4">Connect with ethical breeders and shelters.</p>
+<span class="inline-flex items-center gap-2 text-primary-fixed-dim font-bold uppercase tracking-widest text-xs">Meet Companions <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+</div>
+</div>
+<!-- Vet Consultation -->
+<div class="group relative aspect-square md:aspect-[4/5] bg-surface-container-lowest rounded-lg overflow-hidden p-8 flex flex-col justify-end transition-all hover:shadow-2xl hover:shadow-on-surface/5">
+<img alt="Vet Consultation" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="modern veterinary clinic interior with high-tech equipment and a clean professional clinical atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXu5FHmZp79UYPVLO_7AiSqcwzlZekGxgWrr4_bae705Yz_hRb5W_OzV7ulusB713yN6g_gBBRC6jpV1BhJtQWwGIcN1BIkIBOliKJnJ1Ok_dGehRe8nCqUl-oDnkhB8Pxxwdi7bL-59m-BxCNwewJ-mA8gqp4kCLahkGoFJt4lb_5qNAFLNJV4NF6fkO2ih-FAJl2h35MsGNNw-ub0Ru2no0IX_SjomRQZUxy8LCtE61H7DxtwulJ4CHjxpUpjK2xypn74hl-g_Y"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent"></div>
+<div class="relative z-10">
+<h3 class="font-headline text-3xl font-bold text-surface mb-2">Clinical Consultation</h3>
+<p class="text-surface/80 mb-4">Immediate access to top-tier veterinary care.</p>
+<span class="inline-flex items-center gap-2 text-primary-fixed-dim font-bold uppercase tracking-widest text-xs">Book Session <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Vet Access Section -->
+<section class="bg-surface-container-low py-32">
+<div class="px-8 max-w-screen-2xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-2xl">
+<span class="uppercase tracking-widest text-primary font-bold text-sm mb-4 block">Medical Authority</span>
+<h2 class="font-headline text-5xl font-extrabold tracking-tighter text-on-surface leading-tight">Instant Clinical <br/>Access.</h2>
+</div>
+<button class="flex items-center gap-3 text-on-surface font-bold group">
+                        View All Specialists 
+                        <span class="material-symbols-outlined bg-on-surface text-surface rounded-full p-2 transition-transform group-hover:translate-x-2">east</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Specialist 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg group hover:-translate-y-2 transition-all duration-300">
+<div class="relative w-full aspect-square rounded-lg overflow-hidden mb-6">
+<img alt="Dr. Aris" class="w-full h-full object-cover" data-alt="professional male veterinarian in a clean blue clinic coat with a warm approachable smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYA5PAqz6otRWd3G5livad3gCV2kehF_bx_brpz53tSf-eQUAHyxxSXExz_72KRnAgDVcTn7B83Fv75XuQJYWIfTzE6UPqZ2pchE0iGDS65nxXUuiH9rQQP7Q4JuN6fd0SRSK3aVO7mtgaEe93F9fUTTB-F1op29Ve4ejwG7Dw2WlcwWAZQImnD3C9gELUj9Vb-3jtpdm6DoBbO5za6gPn66ZyzpZBO02HuQN1yzqVdj9fE24DM5s2GF_pZFUpPerJ7bXt1Gc9St8"/>
+<div class="absolute top-4 right-4 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> Verified
+                            </div>
+</div>
+<h4 class="font-headline text-xl font-bold text-on-surface">Dr. Julian Aris</h4>
+<p class="text-on-surface-variant text-sm mb-4">Cardiology Specialist</p>
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1 text-primary font-bold"><span class="material-symbols-outlined text-sm">schedule</span> Available Now</span>
+<button class="bg-primary-container text-on-primary-container p-2 rounded-full material-symbols-outlined" data-icon="videocam">videocam</button>
+</div>
+</div>
+<!-- Specialist 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg group hover:-translate-y-2 transition-all duration-300">
+<div class="relative w-full aspect-square rounded-lg overflow-hidden mb-6">
+<img alt="Dr. Sarah" class="w-full h-full object-cover" data-alt="female veterinarian wearing a stethoscope and professional medical attire in a bright clinic setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr63WE_xitYDg1nzjwSbVYFY-e42aec4eveAILoQpvbQbuBN1qQTJKX-H7h2aAvqGzdnTqvvWGstP7ZtjhG3MDso53vUgJvfgmP6GmR_WghrSFM8RzBwHLvc94I7XMXaCPcApMfjnBHDy52BV0_zPrCuZmKRLa1PwRy-B5JCcMqkj3GVlphkbob9yT_on0lTXAo-hbPF0bsTbVSA9rWj-KK2aJDaY9lNPzJY-kHciewngtW_qPg5SIO-QFdfVQou8bM-cp9e7sQ1g"/>
+<div class="absolute top-4 right-4 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> Verified
+                            </div>
+</div>
+<h4 class="font-headline text-xl font-bold text-on-surface">Dr. Sarah Chen</h4>
+<p class="text-on-surface-variant text-sm mb-4">Nutritional Therapy</p>
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1 text-on-surface-variant text-sm"><span class="material-symbols-outlined text-sm">schedule</span> Next: 2:00 PM</span>
+<button class="bg-secondary-container text-on-secondary-container p-2 rounded-full material-symbols-outlined" data-icon="calendar_today">calendar_today</button>
+</div>
+</div>
+<!-- Specialist 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg group hover:-translate-y-2 transition-all duration-300">
+<div class="relative w-full aspect-square rounded-lg overflow-hidden mb-6">
+<img alt="Dr. Marcus" class="w-full h-full object-cover" data-alt="senior male veterinarian in professional white lab coat with clinical office in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYiRCspQmRv8g5xF4Yn27mEqF4rkhy0E_jo2VEiHrK4ifbbMGGwziYkSklo16UrXOinHanmPexrxeaP7p2AnJfX2KjdLxnd-Hctx24_qaGQPcG7rdJ43R8QF6jX5Pt5jHM_WmxmR2po39p-V2E62ptz48RJj-KrajrWT1o2ZohqxcMNQ52a7UaadW63y-pytHVWChnGoB9Jpvb0jd3zKRxSp9alETmrgSDce7AdgUhhmjRWQRSyOW5CJzSdOPUuMqDlZ77gOCC28k"/>
+<div class="absolute top-4 right-4 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> Verified
+                            </div>
+</div>
+<h4 class="font-headline text-xl font-bold text-on-surface">Dr. Marcus Thorne</h4>
+<p class="text-on-surface-variant text-sm mb-4">Dermatology Expert</p>
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1 text-primary font-bold"><span class="material-symbols-outlined text-sm">schedule</span> Available Now</span>
+<button class="bg-primary-container text-on-primary-container p-2 rounded-full material-symbols-outlined" data-icon="videocam">videocam</button>
+</div>
+</div>
+<!-- Specialist 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg group hover:-translate-y-2 transition-all duration-300">
+<div class="relative w-full aspect-square rounded-lg overflow-hidden mb-6">
+<img alt="Dr. Elena" class="w-full h-full object-cover" data-alt="friendly female veterinarian talking to a colleague in a high-end medical pet hospital" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6aedVAO-GkpzFWrg20cdUUGqVyylnjVCLeMoECHIGs_lol0gX7P1Oz_wjCXKnanVNnBOmi3VZVDhOkSQL6PLfRAlHiCtexEX1SgqhM88TPM6Eo77dHwKjDDLU-hY-Ixfrhd2yltRJU-TLI5YAuhIv7MtPrfpPFmgam8TcFBaQxVB-MYib0a1o13w-HmdQsSBX0C076hKPowaCtL6RFtKuod8ezt7Pw-tzx00Bh77eLerZHFr-R5RZ4TnhkTjyFXzyxNdU0Y6U1-w"/>
+<div class="absolute top-4 right-4 bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">verified</span> Verified
+                            </div>
+</div>
+<h4 class="font-headline text-xl font-bold text-on-surface">Dr. Elena Rossi</h4>
+<p class="text-on-surface-variant text-sm mb-4">Behavioral Science</p>
+<div class="flex items-center justify-between">
+<span class="flex items-center gap-1 text-on-surface-variant text-sm"><span class="material-symbols-outlined text-sm">schedule</span> Fully Booked</span>
+<button class="bg-surface-container-high text-on-surface-variant p-2 rounded-full material-symbols-outlined" data-icon="mail">mail</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Products -->
+<section class="py-32 px-8 max-w-screen-2xl mx-auto">
+<div class="text-center mb-20">
+<h2 class="font-headline text-5xl font-extrabold tracking-tighter text-on-surface mb-6">Clinical Essentials.</h2>
+<div class="flex flex-wrap justify-center gap-4">
+<span class="bg-primary text-on-primary px-6 py-2 rounded-full font-bold">All Products</span>
+<span class="bg-surface-container text-on-surface-variant px-6 py-2 rounded-full font-bold hover:bg-surface-container-high transition-colors cursor-pointer">Nutraceuticals</span>
+<span class="bg-surface-container text-on-surface-variant px-6 py-2 rounded-full font-bold hover:bg-surface-container-high transition-colors cursor-pointer">Hygiene</span>
+<span class="bg-surface-container text-on-surface-variant px-6 py-2 rounded-full font-bold hover:bg-surface-container-high transition-colors cursor-pointer">Tech</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<!-- Product 1 -->
+<div class="group">
+<div class="aspect-square rounded-lg bg-surface-container-low overflow-hidden mb-6 relative">
+<img alt="Pro-Vitalize Complex" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="luxury packaging for pet vitamins on a marble surface with soft dramatic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOUSTe82KRb7qCW_SpAFr-ZzqpGNxvXcWgxm71A-9s7XZgbEdXmpTkZ86N0FFIsA22GBsQTPI6pi_aWM4spCmJwdtaOFYvyRpo38otGEp2jrF6uk5frSVrAhKDI6r_tVOyLWHcO0K9OrLUUM8sJg1b3WZiA93oy_1GV6soJD1KHNiviyqloOrEhXnNugqbtfT37fCgSEtCj0sdT_vbNyb-hkptcED1d3nFpol08uq39KzbTJs87GZbo_e39fsk93gKVlWN2BbEuZ8"/>
+<div class="absolute top-4 left-4 bg-on-surface text-surface px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">New Arrival</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline text-lg font-bold text-on-surface group-hover:text-primary transition-colors">Pro-Vitalize Complex</h4>
+<p class="text-on-surface-variant text-sm">Advanced Orthomolecular Support</p>
+</div>
+<span class="font-headline text-lg font-extrabold text-on-surface">$89.00</span>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="group">
+<div class="aspect-square rounded-lg bg-surface-container-low overflow-hidden mb-6 relative">
+<img alt="Zen-Calm Diffuser" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="modern minimalist pet care device in a clean contemporary home interior setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm8OSZp1i9Ws5qzunkkBJO0DiAMCuPtpfPp60My6a-XGiQP-9o6ek1ZvIS0uLPYNGqTYqfTGk_yYxkWsfUdzsLmjOIGJVTMfxnt3wKal5ntzYpumifiAycEwdk_ZmdyKodhrQpIZTJN-RQbFqHHf0WI7gsoZMfynUbQJHMGdVnnDX5UmYS90P3OqCzHIofXcW9uOmI7gC9U2ZixUZf6EibGljvzhO1Kzn1ADE-46FtntCZpKgIgj5nVM2foyb16vWIjLUSGjK0LmQ"/>
+<div class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Top Rated</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline text-lg font-bold text-on-surface group-hover:text-primary transition-colors">Zen-Calm Diffuser</h4>
+<p class="text-on-surface-variant text-sm">Aerosolized Pheromone Therapy</p>
+</div>
+<span class="font-headline text-lg font-extrabold text-on-surface">$124.00</span>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="group">
+<div class="aspect-square rounded-lg bg-surface-container-low overflow-hidden mb-6 relative">
+<img alt="Pure-Skin Balm" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="close-up of a premium glass jar with organic pet skin cream against a neutral soft-focus background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6HZYc00Eac3RvjhJvQ-pQ2ItPphmJ5XgUgQlT91_JWTpD-JUxWZnUYBs3skr4-_Au_EO5XB0uKtDKkq1UgWNduZyW2XCEMuTCa5QMLi6vXKchO7bEEMzwLfS356uNeoh45laC7fTW3k-M65wYTd0tS2wwBSYTcyl5FCjoDIgPHsL3yKgwXA8QUXIlBvyhrB5bo0ltEOcoNrwSk7lUFDFRSf8jIHtOgXhmWNfGPSGISqmmO-wl3U-mFFsigHd-exngwTmGntrddCo"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-headline text-lg font-bold text-on-surface group-hover:text-primary transition-colors">Pure-Skin Balm</h4>
+<p class="text-on-surface-variant text-sm">Medical-Grade Barrier Cream</p>
+</div>
+<span class="font-headline text-lg font-extrabold text-on-surface">$45.00</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Community Asymmetry -->
+<section class="mb-32 px-8 max-w-screen-2xl mx-auto">
+<div class="bg-on-surface text-surface rounded-lg p-12 md:p-24 relative overflow-hidden flex flex-col md:flex-row items-center gap-16">
+<div class="absolute top-0 right-0 w-1/3 h-full bg-primary/20 -skew-x-12 transform translate-x-1/2"></div>
+<div class="flex-1 relative z-10">
+<h2 class="font-headline text-4xl md:text-6xl font-extrabold tracking-tighter mb-8 leading-[1]">Join the Clinical <br/>Inner Circle.</h2>
+<p class="text-surface/60 text-lg max-w-md mb-8">Receive exclusive monthly research papers on pet longevity and early access to breakthrough treatments.</p>
+<div class="flex flex-col sm:flex-row gap-4 max-w-md">
+<input class="bg-surface/10 border-none rounded-xl px-6 py-4 text-surface placeholder:text-surface/30 focus:ring-2 focus:ring-primary w-full" placeholder="Email Address" type="email"/>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-bold whitespace-nowrap">Subscribe</button>
+</div>
+</div>
+<div class="flex-1 hidden lg:block">
+<img alt="Community" class="rounded-lg shadow-2xl rotate-3" data-alt="abstract editorial fashion photograph of a dog owner in high-end minimalist clothing holding a greyhound" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnHhaZLeUFDR9W5zOsYsn4dM4NPaILbYz4Sn8-TViMD2exJI_lBg7Tc_G6HqHXJmu3wrc1jKaTuj1dnf3uLyZhK9OK3RU88yu7b_5Om7GYSenxJV8_W85UNwsujVWhzD0nLDx2ewFC7lTskeOa2hKUP5gE-qQIo7nQnKZy98XYPcW-8zv1c1aHxpVmKhnF4KuOFQQ1dJ50jMqmF3hJm0fSABmDMBnFXAfuj0XXeBDKjvbznhFqfb6i5-b5AXWxLLlOl2ecQwj5Lsc"/>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#F9F9FF] dark:bg-[#151C27] w-full py-12 border-t border-[#151C27]/10 dark:border-[#F9F9FF]/10">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 space-y-4 md:space-y-0 w-full max-w-screen-2xl mx-auto font-['Inter'] text-sm uppercase tracking-widest">
+<span class="text-[#151C27]/40 dark:text-[#F9F9FF]/40 text-center md:text-left">© 2024 Paws&amp;Pro. The Clinical Concierge for Pets.</span>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-[#151C27]/40 dark:text-[#F9F9FF]/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors" href="#">Privacy Policy</a>
+<a class="text-[#151C27]/40 dark:text-[#F9F9FF]/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors" href="#">Terms of Service</a>
+<a class="text-[#151C27]/40 dark:text-[#F9F9FF]/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors" href="#">Contact Support</a>
+<a class="text-[#151C27]/40 dark:text-[#F9F9FF]/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors" href="#">Vet Portal</a>
+<a class="text-[#151C27]/40 dark:text-[#F9F9FF]/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors" href="#">Careers</a>
+</div>
+</div>
+</footer>
+<!-- FAB (Suppressed based on guidelines - not rendered for Home screen focus) -->
+</body></html>

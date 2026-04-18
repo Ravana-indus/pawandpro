@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pet Health Profile | PetCentric</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#dce2f3",
+                    "secondary": "#575e70",
+                    "surface-container-high": "#e2e8f8",
+                    "tertiary": "#006947",
+                    "tertiary-fixed": "#6ffbbe",
+                    "surface-tint": "#006780",
+                    "primary-fixed-dim": "#6cd3f7",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#dce2f3",
+                    "on-error": "#ffffff",
+                    "primary-container": "#007f9d",
+                    "error-container": "#ffdad6",
+                    "surface": "#f9f9ff",
+                    "inverse-surface": "#2a313d",
+                    "secondary-container": "#d9dff5",
+                    "on-surface-variant": "#3e484d",
+                    "on-background": "#151c27",
+                    "tertiary-container": "#00855b",
+                    "surface-container": "#e7eefe",
+                    "on-secondary-fixed": "#141b2b",
+                    "primary-fixed": "#b7eaff",
+                    "error": "#ba1a1a",
+                    "primary": "#00647c",
+                    "on-primary-fixed-variant": "#004e61",
+                    "surface-bright": "#f9f9ff",
+                    "on-tertiary-fixed": "#002113",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "inverse-primary": "#6cd3f7",
+                    "on-tertiary-container": "#f5fff6",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#5c6274",
+                    "on-primary-container": "#fafdff",
+                    "outline-variant": "#bdc8ce",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#ebf1ff",
+                    "on-secondary-fixed-variant": "#404758",
+                    "secondary-fixed": "#dce2f7",
+                    "surface-dim": "#d3daea",
+                    "on-surface": "#151c27",
+                    "on-primary-fixed": "#001f28",
+                    "on-error-container": "#93000a",
+                    "background": "#f9f9ff",
+                    "outline": "#6e797e",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f0f3ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-sm dark:shadow-none flex justify-between items-center px-8 h-16 w-full max-w-full">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-cyan-900 dark:text-cyan-100 font-plus-jakarta-sans tracking-tight">PetCentric</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-cyan-700 dark:text-cyan-300 font-bold font-plus-jakarta-sans tracking-tight hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors active:scale-95 duration-200" href="#">Health</a>
+<a class="text-slate-500 dark:text-slate-400 font-plus-jakarta-sans tracking-tight hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors active:scale-95 duration-200" href="#">Community</a>
+<a class="text-slate-500 dark:text-slate-400 font-plus-jakarta-sans tracking-tight hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors active:scale-95 duration-200" href="#">Shop</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors">
+<span class="material-symbols-outlined text-slate-600">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors">
+<span class="material-symbols-outlined text-slate-600">account_circle</span>
+</button>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="hidden md:flex h-screen w-72 fixed left-0 top-0 bg-surface dark:bg-slate-950 flex-col pt-20 pb-8 px-6 gap-y-4">
+<div class="mb-6 px-2">
+<div class="flex items-center gap-4">
+<img alt="Bowie profile" class="w-12 h-12 rounded-full object-cover shadow-sm" data-alt="close-up of a happy Australian Shepherd dog with blue eyes and tri-color fur in a bright studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWRd72VWNo0ToT08Gb_2f5ab4VX4tNvyPqWK5hySlwEaab6tb_WRI5mCpzvvn7RCvYUQgAvPT92v2lmwmdHx56EznqkfxpnRrVPhAsV7oUisWPkZH0b74UUNBKfuifYiEywQTgaZ4g2u2qsWWiBse7LDm6QOaqOEm2LQ39W7pJbIZYXzbL70CHYtyhn-A047_z_iR8zOK7nctXRTu5Vq1E3IxkaLA81TaCJB-EDaD9WURRDJv11al2YE3C9CVQFtZqnQDCiwOt8nM"/>
+<div>
+<h3 class="font-headline font-bold text-on-surface text-sm">The Clinical Concierge</h3>
+<p class="text-xs text-secondary">Premium Pet Care</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-cyan-50 dark:hover:bg-cyan-950/30 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-cyan-700">pets</span>
+<span class="font-medium text-sm">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-cyan-50 dark:hover:bg-cyan-950/30 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-cyan-700">shopping_bag</span>
+<span class="font-medium text-sm">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-cyan-800 dark:text-cyan-200 font-bold border-r-4 border-cyan-700 dark:border-cyan-400 bg-cyan-50/50 dark:bg-cyan-900/20 transition-all group" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">monitor_heart</span>
+<span class="font-medium text-sm">Health</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-cyan-50 dark:hover:bg-cyan-950/30 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-cyan-700">group</span>
+<span class="font-medium text-sm">Community</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-cyan-50 dark:hover:bg-cyan-950/30 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:text-cyan-700">settings</span>
+<span class="font-medium text-sm">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-2">
+<button class="w-full py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-xl font-bold shadow-lg shadow-primary/20 active:scale-[0.98] transition-all">
+                Book Appointment
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:pl-72 pt-24 pb-12 px-6 md:px-12 bg-surface min-h-screen">
+<div class="max-w-6xl mx-auto">
+<!-- Bento Layout Header -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+<!-- 1. Pet Profile Hero -->
+<div class="lg:col-span-2 relative overflow-hidden rounded-lg bg-surface-container-lowest group transition-all duration-500">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent pointer-events-none"></div>
+<div class="flex flex-col md:flex-row h-full">
+<div class="md:w-2/5 relative">
+<img alt="Bowie the Australian Shepherd" class="w-full h-full object-cover min-h-[300px]" data-alt="full body portrait of an Australian Shepherd dog standing proudly on a light colored textured surface with soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLy5Hz2ZOtHsyVuuGZDguKU25SUQ1KKOOAIvex-11pvU-tadUXLAL58vgp0tIPz5vSTD23BD49Q-YEOMPBp0Fg4VrgTTHVURqJPg6aM4n-Z_irghNqtWGx2Bgru049SbK7-4Fl3EOArHpkG-UN8DKW-YelQRit7Gz59VKvw-DSnoQlU7HZyejR82k5-gP3oQSF7V6Rtf7h_yJqAzsoxAHhaM-fySPC4bHyuoC_zbxkodMfvcbwfVYC140X6cFVzQ6oEpMTJTvQT0w"/>
+</div>
+<div class="md:w-3/5 p-8 flex flex-col justify-center">
+<div class="flex items-start justify-between mb-4">
+<div>
+<span class="text-[0.65rem] uppercase tracking-[0.2em] font-black text-primary mb-1 block">Patient Profile</span>
+<h1 class="text-5xl font-black font-headline text-on-surface -ml-1">Bowie</h1>
+</div>
+<span class="bg-tertiary/10 text-tertiary px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5">
+<span class="w-2 h-2 bg-tertiary rounded-full animate-pulse"></span>
+                                    Optimal Health
+                                </span>
+</div>
+<div class="grid grid-cols-2 gap-6 mt-4">
+<div>
+<p class="text-xs text-secondary font-medium">Age</p>
+<p class="text-xl font-headline font-bold text-on-surface">3 Years</p>
+</div>
+<div>
+<p class="text-xs text-secondary font-medium">Breed</p>
+<p class="text-xl font-headline font-bold text-on-surface">Australian Shepherd</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. Certifications & ID (Bento Item) -->
+<div class="bg-surface-container-low rounded-lg p-8 flex flex-col gap-6">
+<h3 class="font-headline font-bold text-lg text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+                        Credentials
+                    </h3>
+<div class="space-y-4">
+<div class="flex items-center gap-4 p-4 bg-surface-container-lowest rounded-xl shadow-sm">
+<span class="material-symbols-outlined text-primary-container">badge</span>
+<div>
+<p class="text-xs font-bold text-on-surface">Breeder Certificate</p>
+<p class="text-[10px] text-secondary">Verified by AKC</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 bg-surface-container-lowest rounded-xl shadow-sm">
+<span class="material-symbols-outlined text-primary-container">qr_code_2</span>
+<div>
+<p class="text-xs font-bold text-on-surface">Microchip ID</p>
+<p class="text-[10px] text-secondary font-mono">985112000045231</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 bg-surface-container-lowest rounded-xl shadow-sm">
+<span class="material-symbols-outlined text-primary-container">vaccines</span>
+<div>
+<p class="text-xs font-bold text-on-surface">Rabies Certificate</p>
+<p class="text-[10px] text-secondary">Expires: Oct 2025</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Vitals & Medications -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- 5. Health Information & Vitals -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-surface-container p-6 rounded-lg">
+<p class="text-xs text-secondary font-bold mb-2">Weight</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-black font-headline text-on-surface">22.4</span>
+<span class="text-sm text-secondary font-bold">kg</span>
+</div>
+<div class="mt-4 flex items-center gap-1 text-[10px] text-tertiary font-bold">
+<span class="material-symbols-outlined text-xs">trending_down</span>
+                                -0.2kg from last month
+                            </div>
+</div>
+<div class="bg-surface-container p-6 rounded-lg">
+<p class="text-xs text-secondary font-bold mb-2">Heart Rate</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-black font-headline text-on-surface">80</span>
+<span class="text-sm text-secondary font-bold">bpm</span>
+</div>
+<div class="mt-4 flex items-center gap-1 text-[10px] text-secondary font-bold">
+<span class="material-symbols-outlined text-xs">check_circle</span>
+                                Normal Resting
+                            </div>
+</div>
+<div class="bg-surface-container p-6 rounded-lg">
+<p class="text-xs text-secondary font-bold mb-2">Body Condition</p>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-black font-headline text-on-surface">5</span>
+<span class="text-sm text-secondary font-bold">/9</span>
+</div>
+<div class="mt-4 h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[55%]"></div>
+</div>
+</div>
+</div>
+<!-- 4. Current Medications -->
+<div class="bg-surface-container-lowest rounded-lg p-8">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline font-bold text-xl text-on-surface">Active Prescriptions</h3>
+<button class="text-primary text-sm font-bold flex items-center gap-1 hover:underline">
+                                View History <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-6 bg-surface rounded-xl border border-outline-variant/15 flex items-start gap-4">
+<div class="bg-primary/5 p-3 rounded-lg">
+<span class="material-symbols-outlined text-primary">pill</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-on-surface">Simparica Trio</h4>
+<p class="text-xs text-secondary mb-3">Heartworm &amp; Flea/Tick Prevention</p>
+<div class="bg-surface-container-low p-3 rounded-lg flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-primary">alarm</span>
+<span class="text-[10px] font-bold text-on-surface">Next: Oct 12</span>
+</div>
+<span class="text-[10px] text-secondary font-medium">1 dose monthly</span>
+</div>
+</div>
+</div>
+<div class="p-6 bg-surface rounded-xl border border-outline-variant/15 flex items-start gap-4">
+<div class="bg-primary/5 p-3 rounded-lg">
+<span class="material-symbols-outlined text-primary">medication_liquid</span>
+</div>
+<div class="flex-1">
+<h4 class="font-bold text-on-surface">Apoquel</h4>
+<p class="text-xs text-secondary mb-3">Allergy Management (Daily)</p>
+<div class="bg-surface-container-low p-3 rounded-lg flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-primary">history</span>
+<span class="text-[10px] font-bold text-on-surface">Morning Routine</span>
+</div>
+<span class="text-[10px] text-secondary font-medium">16mg tablet</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- 6. Recent Health Logs -->
+<div class="bg-surface-container-low rounded-lg p-8">
+<h3 class="font-headline font-bold text-xl text-on-surface mb-8">Clinical Timeline</h3>
+<div class="relative space-y-8 before:absolute before:left-[11px] before:top-2 before:bottom-0 before:w-0.5 before:bg-outline-variant/30">
+<div class="relative flex gap-6">
+<div class="z-10 w-6 h-6 rounded-full bg-primary flex items-center justify-center border-4 border-surface shadow-sm">
+<div class="w-1.5 h-1.5 rounded-full bg-on-primary"></div>
+</div>
+<div class="flex-1">
+<p class="text-[10px] font-bold text-secondary uppercase tracking-widest mb-1">SEP 15, 2023</p>
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm flex justify-between items-start">
+<div>
+<h4 class="font-bold text-on-surface">Annual Wellness Exam</h4>
+<p class="text-xs text-secondary mt-1">Dr. Aris Thorne • Riverside Veterinary</p>
+</div>
+<span class="material-symbols-outlined text-secondary hover:text-primary cursor-pointer">description</span>
+</div>
+</div>
+</div>
+<div class="relative flex gap-6">
+<div class="z-10 w-6 h-6 rounded-full bg-outline-variant/50 flex items-center justify-center border-4 border-surface">
+<div class="w-1.5 h-1.5 rounded-full bg-surface"></div>
+</div>
+<div class="flex-1">
+<p class="text-[10px] font-bold text-secondary uppercase tracking-widest mb-1">AUG 22, 2023</p>
+<div class="bg-surface-container-lowest/60 p-5 rounded-xl flex justify-between items-start border border-outline-variant/10">
+<div>
+<h4 class="font-bold text-on-surface/70">Routine Blood Panel</h4>
+<p class="text-xs text-secondary/70 mt-1">Status: All Values within Normal Ranges</p>
+</div>
+<span class="material-symbols-outlined text-secondary/50">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Vaccination Tracker -->
+<div class="lg:col-span-4 flex flex-col gap-8">
+<!-- 3. Vaccination Tracker -->
+<div class="bg-surface-container-lowest rounded-lg p-8 border border-outline-variant/10 shadow-xl shadow-on-surface/5">
+<div class="mb-8">
+<h3 class="font-headline font-bold text-xl text-on-surface">Vaccination Hub</h3>
+<p class="text-xs text-secondary mt-1">Tracking 6 essential protections</p>
+</div>
+<div class="space-y-8">
+<!-- Core Vaccines -->
+<div>
+<h4 class="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-4">Core Protections</h4>
+<div class="space-y-4">
+<div class="group cursor-default">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-bold text-on-surface">Rabies (3-Year)</span>
+<span class="text-[10px] text-tertiary font-bold bg-tertiary/10 px-2 py-0.5 rounded">Active</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[75%]"></div>
+</div>
+<p class="text-[10px] text-secondary mt-2">Next Due: Oct 2025</p>
+</div>
+<div class="group cursor-default">
+<div class="flex justify-between items-center mb-2">
+<span class="text-sm font-bold text-on-surface">DHPP</span>
+<span class="text-[10px] text-tertiary font-bold bg-tertiary/10 px-2 py-0.5 rounded">Active</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[40%]"></div>
+</div>
+<p class="text-[10px] text-secondary mt-2">Next Due: Feb 2024</p>
+</div>
+</div>
+</div>
+<!-- Non-Core Vaccines -->
+<div>
+<h4 class="text-[10px] font-black text-secondary uppercase tracking-[0.2em] mb-4">Lifestyle &amp; Non-Core</h4>
+<div class="space-y-5">
+<div class="flex items-center justify-between p-4 bg-surface rounded-xl border-l-4 border-error/50">
+<div>
+<p class="text-sm font-bold text-on-surface">Lyme Vaccine</p>
+<p class="text-[10px] text-error font-bold flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-xs">warning</span>
+                                                Action Required
+                                            </p>
+</div>
+<button class="bg-error text-on-error text-[10px] font-bold px-3 py-1.5 rounded-full hover:brightness-110">
+                                            Schedule
+                                        </button>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface rounded-xl border-l-4 border-tertiary">
+<div>
+<p class="text-sm font-bold text-on-surface">Bordetella</p>
+<p class="text-[10px] text-secondary font-bold mt-1">Last given: Aug 2023</p>
+</div>
+<span class="material-symbols-outlined text-tertiary">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-10 p-5 bg-primary-container/10 rounded-xl">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary text-xl">info</span>
+<div>
+<p class="text-xs font-bold text-on-surface">Did you know?</p>
+<p class="text-[10px] text-secondary mt-1 leading-relaxed">Regular titer testing can help determine if your pet needs booster shots or if their immunity is still strong.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar for Mobile -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-md flex justify-around items-center py-4 px-2 z-50 shadow-[0_-4px_24px_rgba(0,0,0,0.05)]">
+<button class="flex flex-col items-center gap-1 text-secondary">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">monitor_heart</span>
+<span class="text-[10px] font-bold">Health</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-secondary">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="text-[10px] font-medium">Shop</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-secondary">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px] font-medium">Community</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-secondary">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Account</span>
+</button>
+</nav>
+</body></html>

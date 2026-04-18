@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Clinical Core Kibble | PetMarket</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#e7eefe",
+                        "on-secondary-fixed-variant": "#404758",
+                        "on-secondary": "#ffffff",
+                        "background": "#f9f9ff",
+                        "on-secondary-fixed": "#141b2b",
+                        "surface-bright": "#f9f9ff",
+                        "secondary-fixed": "#dce2f7",
+                        "on-surface-variant": "#3e484d",
+                        "on-primary-container": "#fafdff",
+                        "on-background": "#151c27",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e2e8f8",
+                        "on-primary-fixed-variant": "#004e61",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#ebf1ff",
+                        "on-tertiary-container": "#f5fff6",
+                        "on-error-container": "#93000a",
+                        "secondary": "#575e70",
+                        "inverse-primary": "#6cd3f7",
+                        "surface": "#f9f9ff",
+                        "tertiary-container": "#00855b",
+                        "surface-dim": "#d3daea",
+                        "on-secondary-container": "#5c6274",
+                        "on-surface": "#151c27",
+                        "surface-variant": "#dce2f3",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#001f28",
+                        "outline-variant": "#bdc8ce",
+                        "surface-tint": "#006780",
+                        "surface-container-highest": "#dce2f3",
+                        "primary-fixed-dim": "#6cd3f7",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2a313d",
+                        "on-tertiary-fixed": "#002113",
+                        "tertiary": "#006947",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#b7eaff",
+                        "secondary-container": "#d9dff5",
+                        "outline": "#6e797e",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "surface-container-low": "#f0f3ff",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-error": "#ffffff",
+                        "primary-container": "#007f9d",
+                        "tertiary-fixed": "#6ffbbe",
+                        "primary": "#00647c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tap-highlight-transparent { -webkit-tap-highlight-color: transparent; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm shadow-slate-200/50 dark:shadow-none">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-black tracking-tighter text-slate-900 dark:text-white font-headline">PetMarket</div>
+<div class="hidden md:flex items-center space-x-8 font-headline font-semibold tracking-tight">
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 transition-all duration-300" href="#">Concierge</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 transition-all duration-300" href="#">Records</a>
+<a class="text-cyan-700 dark:text-cyan-400 border-b-2 border-cyan-700 dark:border-cyan-400 pb-1" href="#">Shop</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 transition-all duration-300" href="#">Community</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="material-symbols-outlined text-slate-600 active:scale-95 transition-transform" data-icon="shopping_cart">shopping_cart</button>
+<button class="material-symbols-outlined text-slate-600 active:scale-95 transition-transform" data-icon="notifications">notifications</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-32 max-w-7xl mx-auto px-6">
+<!-- Breadcrumbs -->
+<nav class="flex items-center space-x-2 text-xs uppercase tracking-widest text-outline mb-8 font-label font-bold">
+<a class="hover:text-primary" href="#">Shop</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary" href="#">Medical Grade</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface">Clinical Core Kibble</span>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Product Image Section (Editorial Layout) -->
+<div class="lg:col-span-7 space-y-6">
+<div class="relative aspect-square rounded-lg overflow-hidden bg-surface-container-lowest group">
+<img alt="Clinical Core Kibble Bag" class="w-full h-full object-contain p-12 transition-transform duration-700 group-hover:scale-105" data-alt="Minimalist white premium dog food bag with teal clinical cross logo on a clean studio white background with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmQy_X_bT6TtbjFWIz1d9w4Za4mSa39Hohw0vxFwn2QVrszn3ii-8kzlwrgXMho-XHOs7-a7PJx-rbpr3iXphSD5pwoVuJwxtAdc0R9wt57rSRlvqxczZu5JWGdc1ytg44XNSQcXX_boBnEJY0GvG3T0k_8KIGJaWz9uKQ-f-sgN_dtqZx2EEyRymQzqhuChl7egI57R8Wrp6bhvuiheeZ9wpenBGv5-E2phYfomMmUGoqSeDjUXe2FI9IzUK_N6zf7tJrDfkyV80"/>
+<div class="absolute top-6 left-6 flex flex-col gap-2">
+<span class="bg-tertiary text-on-tertiary px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest">Vet Recommended</span>
+<span class="bg-primary text-on-primary px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest">Best Seller</span>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-4">
+<div class="aspect-square rounded-lg bg-surface-container overflow-hidden p-4">
+<img alt="Kibble Detail" class="w-full h-full object-contain" data-alt="Macro close-up of heart-shaped clinical kibble with visible texture and high nutritional density on a surgical steel surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD38GJcuab-CxN50I9jhTOOqxnURsTY4-eydcRFxvEWWQ_GQU0lAbf_wOdFS3FqSLb2oiGioDYCv71xRUq9h7OprucSPa6i6BTCpnk27DUE_Dpft45Xq60SnE7cU7s9U7hACGenYzll0SP3QJAfFZyYy3wDuALm27RCO3g2Gxx3QvqOkQMhvW56M5K0ZykUMBDBz7HSi5vvmTjqsH4PsTPjjlwVYhUgzMpT6Mt50uI7AN-E6fMFE6FmiY2JV3TY5YPebnZg84bJsbo"/>
+</div>
+<div class="aspect-square rounded-lg bg-surface-container overflow-hidden p-4">
+<img alt="Ingredients" class="w-full h-full object-contain" data-alt="High-end editorial shot of fresh salmon fillet and organic sweet potato on a white marble slab with a single green leaf" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR22yJnisK29_YAPWGZ0cYIuxSuITMEFCeD5EXb6WQwbdceCQLxBddfisqTw5Tq6BL0wXxX90gnKPZu09Oo3WJe0NbmoU_RsgaEz5YlLZRs2xCDijoDfsy_8t0wkZMACEjtCxW-kqAd3Ba6hBSPTo_gHYW6UQkA3-uaMP3HzM_PZBsD5oBeRnW76VOl82omu92zDbM8gTJ5IIt0SOqiuiw0yRCV8RfUDbrrJOdsv2Gl6DkqeeutAx7XAEXMP-UeJNun9SRm6sfurI"/>
+</div>
+<div class="aspect-square rounded-lg bg-surface-container overflow-hidden p-4">
+<img alt="Pet Eating" class="w-full h-full object-contain" data-alt="Elegant golden retriever puppy looking at a white bowl filled with kibble in a bright modern minimalist kitchen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuS-J8JV-5_6LQuDyRRNM0EcWdP-mF7U1TiKP8k_a4Tpedfy4lSzMUcAv1L_LPoH1ocNB5cw-0umk39MiEmT49vD2SDEewBeC4rmEru25hNJYswAj61HZ9xODdlYHDLLA8VAfxl_ovsnA_zqCSQqbPqGmr34te4AjssgOxxWo83ygJhpGHU75UAveR5KjjlfFYb2-XNHPZPKIWQyJ-XKalcEEEW42DtGED_chA1ha3ZTujY6mznFOJTS9QilyQpW3mFNdNmuerxn4"/>
+</div>
+<div class="aspect-square rounded-lg bg-surface-container overflow-hidden p-4 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-3xl">play_circle</span>
+</div>
+</div>
+</div>
+<!-- Product Info Section -->
+<div class="lg:col-span-5 space-y-8">
+<div>
+<h1 class="text-4xl lg:text-5xl font-extrabold font-headline tracking-tighter text-on-background leading-tight">
+                        Clinical Core Kibble
+                    </h1>
+<div class="flex items-center mt-4 gap-4">
+<div class="flex items-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0.5;">star_half</span>
+<span class="ml-2 text-sm font-bold font-label text-on-surface">4.9 (1,240 Reviews)</span>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="text-4xl font-black font-headline text-on-background">$42.00</div>
+<p class="text-sm text-outline font-medium uppercase tracking-wider">Free Shipping on orders over $50</p>
+</div>
+<p class="text-on-surface-variant leading-relaxed text-lg">
+                    Engineered for precision health. Our Clinical Core formula utilizes architectural nutrient layering to ensure maximum bioavailability, supporting gastrointestinal integrity and cognitive longevity.
+                </p>
+<!-- Purchase Options -->
+<div class="space-y-4">
+<label class="block relative p-5 rounded-lg border-2 border-primary bg-surface-container-lowest cursor-pointer transition-all">
+<input checked="" class="absolute top-6 right-6 text-primary focus:ring-primary h-5 w-5" name="purchase_mode" type="radio"/>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Subscribe &amp; Save</span>
+<span class="text-primary font-bold text-lg">Save 15% ($35.70)</span>
+<span class="text-xs text-outline mt-1 font-label uppercase tracking-widest">Delivered every 4 weeks • Cancel anytime</span>
+</div>
+</label>
+<label class="block relative p-5 rounded-lg border border-outline-variant bg-surface-container-low cursor-pointer hover:border-primary/50 transition-all">
+<input class="absolute top-6 right-6 text-primary focus:ring-primary h-5 w-5" name="purchase_mode" type="radio"/>
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Buy Once</span>
+<span class="text-on-surface-variant">$42.00</span>
+</div>
+</label>
+</div>
+<!-- Quantity and Buttons -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between bg-surface-container p-2 rounded-full w-40">
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white text-on-surface transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<span class="font-bold text-lg">1</span>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white text-on-surface transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4">
+<button class="py-5 px-8 rounded-full bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold text-lg shadow-xl shadow-primary/20 active:scale-95 transition-transform">
+                            Buy Now
+                        </button>
+<button class="py-5 px-8 rounded-full bg-surface-container-highest text-on-surface font-bold text-lg active:scale-95 transition-transform">
+                            Add to Cart
+                        </button>
+</div>
+</div>
+<!-- Features list -->
+<div class="grid grid-cols-2 gap-4 pt-6 border-t border-surface-container">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded-full text-xl" data-weight="fill">verified</span>
+<span class="text-xs font-bold font-label uppercase">Clinically Proven</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded-full text-xl" data-weight="fill">eco</span>
+<span class="text-xs font-bold font-label uppercase">Sustainably Sourced</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tabs Section -->
+<div class="mt-24">
+<div class="flex border-b border-surface-container overflow-x-auto hide-scrollbar">
+<button class="px-8 py-4 text-primary border-b-4 border-primary font-bold font-headline whitespace-nowrap">Nutritional Facts</button>
+<button class="px-8 py-4 text-outline hover:text-on-surface transition-colors font-bold font-headline whitespace-nowrap">Feeding Guide</button>
+<button class="px-8 py-4 text-outline hover:text-on-surface transition-colors font-bold font-headline whitespace-nowrap">Vet Reviews</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 py-12">
+<div class="space-y-6">
+<h3 class="text-2xl font-bold font-headline">Clinical Analysis</h3>
+<p class="text-on-surface-variant">Our core kibble is formulated with a multi-layered protein matrix. This ensures that essential amino acids are released at varying intervals during digestion to maintain steady energy levels throughout the day.</p>
+<div class="bg-surface-container-low p-8 rounded-lg space-y-4">
+<div class="flex justify-between items-center border-b border-outline-variant/20 pb-2">
+<span class="font-bold">Crude Protein (min)</span>
+<span class="font-bold text-primary">32.0%</span>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant/20 pb-2">
+<span class="font-bold">Crude Fat (min)</span>
+<span class="font-bold text-primary">18.0%</span>
+</div>
+<div class="flex justify-between items-center border-b border-outline-variant/20 pb-2">
+<span class="font-bold">Omega-3 Fatty Acids</span>
+<span class="font-bold text-primary">1.2%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-bold">Probiotics (CFU/lb)</span>
+<span class="font-bold text-primary">100M</span>
+</div>
+</div>
+</div>
+<div class="relative rounded-lg overflow-hidden h-full min-h-[300px]">
+<img alt="Clinical lab setting" class="absolute inset-0 w-full h-full object-cover" data-alt="Modern high-tech veterinary laboratory with glass beakers, clean white surfaces, and professional lighting suggesting clinical excellence" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSIeJKMmU19VHp7XgY57pQyiD7pD4WPgTU0nuqrIKtNX8lYPzfDtaKp6Znye_ur_it-LTiXQUs5Pjz-uUDN0C9E4py5Jmea5qXKyTsraN8Jiko3KqCZXhx-Qw-YOJR7dOhqUU3VyTlvjbY1eLzmGUupXJUWeizSbKOWz0-1lkdi2X_TgaJSb2IeCna0OnFWQNlmSDwI3wgqQXL2HxzrBPawTU9R42n6PLR6uP_ZFb5ZVdt1yI7_nsN1fZj44b3ARqn-SuQwsesQms"/>
+<div class="absolute inset-0 bg-primary/20 backdrop-blur-[2px] flex items-center justify-center p-8 text-center">
+<div class="bg-white/90 p-6 rounded-lg max-w-xs shadow-2xl">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">biotech</span>
+<p class="text-on-surface italic font-medium">"Every batch is rigorously tested across 42 health markers before leaving our facility."</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Complete the Set / Related Products -->
+<div class="mt-24 space-y-8">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-3xl font-black font-headline tracking-tight">Complete the Clinical Set</h2>
+<p class="text-outline">Optimized pairings for total health.</p>
+</div>
+<button class="text-primary font-bold uppercase tracking-widest text-xs flex items-center gap-2 hover:gap-3 transition-all">View All Products <span class="material-symbols-outlined text-sm">arrow_forward</span></button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Related Item 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg group cursor-pointer hover:shadow-xl hover:shadow-slate-200/50 transition-all border border-transparent hover:border-primary-fixed">
+<div class="aspect-square bg-surface-container-low rounded-lg mb-4 p-4 overflow-hidden">
+<img alt="Digestive Plus" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-alt="Clinical supplement jar with a blue medical cross and minimalist white label design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXZAlGaWUvYIu4rmfOSSHWPA2wnTkzGkoshTp30gX3No6p6yncPVTDc_Dzx_YFAyIcKv-gZUNevvnRA6-S5XEppbiMnBjqc-4251D0SRzif1AJNYRChsA2GC3MpMSHzVw-hbr6pMLVJWE0-QPVHiKYfL_bVae4St4zBLU939pc1PqIkoFd0nDkle0tyTJ1VtYzJHBNsPVvYqsDJQ4mB7Sdydyh96w7fnzzmGCzf7U8PtWnzLZ3JJN2HHOS4CL0Qa1MQ_-dA_S2C-s"/>
+</div>
+<h4 class="font-bold text-on-surface mb-1">Digestive Plus Tabs</h4>
+<p class="text-sm text-outline mb-4">Post-meal enzyme support</p>
+<div class="flex justify-between items-center">
+<span class="font-black text-on-surface">$24.00</span>
+<button class="bg-surface-container w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Related Item 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg group cursor-pointer hover:shadow-xl hover:shadow-slate-200/50 transition-all border border-transparent hover:border-primary-fixed">
+<div class="aspect-square bg-surface-container-low rounded-lg mb-4 p-4 overflow-hidden">
+<img alt="Dermal Spray" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-alt="Sleek aluminum spray bottle for pet skin care with clean clinical branding" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuc27W1xeu_m2E_j6bjxmMqwFnfIFeGGnhOPK5XRrxp__AKOSF-t6OzL6_DbAH996wgcsD_sVRd4EcJoBYgiXjhdjeJ64LBB1ty-sPRXFU53yd_kpB9rLfA3WqdgqwX9T01jqzu_UBg58qYI48-ALAz48-KcXBBoSWFK7k2jmJZ7ppEyJtmmonK1b8FqFyC2iPmrNFjV8SqYWw-ULZ37e3hHEfTsnZAbON2pTkCi56UQ5E7y7DzBU5ljbb2ynaYqAyNNhpLWlyYwI"/>
+</div>
+<h4 class="font-bold text-on-surface mb-1">Dermal Coat Spray</h4>
+<p class="text-sm text-outline mb-4">External lipid protection</p>
+<div class="flex justify-between items-center">
+<span class="font-black text-on-surface">$19.00</span>
+<button class="bg-surface-container w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Related Item 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg group cursor-pointer hover:shadow-xl hover:shadow-slate-200/50 transition-all border border-transparent hover:border-primary-fixed">
+<div class="aspect-square bg-surface-container-low rounded-lg mb-4 p-4 overflow-hidden">
+<img alt="Clean Bowl" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-alt="Architectural matte white ceramic pet bowl with a heavy weighted base and modern lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJLF_65blznITopLkgrMa4sj8MiK__ZAKubtr-HKTAJXGuhTHcqp89fMUn0t2PHiHYuQ5RakKv1Gd8dCT383rME1UQ6Gyr0_CLKm4bzySjWUK-G_l1CDiBFhrMPNMc3gYok-22LpzKFzsze-e-7pVrpx9tHETJFGL7Ozru5yMFMAv2GSFMGspgvk6ukvuhCUSrrmiGI-776x-jprV7Bc5hLRM-sNWCnlOKLfSC5VMGixy04OlLIk9mEzQgYeWx4ZAoUJrJxZNwQrA"/>
+</div>
+<h4 class="font-bold text-on-surface mb-1">The Clinical Bowl</h4>
+<p class="text-sm text-outline mb-4">Ergonomic feeding vessel</p>
+<div class="flex justify-between items-center">
+<span class="font-black text-on-surface">$38.00</span>
+<button class="bg-surface-container w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Related Item 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg group cursor-pointer hover:shadow-xl hover:shadow-slate-200/50 transition-all border border-transparent hover:border-primary-fixed">
+<div class="aspect-square bg-surface-container-low rounded-lg mb-4 p-4 overflow-hidden">
+<img alt="Salmon Oil" class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" data-alt="Amber glass dropper bottle with clinical labels containing high-grade salmon oil for pets" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3IHZpoXqWTIP4xE1mJNLvlFOkW14hUR147lquwDaYujtIYv6WCsjVIJdQ3xgrXbXfhEQphw_Rc7DWTHFGwPfzgLWBltoHH5ceBIn8agG6c-hbm-j482YhJB7mvXT2mMzHTdtIdpZ8vCM9xlNdfZtRExGMAMz0S-iWgDNbqIhJnVmuVQ3CStqy7HlxOB2I3NW0kceViecRGnJMZ-tqG92IIIZPYcl5bl4gi8c7jBuwTZkqfVP0Z1BpUZjBlS5y3vejlojYSKAYj-M"/>
+</div>
+<h4 class="font-bold text-on-surface mb-1">Pure Arctic Oil</h4>
+<p class="text-sm text-outline mb-4">Omega-rich meal topper</p>
+<div class="flex justify-between items-center">
+<span class="font-black text-on-surface">$22.00</span>
+<button class="bg-surface-container w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full flex justify-around items-center px-4 py-3 pb-safe md:hidden bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl shadow-[0_-8px_32px_rgba(21,28,39,0.04)] rounded-t-[32px] z-50">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-cyan-600 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">Concierge</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-cyan-600 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="Description">description</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">Records</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-cyan-50 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-300 rounded-[24px] px-5 py-2" href="#">
+<span class="material-symbols-outlined" data-icon="storefront" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-cyan-600 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="diversity_1">diversity_1</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-widest mt-1">Community</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="w-full py-12 px-8 bg-slate-50 dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:flex lg:justify-between items-start gap-8 max-w-7xl mx-auto">
+<div class="space-y-4">
+<div class="font-['Plus_Jakarta_Sans'] font-extrabold text-slate-900 dark:text-white text-xl">PetMarket</div>
+<p class="text-slate-500 dark:text-slate-400 font-['Inter'] text-sm leading-relaxed max-w-xs">Redefining the standard for companion animal nutrition through clinical precision and editorial design.</p>
+</div>
+<div class="grid grid-cols-2 gap-x-12 gap-y-4">
+<div class="space-y-3">
+<h5 class="text-cyan-900 dark:text-cyan-500 font-bold uppercase text-[10px] tracking-[0.2em]">Company</h5>
+<ul class="space-y-2 font-['Inter'] text-sm">
+<li><a class="text-slate-500 hover:text-cyan-600 transition-colors" href="#">Expert Network</a></li>
+<li><a class="text-slate-500 hover:text-cyan-600 transition-colors" href="#">Medical Standards</a></li>
+</ul>
+</div>
+<div class="space-y-3">
+<h5 class="text-cyan-900 dark:text-cyan-500 font-bold uppercase text-[10px] tracking-[0.2em]">Operations</h5>
+<ul class="space-y-2 font-['Inter'] text-sm">
+<li><a class="text-slate-500 hover:text-cyan-600 transition-colors" href="#">Supply Chain</a></li>
+<li><a class="text-slate-500 hover:text-cyan-600 transition-colors" href="#">Support</a></li>
+</ul>
+</div>
+</div>
+<div class="space-y-4 lg:text-right">
+<div class="flex lg:justify-end gap-4">
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">public</span>
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer">chat</span>
+</div>
+<p class="text-slate-400 font-['Inter'] text-[10px] uppercase tracking-widest">© 2024 The Clinical Concierge. All Rights Reserved.</p>
+</div>
+</div>
+</footer>
+</body></html>

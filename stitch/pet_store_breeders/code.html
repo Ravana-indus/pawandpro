@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#002113",
+                    "tertiary-container": "#00855b",
+                    "surface-container-low": "#f0f3ff",
+                    "on-surface": "#151c27",
+                    "inverse-surface": "#2a313d",
+                    "primary-container": "#007f9d",
+                    "secondary": "#575e70",
+                    "secondary-container": "#d9dff5",
+                    "outline-variant": "#bdc8ce",
+                    "tertiary": "#006947",
+                    "primary-fixed-dim": "#6cd3f7",
+                    "on-primary-fixed": "#001f28",
+                    "surface-container-high": "#e2e8f8",
+                    "outline": "#6e797e",
+                    "surface-variant": "#dce2f3",
+                    "on-tertiary-container": "#f5fff6",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#d3daea",
+                    "primary": "#00647c",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "on-error": "#ffffff",
+                    "surface": "#f9f9ff",
+                    "on-primary": "#ffffff",
+                    "background": "#f9f9ff",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-background": "#151c27",
+                    "on-surface-variant": "#3e484d",
+                    "inverse-on-surface": "#ebf1ff",
+                    "surface-container-highest": "#dce2f3",
+                    "tertiary-fixed": "#6ffbbe",
+                    "inverse-primary": "#6cd3f7",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#404758",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-primary-container": "#fafdff",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#b7eaff",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-secondary-fixed": "#141b2b",
+                    "on-secondary-container": "#5c6274",
+                    "surface-tint": "#006780",
+                    "surface-bright": "#f9f9ff",
+                    "secondary-fixed": "#dce2f7",
+                    "surface-container": "#e7eefe",
+                    "on-primary-fixed-variant": "#004e61"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9ff;
+        }
+        .editorial-display {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -0.02em;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-[#F9F9FF]/80 dark:bg-[#151C27]/80 backdrop-blur-xl shadow-sm shadow-cyan-900/5 tonal-transition-surface-container-low">
+<div class="flex justify-between items-center px-8 h-20 w-full max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-[#151C27] dark:text-[#F9F9FF] font-['Plus_Jakarta_Sans']">Paws&amp;Pro</span>
+<div class="hidden md:flex gap-6">
+<a class="text-cyan-700 dark:text-cyan-400 font-semibold border-b-2 border-cyan-700 dark:border-cyan-400 pb-1 font-['Plus_Jakarta_Sans'] tracking-tight" href="#">Marketplace</a>
+<a class="text-[#151C27]/60 dark:text-[#F9F9FF]/60 hover:text-cyan-700 transition-all font-['Plus_Jakarta_Sans'] tracking-tight" href="#">Veterinary</a>
+<a class="text-[#151C27]/60 dark:text-[#F9F9FF]/60 hover:text-cyan-700 transition-all font-['Plus_Jakarta_Sans'] tracking-tight" href="#">Breeding</a>
+<a class="text-[#151C27]/60 dark:text-[#F9F9FF]/60 hover:text-cyan-700 transition-all font-['Plus_Jakarta_Sans'] tracking-tight" href="#">Community</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-cyan-50/50 dark:hover:bg-cyan-900/20 transition-all scale-95 active:opacity-80">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-2 hover:bg-cyan-50/50 dark:hover:bg-cyan-900/20 transition-all scale-95 active:opacity-80">
+<span class="material-symbols-outlined text-on-surface-variant">favorite</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container ml-2">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="close-up portrait of a professional male user in a clean studio setting with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpyOIo-8-1qiJn6mhKo0X0J1fXQ35hZ3gRwcdqGGnMexHh4ilb1PyAWdrvTvccBOI6HFGgJpArGJig0Os4XxzTpQf1aux0GAgCAMbuuOYivX4H0hBrKjK_vY6l5O4zYVEVljaUNNl-tYCQrfhDzt5rP1UZAJtKOl18fmYsZAijfEl-Vwa1iZyKS5sw7XX4i2lxMoQ_yP5eDHZu86K4283ubyNFPHptkyhNTLnSTiP4Nao-5gnzfACL-qJguYm1Xxv7s9IkP5Xs2cE"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20 px-8 max-w-screen-2xl mx-auto">
+<!-- Hero Section -->
+<header class="mb-16 mt-8">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+<div class="md:col-span-8">
+<span class="font-label text-sm uppercase tracking-widest text-primary font-semibold mb-4 block">Marketplace &amp; Peers</span>
+<h1 class="editorial-display text-5xl md:text-7xl font-extrabold text-on-surface leading-tight">Find your perfect <br/>companion.</h1>
+</div>
+<div class="md:col-span-4 pb-2">
+<p class="text-on-surface-variant text-lg leading-relaxed max-w-sm">
+                        Connecting ethical breeders and verified pet owners in a clinical, secure digital gallery.
+                    </p>
+</div>
+</div>
+</header>
+<!-- Filters Section - Tonal Layering -->
+<section class="mb-12 flex flex-wrap gap-3 items-center">
+<button class="bg-primary text-on-primary px-8 py-3 rounded-full font-semibold transition-all hover:opacity-90 scale-100 active:scale-95 shadow-lg shadow-primary/20">All Pets</button>
+<button class="bg-surface-container text-on-surface-variant px-6 py-3 rounded-full font-medium hover:bg-surface-container-high transition-all">Puppies</button>
+<button class="bg-surface-container text-on-surface-variant px-6 py-3 rounded-full font-medium hover:bg-surface-container-high transition-all">Kittens</button>
+<button class="bg-surface-container text-on-surface-variant px-6 py-3 rounded-full font-medium hover:bg-surface-container-high transition-all">Exotic</button>
+<div class="ml-auto flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-xl">
+<span class="material-symbols-outlined text-sm">tune</span>
+<span class="text-sm font-semibold">Refine</span>
+</div>
+</section>
+<!-- Marketplace Bento Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-12">
+<!-- Card 1: Puppy -->
+<article class="flex flex-col group">
+<div class="relative aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-low mb-6">
+<img alt="Golden Retriever Puppy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="adorable golden retriever puppy sitting on a soft cream rug in a bright airy living room with morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvOe8Z86xIiOXONuC82wwhAC_e9vL4EjdTT1KFjb-NMzpkpd4cdXFmLL6vW96SizG97M7V7Rja5wd5e3PrR6cPtIQjp9zyCkh4b2O8duVuQMHw85H4Fm-nXwo7ctDPHav1LzeOS-xEkr5-TL9vBKAJWmlFIN5_M0SuwIVrCavEKH2hD083kAIbCfo7U6W8C-bq9jsHK6d11Ao68pQIkVhgJwsg2P-dkLy75iegdZZjtDgsWrwi_aYeejh8NmzYDaZKL_bJW5uWWgc"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 backdrop-blur-md">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+                            CERTIFIED BREEDER
+                        </span>
+</div>
+<button class="absolute top-4 right-4 bg-surface/80 backdrop-blur-md p-2 rounded-full text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">favorite</span>
+</button>
+</div>
+<div class="space-y-1 px-1">
+<div class="flex justify-between items-baseline">
+<h3 class="editorial-display text-2xl font-bold">Golden Retriever</h3>
+<span class="text-primary font-bold">$2,400</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span>12 Weeks</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span>London, UK</span>
+</div>
+<div class="pt-4 flex gap-3">
+<button class="flex-1 bg-on-surface text-surface py-3 rounded-xl font-semibold text-sm transition-all hover:opacity-90 active:scale-95">View Profile</button>
+<button class="w-12 h-12 flex items-center justify-center bg-surface-container rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">mail</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 2: Kitten -->
+<article class="flex flex-col group">
+<div class="relative aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-low mb-6">
+<img alt="British Shorthair Kitten" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="elegant british shorthair kitten with grey fur and orange eyes resting on a minimal concrete surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBakF6T1e3LEcs1bgF9SC40XlIprUGuFnqyzwr5EAIypLhYGYACtCGgK_1IQwx1zYwf8_Ul6x5QUMgoNuDIWye5PBe2GV-WtnBWhHjKsdJ0oWctp8w3agryT895LoiPRjOZjpA2-sVnZ7Tv5dVTp8n3A1LrlnvA_7chR8UoDv4g65Zm2n6a3W07dUyWZfdJdmt7cV9K5_D8elB-lOGUmIPTsibvWxCFTxPuSViiv8Tn-UqyMAceeJRp9NBnpqY8KJQ4tRjH5g3Fy_w"/>
+<div class="absolute top-4 left-4">
+<span class="bg-surface-container-highest/80 text-on-surface px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 backdrop-blur-md border border-white/20">
+<span class="material-symbols-outlined text-sm">person</span>
+                            VERIFIED INDIVIDUAL
+                        </span>
+</div>
+<button class="absolute top-4 right-4 bg-surface/80 backdrop-blur-md p-2 rounded-full text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="space-y-1 px-1">
+<div class="flex justify-between items-baseline">
+<h3 class="editorial-display text-2xl font-bold">British Shorthair</h3>
+<span class="text-primary font-bold">$1,800</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span>10 Weeks</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span>Berlin, DE</span>
+</div>
+<div class="pt-4 flex gap-3">
+<button class="flex-1 bg-on-surface text-surface py-3 rounded-xl font-semibold text-sm transition-all hover:opacity-90 active:scale-95">View Profile</button>
+<button class="w-12 h-12 flex items-center justify-center bg-surface-container rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">mail</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 3: Beagle -->
+<article class="flex flex-col group">
+<div class="relative aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-low mb-6">
+<img alt="Beagle Puppy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="playful beagle puppy running in a park with green grass and soft afternoon sunlight flare" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO4TqBO9lse_qPozvMYi5xO_FbOuJO1ZmpPexa87vUptdzzjCX4W-W0OWB7vGChkjQ9eSHO8erhdbNw55rRcaBeKeyHp0O-1LYoofXI9FpT9ac4ogpwlRJbgym1LkCV-v0uXbrnc0_jwpXDSzm7UhZnukwf9Qn2FaENGqef5tc0SfiyG6xgWDPK1slq9-chCXOLbAOluiyxH0F2I0gdosRj3VLP3Mm_Aii1EjLEaJgU_h54TApf69w8N7KN20fB20baHhKfDXrpCU"/>
+<div class="absolute top-4 left-4">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 backdrop-blur-md">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+                            CERTIFIED BREEDER
+                        </span>
+</div>
+<button class="absolute top-4 right-4 bg-surface/80 backdrop-blur-md p-2 rounded-full text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="space-y-1 px-1">
+<div class="flex justify-between items-baseline">
+<h3 class="editorial-display text-2xl font-bold">Beagle Purebred</h3>
+<span class="text-primary font-bold">$1,500</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span>8 Weeks</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span>Paris, FR</span>
+</div>
+<div class="pt-4 flex gap-3">
+<button class="flex-1 bg-on-surface text-surface py-3 rounded-xl font-semibold text-sm transition-all hover:opacity-90 active:scale-95">View Profile</button>
+<button class="w-12 h-12 flex items-center justify-center bg-surface-container rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">mail</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Card 4: Maine Coon -->
+<article class="flex flex-col group">
+<div class="relative aspect-[4/5] rounded-lg overflow-hidden bg-surface-container-low mb-6">
+<img alt="Maine Coon" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="majestic maine coon cat with long fur looking intensely at camera on a dark minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgnsc_csB1oux-l7NlLQCAWovwsqoOdAOzxjLrKgFNtwX305QpWfmvfYYZq4nrXP57DA-kJ48kzt3-RAgLIAGle8VW9HQLt5eOHuncGFsEuHOvtQJrBsTUB0eaCKjG-HguBM5zg6gmpmCIf6j7xBqwXVlrkqJwvVbzIpY0dz_XfV2FrmdTvGuQzi-XqEa0L0v0-uh9EFiWFBv0S07ZUnZpykcYJSUXRja0WlAtgO4Zlhh6cP3KKAZ2ahmItr4RaRVmMgaVz0dh9V0"/>
+<div class="absolute top-4 left-4">
+<span class="bg-surface-container-highest/80 text-on-surface px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 backdrop-blur-md border border-white/20">
+<span class="material-symbols-outlined text-sm">person</span>
+                            VERIFIED INDIVIDUAL
+                        </span>
+</div>
+<button class="absolute top-4 right-4 bg-surface/80 backdrop-blur-md p-2 rounded-full text-on-surface hover:text-error transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="space-y-1 px-1">
+<div class="flex justify-between items-baseline">
+<h3 class="editorial-display text-2xl font-bold">Maine Coon</h3>
+<span class="text-primary font-bold">$3,200</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm">
+<span>14 Weeks</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span>New York, US</span>
+</div>
+<div class="pt-4 flex gap-3">
+<button class="flex-1 bg-on-surface text-surface py-3 rounded-xl font-semibold text-sm transition-all hover:opacity-90 active:scale-95">View Profile</button>
+<button class="w-12 h-12 flex items-center justify-center bg-surface-container rounded-xl text-on-surface-variant hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">mail</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Featured Section: Breeder of the Month -->
+<section class="mt-32 mb-16 rounded-xl overflow-hidden bg-surface-container relative h-[500px] flex items-center">
+<div class="absolute inset-0 w-full h-full">
+<img alt="Breeder Facility" class="w-full h-full object-cover" data-alt="wide shot of a clean modern dog kennel facility with glass doors and wooden accents in a lush forest clearing" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoEGHMNAfo7z65AsDLWgQ9kKEP3LSB3mPVHNSd9u3psMyWW59A1ud6uD_5EkioFKc22o0vbAOtjH7QesxOgiMSK46ACoaxjomYx55YUaGRkpqJVBXpEwGs-H5fDqnrnKBPBz4ILAgQI5BjnVsu_2aYk5CFJ75LTGbkItist0DzGgx7P8nbkSNqsYtFFaGJH4zNdybihjNBTH-ETvg81ILMzWtWxVABMUCrBNwtCE7jipwv_ekWpS6_N9l-1Pkoi9VDRgAL-q6lhW4"/>
+<div class="absolute inset-0 bg-gradient-to-r from-on-surface via-on-surface/40 to-transparent"></div>
+</div>
+<div class="relative z-10 px-12 max-w-2xl text-surface">
+<span class="bg-primary text-on-primary px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-6 inline-block">Elite Partner</span>
+<h2 class="editorial-display text-5xl font-extrabold mb-6">Royal Crest Kennels</h2>
+<p class="text-surface-variant text-lg mb-8 leading-relaxed">
+                    Celebrating 15 years of ethical breeding. Specializing in high-performance companions with full clinical health tracking and lineage verification.
+                </p>
+<div class="flex gap-4">
+<button class="bg-primary-fixed text-on-primary-fixed px-8 py-3 rounded-full font-bold transition-all hover:scale-105 active:scale-95">Explore Facility</button>
+<button class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-3 rounded-full font-bold transition-all hover:bg-white/20">Learn More</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#F9F9FF] dark:bg-[#151C27] w-full py-12 border-t border-[#151C27]/10 dark:border-[#F9F9FF]/10">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 space-y-4 md:space-y-0 max-w-screen-2xl mx-auto">
+<p class="font-['Inter'] text-sm uppercase tracking-widest text-[#151C27]/40 dark:text-[#F9F9FF]/40">© 2024 Paws&amp;Pro. The Clinical Concierge for Pets.</p>
+<div class="flex gap-8">
+<a class="font-['Inter'] text-sm uppercase tracking-widest text-[#151C27]/40 dark:text-[#F9F9FF]/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-sm uppercase tracking-widest text-[#151C27]/40 dark:text-[#F9F9FF]/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-sm uppercase tracking-widest text-[#151C27]/40 dark:text-[#F9F9FF]/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors" href="#">Contact Support</a>
+<a class="font-['Inter'] text-sm uppercase tracking-widest text-[#151C27]/40 dark:text-[#F9F9FF]/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors" href="#">Vet Portal</a>
+<a class="font-['Inter'] text-sm uppercase tracking-widest text-[#151C27]/40 dark:text-[#F9F9FF]/40 hover:text-cyan-700 dark:hover:text-cyan-400 transition-colors" href="#">Careers</a>
+</div>
+</div>
+</footer>
+<!-- FAB for adding listing (Contextual) -->
+<div class="fixed bottom-8 right-8 z-40">
+<button class="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-2xl shadow-primary/40 transition-transform hover:scale-110 active:scale-95 group">
+<span class="material-symbols-outlined text-3xl">add</span>
+<span class="absolute right-full mr-4 bg-on-surface text-surface text-xs font-bold py-2 px-4 rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap">Create Listing</span>
+</button>
+</div>
+</body></html>

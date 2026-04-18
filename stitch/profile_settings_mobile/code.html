@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f0f3ff",
+                    "on-tertiary-container": "#f5fff6",
+                    "inverse-on-surface": "#ebf1ff",
+                    "on-background": "#151c27",
+                    "surface-container": "#e7eefe",
+                    "surface": "#f9f9ff",
+                    "background": "#f9f9ff",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "secondary-fixed": "#dce2f7",
+                    "outline-variant": "#bdc8ce",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e2e8f8",
+                    "on-tertiary-fixed": "#002113",
+                    "inverse-surface": "#2a313d",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#141b2b",
+                    "on-secondary-container": "#5c6274",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#6cd3f7",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "tertiary-container": "#00855b",
+                    "primary": "#00647c",
+                    "on-error": "#ffffff",
+                    "outline": "#6e797e",
+                    "tertiary": "#006947",
+                    "surface-variant": "#dce2f3",
+                    "on-surface-variant": "#3e484d",
+                    "secondary": "#575e70",
+                    "on-primary-fixed-variant": "#004e61",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#404758",
+                    "primary-container": "#007f9d",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#b7eaff",
+                    "tertiary-fixed": "#6ffbbe",
+                    "surface-bright": "#f9f9ff",
+                    "inverse-primary": "#6cd3f7",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#d9dff5",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "surface-dim": "#d3daea",
+                    "surface-tint": "#006780",
+                    "surface-container-highest": "#dce2f3",
+                    "on-surface": "#151c27",
+                    "on-primary-container": "#fafdff",
+                    "on-primary-fixed": "#001f28"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-transition-no-lines {
+            background: linear-gradient(to top, rgba(249, 249, 255, 1) 0%, rgba(249, 249, 255, 0.8) 100%);
+        }
+        .no-border-tonal-spacing {
+            border: none !important;
+        }
+        .tap-highlight-none {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed-dim selection:text-on-primary-fixed overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="w-full sticky top-0 z-50 bg-transparent no-border-tonal-spacing">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-xl mx-auto backdrop-blur-xl">
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:opacity-80 transition-opacity tap-highlight-none text-cyan-900">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+<h1 class="font-headline font-bold text-lg tracking-tighter text-cyan-900">Paws &amp; Pro</h1>
+<div class="flex items-center">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border-2 border-primary-container/20">
+<img alt="User Profile" data-alt="Close up portrait of a smiling woman with a friendly gaze, professional studio lighting, soft neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmIEmfWcHN26emkQYfFURb_bpM4tqTySmMi4_W8UmbgKOiHN0bKph_9vhrZXVAoF__36ZZjTUqd10ZrsNj0VF6bxLfjms6cUFXWnzlt4Ods29zJH5Ea7KevMy7ber3gBVMTyxygIWd_hkGZcUGvLwtYTie4EXj8BqCQey1g0QPEKU_Cw6467lfkwskr1idJUqFfp8aaZBIRRaGpS8h33M9U8RYlWHcqFy_2b_kZ29nVAsfA3uidFfi_jFT8PCbZAfEbwoJPpTQCWc"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-xl mx-auto px-6 pb-32">
+<!-- Profile Hero Section -->
+<section class="mt-8 mb-12">
+<div class="flex flex-col items-center">
+<div class="relative group">
+<div class="w-32 h-32 rounded-xl overflow-hidden shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]">
+<img alt="Alexandra Brooks" class="w-full h-full object-cover" data-alt="A sophisticated professional headshot of a woman with warm lighting and a soft focus blurred green office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLSW0NkuvJyZg3IH7w7IhnJiKj43mNpJsi5tYFP1gwz5IROUj9thDH4LFnpNBSU28vEbp_MmzyUnQLJhCO6WVriXs2ChXzJ1b7_-3cpGuGlAJhofZd-h-ffKqfwyHMUU6I7nRw0YmUYvuimhSzVZ7Itm4NQqUbRMLhVzbCWJXpeXnNKzzdPswTvaLDv8J5mxSfHQ7sN00Oyhc4ynfio6EBmOVrsGdFewDQ810RmTkiR_5RO2QA1mvHCnl9_nbwisfB0-QeFWPUUPs"/>
+</div>
+<button class="absolute -bottom-2 -right-2 bg-primary-container text-on-primary p-2 rounded-full shadow-lg hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+</div>
+<div class="mt-6 text-center">
+<h2 class="font-headline text-[2.5rem] font-extrabold leading-tight tracking-tight text-on-surface">Alexandra Brooks</h2>
+<p class="font-label text-sm uppercase tracking-widest text-outline mt-1 font-semibold">Premium Member since 2022</p>
+</div>
+</div>
+</section>
+<!-- The Family: Pet Profiles -->
+<section class="mb-12">
+<div class="flex justify-between items-end mb-6">
+<div>
+<span class="font-label text-xs uppercase tracking-[0.2em] text-primary font-bold">The Family</span>
+<h3 class="font-headline text-3xl font-bold text-on-surface mt-1">Your Companions</h3>
+</div>
+<button class="text-primary font-bold text-sm flex items-center gap-1 hover:opacity-70 transition-opacity">
+                    Add New <span class="material-symbols-outlined text-sm" data-icon="add_circle">add_circle</span>
+</button>
+</div>
+<!-- Asymmetric Bento Grid for Pets -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Large Card -->
+<div class="col-span-2 bg-surface-container-lowest rounded-lg p-6 flex items-center gap-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden group">
+<div class="w-24 h-24 rounded-full overflow-hidden shrink-0">
+<img alt="Cooper" class="w-full h-full object-cover" data-alt="Golden Retriever dog looking happily into the camera with a bright sunlit park background, vivid natural colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdAPBZp-TPYJJA09zT1ZECWmQ7u_H9-CLZ9VHjHAyPURKjfBrBD5XNVVqHOUxUgGLeiS3F77N7dG81LSZAQDEGvMAqNkt1YAncsdG2zUM12W-HeSb08tdKfg1HvVjBj-sBSbuyFX3-OBCqWm17OyKAcWzXDPJ9nf2iG2yKbV361Cx5xWLD5pyaZeR4KCrPqQdLnO8ta6A8cj0HBR5Pa9J0LanqNPASbvbJwLkX2S5GWwShYZGTGBg6Lu89pIhIA6_geHpYJtWmxJc"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2">
+<h4 class="font-headline text-xl font-bold text-on-surface">Cooper</h4>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-tighter">Healthy Pulse</span>
+</div>
+<p class="text-sm text-outline font-medium">Golden Retriever • 4 yrs</p>
+<div class="mt-3 flex gap-2">
+<span class="bg-surface-container px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant">Vaccinated</span>
+<span class="bg-surface-container px-3 py-1 rounded-full text-xs font-semibold text-on-surface-variant">Pro Diet</span>
+</div>
+</div>
+<span class="material-symbols-outlined absolute right-6 text-outline-variant opacity-40 group-hover:opacity-100 transition-opacity" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Smaller Bento Pieces -->
+<div class="bg-surface-container-low rounded-lg p-5 flex flex-col items-center text-center shadow-[0_8px_30px_rgb(0,0,0,0.02)] group">
+<div class="w-16 h-16 rounded-full overflow-hidden mb-3">
+<img alt="Luna" class="w-full h-full object-cover" data-alt="Close up of a grey tabby cat with striking green eyes sitting in a soft afternoon sunbeam, professional wildlife style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_2GsouiQEloVJwt0NlJYQPultgYRLpvDib40zrOHxAs1pz27kolTktDxGof06w5MGlkYXJRLSAddiiY15bpF6GwNYWuTa7B-M_gvOHCYqGryKlfkR9YXzLVfAVmWfj3ihaVYj0bhejCJsNy9vqHONopgTfR-RIhl13_QwBUlEfD81wM6JgBEfkGMKAPKb1ZihKwwhLYW8O1gU--s-b4wHxgsWNaV2A6loLrB93n3I7f_Kt-0d8iFrQsC6UQ3Dg_cAo88cNtZBJpU"/>
+</div>
+<h4 class="font-headline text-lg font-bold text-on-surface">Luna</h4>
+<p class="text-[11px] text-outline font-medium uppercase tracking-wider mt-1">Maine Coon</p>
+</div>
+<div class="bg-surface-container-low rounded-lg p-5 flex flex-col items-center justify-center border-2 border-dashed border-outline-variant/30 text-outline-variant hover:border-primary/40 hover:text-primary transition-all cursor-pointer">
+<span class="material-symbols-outlined text-3xl mb-2" data-icon="pets">pets</span>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest">New Member</span>
+</div>
+</div>
+</section>
+<!-- Subscription Management CTA -->
+<section class="mb-12">
+<div class="bg-primary overflow-hidden rounded-lg relative">
+<!-- Subtle Gradient Pattern -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary to-primary-container opacity-90"></div>
+<div class="relative p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="text-center md:text-left">
+<h3 class="font-headline text-2xl font-bold text-on-primary">Upgrade to Elite Pro</h3>
+<p class="text-primary-fixed/80 text-sm mt-2 max-w-[240px]">Unlimited vet consultations and 20% off all clinical products.</p>
+</div>
+<button class="bg-surface-container-lowest text-primary font-bold px-8 py-4 rounded-full shadow-xl hover:scale-105 active:scale-95 transition-all text-sm uppercase tracking-widest">
+                        Manage Plan
+                    </button>
+</div>
+</div>
+</section>
+<!-- Account Settings List -->
+<section>
+<h3 class="font-label text-xs uppercase tracking-[0.2em] text-outline font-bold mb-6">Preferences &amp; Security</h3>
+<div class="space-y-2">
+<!-- Setting Item -->
+<button class="w-full flex items-center justify-between p-5 bg-surface-container-lowest rounded-lg group hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="person_setting">person</span>
+</div>
+<div class="text-left">
+<p class="font-headline font-bold text-on-surface">Personal Information</p>
+<p class="text-xs text-outline">Email, phone, and home address</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform" data-icon="arrow_forward_ios" style="font-size: 16px;">arrow_forward_ios</span>
+</button>
+<!-- Setting Item -->
+<button class="w-full flex items-center justify-between p-5 bg-surface-container-lowest rounded-lg group hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+</div>
+<div class="text-left">
+<p class="font-headline font-bold text-on-surface">Notifications</p>
+<p class="text-xs text-outline">Reminders, alerts, and marketing</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform" data-icon="arrow_forward_ios" style="font-size: 16px;">arrow_forward_ios</span>
+</button>
+<!-- Setting Item -->
+<button class="w-full flex items-center justify-between p-5 bg-surface-container-lowest rounded-lg group hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="credit_card">credit_card</span>
+</div>
+<div class="text-left">
+<p class="font-headline font-bold text-on-surface">Payment Methods</p>
+<p class="text-xs text-outline">Visa ending in •••• 4242</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform" data-icon="arrow_forward_ios" style="font-size: 16px;">arrow_forward_ios</span>
+</button>
+<!-- Logout -->
+<button class="w-full flex items-center justify-center p-5 mt-4 rounded-lg text-error font-bold hover:bg-error-container/20 transition-colors">
+<span class="material-symbols-outlined mr-2" data-icon="logout">logout</span>
+                    Sign Out
+                </button>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-8 pt-4 bg-surface/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-[0_-8px_32px_rgba(21,28,39,0.06)] rounded-t-[32px]">
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium text-[11px] tracking-tight">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium text-[11px] tracking-tight">Health</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium text-[11px] tracking-tight">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-cyan-100 dark:bg-cyan-900/40 text-cyan-900 dark:text-cyan-100 rounded-full px-5 py-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium text-[11px] tracking-tight">Profile</span>
+</a>
+</nav>
+</body></html>

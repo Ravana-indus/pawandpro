@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#dce2f3",
+                        "secondary-fixed": "#dce2f7",
+                        "primary-fixed-dim": "#6cd3f7",
+                        "inverse-primary": "#6cd3f7",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#b7eaff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface": "#f9f9ff",
+                        "on-surface-variant": "#3e484d",
+                        "surface-variant": "#dce2f3",
+                        "primary-container": "#007f9d",
+                        "on-secondary-container": "#5c6274",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f0f3ff",
+                        "tertiary": "#006947",
+                        "on-surface": "#151c27",
+                        "on-secondary-fixed": "#141b2b",
+                        "surface-tint": "#006780",
+                        "tertiary-container": "#00855b",
+                        "secondary": "#575e70",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#004e61",
+                        "on-primary-fixed": "#001f28",
+                        "on-secondary-fixed-variant": "#404758",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-tertiary-fixed": "#002113",
+                        "on-tertiary-container": "#f5fff6",
+                        "on-error-container": "#93000a",
+                        "surface-container": "#e7eefe",
+                        "primary": "#00647c",
+                        "on-background": "#151c27",
+                        "inverse-on-surface": "#ebf1ff",
+                        "secondary-container": "#d9dff5",
+                        "background": "#f9f9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e2e8f8",
+                        "surface-dim": "#d3daea",
+                        "inverse-surface": "#2a313d",
+                        "outline": "#6e797e",
+                        "on-primary-container": "#fafdff",
+                        "outline-variant": "#bdc8ce",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f9f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#F9F9FF]/80 backdrop-blur-xl flex justify-between items-center px-6 py-4 max-w-7xl mx-auto left-0 right-0">
+<div class="flex items-center gap-8">
+<span class="text-xl font-extrabold text-[#00647C] tracking-tight">PetPulse</span>
+<!-- Search Bar Embedded -->
+<div class="hidden md:flex items-center bg-surface-container rounded-full px-4 py-2 w-96 transition-all focus-within:bg-surface-container-lowest focus-within:ring-2 ring-primary/20">
+<span class="material-symbols-outlined text-outline mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-outline/60" placeholder="Search by name, specialization..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-[#E7EEFE] transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[#00647C]" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-[#E7EEFE] transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[#00647C]" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-7xl mx-auto">
+<!-- Mobile Search -->
+<div class="md:hidden mb-8">
+<div class="flex items-center bg-surface-container rounded-full px-4 py-4 w-full">
+<span class="material-symbols-outlined text-outline mr-3" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-base w-full" placeholder="Search vets or specialists..." type="text"/>
+</div>
+</div>
+<!-- Emergency Callout (Bento Hero) -->
+<section class="mb-12">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-2 relative overflow-hidden rounded-lg bg-gradient-to-br from-primary to-primary-container p-8 text-on-primary shadow-lg group">
+<div class="relative z-10 flex flex-col justify-between h-full">
+<div>
+<span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold uppercase tracking-widest mb-4">Emergency Support</span>
+<h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-4 tracking-tighter">Emergency Vet Finder</h2>
+<p class="text-primary-fixed max-w-md text-lg font-medium opacity-90">Instant GPS routing to the nearest 24/7 critical care facility for your pet.</p>
+</div>
+<div class="mt-8">
+<button class="bg-surface-container-lowest text-primary px-8 py-4 rounded-xl font-bold flex items-center gap-3 transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="near_me">near_me</span>
+                                Find Nearest Hospital
+                            </button>
+</div>
+</div>
+<!-- Decorative Graphic -->
+<div class="absolute -right-12 -bottom-12 w-64 h-64 bg-white/10 rounded-full blur-3xl group-hover:scale-125 transition-transform duration-700"></div>
+<span class="absolute right-8 top-1/2 -translate-y-1/2 text-[120px] material-symbols-outlined opacity-10 select-none" data-icon="emergency">emergency</span>
+</div>
+<div class="rounded-lg bg-tertiary-container p-8 text-on-tertiary-container relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="text-2xl font-bold mb-2">Verified Experts</h3>
+<p class="text-sm opacity-80 mb-6">Our network includes 500+ board-certified specialists across 12 disciplines.</p>
+<div class="flex -space-x-3 mb-6">
+<div class="w-10 h-10 rounded-full border-2 border-tertiary-container overflow-hidden bg-surface">
+<img class="w-full h-full object-cover" data-alt="professional male veterinarian in white coat smiling with blurred clinical background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_JBNPXg85BYDuEqhb_-0IB-_9WBUJGJsLVEgCAg7yYRoN8Hu6qLp9_dyIZP0S6dVG1SYfFUzHH7k1zc1injh5Z-ZsaEpKuOvzE8blibzK7vTe4tDHCROdfoly34XIajuWwhEriUDhs2lTssvzAYj3Fco9seOZY8rhKsW23rmC4jRPo8lKYrCuKXNjUCfEFKeUCQE1ftv3c9I0dMNjNDOpTR0YEWEg7LSDXp7Za6yeWPFG69sBXdHU9qSxgwCTUZSx8WTE-7L2sIk"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-tertiary-container overflow-hidden bg-surface">
+<img class="w-full h-full object-cover" data-alt="professional female veterinarian looking at camera confidently in a modern pet clinic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARLzblXUbjURAA1hcuLwKryQTTQFfH30tpWp1XcVLKRbmllysoCKK5_wT49Tg1BfzZxd4dTED7rdjneZDqYbjEJcCDXksGZo3_Mx5He0EeszrIljVOZG1WnNJBx5hxjfXX4oqtc7r3lWH6yxIxIxBowLG1Uat6ml-SGbJNYB3HuWhreBKIiU_36qESh3cJH0qOreyyXFz3dzhUl-RP_cxypS7ZF4fqH7N-Xd6L28i--go_G0EMHwz3vmTNP2nDikz_cCX85ShgA0w"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-tertiary-container overflow-hidden bg-surface flex items-center justify-center text-xs font-bold bg-surface-container text-primary">
+                                +12k
+                            </div>
+</div>
+<button class="text-on-tertiary-container font-bold flex items-center gap-2 group">
+                            Learn about our standards
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Filters Section -->
+<section class="mb-10">
+<div class="flex flex-wrap items-center gap-3">
+<button class="px-6 py-2.5 rounded-full bg-primary text-white font-semibold text-sm shadow-md transition-all active:scale-95">All Vets</button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container text-on-surface-variant font-medium text-sm hover:bg-surface-container-high transition-all active:scale-95">General</button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container text-on-surface-variant font-medium text-sm hover:bg-surface-container-high transition-all active:scale-95">Specialist</button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container text-on-surface-variant font-medium text-sm hover:bg-surface-container-high transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="emergency">emergency</span>
+                    Emergency
+                </button>
+<div class="h-6 w-px bg-outline-variant/30 mx-2 hidden md:block"></div>
+<button class="px-4 py-2.5 rounded-xl border border-outline-variant/30 text-sm font-medium flex items-center gap-2 hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="tune">tune</span>
+                    More Filters
+                </button>
+</div>
+</section>
+<!-- Directory Grid -->
+<section>
+<div class="flex items-baseline justify-between mb-8">
+<h2 class="text-3xl font-extrabold tracking-tight">Nearby Specialists</h2>
+<span class="text-sm font-bold text-primary">48 Results found</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="group bg-surface-container-lowest rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(21,28,39,0.05)] hover:-translate-y-1">
+<div class="relative h-64">
+<img class="w-full h-full object-cover" data-alt="modern clean clinic interior with glass walls and professional equipment in soft bright lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7BN6A3CD6RvrjSm_FvmbnnQYY9dpceIUn467a4XMeNsNMOkJnCRpM0Wzkj_K3Vbgt-RtbgJ7fqLkwYWFsMIKy4_YW32iyYj1sD2BpnpLpvu7kgGgpj9IrQj8kHl3xAcM1e86z9eQtgx-kglR8IWLIP6AL73UAiCbDJ5PK3unJFoLzzzk8Fn7FqmM-F2CTDebgQqGTog43kjJ2bRoaPOAjUVscJXNZnmWqrjP06VaX_uxxz_SyIN5-XXUHoy-6n_6NULKgIQNGPiQ"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-yellow-500 text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.9</span>
+</div>
+<div class="absolute bottom-4 right-4 bg-primary text-white rounded-full p-3 shadow-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="calendar_add_on">calendar_add_on</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Dr. Aruni Perera</h3>
+<p class="text-sm font-medium text-primary">Veterinary Surgeon</p>
+</div>
+<span class="text-xs font-bold bg-tertiary-fixed text-on-tertiary-fixed px-2 py-1 rounded">PRO</span>
+</div>
+<div class="flex items-center gap-4 mb-6 text-sm text-on-surface-variant font-medium">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-lg" data-icon="history">history</span>
+                                12 Yrs Exp.
+                            </div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-lg" data-icon="translate">translate</span>
+                                EN, SI, TA
+                            </div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant/10">
+<div>
+<p class="text-[10px] uppercase tracking-wider font-bold text-outline">Starting from</p>
+<p class="text-lg font-extrabold text-on-surface">LKR 2,500</p>
+</div>
+<button class="bg-surface-container px-4 py-2 rounded-xl text-sm font-bold hover:bg-primary hover:text-white transition-all">Details</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-surface-container-lowest rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(21,28,39,0.05)] hover:-translate-y-1">
+<div class="relative h-64">
+<img class="w-full h-full object-cover" data-alt="friendly female vet examining a Golden Retriever in a warm sunlit veterinary examination room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNzy7DoPyheFycYlZB_VKiz4MybUE71NBSSAL1xuGN4h72-FQK5VvkK2RHpBcZ6KznW8k2nveOedIAgTdZXsAaDGAvMlhPilU558O22ep2YyCB4fDclKjMhHd5EXLaQPWeqHxOcotmNhHAkI9zaFXps7i9ueN0u9vgxT4bKH94s30LkHCZ7KkZFRh2ecM3e1eiJMuAEND7tjtEAurJeWyIE2hClHA93kN6rcyQeNf75SIUHkDNroQff-W_7gnKGGZgoTYymqcsSzM"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-yellow-500 text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.7</span>
+</div>
+<div class="absolute bottom-4 right-4 bg-primary text-white rounded-full p-3 shadow-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="calendar_add_on">calendar_add_on</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Dr. Michael Chen</h3>
+<p class="text-sm font-medium text-primary">Cardiologist (Specialist)</p>
+</div>
+<span class="text-xs font-bold bg-secondary-fixed text-on-secondary-fixed px-2 py-1 rounded">TOP</span>
+</div>
+<div class="flex items-center gap-4 mb-6 text-sm text-on-surface-variant font-medium">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-lg" data-icon="history">history</span>
+                                8 Yrs Exp.
+                            </div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-lg" data-icon="translate">translate</span>
+                                EN, TA
+                            </div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant/10">
+<div>
+<p class="text-[10px] uppercase tracking-wider font-bold text-outline">Starting from</p>
+<p class="text-lg font-extrabold text-on-surface">LKR 4,000</p>
+</div>
+<button class="bg-surface-container px-4 py-2 rounded-xl text-sm font-bold hover:bg-primary hover:text-white transition-all">Details</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group bg-surface-container-lowest rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_20px_50px_rgba(21,28,39,0.05)] hover:-translate-y-1">
+<div class="relative h-64">
+<img class="w-full h-full object-cover" data-alt="close up of pet medication and a stethoscope on a clinical steel table with a soft focus background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAicqwrpZF7J3HoQSNNmLoFQigV_Muu_X2Lm7ckiaudmAt4F5lEqlLYChKUo7R8TDnUs6Yn-87KuWjBxABtgEFnPlIc4gI3aYwKp-rY1X6zUpg2dZmALNCEw3HafgqQHNVF9COGeb0qBkc_Q7NLFjutqyA5a4sFLgvU-VidNVPkSzLwnomGcS59E4jn7IkAGU7p8SqqH6n-wxzkeYXEU2e8h5siwNlG8z_nJ-dXEwtmtlC51d93haAAGCa2jVIGw2B0Vbbj8FMVm10"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-yellow-500 text-sm" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.8</span>
+</div>
+<div class="absolute bottom-4 right-4 bg-primary text-white rounded-full p-3 shadow-lg group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="calendar_add_on">calendar_add_on</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="text-xl font-bold text-on-surface group-hover:text-primary transition-colors">Dr. Kamal Wickrama</h3>
+<p class="text-sm font-medium text-primary">General Physician</p>
+</div>
+</div>
+<div class="flex items-center gap-4 mb-6 text-sm text-on-surface-variant font-medium">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-lg" data-icon="history">history</span>
+                                15 Yrs Exp.
+                            </div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-lg" data-icon="translate">translate</span>
+                                EN, SI
+                            </div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant/10">
+<div>
+<p class="text-[10px] uppercase tracking-wider font-bold text-outline">Starting from</p>
+<p class="text-lg font-extrabold text-on-surface">LKR 1,800</p>
+</div>
+<button class="bg-surface-container px-4 py-2 rounded-xl text-sm font-bold hover:bg-primary hover:text-white transition-all">Details</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center pb-8 bg-[#F9F9FF]/80 backdrop-blur-2xl">
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[92%] max-w-md rounded-full px-4 py-2 bg-white/80 dark:bg-[#151C27]/80 shadow-[0_32px_48px_rgba(21,28,39,0.08)] flex justify-between items-center">
+<a class="flex flex-col items-center justify-center text-[#151C27] opacity-40 p-3 hover:opacity-100 transition-opacity active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-[#00647C] to-[#007F9D] text-white rounded-full p-3 active:scale-90 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider mt-1">Appointments</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#151C27] opacity-40 p-3 hover:opacity-100 transition-opacity active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider mt-1">Consult</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#151C27] opacity-40 p-3 hover:opacity-100 transition-opacity active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="clinical_notes">clinical_notes</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-wider mt-1">Records</span>
+</a>
+</div>
+</nav>
+<!-- FAB (Contextual for Search Screen) -->
+<button class="fixed bottom-24 right-6 bg-primary text-white w-14 h-14 rounded-2xl shadow-xl flex items-center justify-center active:scale-95 transition-transform z-40 md:hidden">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+</button>
+</body></html>

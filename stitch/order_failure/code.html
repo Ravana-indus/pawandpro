@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment Failed - PetCentric</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#bdc8ce",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f9f9ff",
+                    "background": "#f9f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#e2e8f8",
+                    "surface-dim": "#d3daea",
+                    "inverse-surface": "#2a313d",
+                    "outline": "#6e797e",
+                    "on-primary-container": "#fafdff",
+                    "on-background": "#151c27",
+                    "inverse-on-surface": "#ebf1ff",
+                    "secondary-container": "#d9dff5",
+                    "surface-container": "#e7eefe",
+                    "primary": "#00647c",
+                    "on-secondary-fixed-variant": "#404758",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "on-tertiary-fixed": "#002113",
+                    "on-tertiary-container": "#f5fff6",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#151c27",
+                    "on-secondary-fixed": "#141b2b",
+                    "surface-tint": "#006780",
+                    "tertiary-container": "#00855b",
+                    "secondary": "#575e70",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#004e61",
+                    "on-primary-fixed": "#001f28",
+                    "surface-variant": "#dce2f3",
+                    "primary-container": "#007f9d",
+                    "on-secondary-container": "#5c6274",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f0f3ff",
+                    "tertiary": "#006947",
+                    "surface-container-highest": "#dce2f3",
+                    "secondary-fixed": "#dce2f7",
+                    "primary-fixed-dim": "#6cd3f7",
+                    "inverse-primary": "#6cd3f7",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#b7eaff",
+                    "tertiary-fixed": "#6ffbbe",
+                    "surface": "#f9f9ff",
+                    "on-surface-variant": "#3e484d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<header class="fixed top-0 w-full z-50 bg-[#F9F9FF] dark:bg-slate-950 flex items-center justify-between px-6 h-20 w-full">
+<div class="flex items-center gap-4">
+<span class="text-2xl font-black text-[#151C27] dark:text-white tracking-tight font-['Plus_Jakarta_Sans']">PetCentric</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#151C27] dark:text-slate-400 p-2 hover:bg-[#E7EEFE] dark:hover:bg-slate-800 transition-colors rounded-full" data-icon="shopping_cart">shopping_cart</button>
+<button class="material-symbols-outlined text-[#151C27] dark:text-slate-400 p-2 hover:bg-[#E7EEFE] dark:hover:bg-slate-800 transition-colors rounded-full" data-icon="account_circle">account_circle</button>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center px-4 pt-24 pb-12">
+<div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+<div class="md:col-span-7 space-y-8">
+<div class="relative">
+<div class="absolute -top-12 -left-12 w-48 h-48 bg-error/10 rounded-full blur-3xl opacity-50"></div>
+<div class="relative">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-error-container text-error mb-6">
+<span class="material-symbols-outlined text-4xl" data-icon="error">error</span>
+</div>
+<h1 class="text-5xl md:text-6xl font-extrabold text-on-surface tracking-tighter leading-tight mb-4 font-headline">
+                            Payment <br/><span class="text-error">Declined</span>
+</h1>
+<p class="text-xl text-on-surface-variant max-w-md leading-relaxed">
+                            We couldn't process your transaction. Your bank cited <span class="font-bold text-on-surface">Insufficient funds</span> as the primary reason.
+                        </p>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="bg-gradient-to-r from-primary to-primary-container text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg shadow-primary/20 flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                        Retry Payment
+                        <span class="material-symbols-outlined" data-icon="refresh">refresh</span>
+</button>
+<button class="bg-surface-container-highest text-on-surface px-8 py-4 rounded-xl font-bold text-lg hover:bg-surface-variant active:scale-95 transition-transform">
+                        Change Payment Method
+                    </button>
+</div>
+<div class="pt-12 flex items-center gap-6">
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a professional customer support representative with a friendly smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsTmnnctgqCx41L2gt4mnUcJCtzZvJ1codBzf-HQ8dfg5zoXJSOLGVm_5XP6q6LkLAN6ql6giZZp5MWqQWddm4X-adnORzoLzLTEmZYtzUUAO5lHtiTbZlQL6WVzpJNIjH19qubWVr7K2HmldlkoX_xgXGZwUbhSBL5HlzZ492lYzcibXFEHmhQvZKxsGjrMBknwwN68yKEsApEqqqgGcwBrhwvV0PwdKvyfJfk5dMgOqkTT84wWfa1iZtUIWstoWs0BFutbhWlQs"/>
+</div>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface-variant uppercase tracking-widest">Need Assistance?</p>
+<a class="text-primary font-bold hover:underline flex items-center gap-1" href="#">
+                            Chat with a Clinical Concierge
+                            <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<div class="md:col-span-5">
+<div class="bg-surface-container-lowest rounded-lg p-8 shadow-2xl shadow-on-surface/5 border border-outline-variant/15 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16"></div>
+<h3 class="text-xl font-bold mb-6 font-headline">Order Summary</h3>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="w-16 h-16 bg-surface-container rounded-lg flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Premium organic dog food packaging with modern minimalist design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs3qafOjYYFXCKmabQx7Sl9qhzekkSwk9_-0JNFKp0jXcuaXVbdJYUOSiadQ0j9VzxRKLSg-DpJGO9eb4eGtv_m5Ky0eyGoSukg3HM8554KLW3NL8fpZEhAgddkbLNAl4UomA9NmrrDt29U2N970yQE0NxDBOXANWDhpFYUmxXaGRXDSlrtdsc7TS1JPv7RJU6Ja06t40Mhf73o9Uo4tMlcqeWG9B7ouUB6XFmdbrNBaMdi1CfJaatP7V_NmpIlAwWO50bTx9E5NI"/>
+</div>
+<div class="flex-grow">
+<p class="font-bold text-on-surface text-sm">Premium Grain-Free Salmon</p>
+<p class="text-xs text-on-surface-variant">12kg • Monthly Subscription</p>
+<p class="font-bold text-primary text-sm mt-1">$84.00</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-16 h-16 bg-surface-container rounded-lg flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Veterinary diagnostic kit for home use in a sleek medical box" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKgxIJsPggpO619oXwFIKESyH4mqoiwaZg2BEvuHM83N2VOop8-ZqsydG7vROhhfPtXIfUurfoMiWWnk5kqCQlwFCw6rxxDe0sEiJDnIsk9XUjZUmVgDM62jwRJPMClJO3UdWlrrdVgAT64jYZ_WDs0_cyWFaUC7JUwvPtMngL1GG6PluHMtqADbsszbfkKu-GpJ_ewPDEMTftcyQHcw1HQVlsvyr1M7NSgmpm0DIXzkUjaW_6s-7v29TqRoboWyPoQLF4yABtwZ0"/>
+</div>
+<div class="flex-grow">
+<p class="font-bold text-on-surface text-sm">Annual Wellness Checkup</p>
+<p class="text-xs text-on-surface-variant">Scheduled for Oct 12</p>
+<p class="font-bold text-primary text-sm mt-1">$120.00</p>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-dashed border-outline-variant/30 space-y-3">
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Subtotal</span>
+<span class="font-medium text-on-surface">$204.00</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Clinical Service Fee</span>
+<span class="font-medium text-on-surface">$12.50</span>
+</div>
+<div class="flex justify-between text-lg font-bold pt-4 border-t border-outline-variant/10">
+<span class="font-headline">Total</span>
+<span class="text-primary font-headline">$216.50</span>
+</div>
+</div>
+<div class="mt-6 flex items-center gap-2 bg-surface-container-low p-3 rounded-lg">
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="credit_card">credit_card</span>
+<span class="text-xs font-medium text-on-surface-variant">Ending in •••• 4242</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="md:hidden">
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-end px-6 pb-6 h-24 bg-[#F9F9FF]/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-[0_-8px_40px_-12px_rgba(21,28,39,0.08)]">
+<a class="flex flex-col items-center justify-center text-[#151C27]/60 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="text-[10px] font-bold uppercase tracking-wider mt-1">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#151C27]/60 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined" data-icon="health_and_safety">health_and_safety</span>
+<span class="text-[10px] font-bold uppercase tracking-wider mt-1">Health</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#151C27]/60 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-[10px] font-bold uppercase tracking-wider mt-1">History</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#00647C] text-white rounded-full p-3 mb-2 scale-110 shadow-lg shadow-[#00647C]/20" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+</a>
+</nav>
+</footer>
+</body></html>

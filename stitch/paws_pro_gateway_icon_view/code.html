@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Paws&amp;Pro | Choose Your Path</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#002113",
+                    "tertiary-container": "#00855b",
+                    "surface-container-low": "#f0f3ff",
+                    "on-surface": "#151c27",
+                    "inverse-surface": "#2a313d",
+                    "primary-container": "#007f9d",
+                    "secondary": "#575e70",
+                    "secondary-container": "#d9dff5",
+                    "outline-variant": "#bdc8ce",
+                    "tertiary": "#006947",
+                    "primary-fixed-dim": "#6cd3f7",
+                    "on-primary-fixed": "#001f28",
+                    "surface-container-high": "#e2e8f8",
+                    "outline": "#6e797e",
+                    "surface-variant": "#dce2f3",
+                    "on-tertiary-container": "#f5fff6",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#d3daea",
+                    "primary": "#00647c",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "on-error": "#ffffff",
+                    "surface": "#f9f9ff",
+                    "on-primary": "#ffffff",
+                    "background": "#f9f9ff",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-background": "#151c27",
+                    "on-surface-variant": "#3e484d",
+                    "inverse-on-surface": "#ebf1ff",
+                    "surface-container-highest": "#dce2f3",
+                    "tertiary-fixed": "#6ffbbe",
+                    "inverse-primary": "#6cd3f7",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#404758",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-primary-container": "#fafdff",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#b7eaff",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-secondary-fixed": "#141b2b",
+                    "on-secondary-container": "#5c6274",
+                    "surface-tint": "#006780",
+                    "surface-bright": "#f9f9ff",
+                    "secondary-fixed": "#dce2f7",
+                    "surface-container": "#e7eefe",
+                    "on-primary-fixed-variant": "#004e61"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-path-card:hover .icon-container {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface overflow-x-hidden">
+<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/20">
+<div class="flex justify-between items-center px-8 h-20 w-full max-w-screen-2xl mx-auto font-headline">
+<div class="flex items-center gap-12">
+<span class="text-2xl font-extrabold tracking-tighter text-on-surface">Paws&amp;Pro</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block text-sm font-semibold text-on-surface-variant hover:text-primary transition-colors px-4 py-2">Log In</button>
+<button class="bg-on-surface text-surface px-6 py-2.5 rounded-full font-bold text-sm hover:bg-on-surface/90 transition-all shadow-sm">Sign Up</button>
+</div>
+</div>
+</nav>
+<main class="min-h-screen pt-20 flex flex-col">
+<!-- Main Gateway Section -->
+<section class="flex-1 flex flex-col items-center justify-center px-8 py-12">
+<div class="text-center mb-16 max-w-2xl mx-auto">
+<h1 class="font-headline text-5xl md:text-6xl font-extrabold tracking-tighter text-on-surface leading-[1.1] mb-6">
+                How can we help you and your pet today?
+            </h1>
+<p class="text-lg text-on-surface-variant font-medium">
+                Choose a path to access our premium clinical services and marketplace.
+            </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-7xl mx-auto px-4">
+<!-- Path 1: Shop Products -->
+<a class="hero-path-card group relative h-[500px] md:h-[650px] rounded-lg overflow-hidden bg-on-surface flex flex-col justify-center items-center transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20" href="#">
+<div class="icon-container mb-12 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px] text-primary-fixed-dim select-none" style="font-variation-settings: 'wght' 200;">shopping_bag</span>
+</div>
+<div class="px-10 w-full text-center">
+<span class="text-primary-fixed-dim uppercase tracking-[0.2em] font-bold text-xs mb-4 block">Marketplace</span>
+<h2 class="font-headline text-4xl font-extrabold text-surface mb-4">Shop Products</h2>
+<p class="text-surface/60 text-lg mb-10 max-w-xs mx-auto leading-relaxed">Curated medical-grade essentials for daily wellness.</p>
+<div class="inline-flex items-center gap-3 bg-surface text-on-surface px-8 py-3.5 rounded-full font-bold group-hover:bg-primary group-hover:text-on-primary transition-all">
+                        Browse Collection
+                        <span class="material-symbols-outlined">east</span>
+</div>
+</div>
+</a>
+<!-- Path 2: Find Your Companion -->
+<a class="hero-path-card group relative h-[500px] md:h-[650px] rounded-lg overflow-hidden bg-on-surface flex flex-col justify-center items-center transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20" href="#">
+<div class="icon-container mb-12 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px] text-primary-fixed-dim select-none" style="font-variation-settings: 'wght' 200;">pets</span>
+</div>
+<div class="px-10 w-full text-center">
+<span class="text-primary-fixed-dim uppercase tracking-[0.2em] font-bold text-xs mb-4 block">Pet Store</span>
+<h2 class="font-headline text-4xl font-extrabold text-surface mb-4">Find Companion</h2>
+<p class="text-surface/60 text-lg mb-10 max-w-xs mx-auto leading-relaxed">Connect with ethical breeders and verified shelters.</p>
+<div class="inline-flex items-center gap-3 bg-surface text-on-surface px-8 py-3.5 rounded-full font-bold group-hover:bg-primary group-hover:text-on-primary transition-all">
+                        Meet New Friends
+                        <span class="material-symbols-outlined">east</span>
+</div>
+</div>
+</a>
+<!-- Path 3: Medical Consultation -->
+<a class="hero-path-card group relative h-[500px] md:h-[650px] rounded-lg overflow-hidden bg-on-surface flex flex-col justify-center items-center transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20" href="#">
+<div class="icon-container mb-12 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px] text-primary-fixed-dim select-none" style="font-variation-settings: 'wght' 200;">medical_services</span>
+</div>
+<div class="px-10 w-full text-center">
+<span class="text-primary-fixed-dim uppercase tracking-[0.2em] font-bold text-xs mb-4 block">Veterinary</span>
+<h2 class="font-headline text-4xl font-extrabold text-surface mb-4">Consultations</h2>
+<p class="text-surface/60 text-lg mb-10 max-w-xs mx-auto leading-relaxed">Clinical authority through video calls and bookings.</p>
+<div class="inline-flex items-center gap-3 bg-surface text-on-surface px-8 py-3.5 rounded-full font-bold group-hover:bg-primary group-hover:text-on-primary transition-all">
+                        Book Clinical Session
+                        <span class="material-symbols-outlined">east</span>
+</div>
+</div>
+</a>
+</div>
+</section>
+</main>
+<footer class="bg-surface py-12 border-t border-outline-variant/10">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 space-y-4 md:space-y-0 w-full max-w-screen-2xl mx-auto font-body text-[10px] uppercase tracking-[0.2em]">
+<span class="text-on-surface/40">© 2024 Paws&amp;Pro. Clinical Authority. Premium Lifestyle.</span>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-on-surface/40 hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="text-on-surface/40 hover:text-primary transition-colors" href="#">Terms</a>
+<a class="text-on-surface/40 hover:text-primary transition-colors" href="#">Support</a>
+<a class="text-on-surface/40 hover:text-primary transition-colors" href="#">Vet Portal</a>
+</div>
+</div>
+</footer>
+</body></html>

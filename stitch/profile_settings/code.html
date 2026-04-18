@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Paws &amp; Pro | Buyer's Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary-fixed-variant": "#005236",
+                "inverse-surface": "#2a313d",
+                "inverse-on-surface": "#ebf1ff",
+                "on-background": "#151c27",
+                "background": "#f9f9ff",
+                "on-secondary-container": "#5c6274",
+                "on-primary": "#ffffff",
+                "error-container": "#ffdad6",
+                "surface-variant": "#dce2f3",
+                "surface-container-lowest": "#ffffff",
+                "error": "#ba1a1a",
+                "surface-container-low": "#f0f3ff",
+                "surface-container-highest": "#dce2f3",
+                "surface-bright": "#f9f9ff",
+                "on-surface": "#151c27",
+                "on-tertiary-fixed": "#002113",
+                "outline-variant": "#bdc8ce",
+                "on-primary-container": "#fafdff",
+                "primary-container": "#007f9d",
+                "on-surface-variant": "#3e484d",
+                "surface-tint": "#006780",
+                "on-error-container": "#93000a",
+                "surface": "#f9f9ff",
+                "primary-fixed": "#b7eaff",
+                "tertiary-fixed-dim": "#4edea3",
+                "secondary-fixed-dim": "#c0c6db",
+                "on-secondary-fixed": "#141b2b",
+                "on-primary-fixed-variant": "#004e61",
+                "secondary-fixed": "#dce2f7",
+                "surface-container-high": "#e2e8f8",
+                "on-tertiary-container": "#f5fff6",
+                "tertiary-fixed": "#6ffbbe",
+                "surface-container": "#e7eefe",
+                "secondary-container": "#d9dff5",
+                "secondary": "#575e70",
+                "surface-dim": "#d3daea",
+                "on-secondary": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "tertiary": "#006947",
+                "on-error": "#ffffff",
+                "primary-fixed-dim": "#6cd3f7",
+                "primary": "#00647c",
+                "outline": "#6e797e",
+                "on-secondary-fixed-variant": "#404758",
+                "tertiary-container": "#00855b",
+                "on-primary-fixed": "#001f28",
+                "inverse-primary": "#6cd3f7"
+            },
+            "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Plus Jakarta Sans"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#F9F9FF]/80 dark:bg-[#151C27]/80 backdrop-blur-md flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-[#151C27] dark:text-[#F9F9FF]">Paws &amp; Pro</span>
+<div class="hidden md:flex items-center gap-6 font-['Plus_Jakarta_Sans'] tracking-tight">
+<a class="text-[#00647C] font-bold border-b-2 border-[#00647C] py-1" href="#">Profile</a>
+<a class="text-[#151C27]/60 hover:text-[#00647C] transition-colors duration-300" href="#">Shop</a>
+<a class="text-[#151C27]/60 hover:text-[#00647C] transition-colors duration-300" href="#">Veterinary</a>
+<a class="text-[#151C27]/60 hover:text-[#00647C] transition-colors duration-300" href="#">Community</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center bg-surface-container rounded-full px-4 py-2">
+<span class="material-symbols-outlined text-outline text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 font-body" placeholder="Search services..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all p-2 scale-95 active:opacity-80">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all p-2 scale-95 active:opacity-80">shopping_bag</button>
+<img alt="User account avatar" class="w-10 h-10 rounded-full border-2 border-primary-container object-cover" data-alt="Close-up portrait of a professional man with a friendly expression in a bright minimalist office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVIViuquzmWnf2vDYbLTVcU2tn8RXXM3riajGHb-6tjn8B7c5fYbyl25P0oW6ozfdFNWWx2u-pmyP0M9QeZwrHxlVmkMGqRiFLKnI5UkLoPkDso0pgQBoodDHRigTaOlah52uzWAHLOVrZXXw32GW_iNBKCmXHj8znzrYgyTDPfQsem7WYZaC0DPMMluHdflemLJGCYU-oIG1zmYW9MJeGVxnHZSONhDIyyvmTUm3pSjLEjAfKWo6MqdZCxnrZuq0gdm9LSPtPeAQ"/>
+</div>
+</nav>
+<div class="flex pt-20 h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col py-8 gap-2 bg-white dark:bg-[#151C27] h-screen w-64 rounded-r-none border-r-0">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<img alt="User profile picture" class="w-12 h-12 rounded-full object-cover" data-alt="Headshot of a man with short hair smiling softly, professional and high-quality photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjHvsnVAYa7VAy6yINayzo5n78_9wwffdEhfR2v_tepDo0nZOAIOX5u-RWspv7icv-Uuc7u3T1z4LqQ4WE1LI6uMXuNRU8gT5kfM9Lxr0zhCbzDwBUI_MIhmex4S73r5_CL-O_U9gsjjs-cHoP6nTk1x2Q8rcCq5e3MWd-Xu-8dTERbtMFD6VBEbr5vcX9AI5u93Q7FetqnJQJIZJd-GLrzc867R5SmHassTL_X2qiliXtycQN8CrioGeI96s13uS7JD60lNGrca0"/>
+<div class="flex flex-col">
+<span class="font-headline font-bold text-on-surface">Alex Miller</span>
+<span class="text-xs text-on-surface-variant">Premium Member</span>
+</div>
+</div>
+<button class="mt-6 w-full py-2 bg-primary text-white rounded-full text-xs font-bold hover:translate-x-1 transition-transform duration-200">Upgrade to Pro</button>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 py-3 px-6 bg-[#00647C] text-white rounded-full mx-2 font-['Plus_Jakarta_Sans'] text-sm font-medium active:scale-98 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                    Profile
+                </a>
+<a class="flex items-center gap-3 py-3 px-6 text-[#151C27]/70 hover:bg-[#E7EEFE] rounded-full mx-2 font-['Plus_Jakarta_Sans'] text-sm font-medium hover:translate-x-1 transition-transform duration-200 active:scale-98 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="package">package</span>
+                    Orders
+                </a>
+<a class="flex items-center gap-3 py-3 px-6 text-[#151C27]/70 hover:bg-[#E7EEFE] rounded-full mx-2 font-['Plus_Jakarta_Sans'] text-sm font-medium hover:translate-x-1 transition-transform duration-200 active:scale-98 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="assignment_return">assignment_return</span>
+                    Refunds
+                </a>
+<a class="flex items-center gap-3 py-3 px-6 text-[#151C27]/70 hover:bg-[#E7EEFE] rounded-full mx-2 font-['Plus_Jakarta_Sans'] text-sm font-medium hover:translate-x-1 transition-transform duration-200 active:scale-98 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-3 py-3 px-6 text-[#151C27]/70 hover:bg-[#E7EEFE] rounded-full mx-2 font-['Plus_Jakarta_Sans'] text-sm font-medium hover:translate-x-1 transition-transform duration-200 active:scale-98 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+                    Support
+                </a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-surface-container-low p-6 md:p-12">
+<div class="max-w-6xl mx-auto space-y-12">
+<!-- Hero Header -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-2 block">Account Overview</span>
+<h1 class="text-5xl font-extrabold tracking-tighter text-on-surface leading-none">Your Sanctuary.</h1>
+</div>
+<p class="text-on-surface-variant max-w-sm text-sm leading-relaxed">
+                        Manage your veterinary records, shop history, and pet health profiles in one editorial clinical dashboard.
+                    </p>
+</header>
+<!-- Bento Grid for Profile Info -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- User Profile Card -->
+<div class="md:col-span-2 bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-between min-h-[300px]">
+<div class="flex justify-between items-start">
+<div class="space-y-4">
+<h3 class="text-2xl font-bold font-headline">Personal Details</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-4">
+<div>
+<label class="text-[10px] uppercase font-bold tracking-widest text-outline">Full Name</label>
+<p class="text-lg font-medium">Alex Miller</p>
+</div>
+<div>
+<label class="text-[10px] uppercase font-bold tracking-widest text-outline">Email Address</label>
+<p class="text-lg font-medium">alex.m@paws-pro.com</p>
+</div>
+<div>
+<label class="text-[10px] uppercase font-bold tracking-widest text-outline">Phone Number</label>
+<p class="text-lg font-medium">+1 (555) 012-3456</p>
+</div>
+<div>
+<label class="text-[10px] uppercase font-bold tracking-widest text-outline">Location</label>
+<p class="text-lg font-medium">San Francisco, CA</p>
+</div>
+</div>
+</div>
+<button class="material-symbols-outlined bg-surface-container p-3 rounded-full text-primary hover:bg-primary hover:text-white transition-all">edit</button>
+</div>
+<div class="mt-8 flex gap-2">
+<span class="px-4 py-1 bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold rounded-full uppercase tracking-wider">Verified Account</span>
+<span class="px-4 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded-full uppercase tracking-wider">Since 2021</span>
+</div>
+</div>
+<!-- Membership Status Card -->
+<div class="bg-primary text-white p-8 rounded-xl flex flex-col justify-between overflow-hidden relative">
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<label class="text-[10px] uppercase font-bold tracking-widest opacity-80">Tier Status</label>
+<h3 class="text-3xl font-bold mt-2">Premium Pro</h3>
+<p class="text-sm opacity-90 mt-4 leading-relaxed">Enjoy 15% off all boutique medical supplies and priority veterinary booking.</p>
+</div>
+<div class="relative z-10 pt-6 border-t border-white/20">
+<p class="text-xs mb-4">Next renewal: Oct 12, 2024</p>
+<button class="w-full py-3 bg-white text-primary font-bold rounded-xl text-sm hover:bg-surface-container-low transition-colors">Manage Subscription</button>
+</div>
+</div>
+</section>
+<!-- Pet Profiles Grid -->
+<section class="space-y-8">
+<div class="flex items-center justify-between">
+<h2 class="text-3xl font-bold font-headline tracking-tight">The Family.</h2>
+<button class="flex items-center gap-2 text-primary font-bold text-sm group">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+                            Add a New Pet
+                            <span class="w-8 h-[2px] bg-primary group-hover:w-12 transition-all"></span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Pet Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden group">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Pet profile" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up of a cute French Bulldog sitting on a clean, bright studio background with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKZhuDUO85S5fw7qvkcVaq_4Tdb0Yp0ZqOaA5I6n_pk1hK8wgDVUro7jyxtCveY9Tjq4nMcat__nhl5SZ4gLoW5rbOqvtXKKin9Z7Yepe0Oai3qsmzIFrrzLstJwcuFGYMFiIExYkyLphgP_xqFHSd9QxQNz57SMMONrER-fWBG-XIhaMIpSxvoihD3Cn1BC1mupYP2IE5rvVukVL418fQ1fxXca4aJ5C5FbLs4_UKbfN_92zsVDwm5viScbr1zQQb1Iuiy_8oIY0"/>
+<div class="absolute top-4 right-4 bg-tertiary/90 backdrop-blur-md px-3 py-1 rounded-full text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
+<span class="w-2 h-2 bg-white rounded-full animate-pulse"></span> Optimal Health
+                                </div>
+</div>
+<div class="p-6 space-y-4">
+<div>
+<h4 class="text-xl font-bold">Bowie</h4>
+<p class="text-xs text-on-surface-variant">French Bulldog • 3 years</p>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-[10px] font-bold text-outline-variant uppercase">
+<span>Next Checkup</span>
+<span class="text-primary">12 Days</span>
+</div>
+<div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="w-[85%] h-full bg-primary"></div>
+</div>
+</div>
+<button class="w-full py-2 bg-surface-container text-on-surface text-xs font-bold rounded-lg hover:bg-surface-container-high transition-colors">View Medical Records</button>
+</div>
+</div>
+<!-- Pet Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden group">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Pet profile" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Elegant ginger cat resting on a high-end designer rug in a sunlit modern apartment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLEsVzdy77bce9zhz6owvrVHzaEql0KbJMxmNbthTmOaRzix_wTFwrYk3bNKIrRMybzdIkwVgwtdRhofX2tRWgL-uTnh7TNwDiZpeI-DbHa9UaIbtiVcnwFozK8ipPn5IpNRnQ_UtvhsHw3X-0ornem-978atTvmeNBkH8oMv5CHx1OQZPy7czD-ppqfBPsGUFQZhhtvjkI7h0WT3QOMFQdYI-GJZtGRubR1X9zeLy4TPJnFqlJp2oVbQSqdYubWxp2nlM2BQoD9w"/>
+<div class="absolute top-4 right-4 bg-secondary-container/90 backdrop-blur-md px-3 py-1 rounded-full text-on-secondary-container text-[10px] font-bold uppercase tracking-widest flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">schedule</span> Pending Vax
+                                </div>
+</div>
+<div class="p-6 space-y-4">
+<div>
+<h4 class="text-xl font-bold">Luna</h4>
+<p class="text-xs text-on-surface-variant">Scottish Fold • 1 year</p>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-[10px] font-bold text-outline-variant uppercase">
+<span>Nutrition Balance</span>
+<span class="text-primary">92%</span>
+</div>
+<div class="w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="w-[92%] h-full bg-primary"></div>
+</div>
+</div>
+<button class="w-full py-2 bg-surface-container text-on-surface text-xs font-bold rounded-lg hover:bg-surface-container-high transition-colors">View Medical Records</button>
+</div>
+</div>
+<!-- Add Pet Placeholder -->
+<div class="bg-surface-container border-2 border-dashed border-outline-variant/30 rounded-xl flex flex-col items-center justify-center p-8 text-center space-y-4 hover:bg-surface-container-high transition-all cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-white flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-4xl">pets</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Expand the Pack</p>
+<p class="text-xs text-on-surface-variant mt-1">Register a new pet to unlock health monitoring.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Preferences & Security -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 pt-8">
+<div class="space-y-6">
+<h2 class="text-3xl font-bold font-headline">Account Preferences.</h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded-lg">notifications</span>
+<div>
+<p class="text-sm font-bold">Medical Alerts</p>
+<p class="text-[10px] text-on-surface-variant">Receive SMS for upcoming checkups</p>
+</div>
+</div>
+<div class="w-12 h-6 bg-primary rounded-full relative flex items-center px-1">
+<div class="w-4 h-4 bg-white rounded-full translate-x-6"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded-lg">mail</span>
+<div>
+<p class="text-sm font-bold">Marketplace Newsletter</p>
+<p class="text-[10px] text-on-surface-variant">Curated luxury pet drops</p>
+</div>
+</div>
+<div class="w-12 h-6 bg-outline-variant rounded-full relative flex items-center px-1">
+<div class="w-4 h-4 bg-white rounded-full"></div>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary bg-primary-fixed p-2 rounded-lg">lock</span>
+<div>
+<p class="text-sm font-bold">Two-Factor Authentication</p>
+<p class="text-[10px] text-on-surface-variant">Enhanced security for medical records</p>
+</div>
+</div>
+<div class="w-12 h-6 bg-primary rounded-full relative flex items-center px-1">
+<div class="w-4 h-4 bg-white rounded-full translate-x-6"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-[#151C27] text-white p-8 rounded-xl flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary-fixed">verified_user</span>
+<span class="text-xs font-bold uppercase tracking-widest text-primary-fixed">Privacy Hub</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Your Data, Protected.</h3>
+<p class="text-sm text-white/70 leading-relaxed mb-6">We use military-grade encryption for all pet medical histories and breeder communication logs. You can request a full data export at any time.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="py-3 bg-white/10 hover:bg-white/20 transition-colors rounded-lg text-xs font-bold">Export My Data</button>
+<button class="py-3 bg-error text-white rounded-lg text-xs font-bold">Delete Account</button>
+</div>
+</div>
+</section>
+<footer class="pt-12 pb-8 text-center text-[10px] text-on-surface-variant uppercase tracking-[0.3em]">
+                    © 2024 Paws &amp; Pro Clinical Ecosystem • All Rights Reserved
+                </footer>
+</div>
+</main>
+</div>
+<!-- Mobile Bottom Nav (Suppressed per "Destination Rule" - but rendered for mobile context of this top-level page) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-xl border-t border-surface-container flex justify-around items-center py-4 px-6 z-50">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">package</span>
+<span class="text-[10px] font-bold">Orders</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">pets</span>
+<span class="text-[10px] font-bold">Pets</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold">Settings</span>
+</button>
+</div>
+</body></html>

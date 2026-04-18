@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#6cd3f7",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-tertiary-fixed": "#002113",
+                    "on-tertiary-container": "#f5fff6",
+                    "on-primary-container": "#fafdff",
+                    "surface-container-highest": "#dce2f3",
+                    "primary-container": "#007f9d",
+                    "surface-variant": "#dce2f3",
+                    "on-secondary-fixed": "#141b2b",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#b7eaff",
+                    "surface": "#f9f9ff",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#d9dff5",
+                    "on-secondary-container": "#5c6274",
+                    "on-surface-variant": "#3e484d",
+                    "inverse-surface": "#2a313d",
+                    "on-surface": "#151c27",
+                    "on-primary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f0f3ff",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#ebf1ff",
+                    "outline": "#6e797e",
+                    "secondary": "#575e70",
+                    "background": "#f9f9ff",
+                    "on-secondary-fixed-variant": "#404758",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "primary": "#00647c",
+                    "outline-variant": "#bdc8ce",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-primary-fixed-variant": "#004e61",
+                    "tertiary": "#006947",
+                    "secondary-fixed": "#dce2f7",
+                    "inverse-primary": "#6cd3f7",
+                    "on-error": "#ffffff",
+                    "on-background": "#151c27",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#00855b",
+                    "surface-bright": "#f9f9ff",
+                    "on-primary-fixed": "#001f28",
+                    "surface-tint": "#006780",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "surface-dim": "#d3daea",
+                    "surface-container-high": "#e2e8f8",
+                    "surface-container": "#e7eefe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm">
+<div class="flex items-center justify-between px-6 py-3 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-cyan-900">PetZen Marketplace</span>
+<!-- Desktop Nav -->
+<div class="hidden md:flex items-center gap-6 font-headline font-semibold tracking-tight">
+<a class="text-cyan-700 font-bold border-b-2 border-cyan-700" href="#">Shop All</a>
+<a class="text-slate-500 hover:text-cyan-600 transition-colors" href="#">Subscriptions</a>
+<a class="text-slate-500 hover:text-cyan-600 transition-colors" href="#">Flash Deals</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex items-center bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/15">
+<span class="material-symbols-outlined text-slate-400 text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-64 placeholder:text-slate-400" placeholder="Search by brand, breed, or diet..." type="text"/>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-cyan-50 rounded-full">
+<span class="material-symbols-outlined text-cyan-700" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+<span class="text-cyan-900 font-bold text-sm">1,240 Coins</span>
+</div>
+<div class="flex gap-3 text-slate-500">
+<span class="material-symbols-outlined cursor-pointer hover:text-cyan-600">shopping_cart</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-cyan-600">notifications</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Side Navigation (Desktop Only) -->
+<aside class="hidden lg:flex h-screen w-64 fixed left-0 top-0 bg-slate-50 flex-col py-6 px-4 pt-24 border-r border-outline-variant/10">
+<div class="mb-8 px-2">
+<h3 class="font-headline font-bold text-xl text-cyan-900">The Clinical Concierge</h3>
+<p class="text-xs text-slate-500 uppercase tracking-widest mt-1">Premium Pet Care</p>
+</div>
+<div class="space-y-1 flex-grow">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200 transition-all rounded-lg font-headline font-semibold" href="#">
+<span class="material-symbols-outlined">grid_view</span> Home
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-cyan-100 text-cyan-900 font-semibold rounded-lg" href="#">
+<span class="material-symbols-outlined">pets</span> Shop All
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">package_2</span> Subscriptions
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">bolt</span> Flash Deals
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">monetization_on</span> My Coins
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">support_agent</span> Support
+            </a>
+</div>
+<div class="pt-6 mt-6 border-t border-slate-200 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-slate-200 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-error hover:bg-error-container/20 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span> Log Out
+            </a>
+</div>
+</aside>
+<main class="lg:ml-64 pt-24 pb-32 px-6 md:px-12 max-w-7xl mx-auto">
+<!-- Hero Section: AI Recommendation -->
+<section class="mb-12">
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary to-primary-container p-12 text-white shadow-xl">
+<div class="relative z-10 max-w-2xl">
+<div class="flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full w-fit mb-6">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+<span class="text-xs font-bold uppercase tracking-widest">Picked for Luna (Golden Retriever)</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-headline font-extrabold tracking-tight mb-4">Precision Nutrition for Clinical Health</h1>
+<p class="text-lg text-primary-fixed-dim font-medium mb-8">Based on Luna's recent vet checkup, we've curated medical-grade supplements and hypoallergenic kibble to support joint health.</p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-white text-primary px-8 py-4 rounded-xl font-bold shadow-lg hover:bg-surface transition-all">View Personal Shop</button>
+<button class="bg-primary-container/40 border border-white/30 backdrop-blur-md px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition-all">Refresh AI Picks</button>
+</div>
+</div>
+<div class="absolute top-0 right-0 h-full w-1/2 opacity-20 pointer-events-none">
+<img class="object-cover h-full w-full" data-alt="Close up of a friendly Golden Retriever looking directly into the camera with soft indoor lighting and warm atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApOCi17-QfCUd0590n72F7MQw74F2R3gMXndQhkQhuGB219c_7RDqj_DLuVQcNpgx-oblLQ1ITtKAhSnPge1h6D_TEg3DpZCcOgipw3v6bhnku2l4-oFBgbrRuwsVYjwh-hb2rv79uSXE0Le7bRluehmXx7Wnlh4qReUbT6t6h16uwEwJdKcn7Zfpt_d5TeAopwZEsnHBHaQ2SGsU2AXlaPU3KFWP9-n6hOx5seLxpsnaqTC8U4ODKw2tl9TWMIZvZhl3S_Lt3pdI"/>
+</div>
+</div>
+</section>
+<!-- Category Grid -->
+<section class="mb-16">
+<h2 class="text-2xl font-headline font-extrabold text-cyan-900 mb-8 flex items-center gap-3">
+                Shop by Species <span class="h-1 w-12 bg-cyan-100 rounded-full"></span>
+</h2>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-xl bg-surface-container-low flex flex-col items-center justify-center gap-4 transition-all group-hover:bg-primary group-hover:text-white group-hover:scale-105">
+<span class="material-symbols-outlined text-4xl">pets</span>
+<span class="font-headline font-bold">Dogs</span>
+</div>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-xl bg-surface-container-low flex flex-col items-center justify-center gap-4 transition-all group-hover:bg-primary group-hover:text-white group-hover:scale-105">
+<span class="material-symbols-outlined text-4xl">pets</span>
+<span class="font-headline font-bold">Cats</span>
+</div>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-xl bg-surface-container-low flex flex-col items-center justify-center gap-4 transition-all group-hover:bg-primary group-hover:text-white group-hover:scale-105">
+<span class="material-symbols-outlined text-4xl">flutter_dash</span>
+<span class="font-headline font-bold">Birds</span>
+</div>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-xl bg-surface-container-low flex flex-col items-center justify-center gap-4 transition-all group-hover:bg-primary group-hover:text-white group-hover:scale-105">
+<span class="material-symbols-outlined text-4xl">phishing</span>
+<span class="font-headline font-bold">Fish</span>
+</div>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-xl bg-surface-container-low flex flex-col items-center justify-center gap-4 transition-all group-hover:bg-primary group-hover:text-white group-hover:scale-105">
+<span class="material-symbols-outlined text-4xl">pets</span>
+<span class="font-headline font-bold">Mammals</span>
+</div>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-xl bg-surface-container-low flex flex-col items-center justify-center gap-4 transition-all group-hover:bg-primary group-hover:text-white group-hover:scale-105">
+<span class="material-symbols-outlined text-4xl">grass</span>
+<span class="font-headline font-bold">Reptiles</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Layout: Featured & Flash Deals -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+<!-- Deal of the Day -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-xl relative overflow-hidden flex flex-col justify-between min-h-[400px]">
+<div class="flex justify-between items-start">
+<div>
+<div class="inline-flex items-center gap-2 bg-error-container text-error px-3 py-1 rounded-full text-xs font-bold uppercase mb-4">
+<span class="material-symbols-outlined text-sm">timer</span> Flash Deal of the Day
+                        </div>
+<h3 class="text-3xl font-headline font-extrabold text-on-surface mb-2">Nordic Wellness Salmon Oil</h3>
+<p class="text-slate-500 mb-6 max-w-sm">Pure Arctic Omega-3 for coat health and heart support. Clinical formulation.</p>
+<div class="flex items-center gap-4 mb-8">
+<div class="text-4xl font-black text-primary">$24.99</div>
+<div class="text-xl text-slate-400 line-through">$45.00</div>
+<div class="bg-tertiary-container/10 text-tertiary px-2 py-1 rounded font-bold text-sm">Save 45%</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex flex-col items-center bg-slate-100 p-2 rounded-lg w-16">
+<span class="text-xl font-bold">04</span>
+<span class="text-[10px] uppercase font-bold text-slate-500">HRS</span>
+</div>
+<span class="text-2xl font-bold text-slate-300">:</span>
+<div class="flex flex-col items-center bg-slate-100 p-2 rounded-lg w-16">
+<span class="text-xl font-bold">22</span>
+<span class="text-[10px] uppercase font-bold text-slate-500">MIN</span>
+</div>
+<span class="text-2xl font-bold text-slate-300">:</span>
+<div class="flex flex-col items-center bg-slate-100 p-2 rounded-lg w-16">
+<span class="text-xl font-bold">15</span>
+<span class="text-[10px] uppercase font-bold text-slate-500">SEC</span>
+</div>
+</div>
+</div>
+<div class="w-48 h-48 rounded-xl bg-slate-100 p-4">
+<img class="w-full h-full object-contain mix-blend-multiply" data-alt="Minimalist pharmaceutical style bottle of pet salmon oil on a clean white surface with soft blue shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzTi7mhHmqZXpvq-Fvxnz8ckyYLnYg-6dTKA0EKaUW4zxgY_BRT-yYWPrruzgf-TWqvru05D1XLiHH6QiPj6-I0mJ8wn1HUGtf4-nRduMN7D0FPX__PkH28n8284ifvhNwxj5TMOqr5hHaYCd9ktHa-HbR_0wo_BuUVb0ArOld7gWBcNXfQrI-sVLpPb4Z2ZGU-_1HUu6qII-c_ZJzFjlLi55HgIakMETO3a5Lgu7yey3NRm6XFuSix0WRf25nYcRATOb7rIFBXnw"/>
+</div>
+</div>
+<button class="w-full bg-primary text-white py-4 rounded-xl font-bold mt-8 shadow-lg hover:shadow-primary/20 transition-all">Claim Flash Deal</button>
+</div>
+<!-- Bundle Offer -->
+<div class="bg-surface-container-low p-8 rounded-xl flex flex-col border-2 border-primary/10">
+<div class="bg-cyan-900 text-white text-[10px] uppercase font-black px-3 py-1 rounded-full w-fit mb-4">Official Bundle</div>
+<h3 class="text-2xl font-headline font-extrabold text-cyan-900 mb-2">New Puppy Starter Kit</h3>
+<p class="text-slate-600 text-sm mb-6">Everything you need for the first 30 days. Hand-picked by our veterinary team.</p>
+<div class="space-y-3 mb-8">
+<div class="flex items-center gap-3 text-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span> 12kg Puppy Kibble (Chicken)
+                    </div>
+<div class="flex items-center gap-3 text-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span> Multi-Vitamin Paste
+                    </div>
+<div class="flex items-center gap-3 text-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span> Eco-friendly Training Pads
+                    </div>
+<div class="flex items-center gap-3 text-sm text-on-surface">
+<span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span> Calming Plush Toy
+                    </div>
+</div>
+<div class="mt-auto">
+<div class="flex items-baseline gap-2 mb-4">
+<span class="text-2xl font-black">$89.00</span>
+<span class="text-slate-400 text-sm line-through">$124.00</span>
+</div>
+<button class="w-full border-2 border-primary text-primary py-3 rounded-xl font-bold hover:bg-primary hover:text-white transition-all">Add Bundle to Cart</button>
+</div>
+</div>
+</section>
+<!-- Product Grid & Filters -->
+<section class="mb-16">
+<div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
+<div>
+<h2 class="text-2xl font-headline font-extrabold text-cyan-900">Clinical Catalog</h2>
+<p class="text-slate-500">248 Verified Authentic Products</p>
+</div>
+<div class="flex flex-wrap gap-2">
+<div class="px-4 py-2 bg-surface-container rounded-full text-xs font-bold border border-outline-variant/30 cursor-pointer hover:bg-primary-container hover:text-white transition-all">Brand: All</div>
+<div class="px-4 py-2 bg-surface-container rounded-full text-xs font-bold border border-outline-variant/30 cursor-pointer hover:bg-primary-container hover:text-white transition-all">Breed: Golden Retriever</div>
+<div class="px-4 py-2 bg-surface-container rounded-full text-xs font-bold border border-outline-variant/30 cursor-pointer hover:bg-primary-container hover:text-white transition-all">Need: Joint Care</div>
+<div class="px-4 py-2 bg-primary text-white rounded-full text-xs font-bold cursor-pointer">Price: $$</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow group">
+<div class="relative h-64 bg-slate-100 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Premium organic dog food packaging with clean typography and a professional scientific aesthetic on a light gray background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP7V2Fy3ja6BwanGCn7nWke9vj1HWnT3y80lpaH3mAInKpnuH34sYo2BKrMhSKrYKY40md-m3GKGBWx4JMOG96B-4D3TrCm_lkBDA1A2G5Priffa-QiTWWvFJMaIIOn6wo5N22GgNKerLSj7PssfURhdHX5RBbKZRSyy_Wsr1lO8ZT0rCU5xjgfmcHI-iTPIvHp8-9HJZJCqz4aLvB7Xvlrqv_U9AiqF9sAw1wKNuvbY1jUI0YqjNlMg9HkOzx59udUCZduTn4Evo"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="bg-white/90 backdrop-blur-sm text-cyan-900 text-[10px] font-black px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span> Official Agent Only
+                            </span>
+<span class="bg-tertiary-container text-white text-[10px] font-black px-3 py-1 rounded-full">New Arrival</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline font-bold text-lg text-on-surface leading-tight">Advanced Hip &amp; Joint Soft Chews</h4>
+<div class="flex flex-col items-end">
+<span class="text-xl font-black text-primary">$32.50</span>
+<span class="text-[10px] text-tertiary font-bold">+45 PetZen Coins</span>
+</div>
+</div>
+<p class="text-sm text-slate-500 mb-4">60 Count • Glucosamine &amp; Chondroitin • For Senior Dogs</p>
+<div class="bg-surface-container-low p-3 rounded-lg mb-6">
+<div class="flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase mb-2">
+<span>Price Comparison</span>
+<span>Verified Sellers</span>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-xs">
+<span class="flex items-center gap-1"><span class="w-1 h-1 bg-primary rounded-full"></span> PetZen Store</span>
+<span class="font-bold">$32.50</span>
+</div>
+<div class="flex justify-between items-center text-xs opacity-60">
+<span>VetCentral</span>
+<span>$34.99</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex-grow bg-primary text-white py-3 rounded-lg font-bold text-sm shadow-md hover:bg-primary-container transition-all">Add to Cart</button>
+<button class="w-12 h-12 flex items-center justify-center border border-outline-variant rounded-lg text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="mt-4 flex items-center gap-2 text-[10px] text-error font-bold uppercase">
+<span class="material-symbols-outlined text-xs">error</span>
+                            Expiry: 12/2024 (Batch V7-A)
+                        </div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow group">
+<div class="relative h-64 bg-slate-100 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Professional grade pet skin care balm in a sleek metal tin, photographed with sharp focus and clean clinical lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKZL2KudjRm554WwXcgVwSRlexsNvQfqRLN06jwcUNmStM2IdpnEm1EjUQwNwZoAjuVGU52_rZ6CSZzR8bMMlKLkQ4kvbeoLaaNxRJDAUGoKR7Lwu4BK9oAnLySP9_i9Gf_EivYnK7jUO20LUfYlo_4bqlkdH5kjr1luYTbR8VuwskZlhc7TAePwogC_hh20uoJD9VtKeBpVbo5FPL5t6lplKVGeK8z0W-6VadJ3L8DyvWeSVvEhjh_6YpmdZvONHxt7IH8nZQR0U"/>
+<div class="absolute top-4 left-4">
+<span class="bg-white/90 backdrop-blur-sm text-cyan-900 text-[10px] font-black px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span> Official Agent Only
+                            </span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline font-bold text-lg text-on-surface leading-tight">Dermal Recovery Balm (Medical Grade)</h4>
+<div class="flex flex-col items-end">
+<span class="text-xl font-black text-primary">$18.00</span>
+<span class="text-[10px] text-tertiary font-bold">+25 PetZen Coins</span>
+</div>
+</div>
+<p class="text-sm text-slate-500 mb-4">100g • Post-Surgery Recovery • Rapid Healing Formula</p>
+<div class="bg-surface-container-low p-3 rounded-lg mb-6">
+<div class="flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase mb-2">
+<span>Price Comparison</span>
+<span>Verified Sellers</span>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-xs">
+<span class="flex items-center gap-1"><span class="w-1 h-1 bg-primary rounded-full"></span> PetZen Store</span>
+<span class="font-bold">$18.00</span>
+</div>
+<div class="flex justify-between items-center text-xs opacity-60">
+<span>PharmaPet</span>
+<span>$18.50</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex-grow bg-primary text-white py-3 rounded-lg font-bold text-sm shadow-md hover:bg-primary-container transition-all">Add to Cart</button>
+<button class="w-12 h-12 flex items-center justify-center border border-outline-variant rounded-lg text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="mt-4 flex items-center gap-2 text-[10px] text-on-tertiary-fixed-variant font-bold uppercase">
+<span class="material-symbols-outlined text-xs">check_circle</span>
+                            Expiry: 08/2025 (Long shelf life)
+                        </div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow group">
+<div class="relative h-64 bg-slate-100 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern geometric cat tower design in minimalist wood and light grey fabric against a white wall background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxFbYnT9figeAFRPVzyTkwAK0XO2PKINX6tHOAu0mYSLpn9Fwzq4rGQvO_rxEId2fWufkuFq-IQGh8C4oClJXlDeRProNQNr-ybmmBUOLwhqk4NSYYr1IKZNLfQqhbROLnLdSlXd450Z9crYZnNxzjgloZKpdOP544jyZ0DWYu09S47s5lQXSPov0zkftVre2wsClwY3rTk80e3uM4t7j4boYK4fuRzMfFi4KOnuLbN8e7CT4_qiRkpXoxLUBGN8jk3EOWAMm_ozg"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="bg-white/90 backdrop-blur-sm text-cyan-900 text-[10px] font-black px-3 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span> Official Agent Only
+                            </span>
+<span class="bg-error text-white text-[10px] font-black px-3 py-1 rounded-full">Low Stock</span>
+</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h4 class="font-headline font-bold text-lg text-on-surface leading-tight">Zen Tower: Orthopedic Cat Tree</h4>
+<div class="flex flex-col items-end">
+<span class="text-xl font-black text-primary">$145.00</span>
+<span class="text-[10px] text-tertiary font-bold">+200 PetZen Coins</span>
+</div>
+</div>
+<p class="text-sm text-slate-500 mb-4">Handcrafted Wood • Memory Foam Pads • Anxiety Reducing</p>
+<div class="bg-surface-container-low p-3 rounded-lg mb-6">
+<div class="flex justify-between items-center text-[10px] font-bold text-slate-400 uppercase mb-2">
+<span>Price Comparison</span>
+<span>Verified Sellers</span>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-xs">
+<span class="flex items-center gap-1"><span class="w-1 h-1 bg-primary rounded-full"></span> PetZen Store</span>
+<span class="font-bold">$145.00</span>
+</div>
+<div class="flex justify-between items-center text-xs opacity-60">
+<span>LuxuryPet</span>
+<span>$165.00</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex-grow bg-primary text-white py-3 rounded-lg font-bold text-sm shadow-md hover:bg-primary-container transition-all">Add to Cart</button>
+<button class="w-12 h-12 flex items-center justify-center border border-outline-variant rounded-lg text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="mt-4 flex items-center gap-2 text-[10px] text-slate-500 font-bold uppercase">
+<span class="material-symbols-outlined text-xs">inventory</span>
+                            Permanent Product (No Expiry)
+                        </div>
+</div>
+</div>
+</div>
+<div class="mt-12 flex justify-center">
+<button class="bg-surface-container-highest text-on-surface-variant font-bold px-12 py-4 rounded-xl hover:bg-surface-container transition-all flex items-center gap-2">
+                    Load More Specialist Products <span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Bottom Nav (Mobile) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-white/80 backdrop-blur-2xl shadow-[0_-8px_30px_rgb(0,0,0,0.04)] z-50 rounded-t-3xl">
+<div class="flex flex-col items-center justify-center bg-cyan-50 text-cyan-800 rounded-2xl px-5 py-2">
+<span class="material-symbols-outlined">storefront</span>
+<span class="text-[10px] uppercase font-bold tracking-tighter mt-1">Shop</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400">
+<span class="material-symbols-outlined">monitor_heart</span>
+<span class="text-[10px] uppercase font-bold tracking-tighter mt-1">Health</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400">
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white -mt-10 shadow-lg shadow-primary/40">
+<span class="material-symbols-outlined">search</span>
+</div>
+<span class="text-[10px] uppercase font-bold tracking-tighter mt-1">Search</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400">
+<span class="material-symbols-outlined">local_fire_department</span>
+<span class="text-[10px] uppercase font-bold tracking-tighter mt-1">Deals</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] uppercase font-bold tracking-tighter mt-1">Account</span>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Success - PetCentric</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#bdc8ce",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f9f9ff",
+                        "background": "#f9f9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e2e8f8",
+                        "surface-dim": "#d3daea",
+                        "inverse-surface": "#2a313d",
+                        "outline": "#6e797e",
+                        "on-primary-container": "#fafdff",
+                        "on-background": "#151c27",
+                        "inverse-on-surface": "#ebf1ff",
+                        "secondary-container": "#d9dff5",
+                        "surface-container": "#e7eefe",
+                        "primary": "#00647c",
+                        "on-secondary-fixed-variant": "#404758",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-tertiary-fixed": "#002113",
+                        "on-tertiary-container": "#f5fff6",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#151c27",
+                        "on-secondary-fixed": "#141b2b",
+                        "surface-tint": "#006780",
+                        "tertiary-container": "#00855b",
+                        "secondary": "#575e70",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#004e61",
+                        "on-primary-fixed": "#001f28",
+                        "surface-variant": "#dce2f3",
+                        "primary-container": "#007f9d",
+                        "on-secondary-container": "#5c6274",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f0f3ff",
+                        "tertiary": "#006947",
+                        "surface-container-highest": "#dce2f3",
+                        "secondary-fixed": "#dce2f7",
+                        "primary-fixed-dim": "#6cd3f7",
+                        "inverse-primary": "#6cd3f7",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#b7eaff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface": "#f9f9ff",
+                        "on-surface-variant": "#3e484d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-panel {
+            background: rgba(249, 249, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#F9F9FF] dark:bg-slate-950 flex items-center justify-between px-6 h-20 w-full">
+<div class="text-2xl font-black text-[#151C27] dark:text-white font-['Plus_Jakarta_Sans'] tracking-tight">
+            PetCentric
+        </div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#E7EEFE] transition-colors">
+<span class="material-symbols-outlined text-[#00647C]">shopping_cart</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#E7EEFE] transition-colors">
+<span class="material-symbols-outlined text-[#00647C]">account_circle</span>
+</button>
+</div>
+</header>
+<main class="pt-32 pb-24 px-6 max-w-5xl mx-auto">
+<!-- Success Hero Section -->
+<div class="flex flex-col items-center text-center mb-16">
+<div class="w-24 h-24 bg-tertiary-fixed flex items-center justify-center rounded-full mb-8 shadow-xl shadow-tertiary/10">
+<span class="material-symbols-outlined text-tertiary text-5xl" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+</div>
+<h1 class="text-5xl md:text-6xl font-extrabold tracking-tighter text-on-background mb-4">Order Confirmed</h1>
+<p class="text-on-surface-variant text-lg max-w-md">Your premium pet care essentials are being prepared for their journey to you.</p>
+</div>
+<!-- Bento Grid Summary -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<!-- Order Meta (Asymmetric Large) -->
+<div class="md:col-span-2 bg-surface-container-lowest rounded-lg p-8 shadow-2xl shadow-on-surface/5 flex flex-col justify-between">
+<div>
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-2 block">Transaction ID</span>
+<h2 class="text-3xl font-bold mb-8">#PC-99284-XK</h2>
+<div class="grid grid-cols-2 gap-8">
+<div>
+<p class="text-xs text-on-surface-variant font-semibold mb-1">Estimated Delivery</p>
+<p class="text-lg font-bold">Oct 24, 2023</p>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant font-semibold mb-1">Shipping Method</p>
+<p class="text-lg font-bold">Clinical Express</p>
+</div>
+</div>
+</div>
+<div class="mt-12 flex gap-4">
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary px-8 py-4 rounded-xl font-bold text-sm tracking-wide shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+                        View Order Status
+                    </button>
+<button class="bg-surface-container-highest text-on-surface px-8 py-4 rounded-xl font-bold text-sm tracking-wide hover:bg-surface-container-high transition-colors">
+                        Back to Marketplace
+                    </button>
+</div>
+</div>
+<!-- Summary Column -->
+<div class="bg-surface-container-low rounded-lg p-8 flex flex-col">
+<h3 class="text-xl font-bold mb-6">Order Summary</h3>
+<div class="space-y-4 flex-grow">
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant text-sm">Royal Canine Special</span>
+<span class="font-bold text-sm">$84.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant text-sm">Dental Chews (Pack 12)</span>
+<span class="font-bold text-sm">$22.50</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant text-sm">Express Shipping</span>
+<span class="font-bold text-sm">$12.00</span>
+</div>
+</div>
+<div class="pt-6 mt-6 border-t border-outline-variant/20">
+<div class="flex justify-between items-center">
+<span class="text-lg font-bold">Total Paid</span>
+<span class="text-2xl font-black text-primary">$118.50</span>
+</div>
+</div>
+</div>
+<!-- Visual Context Card -->
+<div class="md:col-span-3 h-64 relative rounded-lg overflow-hidden group">
+<img alt="Happy golden retriever" class="w-full h-full object-cover grayscale-[0.2] group-hover:scale-105 transition-transform duration-700" data-alt="Happy golden retriever dog looking up with joyful expression in a brightly lit modern clinical pet facility setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQJf7MiJMABwTN0a1E5OnZnAeeVb548QT38DiStJQr94DasNgn5sUk7vcy6NcR4FKRrSitR5rElx2b2WmBQ20WFFcVuPGT3HIU3SOmWJydhqNSEh8myezV_N6EbCrioJJRcHXl1ckmyzt1FLflKiH7tCVIRWi4V0rbVNPpbWpEs7AYl0wPqI7_OqScth8Ddsny4tUS1a80PEhFZteDFvxZjB2i-T_LXeuhIIOuJXyOsXvu7wlrfygDx4qBRlkEvV3QZu5BaTVg9zc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/80 via-on-background/20 to-transparent flex flex-col justify-end p-8">
+<p class="text-white/60 text-[10px] font-bold uppercase tracking-widest mb-1">Coming Soon to</p>
+<h4 class="text-white text-2xl font-bold">Oliver's Front Door</h4>
+</div>
+</div>
+</div>
+<!-- Secondary Information Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-20">
+<div>
+<h4 class="text-2xl font-bold mb-4">What's Next?</h4>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="w-12 h-12 bg-surface-container flex-shrink-0 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-primary">inventory_2</span>
+</div>
+<div>
+<p class="font-bold">Preparation</p>
+<p class="text-sm text-on-surface-variant">Our team is verifying and packing your pet's essentials with clinical precision.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-12 h-12 bg-surface-container flex-shrink-0 flex items-center justify-center rounded-full">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+</div>
+<div>
+<p class="font-bold">Dispatch</p>
+<p class="text-sm text-on-surface-variant">You'll receive a tracking number as soon as your order leaves our hub.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-primary/5 rounded-lg p-8 border border-primary/10">
+<span class="material-symbols-outlined text-primary mb-4">contact_support</span>
+<h4 class="text-xl font-bold mb-2">Clinical Support</h4>
+<p class="text-sm text-on-surface-variant mb-6">Have questions about your order or product usage? Our veterinary concierges are available 24/7.</p>
+<a class="text-primary font-bold text-sm inline-flex items-center gap-2" href="#">
+                    Start Chat <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Suppressed for focused Transactional screen as per instructions, but placeholder shell logic if it were main nav) -->
+<!-- Navigation shell suppressed for Order Success screen to prioritize focal message -->
+</body></html>

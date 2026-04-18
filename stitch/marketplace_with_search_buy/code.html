@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PetCentric Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#bdc8ce",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f9f9ff",
+                    "background": "#f9f9ff",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#e2e8f8",
+                    "surface-dim": "#d3daea",
+                    "inverse-surface": "#2a313d",
+                    "outline": "#6e797e",
+                    "on-primary-container": "#fafdff",
+                    "on-background": "#151c27",
+                    "inverse-on-surface": "#ebf1ff",
+                    "secondary-container": "#d9dff5",
+                    "surface-container": "#e7eefe",
+                    "primary": "#00647c",
+                    "on-secondary-fixed-variant": "#404758",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "on-tertiary-fixed": "#002113",
+                    "on-tertiary-container": "#f5fff6",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#151c27",
+                    "on-secondary-fixed": "#141b2b",
+                    "surface-tint": "#006780",
+                    "tertiary-container": "#00855b",
+                    "secondary": "#575e70",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#004e61",
+                    "on-primary-fixed": "#001f28",
+                    "surface-variant": "#dce2f3",
+                    "primary-container": "#007f9d",
+                    "on-secondary-container": "#5c6274",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f0f3ff",
+                    "tertiary": "#006947",
+                    "surface-container-highest": "#dce2f3",
+                    "secondary-fixed": "#dce2f7",
+                    "primary-fixed-dim": "#6cd3f7",
+                    "inverse-primary": "#6cd3f7",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#b7eaff",
+                    "tertiary-fixed": "#6ffbbe",
+                    "surface": "#f9f9ff",
+                    "on-surface-variant": "#3e484d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .gradient-button {
+            background: linear-gradient(135deg, #00647C 0%, #007F9D 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#F9F9FF] dark:bg-slate-950 flex items-center justify-between px-6 h-20 w-full font-['Plus_Jakarta_Sans'] tracking-tight">
+<div class="flex items-center gap-8 flex-1">
+<span class="text-2xl font-black text-[#151C27] dark:text-white">PetCentric</span>
+<div class="hidden md:flex flex-1 max-w-xl relative">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-lg" data-icon="search">search</span>
+</div>
+<input class="w-full bg-surface-container border-none rounded-full py-3 pl-12 pr-4 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Search premium medical supplies, food, or toys..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-8">
+<a class="text-[#00647C] dark:text-[#0891B2] font-bold transition-all duration-300 ease-in-out" href="#">Marketplace</a>
+<a class="text-[#151C27] dark:text-slate-400 hover:bg-[#E7EEFE] dark:hover:bg-slate-800 transition-colors px-3 py-2 rounded-lg" href="#">Veterinary</a>
+<a class="text-[#151C27] dark:text-slate-400 hover:bg-[#E7EEFE] dark:hover:bg-slate-800 transition-colors px-3 py-2 rounded-lg" href="#">Health Logs</a>
+</div>
+<div class="flex items-center gap-4 text-[#00647C] dark:text-[#0891B2]">
+<button class="material-symbols-outlined p-2 hover:bg-[#E7EEFE] rounded-full active:scale-95 transition-transform" data-icon="shopping_cart">shopping_cart</button>
+<button class="material-symbols-outlined p-2 hover:bg-[#E7EEFE] rounded-full active:scale-95 transition-transform" data-icon="account_circle">account_circle</button>
+</div>
+</div>
+</nav>
+<div class="flex pt-20 h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-full p-4 h-screen w-72 bg-[#FFFFFF] dark:bg-slate-900 border-r-0 shadow-2xl shadow-[#151C27]/5">
+<div class="mb-8 px-2">
+<h2 class="text-xl font-bold text-[#151C27] dark:text-white font-['Plus_Jakarta_Sans']">Marketplace</h2>
+<p class="text-sm text-outline">The Clinical Concierge</p>
+</div>
+<nav class="flex-1 space-y-1 overflow-y-auto no-scrollbar">
+<a class="flex items-center gap-3 p-4 bg-[#E7EEFE] dark:bg-[#00647C]/20 text-[#00647C] dark:text-[#0891B2] rounded-xl font-medium transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+<span>Marketplace</span>
+</a>
+<a class="flex items-center gap-3 p-4 text-[#151C27] dark:text-slate-400 hover:bg-[#F9F9FF] dark:hover:bg-slate-800 rounded-xl transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span>Veterinary</span>
+</a>
+<a class="flex items-center gap-3 p-4 text-[#151C27] dark:text-slate-400 hover:bg-[#F9F9FF] dark:hover:bg-slate-800 rounded-xl transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="monitor_heart">monitor_heart</span>
+<span>Health Logs</span>
+</a>
+<a class="flex items-center gap-3 p-4 text-[#151C27] dark:text-slate-400 hover:bg-[#F9F9FF] dark:hover:bg-slate-800 rounded-xl transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+<span>Breeder Portal</span>
+</a>
+<a class="flex items-center gap-3 p-4 text-[#151C27] dark:text-slate-400 hover:bg-[#F9F9FF] dark:hover:bg-slate-800 rounded-xl transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span>Past Purchases</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 space-y-1">
+<button class="w-full gradient-button text-white py-4 rounded-xl font-bold mb-4 active:scale-95 transition-transform">Book Appointment</button>
+<a class="flex items-center gap-3 p-3 text-[#151C27] dark:text-slate-400 hover:bg-[#F9F9FF] rounded-xl text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-[#151C27] dark:text-slate-400 hover:bg-[#F9F9FF] rounded-xl text-sm" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="help">help</span>
+<span>Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto bg-surface p-6 lg:p-10 no-scrollbar pb-32">
+<!-- Hero Banner -->
+<section class="relative h-[400px] rounded-xl overflow-hidden mb-12 shadow-2xl shadow-[#151C27]/10">
+<img class="w-full h-full object-cover" data-alt="adorable golden retriever puppy sitting in a modern clean minimalist interior with soft cinematic lighting and teal accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtBE9KoVPQfkpk2nfk5Mds8uHMikFNKYL-D1nm7deSMuyWCQ3Ail_8sxcjM67_6Ck-YWUg8hcyQp8_XzUWSYWCntJ35xKxBs--drYxx6zdSPaXYP5oVwZUXoWMKfQjS0fyxonhWV5-vfCJm4eO1AmXfVSu1MdPm5iONwwslQH9eag3531lsGRb9j2kvta5sVKOBKpsqc99GSkRORg1ReTMQS-IYoRFcQdRcfra28L-9F6TOzvMXXgBmY3dN7Bt9CHpTXzSmj4gqjw"/>
+<div class="absolute inset-0 bg-gradient-to-r from-[#151C27]/80 to-transparent flex flex-col justify-center px-12">
+<h1 class="text-5xl lg:text-7xl font-headline font-extrabold text-white leading-tight mb-6 tracking-tighter">Clinical Care,<br/><span class="text-primary-fixed">Luxury Living.</span></h1>
+<p class="text-white/80 text-lg max-w-md mb-8 font-body">Exclusive access to premium diets, smart health trackers, and vetted veterinary supplies for your elite companion.</p>
+<div class="flex gap-4">
+<button class="bg-white text-primary px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform">Shop Collections</button>
+<button class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all">New Arrivals</button>
+</div>
+</div>
+</section>
+<!-- Category Toggles (Asymmetric Layout) -->
+<section class="mb-12 overflow-x-auto no-scrollbar py-2">
+<div class="flex gap-4 items-center">
+<button class="flex-shrink-0 bg-primary text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-primary/20">All Species</button>
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface hover:bg-surface-container-high px-8 py-3 rounded-full font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-xl" data-icon="pets">pets</span> Dogs
+                    </button>
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface hover:bg-surface-container-high px-8 py-3 rounded-full font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-xl" data-icon="cat">pets</span> Cats
+                    </button>
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface hover:bg-surface-container-high px-8 py-3 rounded-full font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-xl" data-icon="cruelty_free">cruelty_free</span> Small Pets
+                    </button>
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface hover:bg-surface-container-high px-8 py-3 rounded-full font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-xl" data-icon="flutter_dash">flutter_dash</span> Birds
+                    </button>
+<button class="flex-shrink-0 bg-surface-container-low text-on-surface hover:bg-surface-container-high px-8 py-3 rounded-full font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-xl" data-icon="water_drop">water_drop</span> Fish
+                    </button>
+</div>
+</section>
+<div class="grid grid-cols-1 xl:grid-cols-4 gap-8">
+<!-- Products Bento Grid (Main Area) -->
+<div class="xl:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative aspect-square overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="premium bag of gourmet grain-free dog food with clean minimalist packaging design on a white studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTKAEbwOTiG6cGXeiyu1dZdbFG2zgJAUImGunouh3rD8zbUkzTR_6TJQHar1jrg-M5CGY7WHd8a2WWe_1wCqELe_zf1qacRn8QmvHBNcAMa6zvzjmtRXdzDDhYMw74Wxdp2k965QGQXujbJm65nUj6gTSazRDoszuWbtGc_5lP1tepQK48bSvfICk6JRChCtjYnRVwLQ1YlX0NU3ouzksMhNq20LN6w3P4NCqXZuGZUZ1J2hacnu3-d3kZP8lg2kHTwRuhSWLRIfk"/>
+<div class="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">Best Seller</div>
+<button class="absolute top-4 right-4 bg-white/80 backdrop-blur-md p-2 rounded-full text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-primary uppercase tracking-wider">Nutrition</span>
+<div class="flex items-center text-amber-500">
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill">star</span>
+<span class="text-xs font-bold ml-1">4.9</span>
+</div>
+</div>
+<h3 class="text-lg font-headline font-bold text-on-surface mb-1">Gourmet Salmon &amp; Sweet Potato</h3>
+<p class="text-sm text-outline mb-4 line-clamp-2">Grain-free holistic formula designed for peak athletic performance and skin health.</p>
+<div class="mt-auto">
+<div class="text-2xl font-black text-on-surface mb-4">$84.99</div>
+<div class="flex gap-2">
+<button class="flex-1 gradient-button text-white py-3 rounded-full font-bold text-sm hover:opacity-90 active:scale-95 transition-all">Buy Now</button>
+<button class="w-12 h-12 bg-surface-container text-primary rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative aspect-square overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="smart tech pet collar with metallic teal finish and integrated LED sensor display on a sleek grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClyGYuRXbtx0Ht2rV07Ud7hYdFsl-kmUWriEYkEhm_BtA2Jw8bTHgOKvStoDITMud4dv4iM2o8SsUJqsU7P-H8cOISoA0RAHCoUgzPNPBPb5MH0TfNAbtAt7y7KkkBEkgmzQohAiqgjyycc5bMBM_ud7wQgzIiM8pLMbUlcr5PK7-GMM41vX82nFydiZCz36tmgZwyPATom3RtF_dtGUmgHafE8tX9xjCfKINm2v_-XNNkGq6K_O5J0Rr3_tcp3ZntnLcS7ZYFGwU"/>
+<div class="absolute top-4 left-4 bg-tertiary text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full">New Tech</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-tertiary uppercase tracking-wider">Smart Health</span>
+<div class="flex items-center text-amber-500">
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill">star</span>
+<span class="text-xs font-bold ml-1">5.0</span>
+</div>
+</div>
+<h3 class="text-lg font-headline font-bold text-on-surface mb-1">Pulse Guard Pro Collar</h3>
+<p class="text-sm text-outline mb-4 line-clamp-2">Real-time health monitoring with AI-driven early symptom detection and GPS tracking.</p>
+<div class="mt-auto">
+<div class="text-2xl font-black text-on-surface mb-4">$159.00</div>
+<div class="flex gap-2">
+<button class="flex-1 gradient-button text-white py-3 rounded-full font-bold text-sm hover:opacity-90 active:scale-95 transition-all">Buy Now</button>
+<button class="w-12 h-12 bg-surface-container text-primary rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col">
+<div class="relative aspect-square overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="modern minimalist ceramic pet bowl set with wooden stand base and clean matte white finish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzp_5HwONjevVdcguRB0VW-aaceWyIgDd6bzgxjyGgte43VPuIIgV5PMc_dwlfIDedtYO1HXkdz2C833B3r04V2X4HdJqAKQl9jT5JlDyITcR_Y-tOpKKLH1_c2lXXLii29ss5d_LljmiVKDOR6yLU5ML4amGZY8soxx96Ac6tscceZDQpJYVf8rF23lIW536kMoEsJz_5pA4UEBKXp1Bs8SliMvWf5f4XOmM6I8TsUzrNeWtAzudRfovQec72YD9b_4wedlJoF6c"/>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-bold text-on-secondary-container uppercase tracking-wider">Accessories</span>
+<div class="flex items-center text-amber-500">
+<span class="material-symbols-outlined text-sm" data-icon="star" data-weight="fill">star</span>
+<span class="text-xs font-bold ml-1">4.7</span>
+</div>
+</div>
+<h3 class="text-lg font-headline font-bold text-on-surface mb-1">ZenBowl Ceramic Duo</h3>
+<p class="text-sm text-outline mb-4 line-clamp-2">Ergonomic design promotes better posture and digestion. Lead-free medical grade ceramic.</p>
+<div class="mt-auto">
+<div class="text-2xl font-black text-on-surface mb-4">$45.00</div>
+<div class="flex gap-2">
+<button class="flex-1 gradient-button text-white py-3 rounded-full font-bold text-sm hover:opacity-90 active:scale-95 transition-all">Buy Now</button>
+<button class="w-12 h-12 bg-surface-container text-primary rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Past Purchases Sidebar Section -->
+<div class="xl:col-span-1 space-y-6">
+<div class="bg-surface-container-low rounded-lg p-6">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-headline font-bold text-on-surface">Past Purchases</h2>
+<span class="material-symbols-outlined text-primary" data-icon="history">history</span>
+</div>
+<div class="space-y-4">
+<!-- Purchase Item 1 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl flex items-center gap-4 hover:shadow-md transition-all">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="close up of premium kibble pieces with dried vegetables" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOviaoPjeqgIZFdwWR17ihTe5YpY0yqFSeJj0LrS1acDxS_89klUsR7ul523Cix54sNKKagB9HUbsrb4RXq2s9-5tCRSaW7QqEJL0FL9Hw91tEOwoTFg89g4B5eXlUuZNCYNkwWmBV6aX4iyvhtL_-D8MJfUC9THZVBO0Vedkp5di8ACreUhH3RLW5yXbMvqS4Bjj0TnJT9mgXnzF5M7alOpkjolJZIz-6EnaPNnw7iE4lpoBTqmspbeq4vlKOBigHzPeqYfxvMck"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-sm font-bold text-on-surface truncate">High-Protein Kibble</h4>
+<p class="text-xs text-outline mb-2">Purchased 12 days ago</p>
+<button class="text-primary text-xs font-bold flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[14px]" data-icon="refresh">refresh</span> Reorder
+                                    </button>
+</div>
+<div class="text-right">
+<div class="text-sm font-black text-on-surface">$72.50</div>
+</div>
+</div>
+<!-- Purchase Item 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl flex items-center gap-4 hover:shadow-md transition-all">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="bottles of pet wellness vitamins on a clean blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7mvoHV2q_d-rrL-fu4Mo8d5H2ysnFw4XLnIaMlnDE7u6p_7sVTMkXVOae2NB6dNef-C6sI2o6xDrGMSY-9UC3qd1v12kd05IaHPo9vpY1Ow61XJIOhy_EDBNiZmO_F7RGIkDyadHvEy5DTbln2Mys2UOcAJSuB3HAZOuldPj0J5m49cQBpE6c6EpIW0WRFGoFM3N5PpU-MF6SKZj50M0vfmg8HMDBpiIgp2GmjNku9mAsl2qrAMc32slaxohZm0C-D5szDcQRv4I"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-sm font-bold text-on-surface truncate">Multi-Vitamin Complex</h4>
+<p class="text-xs text-outline mb-2">Purchased 1 month ago</p>
+<button class="text-primary text-xs font-bold flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[14px]" data-icon="refresh">refresh</span> Reorder
+                                    </button>
+</div>
+<div class="text-right">
+<div class="text-sm font-black text-on-surface">$29.99</div>
+</div>
+</div>
+<!-- Purchase Item 3 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl flex items-center gap-4 hover:shadow-md transition-all">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="natural organic rope toy for dogs in earthy neutral tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyWNtH8MTfyYI3KKAiP-kC6rB9W1i0uhYf3ydkmzGd_suX1Oq8KFiT7RKLE4g277kNQqZCf2_FoTM1ICvViyzifknPiM8jbVTuuTqCfOlS4iB4GiJ3Zqyk3E2hAajQE5MOu7qPnVNRq0iScDynnFxzWHCQIR9awTR3xdVR3nPVtufFdWnXPPFl580MZnMozHFLa6LB89XiLG4MTRIavruUxb23cpfUMeG9WEYZXjXRdpqgTFNObMOP0AWNKqg_q2ht4qGouPOZVmw"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-sm font-bold text-on-surface truncate">Organic Hemp Tug Toy</h4>
+<p class="text-xs text-outline mb-2">Purchased 2 months ago</p>
+<button class="text-primary text-xs font-bold flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[14px]" data-icon="refresh">refresh</span> Reorder
+                                    </button>
+</div>
+<div class="text-right">
+<div class="text-sm font-black text-on-surface">$18.00</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-3 text-sm font-bold text-on-surface-variant hover:text-primary transition-colors">View All History</button>
+</div>
+<!-- Promo Section -->
+<div class="bg-primary text-white rounded-lg p-6 relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="text-xl font-headline font-bold mb-2">PetCentric Care+</h3>
+<p class="text-sm text-white/80 mb-4">Save 15% on all reorders with auto-ship. Cancel anytime.</p>
+<button class="bg-white text-primary px-6 py-2 rounded-full font-bold text-sm">Join Now</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-9xl text-white/10 rotate-12" data-icon="verified_user">verified_user</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-end px-6 pb-6 h-24 bg-[#F9F9FF]/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-[0_-8px_40px_-12px_rgba(21,28,39,0.08)] rounded-t-[3rem]">
+<div class="flex flex-col items-center justify-center bg-[#00647C] text-white rounded-full p-3 mb-2 scale-110 shadow-lg shadow-[#00647C]/20">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Shop</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#151C27]/60 dark:text-slate-500 hover:text-[#00647C] transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="health_and_safety">health_and_safety</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Health</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#151C27]/60 dark:text-slate-500 hover:text-[#00647C] transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">History</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#151C27]/60 dark:text-slate-500 hover:text-[#00647C] transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Wallet</span>
+</div>
+</nav>
+</body></html>

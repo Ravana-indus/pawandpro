@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#001f28",
+                    "surface-container": "#e7eefe",
+                    "background": "#f9f9ff",
+                    "surface-tint": "#006780",
+                    "secondary-fixed": "#dce2f7",
+                    "on-surface": "#151c27",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-primary-fixed-variant": "#004e61",
+                    "primary-fixed": "#b7eaff",
+                    "tertiary": "#006947",
+                    "on-secondary-container": "#5c6274",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2a313d",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#dce2f3",
+                    "secondary-container": "#d9dff5",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#00647c",
+                    "surface-container-high": "#e2e8f8",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#00855b",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-background": "#151c27",
+                    "on-primary-container": "#fafdff",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-surface-variant": "#3e484d",
+                    "surface-variant": "#dce2f3",
+                    "primary-fixed-dim": "#6cd3f7",
+                    "on-tertiary-fixed": "#002113",
+                    "on-secondary-fixed": "#141b2b",
+                    "surface-container-low": "#f0f3ff",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#ebf1ff",
+                    "secondary": "#575e70",
+                    "surface": "#f9f9ff",
+                    "outline-variant": "#bdc8ce",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "surface-bright": "#f9f9ff",
+                    "inverse-primary": "#6cd3f7",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "surface-dim": "#d3daea",
+                    "outline": "#6e797e",
+                    "on-tertiary-container": "#f5fff6",
+                    "primary-container": "#007f9d",
+                    "on-secondary-fixed-variant": "#404758"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#F9F9FF] dark:bg-[#151C27]">
+<div class="flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#00647C] dark:text-[#0891B2]" data-icon="pets">pets</span>
+<span class="text-2xl font-black tracking-tighter text-[#151C27] dark:text-[#F9F9FF]">Paws &amp; Pro</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[#151C27] dark:text-[#F9F9FF]" data-icon="notifications">notifications</span>
+</button>
+</div>
+</div>
+<div class="bg-[#E7EEFE] dark:bg-[#1F2937] h-[1px] w-full opacity-50"></div>
+</header>
+<main class="pt-20 px-6">
+<!-- Hero Header -->
+<section class="mt-8 mb-10">
+<span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-primary mb-2 block">Premium Marketplace</span>
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface leading-none mb-4">Find your new companion</h1>
+<p class="text-on-surface-variant max-w-[80%] leading-relaxed text-sm">Strictly verified breeders and healthy, clinical-grade documentation for every pet.</p>
+</section>
+<!-- Search & Filter Cluster -->
+<section class="space-y-4 mb-8">
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-2">
+<button class="px-6 py-3 bg-primary text-on-primary rounded-full text-xs font-bold whitespace-nowrap active:scale-95 transition-all">All Species</button>
+<button class="px-6 py-3 bg-surface-container text-on-surface rounded-full text-xs font-bold whitespace-nowrap active:scale-95 transition-all">Canine</button>
+<button class="px-6 py-3 bg-surface-container text-on-surface rounded-full text-xs font-bold whitespace-nowrap active:scale-95 transition-all">Feline</button>
+<button class="px-6 py-3 bg-surface-container text-on-surface rounded-full text-xs font-bold whitespace-nowrap active:scale-95 transition-all">Avian</button>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex-1 bg-surface-container-low rounded-xl px-4 py-3 flex items-center gap-3">
+<span class="material-symbols-outlined text-outline text-sm" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full font-medium placeholder:text-outline" placeholder="Search breeds or breeders" type="text"/>
+</div>
+<button class="w-12 h-12 bg-surface-container-high flex items-center justify-center rounded-xl active:scale-90 transition-all">
+<span class="material-symbols-outlined text-on-surface" data-icon="tune">tune</span>
+</button>
+</div>
+</section>
+<!-- Listings Gallery -->
+<section class="space-y-12">
+<!-- Card 1 -->
+<div class="group relative">
+<div class="aspect-[4/5] w-full overflow-hidden rounded-lg bg-surface-container-low mb-4">
+<img alt="Golden Retriever Puppy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Close-up portrait of a fluffy golden retriever puppy sitting in a clean high-end clinical minimalist studio with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC37cXdWaIMUmKFMRbEUksnyaOmwWY6APNaH2wssqzUTpS-aJm7H9kv1lpr6qoPnToAzGxps5IZd3JAV4YzKJf87DQoIJfcMp2RQioRK1U2ofl52LCV_QHLtuNrUwW8byzJBALID30rPonOkDRN0nWOQ53e6hGjns6GQU-P4oFnfrh-gAHhnpSs2GqnKW13QZhFPtL0Z6TY1Sn-uVYUgQdqEIxq4eyBwnihTvvDcG_FOflGHfpUZBi2fbZZeAjoIJqVb9O9J2VtOJY"/>
+<!-- Badge Overlay -->
+<div class="absolute top-4 left-4 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[#006947] text-[16px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-on-surface">Certified Breeder</span>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-2xl font-bold text-on-surface">Oliver</h3>
+<p class="text-sm text-on-surface-variant font-medium">English Golden Retriever · 12 Weeks</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="location_on">location_on</span>
+<span class="text-[11px] text-outline font-semibold uppercase tracking-tight">Seattle, WA</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-xl font-black text-primary">$3,200</span>
+<div class="flex gap-1 justify-end mt-1">
+<div class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></div>
+<span class="text-[10px] font-bold text-tertiary uppercase">Healthy</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group relative">
+<div class="aspect-[4/5] w-full overflow-hidden rounded-lg bg-surface-container-low mb-4">
+<img alt="Ragdoll Cat" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Beautiful blue-eyed ragdoll cat lying on a white marble surface with bright diffused sunlight and clinical editorial feel" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf8layEW_gmLSN9K0VA9zMLdWQR53Hxfk1UCYiaXtTZ-VdgWwq3CMaLwKUnjtSOJ0kaZwd3wz3o3yYW-EQsVPsGdKlEI23B5qO4H-VRYML5VcxboSc2VOiRTPsxt-hJ0J5zVKIZn8L6Rrlxkt5FkwXY9nuU_6GJ-rCLY6B2ZBMZT8oiGpRATaGsthFwnrWNOop9bBfA_xbVUCu9ckekCpLQ2vFxcey9NBtAcWq6HGAmAydhmKejnpTo8szVghCOaXQq9xC-Al8Evc"/>
+<div class="absolute top-4 left-4 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[#006947] text-[16px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-on-surface">Elite Breeder</span>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-2xl font-bold text-on-surface">Luna</h3>
+<p class="text-sm text-on-surface-variant font-medium">Purebred Ragdoll · 5 Months</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="location_on">location_on</span>
+<span class="text-[11px] text-outline font-semibold uppercase tracking-tight">Austin, TX</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-xl font-black text-primary">$1,850</span>
+<div class="flex gap-1 justify-end mt-1">
+<div class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></div>
+<span class="text-[10px] font-bold text-tertiary uppercase">Vaccinated</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group relative">
+<div class="aspect-[4/5] w-full overflow-hidden rounded-lg bg-surface-container-low mb-4">
+<img alt="Doberman Pinscher" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Sleek black doberman pinscher standing noble in a concrete architecture setting with dramatic lighting and professional aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIKc5-3OU8BYsL9fAa998fjGBW2AI0941ALtQsWYzJBNvHXtg8tHHqE5Y5VGSi8aTipmP077gn4nmIPF3oLZpjO1z02TlGejuWMvTCU2_cdZcpBVg0F4CO3_6wi4D4n5QB_FXvxw7PQCXlKYkUT5zODiK4MrEcICSEBD7YzGbBRCLjFUgoU122SXdd6KDikgPEMKBNEbR1VtFNEMsWA8Q6VMukf9TZHRdMdv3ZGjCEst3wcxNfll6K50i3iygDOOUKdjdbIRSsmU0"/>
+<div class="absolute top-4 left-4 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[#006947] text-[16px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-on-surface">Certified Breeder</span>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-2xl font-bold text-on-surface">Titan</h3>
+<p class="text-sm text-on-surface-variant font-medium">European Doberman · 6 Months</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="location_on">location_on</span>
+<span class="text-[11px] text-outline font-semibold uppercase tracking-tight">Miami, FL</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-xl font-black text-primary">$4,500</span>
+<div class="flex gap-1 justify-end mt-1">
+<div class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></div>
+<span class="text-[10px] font-bold text-tertiary uppercase">Pedigree</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-8 pb-8 pt-4 bg-[#F9F9FF]/80 dark:bg-[#151C27]/80 backdrop-blur-xl z-50 rounded-t-[3rem] shadow-[0_-8px_32px_rgba(21,28,39,0.04)]">
+<div class="flex flex-col items-center justify-center text-[#151C27] dark:text-[#F9F9FF] opacity-40 hover:opacity-100 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest mt-1">Market</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#00647C] dark:text-[#0891B2] scale-110 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined" data-icon="storefront" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest mt-1">Breeders</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#151C27] dark:text-[#F9F9FF] opacity-40 hover:opacity-100 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest mt-1">Health</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#151C27] dark:text-[#F9F9FF] opacity-40 hover:opacity-100 transition-all active:scale-90 duration-300">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest mt-1">Profile</span>
+</div>
+</nav>
+</body></html>

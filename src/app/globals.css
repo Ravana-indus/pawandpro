@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #f9f9ff;
+  --color-on-background: #151c27;
+  --color-surface: #f9f9ff;
+  --color-on-surface: #151c27;
+  --color-surface-dim: #d3daea;
+  --color-surface-bright: #f9f9ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f0f3ff;
+  --color-surface-container: #e7eefe;
+  --color-surface-container-high: #e2e8f8;
+  --color-surface-container-highest: #dce2f3;
+  --color-on-surface-variant: #3e484d;
+  --color-outline: #6e797e;
+  --color-outline-variant: #bdc8ce;
+  --color-inverse-surface: #2a313d;
+  --color-inverse-on-surface: #ebf1ff;
+  --color-primary: #00647c;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #007f9d;
+  --color-on-primary-container: #fafdff;
+  --color-inverse-primary: #6cd3f7;
+  --color-secondary: #575e70;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #d9dff5;
+  --color-on-secondary-container: #5c6274;
+  --color-tertiary: #006947;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #00855b;
+  --color-on-tertiary-container: #f5fff6;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  
+  --font-headline: "Plus Jakarta Sans", ui-sans-serif, system-ui;
+  --font-body: "Inter", ui-sans-serif, system-ui;
+  --font-label: "Inter", ui-sans-serif, system-ui;
+
+  --radius-DEFAULT: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+}
+
+@layer base {
+  *, ::after, ::before {
+    @apply border-outline-variant;
+  }
+  body {
+    @apply bg-background text-on-background font-body;
+  }
+}

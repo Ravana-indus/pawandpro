@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PetZen | Deals &amp; Rewards</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#6cd3f7",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-tertiary-fixed": "#002113",
+                        "on-tertiary-container": "#f5fff6",
+                        "on-primary-container": "#fafdff",
+                        "surface-container-highest": "#dce2f3",
+                        "primary-container": "#007f9d",
+                        "surface-variant": "#dce2f3",
+                        "on-secondary-fixed": "#141b2b",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#b7eaff",
+                        "surface": "#f9f9ff",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#d9dff5",
+                        "on-secondary-container": "#5c6274",
+                        "on-surface-variant": "#3e484d",
+                        "inverse-surface": "#2a313d",
+                        "on-surface": "#151c27",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f0f3ff",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#ebf1ff",
+                        "outline": "#6e797e",
+                        "secondary": "#575e70",
+                        "background": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#404758",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "primary": "#00647c",
+                        "outline-variant": "#bdc8ce",
+                        "tertiary-fixed": "#6ffbbe",
+                        "on-primary-fixed-variant": "#004e61",
+                        "tertiary": "#006947",
+                        "secondary-fixed": "#dce2f7",
+                        "inverse-primary": "#6cd3f7",
+                        "on-error": "#ffffff",
+                        "on-background": "#151c27",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#00855b",
+                        "surface-bright": "#f9f9ff",
+                        "on-primary-fixed": "#001f28",
+                        "surface-tint": "#006780",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "surface-dim": "#d3daea",
+                        "surface-container-high": "#e2e8f8",
+                        "surface-container": "#e7eefe"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-slate-50/80 backdrop-blur-xl flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-cyan-800">menu</span>
+<h1 class="text-2xl font-black text-cyan-900 font-headline tracking-tight">PetZen</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center bg-cyan-50 px-3 py-1.5 rounded-full">
+<span class="material-symbols-outlined text-sm text-cyan-800 mr-1" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+<span class="text-xs font-bold text-cyan-800">1,250</span>
+</div>
+<span class="material-symbols-outlined text-cyan-800">shopping_cart</span>
+</div>
+</header>
+<main class="pb-32 px-4 space-y-8">
+<!-- Wallet View: My PetZen Coins -->
+<section class="mt-4">
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border border-outline-variant/10">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Total Rewards</p>
+<h2 class="text-4xl font-black font-headline text-on-surface tracking-tighter">1,250 <span class="text-lg font-bold text-primary">Coins</span></h2>
+</div>
+<div class="bg-tertiary-container/10 p-3 rounded-2xl">
+<span class="material-symbols-outlined text-tertiary text-3xl" style="font-variation-settings: 'FILL' 1;">monetization_on</span>
+</div>
+</div>
+<div class="flex gap-2 mb-6">
+<button class="flex-1 bg-primary text-on-primary py-3 rounded-xl font-bold text-sm shadow-lg shadow-primary/20">Redeem Now</button>
+<button class="flex-1 bg-surface-container-high text-on-surface py-3 rounded-xl font-bold text-sm">View History</button>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">add_circle</span>
+<div>
+<p class="text-xs font-bold">Premium Kibble Purchase</p>
+<p class="text-[10px] text-slate-500">Yesterday, 4:20 PM</p>
+</div>
+</div>
+<span class="text-xs font-black text-tertiary">+120</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Deal of the Day -->
+<section>
+<div class="flex items-baseline justify-between mb-4">
+<h3 class="text-xl font-black font-headline tracking-tight">Deal of the Day</h3>
+<div class="flex items-center gap-1.5 bg-error-container/30 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-error text-sm">schedule</span>
+<span class="text-[10px] font-black text-error uppercase">Ends in 04:22:19</span>
+</div>
+</div>
+<div class="relative overflow-hidden rounded-lg bg-surface-container-lowest group">
+<div class="h-64 overflow-hidden">
+<img alt="Special Deal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Premium organic dog treats in designer packaging on a minimalist marble background with cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCjbnhLEMAStx7XMpMG0kEa7s-VS4O5ragYJLEjiHplSz2zqBE9Yw14ri2RFpIGCj9RnLnI6JC6yYNwEyN9fJfpAqB072eY_7WqigGIy9CN8C_xsr_uVTNc-WYSANF8qyC12uzUUVlXKzOoL1wJsf31Q4AiSm7EtwIWnROmPP2nWg0hsH0Wwt-ze8bbDrQzn-T5kGYrJEPxK86A9pzuWUMILCyb4aeYwuvcafI1S0YM-Zg5J_T_KYzm-oaAvOsP28JcXt6QnXEacw"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-center mb-2">
+<span class="px-2 py-1 bg-primary-container text-on-primary-container text-[10px] font-bold rounded uppercase">Flash Sale</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-amber-400 text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold">4.9 (2.1k)</span>
+</div>
+</div>
+<h4 class="text-lg font-bold font-headline leading-tight mb-1">PureGrain Holistic Salmon Treats</h4>
+<p class="text-xs text-on-surface-variant mb-4">Grain-free, high-protein rewards for sensitive digestion.</p>
+<div class="flex items-center gap-4">
+<div class="text-2xl font-black text-on-surface">$14.99 <span class="text-sm font-medium text-slate-400 line-through">$29.99</span></div>
+<button class="ml-auto bg-primary text-on-primary h-12 w-12 rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Repeat Orders -->
+<section>
+<div class="mb-4">
+<h3 class="text-xl font-black font-headline tracking-tight">Quick Re-order</h3>
+<p class="text-xs text-on-surface-variant">Your frequent buys, ready to ship.</p>
+</div>
+<div class="flex gap-4 overflow-x-auto hide-scrollbar pb-2">
+<!-- Item 1 -->
+<div class="flex-shrink-0 w-40 p-4 bg-white rounded-lg shadow-sm border border-outline-variant/5">
+<div class="w-full aspect-square rounded-2xl bg-slate-50 mb-3 overflow-hidden">
+<img alt="Cat Food" class="w-full h-full object-cover" data-alt="Bag of professional veterinary formulated cat food in bright clinical lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbjQSu1c6kkgq2v-3XIn9DhFWZLfVictSbB2j3kT0RfxR_g2h3O6X6bJ_PLJ8a1NAcjChgvqQ29-Zukp0m1siobe8vWOJ1VshAETcGtOLhOd_ggv-Qiq8R2YF4M4m7R0BXssFaxWJdwc5IqHPyfb5ugFt6ebIyjTADQEWuDKw62z3VM31polzu5zapTyU11AlH3zhsWsn3bTrS1ZaMJ2OmMs0O2czxRnATT0QOv3V3ZLN6a9870SQZ4rlBKGeuQyFuojgVGjGtU6Q"/>
+</div>
+<h5 class="text-xs font-bold leading-tight line-clamp-2 mb-2">UltraCare Digestive Support (2kg)</h5>
+<button class="w-full py-2 bg-surface-container-high text-[10px] font-black uppercase tracking-wider rounded-lg active:bg-primary active:text-white transition-colors">Re-order</button>
+</div>
+<!-- Item 2 -->
+<div class="flex-shrink-0 w-40 p-4 bg-white rounded-lg shadow-sm border border-outline-variant/5">
+<div class="w-full aspect-square rounded-2xl bg-slate-50 mb-3 overflow-hidden">
+<img alt="Waste Bags" class="w-full h-full object-cover" data-alt="Pack of eco-friendly compostable dog waste bags in natural outdoor setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABgOudchrOD_4Ii3Gf2lo0OLxaYmPbUgOiXQfTxVMhtLjMN6T83JQtGZ57uAyTsn3Tb3lHjIpW3E--0ly4omlaRaCX1KGwHaQWmUp8g99EiYfCQhqMJUaOVuWlaLqOF_Prdu3vrcVLmPBcAJd7tqCqvrnoTFuHYfPsydaAGDCzO1jNF55hWGapJCQgnKfc4JkRsfEXrz3rGVnPXf0OFqTxtAMdG7zniU8QNWCVobpg2l7oJjhr49OfcsHu4hUGSetwlXosXXX9S00"/>
+</div>
+<h5 class="text-xs font-bold leading-tight line-clamp-2 mb-2">EcoGuard Bio-Degradable Bags (120pk)</h5>
+<button class="w-full py-2 bg-surface-container-high text-[10px] font-black uppercase tracking-wider rounded-lg active:bg-primary active:text-white transition-colors">Re-order</button>
+</div>
+<!-- Item 3 -->
+<div class="flex-shrink-0 w-40 p-4 bg-white rounded-lg shadow-sm border border-outline-variant/5">
+<div class="w-full aspect-square rounded-2xl bg-slate-50 mb-3 overflow-hidden">
+<img alt="Collar" class="w-full h-full object-cover" data-alt="Close up of high quality leather pet collar with brass buckle on clean minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnjPDZWk2pI7aBNNIIynB4iIpTHOioLKURSOJWoZWM4HiX2_fZbjeFvA6O63CpWRRN7_ROU6pLQePgkQ3Ux4WZCeXaO7hAPJGOjVVoMEiyQ_IxH-oLxhWepXAa4nByP7wFevyYORe7QY1M8md7s2eOjenH5npw8vtynZroL-N0uQ-kcYW2BEAu3Ec5kv-p23SMZXPsUoKYw3Nlr040o97Voif_Z-42TFBWpLb22u_EcIvSAIPq5f4Xm1vQFddEHIktcl2Z7kXxTqs"/>
+</div>
+<h5 class="text-xs font-bold leading-tight line-clamp-2 mb-2">Signature Leather Collar (Small)</h5>
+<button class="w-full py-2 bg-surface-container-high text-[10px] font-black uppercase tracking-wider rounded-lg active:bg-primary active:text-white transition-colors">Re-order</button>
+</div>
+</div>
+</section>
+<!-- Bundle Offers -->
+<section>
+<div class="bg-cyan-900 rounded-lg p-6 relative overflow-hidden">
+<!-- Background decoration -->
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-cyan-800 rounded-full blur-3xl opacity-50"></div>
+<div class="relative z-10">
+<h3 class="text-2xl font-black font-headline text-white tracking-tight mb-2">ZenBundles</h3>
+<p class="text-cyan-100/70 text-xs mb-6 max-w-[200px]">Save up to 30% when you pair daily essentials.</p>
+<div class="flex items-center gap-4 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+<div class="flex -space-x-3">
+<div class="w-12 h-12 rounded-full border-2 border-cyan-900 bg-white overflow-hidden">
+<img alt="Item A" class="w-full h-full object-cover" data-alt="Small bottle of pet vitamin supplements" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_gxOUpKJUj1uhZrA1lMqasDmSK2hi-7KVacoJ2z_J-2n1POaQpK8hXDh0n9GK-f8TrZuVst_oFDeWSTyeSFWyvVDY3olUp0iDc3AwPi-KIFSmnbMwzLCN3aGYX4JFjV03RC09FBFvyXtFVFMm6Yn4wZhk45fCA08LptDhJ-vUqyeBPKD8Z6WpDA_aKiQUirNlPGiW8ghjeWAsOXyxbJ9CTcfiaVjDrF5gObSDpAFDGaocuEMoso1nt4nh65QfgKWdcBCCLUoTy0I"/>
+</div>
+<div class="w-12 h-12 rounded-full border-2 border-cyan-900 bg-white overflow-hidden">
+<img alt="Item B" class="w-full h-full object-cover" data-alt="Small container of specialty pet food" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3sUYXUITCA05WnRjOrLDORfeMwQl0VNh4H-KRhTQZMjjaiFPWLr8phYbM64-sU_bu7cvXeHovqZINnXXtyCtJPq1V-yz7NdDtQnON8XKfHE5ezRbgCcoda9QMBvbebAXozgX6tMx2CAXfU9dgn2xh_Z4CHCs8qzSWbM5WV1_NVzaKezle7_2v6OqGli_EdIvtGBCdQTX4WJ8DlrF8kJUeA5VdC3AMNIVRm-jZH4jlhjgDCT2Wv2eZNOtReAoXAM3EORVS_9JFegg"/>
+</div>
+</div>
+<div>
+<p class="text-[10px] font-bold text-cyan-300 uppercase tracking-widest">Immunity Starter</p>
+<p class="text-lg font-black text-white">$45.00 <span class="text-xs font-normal opacity-60 line-through">$68.00</span></p>
+</div>
+<button class="ml-auto bg-white text-cyan-900 px-4 py-2 rounded-xl font-black text-xs">Bundle</button>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Recommendations: Just for You -->
+<section>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h3 class="text-xl font-black font-headline tracking-tight">Just for You</h3>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low rounded-lg p-4">
+<div class="aspect-square rounded-2xl overflow-hidden mb-3">
+<img alt="Rec 1" class="w-full h-full object-cover" data-alt="Golden retriever playing with a durable blue rubber toy in a lush green lawn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK1s8fUesCgv72qu245BXHqJCERkaRvrSUa0HvrkD05mfA8QCJDuBDvvQ7jETYuXYqsfxpIX9EQ8zM9ikWNvQcGrx8-FfEmQvoQbeNw8qgvd0HOk7ofDP8hy_f7dwRO9JEP4VTS-Codk9Ua9R8xo_OA9ccBjSze_1_ismbdB8a2qIUSBExWXjdsQd2zrEK35UI-0Q5TiJ5PxX4am3mrNe67jPO32t47L3F09OURZdecKnXR6ZaLhON1pyhA8GiY3EImUIrks-KSRo"/>
+</div>
+<p class="text-[10px] font-bold text-primary uppercase mb-1">Based on Activity</p>
+<h5 class="text-sm font-bold leading-tight mb-2">Tough-Chew Interactive Orb</h5>
+<p class="text-lg font-black">$22.00</p>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4">
+<div class="aspect-square rounded-2xl overflow-hidden mb-3">
+<img alt="Rec 2" class="w-top h-full object-cover" data-alt="Macro shot of a modern pet health tracking collar with glowing LED indicator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPoLKqVwLsj2tcnHu8WlJ6AktEazvt_njatWq4S5w5eRk4Ad5rpH9jveHGQwKT2sRJ8K1ntdA5XIsf5UxDydP-loT_XwtHeZT6rOw9zWURdrnDRHaaWbfnmRHvf0_yyOWp3nRQpQf2UvXzQabO5fi4W6j71M6QXeLHAozmm2v_qy4wJi3T9-KnJCLjOHMs_5IqtUIg7327IJvq7Ju_4NFpLEmqHa1Ki-OjiHRDYkZCk014N2LbA5qioEhKAALS4nJtlVX8FNnBcC0"/>
+</div>
+<p class="text-[10px] font-bold text-primary uppercase mb-1">Health Priority</p>
+<h5 class="text-sm font-bold leading-tight mb-2">ZenPulse Bio-Tracker Tag</h5>
+<p class="text-lg font-black">$89.00</p>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-white/80 backdrop-blur-xl rounded-t-[3rem] shadow-[0_-8px_32px_rgba(21,28,39,0.06)] flex justify-around items-center px-4 pb-6 pt-3">
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-cyan-700 transition-transform active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined mb-1">storefront</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-cyan-700 transition-transform active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined mb-1">search</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-cyan-700 transition-transform active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined mb-1">monetization_on</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider">ZenCoins</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-cyan-50 text-cyan-800 rounded-full px-5 py-2 transition-transform active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider">Deals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 px-5 py-2 hover:text-cyan-700 transition-transform active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined mb-1">person</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider">Profile</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#001f28",
+                    "surface-container": "#e7eefe",
+                    "background": "#f9f9ff",
+                    "surface-tint": "#006780",
+                    "secondary-fixed": "#dce2f7",
+                    "on-surface": "#151c27",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-primary-fixed-variant": "#004e61",
+                    "primary-fixed": "#b7eaff",
+                    "tertiary": "#006947",
+                    "on-secondary-container": "#5c6274",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#2a313d",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#dce2f3",
+                    "secondary-container": "#d9dff5",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#00647c",
+                    "surface-container-high": "#e2e8f8",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#00855b",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-background": "#151c27",
+                    "on-primary-container": "#fafdff",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "on-surface-variant": "#3e484d",
+                    "surface-variant": "#dce2f3",
+                    "primary-fixed-dim": "#6cd3f7",
+                    "on-tertiary-fixed": "#002113",
+                    "on-secondary-fixed": "#141b2b",
+                    "surface-container-low": "#f0f3ff",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#ebf1ff",
+                    "secondary": "#575e70",
+                    "surface": "#f9f9ff",
+                    "outline-variant": "#bdc8ce",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "surface-bright": "#f9f9ff",
+                    "inverse-primary": "#6cd3f7",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "surface-dim": "#d3daea",
+                    "outline": "#6e797e",
+                    "on-tertiary-container": "#f5fff6",
+                    "primary-container": "#007f9d",
+                    "on-secondary-fixed-variant": "#404758"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #151C27; /* Forced dark theme for the requested landing vibe */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body text-on-background selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#151C27] flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#0891B2]" data-icon="pets">pets</span>
+<span class="text-2xl font-black tracking-tighter text-[#F9F9FF] font-headline">Paws &amp; Pro</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-[#F9F9FF] opacity-60 hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 min-h-screen flex flex-col gap-6">
+<!-- Hero Branding Section -->
+<section class="mb-4">
+<h1 class="font-headline text-4xl font-extrabold tracking-tight text-[#F9F9FF] leading-tight">
+                Premium care for your <span class="text-[#0891B2]">Companion.</span>
+</h1>
+<p class="text-[#F9F9FF] opacity-60 mt-4 text-sm max-w-[80%]">
+                Access a curated marketplace, verified breeders, and expert medical consultations all in one place.
+            </p>
+</section>
+<!-- Vertical High-Intent Cards -->
+<div class="flex flex-col gap-5">
+<!-- Card 1: Shop Products -->
+<div class="relative group h-64 w-full rounded-lg overflow-hidden bg-surface-container-low transition-all duration-300">
+<img class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-500" data-alt="Modern minimalist pet accessories displayed on a clean surface with dramatic studio lighting and teal accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUAZxlMuXSOOnZw2GP1LWIy8vVFKDT0npq7x85Q74R4UFnveIt8zXIiKTMWe_bNPOFOxWsZvnMkQlJ0y4FBwv-U7jLyfVmzO45R6N0gzJXHCzy2qzPqwjbEJY4H_3BuWUX96v12jehBdjX8lZAGOEvT8EnfnQr6M8iqkCooRL56n-5X4ROxXJ2SLYLqEzNYwaU1qA2nzEfvzcckcLq4dAB03n3HGJ89anP_A9-cVpfdO3uGcThYZweevRfMFolP-k5x66g-K-Bd9A"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#151C27] via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 flex flex-col gap-2">
+<div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-on-primary" data-icon="shopping_bag">shopping_bag</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-[#F9F9FF]">Shop Products</h3>
+<p class="text-[#F9F9FF] opacity-70 text-xs font-label uppercase tracking-widest">Curated Essentials</p>
+</div>
+<button class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Card 2: Find Companion -->
+<div class="relative group h-64 w-full rounded-lg overflow-hidden bg-surface-container-low transition-all duration-300">
+<img class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-500" data-alt="Cinematic portrait of a golden retriever in soft natural outdoor lighting with deep bokeh background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9Y9e1MqlTbjYWWhBenSnqsL85Ei2xknlkcioqvbNnKwGnGzVmgRNgijXFFikK3G2o9ixmMG4trqwxt1jL9rctQCuYEtp7SZ8FGHr2xeECy3BDXjx_0rqDVz6QWVpwfn29h_ihWeRbdeAVZfNdMOIop27Vxar49U9ZibA7h2xq0znUetlq5NW3ol4KcEZ2xLyVj93Ytbp_wWSVMkx0QmLfQbACqAOS0CwIErd7BcODGw6ykMcWcNlje9fdYgF6oGz49jlbiNAFVnk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#151C27] via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 flex flex-col gap-2">
+<div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-on-primary" data-icon="storefront">storefront</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-[#F9F9FF]">Find Companion</h3>
+<p class="text-[#F9F9FF] opacity-70 text-xs font-label uppercase tracking-widest">Verified Breeders Only</p>
+</div>
+<button class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Card 3: Consultations -->
+<div class="relative group h-64 w-full rounded-lg overflow-hidden bg-surface-container-low transition-all duration-300">
+<img class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-500" data-alt="Professional veterinary environment with clean medical equipment and soft clinical lighting in shades of teal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2tHfzkAvgeS3UawTLxH6e7LlY2-57_fRPFK1jLaT7fHhDB8Zbisn4O8TVsYZLkJaS2Viy4ydjhKNppjFuI0vchmPqcPV5bsxWuPjPEfZsI9QFq_zAOyiwXwgbDzUWTDMrbtrB4X3llkJqV4GQkFZVXTMNLaPl2ArxlBc_GaFzIcC7oxzmSGJ426oZiz8ogQpBnv6dzzDdjFGaSpFFV50B_aBrr8EsHdqrJDRu3Nc3uX2Xilq5cvJEDb0XelG54CLVLo2PE8evUKA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#151C27] via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 flex flex-col gap-2">
+<div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-on-primary" data-icon="medical_services">medical_services</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-[#F9F9FF]">Consultations</h3>
+<p class="text-[#F9F9FF] opacity-70 text-xs font-label uppercase tracking-widest">24/7 Expert Support</p>
+</div>
+<button class="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Featured Section (Bento Grid Style for Quick Access) -->
+<section class="mt-8">
+<div class="flex items-center justify-between mb-4">
+<h4 class="text-[#F9F9FF] font-headline font-bold">Trending Service</h4>
+<span class="text-xs font-bold text-[#0891B2] uppercase tracking-widest">View All</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low/10 p-5 rounded-lg flex flex-col gap-4 border border-white/5">
+<span class="material-symbols-outlined text-[#0891B2]" data-icon="health_and_safety">health_and_safety</span>
+<div>
+<p class="text-[#F9F9FF] text-sm font-bold">Insurance</p>
+<p class="text-[#F9F9FF]/40 text-[10px]">Protection plans</p>
+</div>
+</div>
+<div class="bg-surface-container-low/10 p-5 rounded-lg flex flex-col gap-4 border border-white/5">
+<span class="material-symbols-outlined text-[#0891B2]" data-icon="event">event</span>
+<div>
+<p class="text-[#F9F9FF] text-sm font-bold">Booking</p>
+<p class="text-[#F9F9FF]/40 text-[10px]">Salon &amp; Grooming</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-8 pb-8 pt-4 bg-[#151C27]/80 backdrop-blur-xl z-50 rounded-t-[3rem] shadow-[0_-8px_32px_rgba(21,28,39,0.04)]">
+<!-- Market -->
+<a class="flex flex-col items-center justify-center text-[#F9F9FF] opacity-40 hover:opacity-100 transition-all active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest">Market</span>
+</a>
+<!-- Breeders (Active State Logic: Intent mapping for search/discovery) -->
+<a class="flex flex-col items-center justify-center text-[#0891B2] scale-110 transition-all active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="storefront" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest">Breeders</span>
+</a>
+<!-- Health -->
+<a class="flex flex-col items-center justify-center text-[#F9F9FF] opacity-40 hover:opacity-100 transition-all active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="medical_services">medical_services</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest">Health</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-[#F9F9FF] opacity-40 hover:opacity-100 transition-all active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-['Inter'] text-[10px] font-semibold uppercase tracking-widest">Profile</span>
+</a>
+</nav>
+<!-- Visual Polish: Noise/Grain Overlay -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay">
+<svg viewbox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<filter id="noise">
+<feturbulence basefrequency="0.65" numoctaves="3" stitchtiles="stitch" type="fractalNoise"></feturbulence>
+</filter>
+<rect filter="url(#noise)" height="100%" width="100%"></rect>
+</svg>
+</div>
+</body></html>

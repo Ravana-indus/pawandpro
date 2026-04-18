@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PawConcierge | Clinical Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#dce2f3",
+                    "on-primary-container": "#fafdff",
+                    "tertiary-container": "#00855b",
+                    "surface-container": "#e7eefe",
+                    "surface-container-highest": "#dce2f3",
+                    "surface-container-high": "#e2e8f8",
+                    "on-secondary-fixed": "#141b2b",
+                    "surface-dim": "#d3daea",
+                    "secondary": "#575e70",
+                    "secondary-container": "#d9dff5",
+                    "primary-fixed-dim": "#6cd3f7",
+                    "on-tertiary-container": "#f5fff6",
+                    "surface": "#f9f9ff",
+                    "background": "#f9f9ff",
+                    "on-tertiary-fixed": "#002113",
+                    "on-background": "#151c27",
+                    "primary-container": "#007f9d",
+                    "on-surface-variant": "#3e484d",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "outline": "#6e797e",
+                    "on-error": "#ffffff",
+                    "primary": "#00647c",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#bdc8ce",
+                    "surface-tint": "#006780",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-secondary-container": "#5c6274",
+                    "inverse-surface": "#2a313d",
+                    "tertiary-fixed": "#6ffbbe",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#ebf1ff",
+                    "tertiary": "#006947",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#151c27",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#6cd3f7",
+                    "surface-bright": "#f9f9ff",
+                    "on-primary-fixed": "#001f28",
+                    "on-primary-fixed-variant": "#004e61",
+                    "primary-fixed": "#b7eaff",
+                    "on-secondary-fixed-variant": "#404758",
+                    "secondary-fixed": "#dce2f7",
+                    "surface-container-low": "#f0f3ff",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .bento-shadow {
+            box-shadow: 0 4px 24px -1px rgba(21, 28, 39, 0.03);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<nav class="fixed top-0 w-full z-50 bg-[#F9F9FF]/80 backdrop-blur-xl flex justify-between items-center px-6 h-20 max-w-full">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-[#151C27] uppercase tracking-tighter">PawConcierge</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-[#00647C] font-bold border-b-2 border-[#00647C] font-headline tracking-tight transition-opacity hover:opacity-80" href="#">Dashboard</a>
+<a class="text-[#151C27]/60 font-headline font-bold tracking-tight transition-opacity hover:opacity-80" href="#">Marketplace</a>
+<a class="text-[#151C27]/60 font-headline font-bold tracking-tight transition-opacity hover:opacity-80" href="#">Veterinary</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<input class="bg-surface-container border-none rounded-full px-6 py-2 w-64 text-sm focus:ring-2 focus:ring-primary/20" placeholder="Search medical records..." type="text"/>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-primary hover:opacity-80 scale-95 active:transition-transform">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-primary hover:opacity-80 scale-95 active:transition-transform">
+<span class="material-symbols-outlined" data-icon="translate">translate</span>
+</button>
+<button class="p-2 text-primary hover:opacity-80 scale-95 active:transition-transform">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<div class="flex pt-20 pb-24 md:pb-0">
+<aside class="hidden md:flex flex-col py-8 h-screen w-72 rounded-r-[3rem] sticky top-20 bg-surface shadow-[48px_0_48px_rgba(21,28,39,0.04)] font-['Plus_Jakarta_Sans'] text-sm font-semibold">
+<div class="px-8 mb-10">
+<h2 class="text-xl font-bold text-[#00647C]">Clinical Concierge</h2>
+<p class="text-on-surface/50 text-xs mt-1 uppercase tracking-widest">Verified Member</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-4 bg-[#00647C] text-white rounded-full mx-4 py-3 px-6 shadow-lg shadow-[#00647C]/20 duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-4 text-[#151C27] opacity-70 mx-4 py-3 px-6 hover:bg-[#E7EEFE] rounded-full transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+                    Marketplace
+                </a>
+<a class="flex items-center gap-4 text-[#151C27] opacity-70 mx-4 py-3 px-6 hover:bg-[#E7EEFE] rounded-full transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+                    Veterinary
+                </a>
+<a class="flex items-center gap-4 text-[#151C27] opacity-70 mx-4 py-3 px-6 hover:bg-[#E7EEFE] rounded-full transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="volunteer_activism">volunteer_activism</span>
+                    NGO Portal
+                </a>
+<a class="flex items-center gap-4 text-[#151C27] opacity-70 mx-4 py-3 px-6 hover:bg-[#E7EEFE] rounded-full transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="pets">pets</span>
+                    Breeder Hub
+                </a>
+</nav>
+<div class="px-8 mt-auto flex flex-col gap-4">
+<div class="flex items-center gap-3 p-3 bg-surface-container-low rounded-2xl">
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a professional veterinarian male user with friendly expression and modern medical attire" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXX-L0JYkRgVXPHXzKeKDdX9yAHRXgHhd56XLwyevzSPhnyCslU_4H_pVSwwn5JzVfiiKIyrMuqgfpiHZwlR-fJ10dvDxt6UKjbPG1wO2XzCpL_ktsmg-zUyWwOVy_34e1XHgA7CqgkEzke8N3wQsUcELjrUb8_fOgLFucGhaHwwfOSEw6k_dO7iltW1cBJHEZx91IKgkcT75M62irlkz6SKIlDSIepxVEVAyYSpnVngr5A5HGSVwdOxvuTkKnuqqYWy6_eFYLlk0"/>
+</div>
+<div>
+<p class="font-bold text-xs">Dr. Marcus Petry</p>
+<p class="text-[10px] opacity-50 uppercase tracking-tighter">Chief Caretaker</p>
+</div>
+</div>
+<button class="w-full py-3 bg-surface-container-highest text-on-surface rounded-full text-xs font-bold uppercase tracking-widest hover:opacity-80 transition-opacity">
+                    Switch Role
+                </button>
+</div>
+</aside>
+<main class="flex-1 px-6 md:px-12 py-10 max-w-7xl mx-auto overflow-x-hidden">
+<header class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<span class="text-[10px] font-bold text-primary uppercase tracking-[0.3em] mb-2 block">Management Console</span>
+<h1 class="text-5xl md:text-6xl font-headline font-extrabold text-on-surface -ml-1 tracking-tighter leading-tight">Pet Family <br/><span class="text-primary-container">Ecosystem</span></h1>
+</div>
+<div class="flex gap-4">
+<button class="bg-surface-container-lowest bento-shadow p-6 rounded-xl flex flex-col items-center gap-2 hover:bg-surface-container transition-colors group">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:scale-110 transition-transform" data-icon="add_circle">add_circle</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">New Member</span>
+</button>
+</div>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<section class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-surface-container-lowest rounded-xl p-8 bento-shadow relative overflow-hidden group">
+<div class="flex justify-between items-start mb-12">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of a majestic German Shepherd dog with focused intelligent expression in soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuvCFbpvWtpMyGocM4f882ke2GRqQw0XPt_DO1xFRVxsw5xr8eaDVTMdtxxaO488qCY2nYvnwrLkkpB9i5T39y3tgSy-EdteOfc5_93eZ08baG7PPC4fLP-TUDm5BL1s-nJViJ5kR72DE_C91xGDQiF08mgqfAe09jw0s06AzI7Ob1D7nJFReQS37ovB-mh5H0u2ZHlrK_qW5u6gH8ZCMedcfQnkn2LibxFETB99Hm3Niyn1uNTXBa-qeX1-tfZEYBkZJPorg4gbw"/>
+</div>
+<div>
+<h3 class="font-headline font-extrabold text-2xl tracking-tight">Bowie</h3>
+<p class="text-xs text-on-surface/50 uppercase font-bold tracking-widest">German Shepherd</p>
+</div>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Stable Status</span>
+</div>
+<div class="space-y-6">
+<div class="bg-surface-container-low p-4 rounded-2xl flex justify-between items-center">
+<div>
+<p class="text-[10px] font-bold opacity-40 uppercase">Vaccination Due</p>
+<p class="font-bold text-primary">Rabies Booster</p>
+</div>
+<p class="text-sm font-bold">12 Oct 2023</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl flex justify-between items-center">
+<div>
+<p class="text-[10px] font-bold opacity-40 uppercase">Food Supply</p>
+<p class="font-bold">High Protein Mix</p>
+</div>
+<p class="text-sm font-bold text-error">Reorder in 3d</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-8 bento-shadow relative overflow-hidden group">
+<div class="flex justify-between items-start mb-12">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="Elegant Maine Coon cat with long grey fur and tufted ears looking calmly at the camera in a modern interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA5iIQ5VhaAMb40-rrLm7AmjMvIP1p59wv4GcGzXMe4VLPvhXJbd6bh4vmh_AMdyc_zdeSjwTWCqz0WdIArYQRFKnIwj9rq0J5GxDqYDYn7GN0TuNgU9xoKMG_bVtYZbPzZSZlDsbQNHCCtgWrdQsiquNcwILECssmJX4uNEaGIPvA1W52JtXVLaNokk0o1c7nK22tIKnUtjwsd9CqhGuimlqPkZXvmFvcVXyG47smJS5-85wERKBzwIRzgwg8YWC3fpfjbvCzYGE"/>
+</div>
+<div>
+<h3 class="font-headline font-extrabold text-2xl tracking-tight">Luna</h3>
+<p class="text-xs text-on-surface/50 uppercase font-bold tracking-widest">Maine Coon</p>
+</div>
+</div>
+<span class="bg-surface-container text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">Recovery</span>
+</div>
+<div class="space-y-6">
+<div class="bg-surface-container-low p-4 rounded-2xl flex justify-between items-center border-l-4 border-primary">
+<div>
+<p class="text-[10px] font-bold opacity-40 uppercase">Daily Meds</p>
+<p class="font-bold">Digestive Enzyme</p>
+</div>
+<p class="text-sm font-bold">08:00 AM</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl flex justify-between items-center">
+<div>
+<p class="text-[10px] font-bold opacity-40 uppercase">Next Grooming</p>
+<p class="font-bold">Full De-shedding</p>
+</div>
+<p class="text-sm font-bold">28 Sep 2023</p>
+</div>
+</div>
+</div>
+<div class="md:col-span-2 bg-inverse-surface rounded-xl p-8 text-inverse-on-surface bento-shadow flex flex-col md:flex-row gap-8 items-center">
+<div class="flex-1">
+<h3 class="text-3xl font-headline font-extrabold tracking-tight mb-4 leading-none">Critical Supply <br/><span class="text-primary-fixed">Alert Center</span></h3>
+<p class="text-sm opacity-70 max-w-sm">3 items in your medical inventory are running low. Schedule an automated reorder to maintain health protocols.</p>
+</div>
+<div class="flex gap-4 w-full md:w-auto">
+<button class="bg-primary hover:bg-primary-container text-white px-8 py-4 rounded-full font-bold uppercase text-[10px] tracking-widest transition-all">Reorder All</button>
+<button class="bg-white/10 hover:bg-white/20 px-8 py-4 rounded-full font-bold uppercase text-[10px] tracking-widest transition-all">Dismiss</button>
+</div>
+</div>
+</section>
+<aside class="lg:col-span-4 space-y-8">
+<div class="bg-surface-container-low rounded-xl p-8">
+<h4 class="text-[10px] font-bold text-on-surface/40 uppercase tracking-[0.2em] mb-6">Upcoming Appointments</h4>
+<div class="space-y-4">
+<div class="flex gap-4 items-start border-l-2 border-primary pl-4 py-1">
+<div class="bg-primary text-white p-2 rounded-lg flex flex-col items-center justify-center min-w-[50px]">
+<span class="text-xs font-bold leading-none">SEP</span>
+<span class="text-xl font-black leading-none">24</span>
+</div>
+<div>
+<p class="font-bold text-sm">Dental Wellness Check</p>
+<p class="text-xs opacity-50">Dr. Sarah Miller • 14:00</p>
+</div>
+</div>
+<div class="flex gap-4 items-start border-l-2 border-surface-container-highest pl-4 py-1">
+<div class="bg-surface-container-highest text-on-surface p-2 rounded-lg flex flex-col items-center justify-center min-w-[50px]">
+<span class="text-xs font-bold leading-none">OCT</span>
+<span class="text-xl font-black leading-none">05</span>
+</div>
+<div>
+<p class="font-bold text-sm">Flea &amp; Tick Prevention</p>
+<p class="text-xs opacity-50">Vet Clinic Central • 09:30</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-4 text-primary font-bold text-[10px] uppercase tracking-widest border border-primary/20 rounded-xl hover:bg-primary hover:text-white transition-all">Calendar View</button>
+</div>
+<div class="bg-surface-container-lowest rounded-xl p-8 bento-shadow">
+<div class="flex justify-between items-center mb-6">
+<h4 class="text-[10px] font-bold text-on-surface/40 uppercase tracking-[0.2em]">Curated Wishlist</h4>
+<span class="material-symbols-outlined text-primary scale-75" data-icon="favorite">favorite</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-xl overflow-hidden mb-2 bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Premium ergonomic leather dog collar with minimalist gold hardware on a clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfiqsNAkURPgLM5wR0tMndan0gU6SygByxJxF-nzHnHefVBqXtQcwhsTpH4cMFiemAX6Ti7SaHDdpAR30BOS69gfR7pbwloCHb36VsUkY0eLipwabGXvZebus4ogySrx4F6cQNmAw1AYI2e4zYP4X6iYQz9JtbGSmI4uTQZfzumK2iygsYt8Uwm3WF1baUH4Cji9ptNNtbt5M00hkxqCZAhAmX3NlrAETaX3voXlO44guBj2hrtARx6aP81Nw7c3V-qQLbDS1vM1o"/>
+</div>
+<p class="text-[10px] font-bold truncate">Premium Ortho Bed</p>
+<p class="text-[10px] text-primary">$189.00</p>
+</div>
+<div class="group cursor-pointer">
+<div class="aspect-square rounded-xl overflow-hidden mb-2 bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="High-tech interactive cat toy with sleek modern design and warm wooden elements" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA1Qbdp1niejNMbRzROqr6NqtticQ9u7ta0g8Sf9eSZDnohMM_qzwTWWZ0AeoEdSngbWVq3PqAl-Yoe6vAzf1PQHs9Qx5JDXisSh2WfJDruJv772tgqjrugymt4uysFmnUD-oOlCBN91GTBzP8pJIISvzJpPPifabinLxm0jb_VPGvP9XjcpCjcJ-urJNKFg_QyS97Gt-iYdSJuGnfOOSCy5NG5xUdXqpZag4WscVp0UjJPt6fjLg1IY6nFpqfOfDZ-PwKxgQ_28k"/>
+</div>
+<p class="text-[10px] font-bold truncate">Kinetic Laser Toy</p>
+<p class="text-[10px] text-primary">$45.00</p>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-end px-4 pb-6 pt-2 bg-[#F9F9FF]/80 backdrop-blur-2xl z-50 shadow-[0_-8px_32px_rgba(21,28,39,0.06)] rounded-t-[2.5rem]">
+<a class="flex flex-col items-center justify-center bg-[#00647C] text-white rounded-2xl w-14 h-14 mb-2 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#151C27]/40 w-14 h-14 active:scale-90 duration-200 hover:text-[#00647C]" href="#">
+<span class="material-symbols-outlined" data-icon="health_and_safety">health_and_safety</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Health</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#151C27]/40 w-14 h-14 active:scale-90 duration-200 hover:text-[#00647C]" href="#">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Market</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#151C27]/40 w-14 h-14 active:scale-90 duration-200 hover:text-[#00647C]" href="#">
+<span class="material-symbols-outlined" data-icon="diversity_1">diversity_1</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">NGO</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#151C27]/40 w-14 h-14 active:scale-90 duration-200 hover:text-[#00647C]" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

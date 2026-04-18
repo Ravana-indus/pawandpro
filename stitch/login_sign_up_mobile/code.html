@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Paws &amp; Pro | Access</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f0f3ff",
+                        "on-tertiary-container": "#f5fff6",
+                        "inverse-on-surface": "#ebf1ff",
+                        "on-background": "#151c27",
+                        "surface-container": "#e7eefe",
+                        "surface": "#f9f9ff",
+                        "background": "#f9f9ff",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "secondary-fixed": "#dce2f7",
+                        "outline-variant": "#bdc8ce",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e2e8f8",
+                        "on-tertiary-fixed": "#002113",
+                        "inverse-surface": "#2a313d",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#141b2b",
+                        "on-secondary-container": "#5c6274",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#6cd3f7",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "tertiary-container": "#00855b",
+                        "primary": "#00647c",
+                        "on-error": "#ffffff",
+                        "outline": "#6e797e",
+                        "tertiary": "#006947",
+                        "surface-variant": "#dce2f3",
+                        "on-surface-variant": "#3e484d",
+                        "secondary": "#575e70",
+                        "on-primary-fixed-variant": "#004e61",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#404758",
+                        "primary-container": "#007f9d",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#b7eaff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-bright": "#f9f9ff",
+                        "inverse-primary": "#6cd3f7",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#d9dff5",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "surface-dim": "#d3daea",
+                        "surface-tint": "#006780",
+                        "surface-container-highest": "#dce2f3",
+                        "on-surface": "#151c27",
+                        "on-primary-container": "#fafdff",
+                        "on-primary-fixed": "#001f28"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(21, 28, 39, 0) 0%, rgba(21, 28, 39, 0.4) 100%);
+        }
+        .btn-primary-gradient {
+            background: linear-gradient(135deg, #00647C 0%, #007F9D 100%);
+        }
+        input:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface">
+<main class="min-h-screen flex flex-col md:flex-row">
+<!-- Left Section: Hero (Identity & Brand) -->
+<section class="relative w-full md:w-1/2 h-[397px] md:h-screen overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="Close-up of a sophisticated golden retriever sitting calmly in a brightly lit professional studio with a soft teal backdrop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGVZzHpCXo9GOCOYzoZn0TMfOkfsrOyfClbDRZE2vdg6T_vMSSEYf8rZafot-M1B3OdkSNeWpI9aG8HbT-2hzIbZIxr9PHjAhD2N-MjCEFJThO7Tn7s42QaJc4fYcNxkIl9jvBtqzRbEpjB2KeDqsrd4KXYJUBoMsaMw0H5eEYDaoRux4jDtwiuKxqkU4wpfg4KidK_zSRoa6aTkthaJ8Ggmc8NgsgxCBS37tnWKlIFO_1tEdVkTTC9cv5VI2hHe3nNLmHNpNYjW8"/>
+<div class="absolute inset-0 hero-gradient"></div>
+<!-- Brand Anchor -->
+<div class="absolute top-8 left-8 md:top-12 md:left-12 flex items-center gap-2">
+<span class="material-symbols-outlined text-surface text-3xl" style="font-variation-settings: 'FILL' 1;">pets</span>
+<h1 class="font-headline font-black text-3xl tracking-tighter text-surface">Paws &amp; Pro</h1>
+</div>
+<!-- Value Prop (Hidden on Mobile for focus) -->
+<div class="absolute bottom-12 left-12 right-12 hidden md:block">
+<p class="font-headline font-bold text-4xl text-surface leading-tight tracking-tight max-w-md">
+                    Professional care for your most loyal companions.
+                </p>
+<div class="mt-6 flex items-center gap-4">
+<div class="flex -space-x-2">
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a smiling professional veterinarian" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-UBf-H7NKLCttoqpwHj-1wagz9Udi9JGk0VHMAr8ESbaZlc-tiWUholHSWYAwwDlKeUTesOEON-3MLmouKfzoP6d8WGmsqFYYipqh44_tm0oS7cRrxv6MDavq7bueOjIkbp8auok6HgRtqNaqPWK7Qk5S5kI53vnZf4pnCsJKiYgFcGYRmjg4fyX7p1q1t8wXY8cvO4peNXw4O2v7PeLNN00lSpD8ETjjUGkzq2eH7d9S44xdGpoiLtJmbPHCGcunUpWjskSHkTs"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a friendly pet owner" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLaMEkoz3VcetQ2xztgIMSqKrWOR9h9lUAJ1juMn_opCeNgwJhPLUF4Zt1340YHIO0p_t6N9moaBJ89JgySt2N7rpgZlrIzITwmiNPUqrOwDWTn38_LZJlBN938DwEXeuROkeEO9ImtMmsyCJSLriNnpzEvTcuiO8AXDcuJsUaGNnzntoU1VeXDQugreKch4vA9F0OgqSwDUEsMhAkFCnSyd7OgVmqISYKDzPCNn09nUhxp_WCNWhOOvtpjeSPxgHsO9zG0lXNp2g"/>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a male professional breeder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm2ps-0-eVuxb4aXKvNAxt-VHoBFfzdPEnHEMD8myYaCGsXl6DAGrq8k4422gBnNL3HNivGmvdt5eMicgonrY6VbBiNg_dXTUP4WCPIY4nb0YvKmGpWaNNOuqDlkpP8QYIumlhsBY1W0xwYWI9IGMBUXamkysySOitrhy_2fpUX2NOSrTlq0pkHsXtG6Im_WloCRiWifm64sqtWNToWnhnVZyXlzLHnk-JosfwJjylymjAJMW7O31HtMkpL5XkY3jSGT-1-d-8ZNQ"/>
+</div>
+</div>
+<p class="text-surface/90 text-sm font-medium">Joined by 10k+ pet parents</p>
+</div>
+</div>
+</section>
+<!-- Right Section: Login/Signup Forms -->
+<section class="w-full md:w-1/2 bg-surface flex flex-col items-center justify-center p-8 md:p-16 lg:p-24 min-h-[486px]">
+<div class="w-full max-w-sm">
+<!-- Toggle Switches (Asymmetrical tension) -->
+<div class="flex items-end justify-between mb-12">
+<div class="space-y-1">
+<span class="font-label text-[10px] uppercase tracking-widest text-primary font-bold">Clinical Portal</span>
+<h2 class="font-headline text-4xl font-bold tracking-tight text-on-surface">Sign In</h2>
+</div>
+<button class="font-headline text-sm font-bold text-outline hover:text-primary transition-colors pb-1">
+                        Create Account
+                    </button>
+</div>
+<!-- Auth Form -->
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="font-label text-xs font-semibold text-on-surface-variant ml-1">Work Email</label>
+<div class="relative group">
+<input class="w-full bg-surface-container px-5 py-4 rounded-xl border-none text-on-surface placeholder:text-outline transition-all focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20" placeholder="name@company.com" type="email"/>
+<div class="absolute inset-0 rounded-xl border-2 border-primary opacity-0 group-focus-within:opacity-10 shadow-sm pointer-events-none"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center ml-1">
+<label class="font-label text-xs font-semibold text-on-surface-variant">Password</label>
+<a class="text-[10px] font-bold text-primary hover:underline" href="#">Forgot?</a>
+</div>
+<div class="relative group">
+<input class="w-full bg-surface-container px-5 py-4 rounded-xl border-none text-on-surface placeholder:text-outline transition-all focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20" placeholder="••••••••" type="password"/>
+<div class="absolute inset-0 rounded-xl border-2 border-primary opacity-0 group-focus-within:opacity-10 shadow-sm pointer-events-none"></div>
+</div>
+</div>
+<button class="w-full btn-primary-gradient py-4 rounded-xl text-surface font-headline font-bold text-sm shadow-xl shadow-primary/10 hover:opacity-90 active:scale-[0.98] transition-all" type="submit">
+                        Log into Workspace
+                    </button>
+</form>
+<!-- Divider (Tonal layering, no lines) -->
+<div class="relative flex items-center justify-center my-10">
+<div class="w-full h-[1px] bg-outline-variant/30"></div>
+<span class="absolute px-4 bg-surface text-[10px] font-bold text-outline uppercase tracking-widest">or continue with</span>
+</div>
+<!-- Social Logins -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-3 bg-surface-container-lowest py-3 rounded-xl border border-outline-variant/20 hover:bg-surface-container transition-colors active:scale-[0.98]">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+<span class="text-xs font-bold text-on-surface">Google</span>
+</button>
+<button class="flex items-center justify-center gap-3 bg-surface-container-lowest py-3 rounded-xl border border-outline-variant/20 hover:bg-surface-container transition-colors active:scale-[0.98]">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24">
+<path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C4.1 16.7 3.48 10.9 5.86 7.42c1.17-1.72 2.9-2.77 4.63-2.73 1.3.03 2.15.54 3.12.54.94 0 2.22-.65 3.75-.48 1.6.17 2.84.8 3.59 1.94-3.18 1.91-2.68 6.03.54 7.33-.6 1.48-1.38 2.93-2.44 4.26zM13 1c0 2.12-1.74 3.86-3.85 3.82.02-2.12 1.83-3.87 3.85-3.82z"></path>
+</svg>
+<span class="text-xs font-bold text-on-surface">Apple</span>
+</button>
+</div>
+<!-- Footer Context -->
+<div class="mt-12 text-center">
+<p class="text-[10px] text-outline leading-relaxed px-4">
+                        By signing in, you agree to our <a class="underline" href="#">Clinical Services Agreement</a> and <a class="underline" href="#">Privacy Guidelines</a>.
+                    </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Suppressed Navigation Shell as per "Destination Rule" (Transactional Flow) -->
+</body></html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f0f3ff",
+                        "on-tertiary-container": "#f5fff6",
+                        "inverse-on-surface": "#ebf1ff",
+                        "on-background": "#151c27",
+                        "surface-container": "#e7eefe",
+                        "surface": "#f9f9ff",
+                        "background": "#f9f9ff",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "secondary-fixed": "#dce2f7",
+                        "outline-variant": "#bdc8ce",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e2e8f8",
+                        "on-tertiary-fixed": "#002113",
+                        "inverse-surface": "#2a313d",
+                        "on-primary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#141b2b",
+                        "on-secondary-container": "#5c6274",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#6cd3f7",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "tertiary-container": "#00855b",
+                        "primary": "#00647c",
+                        "on-error": "#ffffff",
+                        "outline": "#6e797e",
+                        "tertiary": "#006947",
+                        "surface-variant": "#dce2f3",
+                        "on-surface-variant": "#3e484d",
+                        "secondary": "#575e70",
+                        "on-primary-fixed-variant": "#004e61",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#404758",
+                        "primary-container": "#007f9d",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#b7eaff",
+                        "tertiary-fixed": "#6ffbbe",
+                        "surface-bright": "#f9f9ff",
+                        "inverse-primary": "#6cd3f7",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#d9dff5",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "surface-dim": "#d3daea",
+                        "surface-tint": "#006780",
+                        "surface-container-highest": "#dce2f3",
+                        "on-surface": "#151c27",
+                        "on-primary-container": "#fafdff",
+                        "on-primary-fixed": "#001f28"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-transition-no-lines {
+            border: none !important;
+        }
+        .no-border-tonal-spacing {
+            border: none !important;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Top Navigation Bar (Shared Component) -->
+<header class="w-full sticky top-0 bg-transparent z-50">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-xl mx-auto">
+<button class="hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-cyan-900" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline font-black text-2xl tracking-tighter text-cyan-900">Paws &amp; Pro</h1>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close-up portrait of a professional male smiling with a clean soft blurred background, high quality commercial photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlUtY-FQyqlKWpneLvAn17CY1502MlV0kIUngaPVR1TqMZPdTh0aLtQrl22Ml4uW8o1zEH9xEeRY4BZsfLjlqFuWnfkLcMtEmKju-BBFxCpkEtkHpZE8q6kyHMU8LQsbIw-uCx_JxPjH0ztWiCVEzKkuda3uFbZ8_YKKhplAyxS30yvk2dWKG5GO68rgI3GKGe1YA3wCey6XlUdCRlcrivIjSkLOSW7KmCjBDcHdMNZs4DhmmEc4eDM6ww4KXfxfqXBuR2wE2YWM0"/>
+</div>
+</div>
+</header>
+<main class="max-w-xl mx-auto px-6 pb-32">
+<!-- Editorial Header -->
+<div class="mt-8 mb-10">
+<span class="font-label text-[10px] uppercase tracking-[0.2em] font-bold text-primary mb-2 block">Purchase Log</span>
+<h2 class="font-headline text-4xl font-extrabold tracking-tight text-on-surface leading-tight">Order History</h2>
+</div>
+<!-- Order List -->
+<div class="flex flex-col gap-6">
+<!-- Order Card 1: Delivered -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_8px_32px_rgba(21,28,39,0.04)]">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="font-label text-xs text-on-surface-variant font-medium">Order #PX-99281</p>
+<p class="font-headline font-bold text-on-surface">Oct 24, 2023</p>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-[11px] font-bold tracking-tight flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Delivered
+                    </span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-20 h-20 rounded-xl bg-surface-container overflow-hidden shrink-0">
+<img alt="Organic Pet Food" class="w-full h-full object-cover" data-alt="Premium bag of organic dry dog food on a minimalist grey background, studio lighting with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDD1ZUdeYLvUORBOx0tsK7Hu30-iZZj4RiIR1f87RUQd5ACdFapzkJE7ivJ-yJ0g6osY2VMZBxPYSUbHe7vrguKDkmt6YgVGTJ8zfBK_Hvs8obRW6p7Ro7l4PuRdjOnC6kdN6HMWKwbAVoas1yLdMUeDSy1BOARgDYbLp4e9eM1PpTR2edyBcWDu_QDuh8aGDd1CFeSyu0nXDAlXA7YTNoprXOoa5u43eYf9amFJ4lKvhELulCKa37AuCTFhpBeRvj8DX0lZNYHok"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline font-bold text-on-surface leading-snug">Premium Arctic Salmon Grain-Free Kibble</h4>
+<p class="text-on-surface-variant text-sm mt-1">12kg • Organic Formula</p>
+<div class="mt-2 text-primary font-bold">£64.00</div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-grow bg-[linear-gradient(135deg,#00647C,#007F9D)] text-on-primary font-bold py-3 px-6 rounded-xl hover:opacity-90 transition-opacity">
+                        Reorder
+                    </button>
+<button class="px-4 py-3 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined block">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- Order Card 2: Cancelled -->
+<div class="bg-surface-container-low rounded-lg p-6">
+<div class="flex justify-between items-start mb-6 opacity-60">
+<div>
+<p class="font-label text-xs text-on-surface-variant font-medium">Order #PX-98112</p>
+<p class="font-headline font-bold text-on-surface">Oct 12, 2023</p>
+</div>
+<span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-[11px] font-bold tracking-tight flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">cancel</span>
+                        Cancelled
+                    </span>
+</div>
+<div class="flex items-center gap-4 mb-6 opacity-60">
+<div class="w-20 h-20 rounded-xl bg-surface-container overflow-hidden shrink-0">
+<img alt="Veterinary Supplements" class="w-full h-full object-cover" data-alt="Medical bottle of pet vitamin supplements on a clean medical white surface with cool laboratory lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQO8pcFYgpv1KZ1A7GoNXCdTyVQzx1Ftg8XTXKRjIFhL4oJn4vF5ONP3dwvCGcsYyPr3FODuTb7hxjmdZ7vnLYLz2LOeJB1YEXDxFeh22TStptn2gAiUH_MJ-nv375O8_ehsblkakISf7sdd58dCcAVtF_e4upmemM6DRx8jqH3LmxZSaPhE5fdAKs87ITZZvawrKQ8DYldzilC6H2DrYx4WrVG9rZm7Qp50oBGSgYJS-XlqUAEVT382P4A3pduLG30t90m5ftbDw"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline font-bold text-on-surface leading-snug">Advanced Hip &amp; Joint Soft Chews</h4>
+<p class="text-on-surface-variant text-sm mt-1">90 Count • Glucosamine</p>
+<div class="mt-2 text-on-surface-variant font-bold">£32.50</div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-grow border-2 border-outline-variant text-on-surface-variant font-bold py-3 px-6 rounded-xl hover:bg-surface-container-highest transition-colors">
+                        View Details
+                    </button>
+</div>
+</div>
+<!-- Order Card 3: Delivered -->
+<div class="bg-surface-container-lowest rounded-lg p-6 shadow-[0_8px_32px_rgba(21,28,39,0.04)]">
+<div class="flex justify-between items-start mb-6">
+<div>
+<p class="font-label text-xs text-on-surface-variant font-medium">Order #PX-97005</p>
+<p class="font-headline font-bold text-on-surface">Sept 28, 2023</p>
+</div>
+<span class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-[11px] font-bold tracking-tight flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Delivered
+                    </span>
+</div>
+<div class="flex items-center gap-4 mb-6">
+<div class="w-20 h-20 rounded-xl bg-surface-container overflow-hidden shrink-0">
+<img alt="Smart Pet Leash" class="w-full h-full object-cover" data-alt="Modern leather pet leash with silver accents displayed on a minimalist wooden texture, bright airy lifestyle aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl6WytTkl0syYsk8f0OiF04jxmzL5r8e4Itja59wB-csPvkdZuhCTQmZF-M2pOjLLhpLtkk3S1ZJapnNw--tBzK_eewiTZi-RWFSqztlZyhtkOt2IcRjHEzFYAK8m2XMEEdQy4vN6FJXLj6U0C9ZYyYF_np4i9AaCJHCc4_g3py5J82JCkRRNKeFx9_w4lFC7joVExrJExYLwHUw1FLXVZg7-xhrYt8kHkc1GAzb-_jDfQYfTRth7ZCFOL4OYxxI_2PHuGSP1pLW8"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-headline font-bold text-on-surface leading-snug">Ergonomic Leather Lead - Obsidian Black</h4>
+<p class="text-on-surface-variant text-sm mt-1">6ft • Premium Handcrafted</p>
+<div class="mt-2 text-primary font-bold">£45.00</div>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex-grow bg-[linear-gradient(135deg,#00647C,#007F9D)] text-on-primary font-bold py-3 px-6 rounded-xl hover:opacity-90 transition-opacity">
+                        Reorder
+                    </button>
+<button class="px-4 py-3 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined block">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Shared Component) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-6 pb-8 pt-4 bg-surface/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-t-[32px] shadow-[0_-8px_32px_rgba(21,28,39,0.06)] tonal-transition-no-lines">
+<button class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors scale-95 active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium text-[11px] tracking-tight">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors scale-95 active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="medical_services">medical_services</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium text-[11px] tracking-tight">Health</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 px-5 py-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors scale-95 active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium text-[11px] tracking-tight">Shop</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-cyan-100 dark:bg-cyan-900/40 text-cyan-900 dark:text-cyan-100 rounded-full px-5 py-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors scale-95 active:scale-90 duration-200">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium text-[11px] tracking-tight">Profile</span>
+</button>
+</nav>
+</body></html>
