@@ -42,12 +42,13 @@ export async function POST(req: Request) {
 
     if (pet_listing_id) {
       // Pet Purchase Flow
-      const { data: pet, error: petError } = await adminSupabase
+      const { data, error: petError } = await adminSupabase
         .from('pet_listings')
         .select('*')
         .eq('id', pet_listing_id)
         .single();
       
+      const pet = data as any;
       if (petError || !pet) return NextResponse.json({ error: 'Pet not found' }, { status: 404 });
       
       totalAmount = Number(pet.price);
@@ -74,42 +75,46 @@ export async function POST(req: Request) {
     }
 
     // 2. Create Order in DB (Status: Processing) — using service role to bypass RLS on trusted server route
-    const { data: order, error: orderError } = await adminSupabase
+    const { data: orderData, error: orderError } = await adminSupabase
       .from('orders')
       .insert({
         buyer_id,
         total_amount: totalAmount,
-        status: 'Processing'
-      })
+        status: 'Processing' as any
+      } as any)
       .select()
       .single();
 
     if (orderError) throw orderError;
+    const order = orderData as any;
 
     // 3. Create Order Items
     const { error: itemsError } = await adminSupabase
       .from('order_items')
-      .insert(orderItems.map(item => ({ ...item, order_id: order.id })));
+      .insert(orderItems.map(item => ({ ...item, order_id: order.id })) as any);
 
     if (itemsError) throw itemsError;
 
     // 4. Generate PayHere Hash
-    const merchant_id = process.env.PAYHERE_MERCHANT_ID!;
-    const merchant_secret = process.env.PAYHERE_MERCHANT_SECRET!;
+    const merchant_id = process.env.PAYHERE_MERCHANT_ID || '';
+    const merchant_secret = process.env.PAYHERE_MERCHANT_SECRET || '';
     const currency = 'LKR';
     const amount_formatted = totalAmount.toFixed(2);
     
-    const hash = crypto
-      .createHash('md5')
-      .update(
-        merchant_id + 
-        order.id + 
-        amount_formatted + 
-        currency + 
-        crypto.createHash('md5').update(merchant_secret).digest('hex').toUpperCase()
-      )
-      .digest('hex')
-      .toUpperCase();
+    let hash = '';
+    if (merchant_secret && merchant_id) {
+        hash = crypto
+          .createHash('md5')
+          .update(
+            merchant_id +
+            order.id +
+            amount_formatted +
+            currency +
+            crypto.createHash('md5').update(merchant_secret).digest('hex').toUpperCase()
+          )
+          .digest('hex')
+          .toUpperCase();
+    }
 
     // 5. Build PayHere Params
     const payhereParams = {

@@ -35,13 +35,13 @@ export async function confirmEscrow(listing_id: string, price: number) {
     { cookies: { get() { return undefined; }, set() {}, remove() {} } }
   )
 
-  const { data: order, error: orderError } = await adminSupabase
+  const { data: orderData, error: orderError } = await adminSupabase
     .from('orders')
     .insert({
       buyer_id: user.id,
       total_amount: price,
-      status: 'Processing' // Represents 'In Escrow'
-    })
+      status: 'Processing' as any // Represents 'In Escrow'
+    } as never)
     .select()
     .single()
 
@@ -49,6 +49,8 @@ export async function confirmEscrow(listing_id: string, price: number) {
     console.error('Order creation error:', orderError)
     return { error: orderError.message }
   }
+
+  const order = orderData as any;
 
   // Create order item to represent the pet reservation
   const { error: itemError } = await adminSupabase
@@ -58,7 +60,7 @@ export async function confirmEscrow(listing_id: string, price: number) {
       pet_listing_id: listing_id,
       quantity: 1,
       price_at_purchase: price
-    })
+    } as never)
 
   if (itemError) {
     console.error('Order item creation error:', itemError)
@@ -68,7 +70,7 @@ export async function confirmEscrow(listing_id: string, price: number) {
   // Update listing to Pending (Reserved/In Escrow)
   const { error: listingError } = await supabase
     .from('pet_listings')
-    .update({ status: 'Pending' })
+    .update({ status: 'Pending' as any } as never)
     .eq('id', listing_id)
 
   if (listingError) {

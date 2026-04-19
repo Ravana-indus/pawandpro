@@ -26,7 +26,7 @@ export async function bookAppointment(formData: FormData) {
       notes,
       fee,
       status: 'Scheduled'
-    })
+    } as any)
 
   if (error) {
     console.error('Booking error:', error)

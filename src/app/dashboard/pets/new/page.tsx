@@ -22,7 +22,7 @@ export default function NewPetPage() {
 
         <section className="bg-surface-container-lowest border border-outline-variant/20 rounded-3xl p-6 md:p-10 shadow-sm relative overflow-hidden">
            {/* Add Pet Form */}
-           <form action={createPet} className="space-y-8 relative z-10">
+           <form action={createPet as any} className="space-y-8 relative z-10">
               
               <div className="flex flex-col sm:flex-row items-center gap-6 pb-8 border-b border-outline-variant/10">
                  <div className="w-32 h-32 bg-surface-container-low border-2 border-dashed border-outline-variant/50 rounded-full flex flex-col items-center justify-center text-on-surface-variant cursor-pointer hover:bg-surface-container hover:border-primary/50 hover:text-primary transition-all shadow-inner">

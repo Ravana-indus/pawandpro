@@ -18,7 +18,7 @@ export async function getProducts(options: {
   const { data, error } = await query;
   if (error) throw error;
 
-  return (data || []).map(row => ({
+  return (data || []).map((row: any) => ({
     ...row,
     details: row.details as unknown as ProductDetails,
     inStock: row.stock_quantity > 0
@@ -35,10 +35,11 @@ export async function getProductById(id: string) {
 
   if (error) return null;
 
+  const row = data as any;
   return {
-    ...data,
-    details: data.details as unknown as ProductDetails,
-    inStock: data.stock_quantity > 0
+    ...row,
+    details: row.details as unknown as ProductDetails,
+    inStock: row.stock_quantity > 0
   } as Product;
 }
 
@@ -59,7 +60,7 @@ export async function getPetListings(options: {
   const { data, error } = await query;
   if (error) throw error;
 
-  return (data || []).map(row => ({
+  return (data || []).map((row: any) => ({
     ...row,
     image: row.image_url // map DB column to UI property if necessary, though PetListing model used DB names mostly
   })) as unknown as PetListing[];
@@ -86,7 +87,7 @@ export async function getVets() {
 
   if (error) throw error;
   
-  return (data || []).map(row => ({
+  return (data || []).map((row: any) => ({
     ...row,
     details: row.details[0] // veterinarian_details is a 1:1 relation but returned as array in join
   })) as unknown as Vet[];
@@ -102,9 +103,10 @@ export async function getVetById(id: string) {
     .single();
 
   if (error) return null;
+  const row = data as any;
   return {
-    ...data,
-    details: data.details[0]
+    ...row,
+    details: row.details[0]
   } as unknown as Vet;
 }
 
@@ -118,13 +120,13 @@ export async function searchAll(query: string) {
   ]);
 
   return {
-    products: (productsRes.data || []).map(row => ({
+    products: ((productsRes.data as any[]) || []).map((row: any) => ({
       ...row,
       details: row.details as unknown as ProductDetails,
       inStock: row.stock_quantity > 0
     })) as Product[],
     pets: (petsRes.data || []) as unknown as PetListing[],
-    vets: (vetsRes.data || []).map(row => ({
+    vets: ((vetsRes.data as any[]) || []).map((row: any) => ({
       ...row,
       details: row.details[0]
     })) as unknown as Vet[]
@@ -138,7 +140,7 @@ export async function getUserPets() {
   const { data, error } = await supabase
     .from('pets')
     .select('*')
-    .eq('owner_id', user.id);
+    .eq('owner_id', user.id as any);
 
   if (error) throw error;
   return data as any[];

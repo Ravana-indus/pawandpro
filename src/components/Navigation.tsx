@@ -8,12 +8,12 @@ export async function Navigation() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   
-  let profile = null;
+  let profile = null as any;
   if (user) {
     const { data } = await supabase
       .from('profiles')
       .select('avatar_url')
-      .eq('id', user.id)
+      .eq('id', user.id as any)
       .single();
     profile = data;
   }

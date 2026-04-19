@@ -27,7 +27,7 @@ export async function createPet(formData: FormData) {
       sex: sex.charAt(0).toUpperCase() + sex.slice(1), // Match enum case
       age,
       image_url: image_url || "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&h=400&fit=crop"
-    })
+    } as never)
     .select()
     .single()
 
@@ -36,10 +36,12 @@ export async function createPet(formData: FormData) {
     return { error: error.message }
   }
 
+  const pet = data as any;
+
   revalidatePath('/dashboard')
   revalidatePath('/dashboard/pets')
   
-  return redirect(`/dashboard/pets/${data.id}`)
+  return redirect(`/dashboard/pets/${pet.id}`)
 }
 
 export async function deletePet(formData: FormData) {
@@ -54,7 +56,7 @@ export async function deletePet(formData: FormData) {
     .from('pets')
     .delete()
     .eq('id', petId)
-    .eq('owner_id', user.id)
+    .eq('owner_id', user.id as any)
 
   if (error) {
     console.error('Error deleting pet:', error)

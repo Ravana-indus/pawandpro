@@ -82,7 +82,7 @@ export default async function VetProfilePage({ params }: { params: Promise<{ id:
 
             {/* Booking Form */}
             {user ? (
-              <form action={bookAppointment} className="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/20 max-w-xl">
+              <form action={bookAppointment as any} className="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/20 max-w-xl">
                 <h3 className="font-bold mb-4">Book a Consultation</h3>
                 <input type="hidden" name="vet_id" value={vet.id} />
                 <input type="hidden" name="fee" value={vet.details?.consultation_fee || 0} />

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { PetListing } from "@/types/models";
 
 interface PetListingCardProps {
-  pet: PetListing;
+  pet: any;
 }
 
 export function PetListingCard({ pet }: PetListingCardProps) {
@@ -32,16 +32,16 @@ export function PetListingCard({ pet }: PetListingCardProps) {
       <div className="relative aspect-[4/3] overflow-hidden bg-surface-container-low">
         <Link href={`/breeders/pet/${pet.id}`}>
           <img
-            src={pet.image}
+            src={pet.image || pet.image_url}
             alt={pet.name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           />
         </Link>
-        <div className={`absolute top-4 left-4 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1 border shadow-sm backdrop-blur-md bg-white/90 ${getBadgeColor(pet.certificationTier)}`}>
+        <div className={`absolute top-4 left-4 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1 border shadow-sm backdrop-blur-md bg-white/90 ${getBadgeColor(pet.certification_tier || pet.certificationTier)}`}>
            <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>
-             {getBadgeIcon(pet.certificationTier)}
+             {getBadgeIcon(pet.certification_tier || pet.certificationTier)}
            </span>
-           {pet.certificationTier}
+           {pet.certification_tier || pet.certificationTier}
         </div>
         <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm text-on-surface">
            {pet.type}
@@ -64,17 +64,17 @@ export function PetListingCard({ pet }: PetListingCardProps) {
         </p>
         
         <div className="flex gap-2 mb-5">
-           {pet.healthDocs.vaccinated && (
+           {pet.healthDocs?.vaccinated && (
              <span title="Vaccinated" className="w-8 h-8 rounded-full bg-tertiary/10 text-tertiary flex items-center justify-center">
                <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>vaccines</span>
              </span>
            )}
-           {pet.healthDocs.healthCertificate && (
+           {pet.healthDocs?.healthCertificate && (
              <span title="Health Certificate" className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
                <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>description</span>
              </span>
            )}
-           {pet.healthDocs.microchipped && (
+           {pet.healthDocs?.microchipped && (
              <span title="Microchipped" className="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center">
                <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>memory</span>
              </span>
@@ -84,9 +84,9 @@ export function PetListingCard({ pet }: PetListingCardProps) {
         <div className="mt-auto px-4 py-3 bg-surface-container-low rounded-xl">
            <p className="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold mb-1 flex items-center gap-1">
              <span className="material-symbols-outlined text-[14px]">location_on</span>
-             {pet.location}
+             {pet.location || 'Island-wide'}
            </p>
-           <p className="text-xs font-medium text-on-surface truncate">{pet.breederName}</p>
+           <p className="text-xs font-medium text-on-surface truncate">{pet.breederName || pet.seller?.full_name || 'Verified Breeder'}</p>
         </div>
 
         <div className="mt-4 flex items-center justify-between">

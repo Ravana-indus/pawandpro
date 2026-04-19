@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { getVets, getUserPets } from "@/lib/queries";
-import BookingForm from "./BookingForm";
+import { BookingForm } from "./BookingForm";
 
 export default async function BookHomeVisitPage() {
   const vets = await getVets();
@@ -19,7 +19,7 @@ export default async function BookHomeVisitPage() {
       <h1 className="text-4xl md:text-5xl font-headline font-extrabold text-on-surface tracking-tight mb-2">Book a Home Visit</h1>
       <p className="text-on-surface-variant text-lg mb-10">A certified vet comes to you. Zero commute, zero stress.</p>
 
-      <BookingForm initialPets={pets} initialVets={vets} />
+      <BookingForm myPets={pets} initialVets={vets} />
     </div>
   );
 }
