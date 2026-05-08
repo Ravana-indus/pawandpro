@@ -5,7 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { SearchBar } from "./SearchBar";
 
 export async function Navigation() {
-  const supabase = await createClient();
+  const supabase = (await createClient()) as any;
   const { data: { user } } = await supabase.auth.getUser();
   
   let profile = null;

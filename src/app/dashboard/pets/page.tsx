@@ -7,7 +7,7 @@ import { createClient } from "@/lib/supabase/server";
 export const dynamic = 'force-dynamic';
 
 export default async function PetsDirectoryPage() {
-  const supabase = await createClient();
+  const supabase = (await createClient()) as any;
   const { data: { user } } = await supabase.auth.getUser();
 
   if (!user) {
@@ -39,7 +39,7 @@ export default async function PetsDirectoryPage() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {myPets.map((myPet) => (
+          {myPets.map((myPet: any) => (
             <Link key={myPet.id} href={`/dashboard/pets/${myPet.id}`} className="bg-surface-container-lowest border border-outline-variant/20 rounded-3xl p-6 shadow-sm hover:shadow-xl transition-all hover:border-primary/30 group flex flex-col relative overflow-hidden h-full">
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full pointer-events-none -z-10 group-hover:scale-110 transition-transform"></div>
               

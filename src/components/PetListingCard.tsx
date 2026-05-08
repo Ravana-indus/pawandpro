@@ -6,7 +6,8 @@ interface PetListingCardProps {
   pet: PetListing;
 }
 
-export function PetListingCard({ pet }: PetListingCardProps) {
+export function PetListingCard({ pet: rawPet }: PetListingCardProps) {
+  const pet = rawPet as any;
   const getBadgeColor = (tier: string) => {
     switch (tier) {
       case 'Gold': return 'bg-amber-100 text-amber-800 border-amber-200';
@@ -32,7 +33,7 @@ export function PetListingCard({ pet }: PetListingCardProps) {
       <div className="relative aspect-[4/3] overflow-hidden bg-surface-container-low">
         <Link href={`/breeders/pet/${pet.id}`}>
           <img
-            src={pet.image}
+            src={(pet as any).image_url || (pet as any).image || "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&h=400&fit=crop"}
             alt={pet.name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           />

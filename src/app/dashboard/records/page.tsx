@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/server";
 export const dynamic = 'force-dynamic';
 
 export default async function RecordsPage() {
-  const supabase = await createClient();
+  const supabase = (await createClient()) as any;
   const { data: { user } } = await supabase.auth.getUser();
 
   const { data: pets } = await supabase

@@ -7,7 +7,7 @@ export async function getProducts(options: {
   search?: string;
   limit?: number;
 } = {}) {
-  const supabase = await createClient();
+  const supabase = (await createClient()) as any;
   let query = supabase.from('products').select('*');
 
   if (options.category) query = query.eq('category', options.category);
@@ -18,7 +18,7 @@ export async function getProducts(options: {
   const { data, error } = await query;
   if (error) throw error;
 
-  return (data || []).map(row => ({
+  return (data || []).map((row: any) => ({
     ...row,
     details: row.details as unknown as ProductDetails,
     inStock: row.stock_quantity > 0
@@ -26,7 +26,7 @@ export async function getProducts(options: {
 }
 
 export async function getProductById(id: string) {
-  const supabase = await createClient();
+  const supabase = (await createClient()) as any;
   const { data, error } = await supabase
     .from('products')
     .select('*')
@@ -47,7 +47,7 @@ export async function getPetListings(options: {
   type?: 'Buy' | 'Adopt' | 'Rehome';
   limit?: number;
 } = {}) {
-  const supabase = await createClient();
+  const supabase = (await createClient()) as any;
   let query = supabase
     .from('pet_listings')
     .select('*, seller:profiles(*)');
@@ -59,14 +59,14 @@ export async function getPetListings(options: {
   const { data, error } = await query;
   if (error) throw error;
 
-  return (data || []).map(row => ({
+  return (data || []).map((row: any) => ({
     ...row,
     image: row.image_url // map DB column to UI property if necessary, though PetListing model used DB names mostly
   })) as unknown as PetListing[];
 }
 
 export async function getPetListingById(id: string) {
-  const supabase = await createClient();
+  const supabase = (await createClient()) as any;
   const { data, error } = await supabase
     .from('pet_listings')
     .select('*, seller:profiles(*)')
@@ -78,7 +78,7 @@ export async function getPetListingById(id: string) {
 }
 
 export async function getVets() {
-  const supabase = await createClient();
+  const supabase = (await createClient()) as any;
   const { data, error } = await supabase
     .from('profiles')
     .select('*, details:veterinarian_details(*)')
@@ -86,14 +86,14 @@ export async function getVets() {
 
   if (error) throw error;
   
-  return (data || []).map(row => ({
+  return (data || []).map((row: any) => ({
     ...row,
     details: row.details[0] // veterinarian_details is a 1:1 relation but returned as array in join
   })) as unknown as Vet[];
 }
 
 export async function getVetById(id: string) {
-  const supabase = await createClient();
+  const supabase = (await createClient()) as any;
   const { data, error } = await supabase
     .from('profiles')
     .select('*, details:veterinarian_details(*)')
@@ -109,7 +109,7 @@ export async function getVetById(id: string) {
 }
 
 export async function searchAll(query: string) {
-  const supabase = await createClient();
+  const supabase = (await createClient()) as any;
   
   const [productsRes, petsRes, vetsRes] = await Promise.all([
     supabase.from('products').select('*').ilike('name', `%${query}%`).limit(5),
@@ -118,20 +118,20 @@ export async function searchAll(query: string) {
   ]);
 
   return {
-    products: (productsRes.data || []).map(row => ({
+    products: (productsRes.data || []).map((row: any) => ({
       ...row,
       details: row.details as unknown as ProductDetails,
       inStock: row.stock_quantity > 0
     })) as Product[],
     pets: (petsRes.data || []) as unknown as PetListing[],
-    vets: (vetsRes.data || []).map(row => ({
+    vets: (vetsRes.data || []).map((row: any) => ({
       ...row,
       details: row.details[0]
     })) as unknown as Vet[]
   };
 }
 export async function getUserPets() {
-  const supabase = await createClient();
+  const supabase = (await createClient()) as any;
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return [];
 

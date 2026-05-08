@@ -1,9 +1,7 @@
-import { Database } from './supabase';
-
-export type ProductRow = Database['public']['Tables']['products']['Row'];
-export type PetListingRow = Database['public']['Tables']['pet_listings']['Row'];
-export type ProfileRow = Database['public']['Tables']['profiles']['Row'];
-export type VetDetailRow = Database['public']['Tables']['veterinarian_details']['Row'];
+// Loosened types — the generated Database types are stale and don't include
+// all tables (veterinarian_details, orders, order_items, etc.).
+// These manual interfaces give us just enough structure for the UI layer
+// while we rely on `as any` Supabase casts at the data-access boundary.
 
 export interface ProductDetails {
   image: string;
@@ -19,17 +17,56 @@ export interface ProductDetails {
   subscribeDiscountPercent?: number;
 }
 
-export interface Product extends Omit<ProductRow, 'details'> {
+export interface Product {
+  id: string;
+  name: string;
+  brand: string;
+  category: string;
+  price: number;
+  stock_quantity: number;
   details: ProductDetails;
-  inStock: boolean; // derived from stock_quantity > 0
+  inStock: boolean;
+  created_at?: string;
+  updated_at?: string;
 }
 
-export interface PetListing extends PetListingRow {
-  seller?: ProfileRow;
+export interface PetListing {
+  id: string;
+  name: string;
+  species: string;
+  breed: string;
+  sex: string;
+  age: string;
+  price: number;
+  type: 'Buy' | 'Adopt' | 'Rehome';
+  status: string;
+  image_url?: string;
+  certification_tier?: string;
+  location?: string;
+  seller_id?: string;
+  seller?: any;
+  created_at?: string;
+  [key: string]: any; // allow additional fields
 }
 
-export interface Vet extends ProfileRow {
-  details: VetDetailRow;
+export interface VetDetails {
+  specialization: string;
+  slvc_number: string;
+  slvc_registration?: string;
+  experience_years: number;
+  consultation_fee: number;
+  rating: number;
+  is_available_now: boolean;
+  [key: string]: any;
+}
+
+export interface Vet {
+  id: string;
+  full_name: string | null;
+  avatar_url: string | null;
+  role: string;
+  details: VetDetails;
+  [key: string]: any;
 }
 
 export interface CartItem {
@@ -39,7 +76,7 @@ export interface CartItem {
   product?: Product;
 }
 
-export type OrderStatus = Database['public']['Enums']['order_status'];
+export type OrderStatus = 'Pending' | 'Processing' | 'Shipped' | 'Delivered' | 'Cancelled';
 
 export interface Order {
   id: string;

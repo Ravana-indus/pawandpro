@@ -7,7 +7,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 export async function reservePet(formData: FormData) {
-  const supabase = await createClient()
+  const supabase = (await createClient()) as any
   
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
@@ -21,7 +21,7 @@ export async function reservePet(formData: FormData) {
 }
 
 export async function confirmEscrow(listing_id: string, price: number) {
-  const supabase = await createClient()
+  const supabase = (await createClient()) as any
   
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
@@ -29,11 +29,11 @@ export async function confirmEscrow(listing_id: string, price: number) {
   }
 
   // Use service role client for writes to bypass RLS on this trusted server action
-  const adminSupabase = createServerClient<Database>(
+  const adminSupabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!,
     { cookies: { get() { return undefined; }, set() {}, remove() {} } }
-  )
+  ) as any
 
   const { data: order, error: orderError } = await adminSupabase
     .from('orders')

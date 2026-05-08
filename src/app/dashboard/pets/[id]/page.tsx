@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function PetProfilePage({ params }: { params: Promise<{ id: string }> }) {
   const id = (await params).id;
-  const supabase = await createClient();
+  const supabase = (await createClient()) as any;
   
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return redirect('/login');
