@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 export async function bookAppointment(formData: FormData) {
-  const supabase = (await createClient()) as any
+  const supabase = await createClient()
   
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) throw new Error('Not authenticated')
@@ -30,7 +30,7 @@ export async function bookAppointment(formData: FormData) {
 
   if (error) {
     console.error('Booking error:', error)
-    throw new Error(error.message)
+    return { error: error.message }
   }
 
   revalidatePath('/dashboard')

@@ -55,10 +55,10 @@ export async function POST(req: Request) {
             remove() {}
           }
         }
-      ) as any;
+      );
 
       // Update Order Status
-      const { data: order, error: orderError } = await (supabase as any)
+      const { data: order, error: orderError } = await supabase
         .from('orders')
         .update({ status: 'Delivered' }) // Success
         .eq('id', order_id)

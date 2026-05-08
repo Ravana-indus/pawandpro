@@ -8,7 +8,7 @@ import { getVetById } from "@/lib/queries";
 
 export default async function VetProfilePage({ params }: { params: Promise<{ id: string }> }) {
   const id = (await params).id;
-  const supabase = (await createClient()) as any;
+  const supabase = await createClient();
   
   const { data: { user } } = await supabase.auth.getUser();
 
@@ -92,7 +92,7 @@ export default async function VetProfilePage({ params }: { params: Promise<{ id:
                     <label className="block text-[10px] font-black uppercase mb-1">Select Pet</label>
                     <select name="pet_id" required className="w-full bg-white border border-outline-variant/30 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20">
                       <option value="">Choose a pet</option>
-                      {myPets.map((pet: any) => (
+                      {myPets.map(pet => (
                         <option key={pet.id} value={pet.id}>{pet.name}</option>
                       ))}
                     </select>

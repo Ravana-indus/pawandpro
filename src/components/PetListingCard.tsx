@@ -6,8 +6,7 @@ interface PetListingCardProps {
   pet: PetListing;
 }
 
-export function PetListingCard({ pet: rawPet }: PetListingCardProps) {
-  const pet = rawPet as any;
+export function PetListingCard({ pet }: PetListingCardProps) {
   const getBadgeColor = (tier: string) => {
     switch (tier) {
       case 'Gold': return 'bg-amber-100 text-amber-800 border-amber-200';
@@ -33,7 +32,7 @@ export function PetListingCard({ pet: rawPet }: PetListingCardProps) {
       <div className="relative aspect-[4/3] overflow-hidden bg-surface-container-low">
         <Link href={`/breeders/pet/${pet.id}`}>
           <img
-            src={(pet as any).image_url || (pet as any).image || "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&h=400&fit=crop"}
+            src={pet.image}
             alt={pet.name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           />
@@ -65,17 +64,17 @@ export function PetListingCard({ pet: rawPet }: PetListingCardProps) {
         </p>
         
         <div className="flex gap-2 mb-5">
-           {pet.healthDocs.vaccinated && (
+           {pet.healthDocs?.vaccinated && (
              <span title="Vaccinated" className="w-8 h-8 rounded-full bg-tertiary/10 text-tertiary flex items-center justify-center">
                <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>vaccines</span>
              </span>
            )}
-           {pet.healthDocs.healthCertificate && (
+           {pet.healthDocs?.healthCertificate && (
              <span title="Health Certificate" className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
                <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>description</span>
              </span>
            )}
-           {pet.healthDocs.microchipped && (
+           {pet.healthDocs?.microchipped && (
              <span title="Microchipped" className="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center">
                <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>memory</span>
              </span>

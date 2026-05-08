@@ -44,11 +44,11 @@ export default async function SubscribeBoxPage() {
                   <div className="absolute top-0 right-0 bg-primary text-white text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded-bl-lg z-10">Selected</div>
                   <input type="radio" name="base" className="w-5 h-5 text-primary focus:ring-primary shrink-0" defaultChecked />
                   <div className="w-16 h-16 bg-white rounded-xl overflow-hidden shrink-0 shadow-sm p-1">
-                     <img src={(baseProduct as any).image_url || "/placeholder.png"} className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform" />
+                     <img src={baseProduct.image_url || "/placeholder.png"} className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform" />
                   </div>
                   <div>
                     <h4 className="font-bold text-on-surface line-clamp-1">{baseProduct.name}</h4>
-                    <p className="text-xs text-on-surface-variant mb-1">{(baseProduct as any).specs?.weight || "12kg"} • {baseProduct.brand || "Clinical Core"}</p>
+                    <p className="text-xs text-on-surface-variant mb-1">{baseProduct.specs?.weight || "12kg"} • {baseProduct.brand || "Clinical Core"}</p>
                     <p className="text-sm text-primary font-black">Rs. {baseProduct.price.toLocaleString()} / mo</p>
                   </div>
                 </label>
@@ -79,7 +79,7 @@ export default async function SubscribeBoxPage() {
                   <div className="absolute top-0 right-0 bg-primary/20 text-primary text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded-bl-lg rounded-tr-lg z-10">+ 1 Selected</div>
                   <input type="checkbox" className="w-5 h-5 text-primary focus:ring-primary rounded shrink-0" defaultChecked />
                   <div className="w-16 h-16 bg-white rounded-xl overflow-hidden shrink-0 shadow-sm p-1">
-                     <img src={(supplementProduct as any).image_url || "/placeholder.png"} className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform" />
+                     <img src={supplementProduct.image_url || "/placeholder.png"} className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform" />
                   </div>
                   <div>
                     <h4 className="font-bold text-on-surface line-clamp-1">{supplementProduct.name}</h4>

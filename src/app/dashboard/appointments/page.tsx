@@ -1,18 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { DashboardSidebar } from "@/components/DashboardSidebar";
 import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = 'force-dynamic';
 
 export default async function AppointmentsPage() {
-  const supabase = (await createClient()) as any;
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect('/login');
-  }
 
   const { data: appointments } = await supabase
     .from('appointments')
@@ -24,8 +19,8 @@ export default async function AppointmentsPage() {
     .eq('parent_id', user?.id)
     .order('scheduled_at', { ascending: true });
 
-  const upcomingAppointments = appointments?.filter((a: any) => new Date(a.scheduled_at) >= new Date() && a.status !== 'Cancelled') || [];
-  const pastAppointments = appointments?.filter((a: any) => new Date(a.scheduled_at) < new Date() || a.status === 'Cancelled') || [];
+  const upcomingAppointments = appointments?.filter(a => new Date(a.scheduled_at) >= new Date() && a.status !== 'Cancelled') || [];
+  const pastAppointments = appointments?.filter(a => new Date(a.scheduled_at) < new Date() || a.status === 'Cancelled') || [];
 
   return (
     <div className="pt-24 pb-32 px-6 md:px-12 max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">
@@ -51,7 +46,7 @@ export default async function AppointmentsPage() {
            <div className="space-y-4">
               {upcomingAppointments.length === 0 ? (
                 <div className="text-on-surface-variant text-sm p-4 bg-surface-container-low rounded-2xl border border-dashed border-outline-variant/30 text-center">No upcoming appointments.</div>
-              ) : upcomingAppointments.map((appt: any) => {
+              ) : upcomingAppointments.map(appt => {
                  const dateObj = new Date(appt.scheduled_at);
                  return (
                   <div key={appt.id} className="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/10 flex flex-col sm:flex-row gap-6 justify-between items-start sm:items-center hover:bg-surface-container transition-colors">
@@ -91,7 +86,7 @@ export default async function AppointmentsPage() {
            <div className="space-y-4">
               {pastAppointments.length === 0 ? (
                 <div className="text-on-surface-variant text-sm p-4 bg-surface-container-low rounded-2xl border border-dashed border-outline-variant/30 text-center">No past records found.</div>
-              ) : pastAppointments.map((appt: any) => {
+              ) : pastAppointments.map(appt => {
                  const dateObj = new Date(appt.scheduled_at);
                  return (
                   <div key={appt.id} className="bg-surface-container-low p-5 rounded-2xl border border-outline-variant/10 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">

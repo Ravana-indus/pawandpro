@@ -1,18 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { DashboardSidebar } from "@/components/DashboardSidebar";
 import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = 'force-dynamic';
 
 export default async function OrderHistoryPage() {
-  const supabase = (await createClient()) as any;
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect('/login');
-  }
 
   const { data: orders } = await supabase
     .from('orders')
@@ -27,7 +22,7 @@ export default async function OrderHistoryPage() {
     .eq('buyer_id', user?.id)
     .order('created_at', { ascending: false });
 
-  const mappedOrders = orders?.map((order: any) => ({
+  const mappedOrders = orders?.map(order => ({
     id: order.id.slice(0, 8).toUpperCase(),
     status: order.status,
     date: new Date(order.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
@@ -87,7 +82,7 @@ export default async function OrderHistoryPage() {
               </Link>
             </div>
           ) : (
-          mappedOrders.map((order: any) => (
+          mappedOrders.map(order => (
              <div key={order.id} className="bg-surface-container-lowest border border-outline-variant/20 rounded-3xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow group">
                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-6 border-b border-outline-variant/10">
                   <div className="flex items-center gap-4">
@@ -106,7 +101,7 @@ export default async function OrderHistoryPage() {
                </div>
                
                <div className="space-y-6">
-                  {order.items.map((item: any, idx: number) => (
+                  {order.items.map((item, idx) => (
                      <div key={idx} className="flex gap-6 items-center">
                        <div className="w-20 h-20 bg-white rounded-xl overflow-hidden shrink-0 border border-outline-variant/20 shadow-sm p-1 relative">
                           {item.product.subscribeDiscountPercent > 0 && (

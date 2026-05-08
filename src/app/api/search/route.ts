@@ -10,7 +10,7 @@ export async function GET(req: Request) {
       return NextResponse.json({ results: [] });
     }
 
-    const supabase = (await createClient()) as any;
+    const supabase = await createClient();
 
     // Perform parallel searches
     const [productsRes, petsRes, vetsRes] = await Promise.all([
@@ -34,7 +34,7 @@ export async function GET(req: Request) {
     ]);
 
     const results = [
-      ... (productsRes.data || []).map((p: any) => ({
+      ... (productsRes.data || []).map(p => ({
         id: p.id,
         title: p.name,
         subtitle: p.category,
@@ -42,7 +42,7 @@ export async function GET(req: Request) {
         type: 'product',
         url: `/marketplace/product/${p.id}`
       })),
-      ... (petsRes.data || []).map((p: any) => ({
+      ... (petsRes.data || []).map(p => ({
         id: p.id,
         title: p.name,
         subtitle: `${p.breed} • ${p.age}`,
@@ -50,7 +50,7 @@ export async function GET(req: Request) {
         type: 'pet',
         url: `/breeders/pet/${p.id}`
       })),
-      ... (vetsRes.data || []).map((v: any) => ({
+      ... (vetsRes.data || []).map(v => ({
         id: v.id,
         title: v.full_name,
         subtitle: v.specialization,

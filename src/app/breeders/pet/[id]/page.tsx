@@ -34,7 +34,7 @@ export default async function PetDetailPage({
       <div className="mb-6 flex items-center gap-2 text-sm text-on-surface-variant">
         <Link href="/breeders" className="hover:text-primary transition-colors">Marketplace &amp; Peers</Link>
         <span className="material-symbols-outlined text-xs">chevron_right</span>
-        <Link href="/breeders/profile" className="hover:text-primary transition-colors">{pet.seller?.full_name || 'Verified Breeder'}</Link>
+        <Link href="/breeders/profile" className="hover:text-primary transition-colors">{pet.breederName}</Link>
         <span className="material-symbols-outlined text-xs">chevron_right</span>
         <span className="font-bold text-on-surface">{pet.name} ({pet.breed})</span>
       </div>
@@ -45,19 +45,19 @@ export default async function PetDetailPage({
           <div className="aspect-[4/3] bg-surface-container-lowest rounded-3xl border border-outline-variant/20 overflow-hidden relative shadow-sm">
             <div className="absolute top-6 left-6 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-1 shadow-sm border border-amber-200 backdrop-blur-md bg-amber-100/90 text-amber-800 z-10">
               <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>workspace_premium</span>
-              {pet.certification_tier}
+              {pet.certificationTier}
             </div>
             <img
               alt={pet.name}
               className="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
-              src={pet.image_url || "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&h=400&fit=crop"}
+              src={pet.image || "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=800&h=400&fit=crop"}
             />
           </div>
           
           <div className="flex gap-4 overflow-x-auto pb-2 snap-x">
              {[1, 2, 3].map((i) => (
                <div key={i} className={`w-24 h-24 sm:w-32 sm:h-32 rounded-2xl cursor-pointer snap-start shrink-0 border-2 ${i === 1 ? 'border-primary' : 'border-transparent'} overflow-hidden relative`}>
-                 <img src={pet.image_url || "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&h=400&fit=crop"} alt="Thumbnail" className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" />
+                 <img src={pet.image || "https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400&h=400&fit=crop"} alt="Thumbnail" className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity" />
                </div>
              ))}
           </div>
@@ -69,16 +69,16 @@ export default async function PetDetailPage({
              </h2>
              
              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                <div className={`p-4 rounded-xl border flex flex-col gap-2 bg-tertiary-container/10 border-tertiary/20 text-tertiary shadow-sm`}>
-                  <span className="material-symbols-outlined text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>vaccines</span>
+                <div className={`p-4 rounded-xl border flex flex-col gap-2 ${pet.healthDocs?.vaccinated ? 'bg-tertiary-container/10 border-tertiary/20 text-tertiary shadow-sm' : 'bg-surface-container border-outline-variant/10 text-on-surface-variant'}`}>
+                  <span className="material-symbols-outlined text-2xl" style={{ fontVariationSettings: pet.healthDocs?.vaccinated ? "'FILL' 1" : "'FILL' 0" }}>vaccines</span>
                   <span className="font-bold text-sm">Vaccinated (DHPPI)</span>
                 </div>
-                <div className={`p-4 rounded-xl border flex flex-col gap-2 bg-secondary-container/10 border-secondary/20 text-secondary shadow-sm`}>
-                  <span className="material-symbols-outlined text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>memory</span>
+                <div className={`p-4 rounded-xl border flex flex-col gap-2 ${pet.healthDocs?.microchipped ? 'bg-secondary-container/10 border-secondary/20 text-secondary shadow-sm' : 'bg-surface-container border-outline-variant/10 text-on-surface-variant'}`}>
+                  <span className="material-symbols-outlined text-2xl" style={{ fontVariationSettings: pet.healthDocs?.microchipped ? "'FILL' 1" : "'FILL' 0" }}>memory</span>
                   <span className="font-bold text-sm">Microchipped (ISO)</span>
                 </div>
-                <div className={`p-4 rounded-xl border flex flex-col gap-2 bg-primary-container/10 border-primary/20 text-primary shadow-sm`}>
-                  <span className="material-symbols-outlined text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>verified</span>
+                <div className={`p-4 rounded-xl border flex flex-col gap-2 ${pet.healthDocs?.healthCertificate ? 'bg-primary-container/10 border-primary/20 text-primary shadow-sm' : 'bg-surface-container border-outline-variant/10 text-on-surface-variant'}`}>
+                  <span className="material-symbols-outlined text-2xl" style={{ fontVariationSettings: pet.healthDocs?.healthCertificate ? "'FILL' 1" : "'FILL' 0" }}>verified</span>
                   <span className="font-bold text-sm">Vet Certified</span>
                 </div>
              </div>
@@ -124,7 +124,7 @@ export default async function PetDetailPage({
              </div>
              <div className="bg-surface-container-lowest border border-outline-variant/20 p-4 rounded-2xl flex flex-col gap-1">
                <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant max-w-[80%] line-clamp-1">Location</span>
-               <span className="font-bold text-on-surface text-lg">Colombo</span>
+               <span className="font-bold text-on-surface text-lg">{pet.location.split(',')[0]}</span>
              </div>
              <div className="bg-surface-container-lowest border border-outline-variant/20 p-4 rounded-2xl flex flex-col gap-1">
                <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant max-w-[80%] line-clamp-1">Species</span>
@@ -133,7 +133,7 @@ export default async function PetDetailPage({
           </div>
 
           <p className="text-on-surface-variant text-base mb-8 leading-relaxed">
-            A healthy, playful, and well-socialized {pet.sex?.toLowerCase() || ''} {pet.breed} puppy. Raised in a clinical environment with early neurological stimulation (ENS) and exposed to common household noises. Fully weaned onto premium clinical nutrition.
+            A healthy, playful, and well-socialized {pet.sex.toLowerCase()} {pet.breed} puppy. Raised in a clinical environment with early neurological stimulation (ENS) and exposed to common household noises. Fully weaned onto premium clinical nutrition.
           </p>
 
           <div className="bg-surface-container-lowest rounded-2xl p-6 border border-outline-variant/20 mb-8 shadow-sm group">
@@ -144,7 +144,7 @@ export default async function PetDetailPage({
                     <span className="material-symbols-outlined text-primary">apartment</span>
                   </div>
                   <div>
-                    <h4 className="font-bold text-on-surface">{pet.seller?.full_name || 'Verified Breeder'}</h4>
+                    <h4 className="font-bold text-on-surface">{pet.breederName}</h4>
                     <div className="flex items-center gap-1 text-xs text-amber-600 font-bold mt-0.5">
                       <span className="material-symbols-outlined text-[14px]">star</span> 4.9 Rating
                     </div>

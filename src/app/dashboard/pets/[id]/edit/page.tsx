@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function EditPetPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
-  const supabase = (await createClient()) as any;
+  const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
   const { data: pet } = await supabase

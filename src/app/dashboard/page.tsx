@@ -7,7 +7,7 @@ import { createClient } from "@/lib/supabase/server";
 export const dynamic = 'force-dynamic';
 
 export default async function DashboardPage() {
-  const supabase = (await createClient()) as any;
+  const supabase = await createClient();
   
   const { data: { user } } = await supabase.auth.getUser();
   
@@ -71,7 +71,7 @@ export default async function DashboardPage() {
               <Link href="/dashboard/pets" className="text-primary font-bold text-sm hover:underline">View All</Link>
             </div>
             <div className="space-y-4">
-              {myPets.map((pet: any) => (
+              {myPets.map(pet => (
                 <Link key={pet.id} href={`/dashboard/pets/${pet.id}`} className="flex items-center gap-4 bg-surface-container-low p-4 rounded-xl hover:bg-surface-container cursor-pointer transition-colors border border-outline-variant/10 group">
                   <div className="w-16 h-16 rounded-xl bg-surface-container overflow-hidden shrink-0 shadow-sm border border-outline-variant/10">
                     <img

@@ -5,7 +5,7 @@ import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 export async function createPet(formData: FormData) {
-  const supabase = (await createClient()) as any
+  const supabase = await createClient()
   
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) throw new Error('Not authenticated')
@@ -33,7 +33,7 @@ export async function createPet(formData: FormData) {
 
   if (error) {
     console.error('Error creating pet:', error)
-    throw new Error(error.message)
+    return { error: error.message }
   }
 
   revalidatePath('/dashboard')
@@ -43,7 +43,7 @@ export async function createPet(formData: FormData) {
 }
 
 export async function deletePet(formData: FormData) {
-  const supabase = (await createClient()) as any
+  const supabase = await createClient()
   
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) throw new Error('Not authenticated')
@@ -58,7 +58,7 @@ export async function deletePet(formData: FormData) {
 
   if (error) {
     console.error('Error deleting pet:', error)
-    throw new Error(error.message)
+    return { error: error.message }
   }
 
   revalidatePath('/dashboard')

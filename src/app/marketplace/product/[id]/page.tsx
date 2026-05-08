@@ -70,7 +70,7 @@ export default async function ProductDetailPage({
           </p>
 
           <div className="mt-auto space-y-6">
-            <AddToCartButton productId={product.id} variant="primary" />
+            <AddToCartButton productId={product.id} variant="add-to-cart" price={product.price} />
             
             {product.details.subscribeDiscountPercent && product.details.subscribeDiscountPercent > 0 && (
               <div className="bg-primary/5 p-6 rounded-2xl border border-primary/20 flex items-center justify-between">
@@ -83,7 +83,7 @@ export default async function ProductDetailPage({
                     <p className="text-xs text-on-surface-variant">Cancel or skip anytime. Free delivery always.</p>
                   </div>
                 </div>
-                <AddToCartButton productId={product.id} variant="secondary" isSubscription={true} />
+                <AddToCartButton productId={product.id} variant="add-to-cart" price={product.price * (1 - product.details.subscribeDiscountPercent/100)} isSubscription={true} />
               </div>
             )}
           </div>
@@ -93,10 +93,10 @@ export default async function ProductDetailPage({
               <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>local_shipping</span>
               <span className="font-medium">Free Delivery Options</span>
             </div>
-            {(product as any).expiryDate && (
+            {product.expiryDate && (
               <div className="flex items-center gap-2">
                  <span className="material-symbols-outlined text-secondary" style={{ fontVariationSettings: "'FILL' 1" }}>verified_user</span>
-                 <span className="font-medium">Exp: {(product as any).expiryDate}</span>
+                 <span className="font-medium">Exp: {product.expiryDate}</span>
               </div>
             )}
           </div>

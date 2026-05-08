@@ -22,7 +22,7 @@ export default async function CheckoutSuccessPage({
     );
   }
   
-  const supabase = (await createClient()) as any;
+  const supabase = await createClient();
   
   // Fetch real order data
   const { data: order } = await supabase

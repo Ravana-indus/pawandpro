@@ -340,11 +340,11 @@ export default function BookingForm({ initialPets, initialVets }: BookingFormPro
               </div>
               <div className="flex-1">
                 <h4 className="font-bold text-on-surface">{vet.full_name}</h4>
-                <p className="text-sm text-on-surface-variant">{vet.details.specialization} • {vet.details.slvc_number}</p>
+                <p className="text-sm text-on-surface-variant">{v.details.specialization} • {v.details.slvc_number}</p>
               </div>
               <div className="flex items-center gap-1 text-amber-500">
                 <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                <span className="text-sm font-bold text-on-surface">{vet.details.rating || 5.0}</span>
+                <span className="text-sm font-bold text-on-surface">{v.details.rating || 5.0}</span>
               </div>
             </div>
 
@@ -368,7 +368,7 @@ export default function BookingForm({ initialPets, initialVets }: BookingFormPro
             <div className="p-6 md:p-8 bg-surface-container-low/50 space-y-3 text-sm">
               <div className="flex justify-between">
                 <span className="text-on-surface-variant">Consultation Fee</span>
-                <span className="font-bold text-on-surface">Rs. {vet.details.consultation_fee.toLocaleString()}</span>
+                <span className="font-bold text-on-surface">Rs. {v.details.consultation_fee.toLocaleString()}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-on-surface-variant">Home Visit Surcharge</span>
@@ -383,7 +383,7 @@ export default function BookingForm({ initialPets, initialVets }: BookingFormPro
               <div className="border-t border-outline-variant/20 pt-3 flex justify-between text-base">
                 <span className="font-bold text-on-surface">Total Estimated</span>
                 <span className="font-black text-primary text-xl">
-                  Rs. {(vet.details.consultation_fee + 1500 + (selectedService === "vaccination" ? 3500 : 0)).toLocaleString()}
+                  Rs. {(v.details.consultation_fee + 1500 + (selectedService === "vaccination" ? 3500 : 0)).toLocaleString()}
                 </span>
               </div>
             </div>
