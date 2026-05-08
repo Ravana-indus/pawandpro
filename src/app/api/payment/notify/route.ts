@@ -60,7 +60,7 @@ export async function POST(req: Request) {
       // Update Order Status
       const { data: order, error: orderError } = await supabase
         .from('orders')
-        .update({ status: 'delivered' }) // Success
+        .update({ status: 'delivered' } as any) // Success
         .eq('id', order_id)
         .select('*, order_items(*)')
         .single();
@@ -80,7 +80,7 @@ export async function POST(req: Request) {
           // Mark pet as Sold
           await supabase
             .from('pet_listings')
-            .update({ status: 'Sold' })
+            .update({ status: 'Sold' } as any)
             .eq('id', item.pet_listing_id);
         }
       }
