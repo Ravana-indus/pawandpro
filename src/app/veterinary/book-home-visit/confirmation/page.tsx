@@ -86,7 +86,7 @@ export default async function BookingConfirmationPage() {
               </div>
               <div>
                 <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-1">Amount</p>
-                <p className="font-black text-primary text-xl">Rs. {(vet.details.consultation_fee + 5000).toLocaleString()}</p>
+                <p className="font-black text-primary text-xl">Rs. {((vet.details.consultation_fee || 0) + 5000).toLocaleString()}</p>
               </div>
             </div>
           </div>

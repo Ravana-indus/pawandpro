@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { DashboardSidebar } from "@/components/DashboardSidebar";
 import { createClient } from "@/lib/supabase/server";
 
@@ -9,10 +10,14 @@ export default async function RecordsPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
+  if (!user) {
+    redirect('/login');
+  }
+
   const { data: pets } = await supabase
     .from('pets')
     .select('*')
-    .eq('owner_id', user?.id);
+    .eq('owner_id', user.id);
 
   const userPets = pets || [];
 

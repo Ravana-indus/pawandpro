@@ -30,21 +30,21 @@ export function VetCard({ vet }: VetCardProps) {
       <div className="flex items-center gap-4 mb-5 text-sm">
         <div className="flex items-center gap-1.5">
           <span className="material-symbols-outlined text-amber-500" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-          <span className="font-bold">{(vet.details.rating || 0).toFixed(1)}</span>
-          <span className="text-on-surface-variant">({vet.details.reviews_count || 0})</span>
+          <span className="font-bold">4.5</span>
+          <span className="text-on-surface-variant">(0)</span>
         </div>
         <div className="w-1 h-1 bg-outline-variant rounded-full"></div>
         <div className="text-on-surface-variant">
-           {vet.details.years_experience} Years Exp.
+           {vet.details.experience_years || 0} Years Exp.
         </div>
       </div>
 
       <div className="flex flex-wrap gap-2 mb-6">
-        {((vet.details.languages as string[]) || []).map(lang => (
-          <span key={lang} className="px-2 py-1 bg-surface-container-low text-on-surface-variant rounded-md text-xs font-medium border border-outline-variant/20">
-            {lang}
+        {vet.details.specialization && (
+          <span className="px-2 py-1 bg-surface-container-low text-on-surface-variant rounded-md text-xs font-medium border border-outline-variant/20">
+            {vet.details.specialization}
           </span>
-        ))}
+        )}
       </div>
 
       <div className="mt-auto space-y-3">
@@ -54,7 +54,7 @@ export function VetCard({ vet }: VetCardProps) {
                 <span className="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span> Available
               </span>
            </div>
-           <span className="font-bold">Rs. {vet.details.consultation_fee.toLocaleString()}</span>
+            <span className="font-bold">Rs. {(vet.details.consultation_fee || 0).toLocaleString()}</span>
         </div>
         
         <Link href={`/veterinary/profile/${vet.id}`} className="block text-center w-full py-3 bg-surface-container text-primary font-bold rounded-xl text-sm hover:bg-primary hover:text-white transition-colors">

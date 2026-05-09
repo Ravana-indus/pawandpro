@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { DashboardSidebar } from "@/components/DashboardSidebar";
 import { createClient } from "@/lib/supabase/server";
 
@@ -8,6 +9,10 @@ export const dynamic = 'force-dynamic';
 export default async function OrderHistoryPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect('/login');
+  }
 
   const { data: orders } = await supabase
     .from('orders')
@@ -19,7 +24,7 @@ export default async function OrderHistoryPage() {
         pet_listing:pet_listings (*)
       )
     `)
-    .eq('buyer_id', user?.id)
+    .eq('buyer_id', user.id)
     .order('created_at', { ascending: false });
 
   const mappedOrders = orders?.map(order => ({
@@ -27,7 +32,7 @@ export default async function OrderHistoryPage() {
     status: order.status,
     date: new Date(order.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
     total: order.total_amount,
-    items: order.order_items.map((item: any) => {
+    items: (order.order_items as unknown as any[]).map((item: any) => {
        if (item.pet_listing) {
           return {
              product: {

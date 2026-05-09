@@ -77,7 +77,7 @@ export default async function PetProfilePage({ params }: { params: Promise<{ id:
                </p>
              </div>
              <div className="flex items-center gap-2">
-               <form action={deletePet}>
+                <form action={deletePet as any}>
                  <input type="hidden" name="pet_id" value={pet.id} />
                  <DeletePetButton />
                </form>

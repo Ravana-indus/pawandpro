@@ -43,7 +43,7 @@ export async function getProductById(id: string) {
 }
 
 export async function getPetListings(options: {
-  species?: string;
+  species?: 'Dog' | 'Cat' | 'Bird' | 'Fish' | 'Small Pet' | 'Reptile';
   type?: 'Buy' | 'Adopt' | 'Rehome';
   limit?: number;
 } = {}) {
@@ -88,7 +88,7 @@ export async function getVets() {
   
   return (data || []).map(row => ({
     ...row,
-    details: row.details[0] // veterinarian_details is a 1:1 relation but returned as array in join
+    details: row.details // veterinarian_details is a 1:1 relation
   })) as unknown as Vet[];
 }
 
@@ -104,7 +104,7 @@ export async function getVetById(id: string) {
   if (error) return null;
   return {
     ...data,
-    details: data.details[0]
+    details: data.details
   } as unknown as Vet;
 }
 
@@ -126,7 +126,7 @@ export async function searchAll(query: string) {
     pets: (petsRes.data || []) as unknown as PetListing[],
     vets: (vetsRes.data || []).map(row => ({
       ...row,
-      details: row.details[0]
+      details: row.details
     })) as unknown as Vet[]
   };
 }

@@ -40,7 +40,7 @@ export default async function CheckoutSuccessPage({
     );
   }
 
-  const firstItem = order.order_items[0];
+  const firstItem = (order.order_items as unknown as any[])[0];
   const displayImage = firstItem.product?.details?.image || firstItem.pet_listing?.image_url;
   const displayName = firstItem.product?.name || firstItem.pet_listing?.name;
 
@@ -83,7 +83,7 @@ export default async function CheckoutSuccessPage({
                  <span className="material-symbols-outlined text-primary">receipt_long</span> Order Summary
                </h3>
                <div className="space-y-4 mb-4 max-h-40 overflow-y-auto">
-                 {order.order_items.map((item: any, idx: number) => (
+                  {(order.order_items as unknown as any[]).map((item: any, idx: number) => (
                    <div key={idx} className="flex items-center gap-4 border-b border-outline-variant/10 pb-2">
                       <img src={item.product?.details?.image || item.pet_listing?.image_url} className="w-10 h-10 rounded object-contain mix-blend-multiply bg-white" />
                       <div className="flex-1">

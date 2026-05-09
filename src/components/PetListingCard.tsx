@@ -32,16 +32,16 @@ export function PetListingCard({ pet }: PetListingCardProps) {
       <div className="relative aspect-[4/3] overflow-hidden bg-surface-container-low">
         <Link href={`/breeders/pet/${pet.id}`}>
           <img
-            src={pet.image}
+            src={pet.image_url || "/placeholder.png"}
             alt={pet.name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           />
         </Link>
-        <div className={`absolute top-4 left-4 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1 border shadow-sm backdrop-blur-md bg-white/90 ${getBadgeColor(pet.certificationTier)}`}>
+        <div className={`absolute top-4 left-4 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1 border shadow-sm backdrop-blur-md bg-white/90 $                {getBadgeColor(pet.certification_tier)}`}>
            <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>
-             {getBadgeIcon(pet.certificationTier)}
-           </span>
-           {pet.certificationTier}
+              {getBadgeIcon(pet.certification_tier)}
+            </span>
+            {pet.certification_tier}
         </div>
         <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm text-on-surface">
            {pet.type}
@@ -82,11 +82,11 @@ export function PetListingCard({ pet }: PetListingCardProps) {
         </div>
 
         <div className="mt-auto px-4 py-3 bg-surface-container-low rounded-xl">
-           <p className="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold mb-1 flex items-center gap-1">
-             <span className="material-symbols-outlined text-[14px]">location_on</span>
-             {pet.location}
-           </p>
-           <p className="text-xs font-medium text-on-surface truncate">{pet.breederName}</p>
+            <p className="text-[10px] text-on-surface-variant uppercase tracking-wider font-bold mb-1 flex items-center gap-1">
+              <span className="material-symbols-outlined text-[14px]">location_on</span>
+              {pet.seller?.contact_email?.split(',')[0] || 'N/A'}
+            </p>
+            <p className="text-xs font-medium text-on-surface truncate">{pet.seller?.full_name || 'Breeder'}</p>
         </div>
 
         <div className="mt-4 flex items-center justify-between">

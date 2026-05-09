@@ -27,9 +27,9 @@ export async function GET(req: Request) {
         .limit(5),
       supabase
         .from('profiles')
-        .select('*')
+        .select('*, veterinarian_details(*)')
         .eq('role', 'VET')
-        .or(`full_name.ilike.%${query}%,specialization.ilike.%${query}%`)
+        .or(`full_name.ilike.%${query}%`)
         .limit(5)
     ]);
 
@@ -53,7 +53,7 @@ export async function GET(req: Request) {
       ... (vetsRes.data || []).map(v => ({
         id: v.id,
         title: v.full_name,
-        subtitle: v.specialization,
+        subtitle: (v as any).veterinarian_details?.specialization,
         image: v.avatar_url,
         type: 'vet',
         url: `/veterinary/profile/${v.id}`

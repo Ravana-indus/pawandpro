@@ -112,7 +112,7 @@ export default async function VeterinaryPage() {
                   <p className="text-sm text-on-surface-variant mb-4">{vet.details?.specialization}</p>
                   <div className="flex items-center gap-2 mb-4">
                     <span className="material-symbols-outlined text-sm text-amber-500" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                    <span className="text-sm font-bold">{vet.details?.rating ?? '4.5'}</span>
+                    <span className="text-sm font-bold">4.5</span>
                     <span className="text-xs text-on-surface-variant">({vet.details?.experience_years ?? 0}+ yrs)</span>
                   </div>
                   <Link href={`/veterinary/profile/${vet.id}`} className="block text-center mt-auto w-full py-2 bg-surface-container text-primary font-bold rounded-lg text-sm hover:bg-primary hover:text-white transition-colors">

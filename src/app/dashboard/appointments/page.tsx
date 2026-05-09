@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { DashboardSidebar } from "@/components/DashboardSidebar";
 import { createClient } from "@/lib/supabase/server";
 
@@ -9,6 +10,10 @@ export default async function AppointmentsPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
+  if (!user) {
+    redirect('/login');
+  }
+
   const { data: appointments } = await supabase
     .from('appointments')
     .select(`
@@ -16,7 +21,7 @@ export default async function AppointmentsPage() {
       vet:profiles!vet_id (*),
       pet:pets!pet_id (*)
     `)
-    .eq('parent_id', user?.id)
+    .eq('parent_id', user.id)
     .order('scheduled_at', { ascending: true });
 
   const upcomingAppointments = appointments?.filter(a => new Date(a.scheduled_at) >= new Date() && a.status !== 'Cancelled') || [];

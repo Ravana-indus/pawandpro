@@ -60,7 +60,7 @@ export async function POST(req: Request) {
       // Update Order Status
       const { data: order, error: orderError } = await supabase
         .from('orders')
-        .update({ status: 'delivered' } as any) // Success
+        .update({ status: 'Delivered' })
         .eq('id', order_id)
         .select('*, order_items(*)')
         .single();
@@ -68,7 +68,7 @@ export async function POST(req: Request) {
       if (orderError) throw orderError;
 
       // Handle inventory for each item
-      for (const item of order.order_items) {
+      for (const item of order.order_items as unknown as any[]) {
         if (item.product_id) {
           // Decrement product stock
           await supabase.rpc('decrement_product_stock', { 
@@ -80,7 +80,7 @@ export async function POST(req: Request) {
           // Mark pet as Sold
           await supabase
             .from('pet_listings')
-            .update({ status: 'Sold' } as any)
+            .update({ status: 'Sold' })
             .eq('id', item.pet_listing_id);
         }
       }

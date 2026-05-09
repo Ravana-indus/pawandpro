@@ -87,7 +87,7 @@ export default async function EditPetPage({ params }: { params: Promise<{ id: st
                     <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Breed</label>
                     <input 
                        type="text" 
-                       defaultValue={pet.breed}
+                       defaultValue={pet.breed || ''}
                        className="w-full bg-surface-container-low border border-outline-variant/30 text-on-surface rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium"
                     />
                  </div>
@@ -105,7 +105,7 @@ export default async function EditPetPage({ params }: { params: Promise<{ id: st
                        <label className="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Current Age</label>
                         <input 
                            type="text" 
-                           defaultValue={pet.age}
+                           defaultValue={pet.age || ''}
                            className="w-full bg-surface-container-low border border-outline-variant/30 text-on-surface rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium"
                         />
                     </div>
