@@ -1,0 +1,25 @@
+-- =============================================================================
+-- SUPER ADMIN SEED INSTRUCTIONS
+-- =============================================================================
+-- 
+-- FOR SECURITY REASONS, DO NOT COMMIT ACTUAL USER CREATION SQL WITH REAL EMAILS.
+-- 
+-- To create your initial Super Admin:
+-- 
+-- 1. Go to Supabase Dashboard > Authentication > Users
+-- 2. Create a new user with your email
+-- 3. Copy their UUID from the user list
+-- 4. Run this SQL (substituting your UUID):
+-- 
+-- UPDATE public.profiles 
+-- SET role = 'SUPER_ADMIN' 
+-- WHERE id = 'YOUR-USER-UUID-HERE';
+-- 
+-- Alternatively, you can run this SQL to invite by email:
+-- 
+-- SELECT auth.invite_user_by_email('your-admin-email@example.com');
+-- 
+-- Then after they accept, update their role to SUPER_ADMIN.
+--
+-- NEVER commit real email addresses or user data to the repository.
+-- =============================================================================
