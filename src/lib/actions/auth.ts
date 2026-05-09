@@ -11,9 +11,12 @@ export async function signUp(formData: FormData) {
   const full_name = formData.get('full_name') as string
   let role = formData.get('role') as string // 'PARENT', 'SELLER', 'VET'
 
-  const validRoles = ['PARENT', 'SELLER', 'VET', 'ADMIN'];
+  const validRoles = [
+    'CUSTOMER', 'BREEDER', 'INDIVIDUAL_SELLER', 'VET',
+    'ADOPTION_PROVIDER', 'GROOMER', 'PET_TRAINER', 'TRANSPORTER'
+  ];
   if (!validRoles.includes(role)) {
-    role = 'PARENT';
+    role = 'CUSTOMER';
   }
 
   const { error } = await supabase.auth.signUp({
