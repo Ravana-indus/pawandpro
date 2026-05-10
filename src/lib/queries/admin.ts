@@ -1,7 +1,10 @@
 import { createClient } from '@/lib/supabase/server'
+import { Database } from '@/types/supabase'
+
+type UserRole = Database['public']['Enums']['user_role']
 
 export interface UserFilters {
-  role?: string
+  role?: UserRole
   status?: 'active' | 'banned' | 'pending'
   search?: string
   verified?: boolean
@@ -50,6 +53,8 @@ export async function getUsers(
     query = query.lte('banned_until', new Date().toISOString())
   } else if (filters.status === 'active') {
     query = query.or(`banned_until.is.null,banned_until.gt.${new Date().toISOString()}`)
+  } else if (filters.status === 'pending') {
+    query = query.eq('verification_status', 'pending')
   }
 
   if (filters.search) {
@@ -302,4 +307,26 @@ export async function getCommunityPosts(filters: { type?: string; approved?: boo
 
   if (error) return { data: [], total: 0, error: error.message }
   return { data, total: count || 0, error: null }
+}
+
+export async function getProductById(id: string) {
+  const supabase = await createClient()
+  const { data, error } = await supabase
+    .from('products')
+    .select('*, seller:profiles!products_seller_id_fkey(full_name, contact_email)')
+    .eq('id', id)
+    .single()
+  if (error) return { data: null, error: error.message }
+  return { data, error: null }
+}
+
+export async function getListingById(id: string) {
+  const supabase = await createClient()
+  const { data, error } = await supabase
+    .from('pet_listings')
+    .select('*, seller:profiles!pet_listings_seller_id_fkey(full_name, contact_email)')
+    .eq('id', id)
+    .single()
+  if (error) return { data: null, error: error.message }
+  return { data, error: null }
 }
