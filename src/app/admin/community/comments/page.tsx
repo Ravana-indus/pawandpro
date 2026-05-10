@@ -1,20 +1,32 @@
-import React from "react"
-import { createClient } from "@/lib/supabase/server"
-import { CommentsPageClient } from "@/components/admin/CommentsPageClient"
+import React from 'react'
+import { listAdminComments } from '@/lib/admin/queries/trust-safety'
+import { CommentsPageClient } from '@/components/admin/CommentsPageClient'
 
-export default async function CommentsPage() {
-  const supabase = await createClient()
-  const { data: comments } = await supabase
-    .from('community_comments')
-    .select(`
-      *,
-      author:profiles!community_comments_author_id_fkey(full_name),
-      post:community_posts!community_comments_post_id_fkey(title)
-    `)
-    .order('created_at', { ascending: false })
-    .limit(50)
+interface CommentsPageProps {
+  searchParams: Promise<{ page?: string; perPage?: string; search?: string; isApproved?: string }>
+}
+
+export default async function CommentsPage({ searchParams }: CommentsPageProps) {
+  const params = await searchParams
+  const page = Number(params.page) || 1
+  const perPage = Number(params.perPage) || 25
+  const search = params.search || null
+  const isApproved = params.isApproved || null
+
+  const result = await listAdminComments({
+    page,
+    perPage,
+    search,
+    isApproved,
+  })
 
   return (
-    <CommentsPageClient comments={comments || []} />
+    <CommentsPageClient
+      comments={result.data || []}
+      total={result.total}
+      page={page}
+      perPage={perPage}
+      filters={{ search, isApproved }}
+    />
   )
 }

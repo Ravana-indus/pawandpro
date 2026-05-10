@@ -8,12 +8,24 @@ import { approveComment, deleteComment } from "@/lib/actions/admin"
 
 interface CommentsPageClientProps {
   comments: Record<string, unknown>[]
+  total?: number
+  page?: number
+  perPage?: number
+  filters?: { search?: string | null; isApproved?: string | null }
 }
 
-export function CommentsPageClient({ comments }: CommentsPageClientProps) {
+export function CommentsPageClient({ comments, total, page = 1, perPage = 25, filters }: CommentsPageClientProps) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [deleteTarget, setDeleteTarget] = useState<{ id: string; content: string } | null>(null)
+
+  function goToPage(newPage: number) {
+    const params = new URLSearchParams(window.location.search)
+    params.set('page', String(newPage))
+    startTransition(() => {
+      router.push(`/admin/community/comments?${params.toString()}`)
+    })
+  }
 
   const columns = [
     { key: "content", label: "Content", render: (v: unknown) => (
@@ -84,7 +96,50 @@ export function CommentsPageClient({ comments }: CommentsPageClientProps) {
           </h1>
           <p className="text-on-surface-variant">Moderate and manage community comments</p>
         </div>
-        <DataTable columns={columns} data={comments} actions={actions} />
+        {filters && (
+          <div className="flex gap-4 bg-surface-container-low p-4 rounded-xl">
+            <input
+              type="search"
+              placeholder="Search comments..."
+              defaultValue={filters.search || ''}
+              onChange={(e) => {
+                const v = e.target.value
+                const params = new URLSearchParams(window.location.search)
+                if (v.length > 2 || v === '') params.set('search', v)
+                else params.delete('search')
+                params.delete('page')
+                startTransition(() => {
+                  router.push(`/admin/community/comments?${params.toString()}`)
+                })
+              }}
+              className="flex-1 px-4 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/20"
+            />
+            <select
+              value={filters.isApproved || ''}
+              onChange={(e) => {
+                const params = new URLSearchParams(window.location.search)
+                if (e.target.value) params.set('isApproved', e.target.value)
+                else params.delete('isApproved')
+                params.delete('page')
+                startTransition(() => {
+                  router.push(`/admin/community/comments?${params.toString()}`)
+                })
+              }}
+              className="px-4 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/20"
+            >
+              <option value="">All Status</option>
+              <option value="true">Approved</option>
+              <option value="false">Pending</option>
+            </select>
+          </div>
+        )}
+        <DataTable
+          columns={columns}
+          data={comments}
+          actions={actions}
+          isLoading={isPending}
+          pagination={total !== undefined ? { page, perPage, total, onPageChange: goToPage } : undefined}
+        />
       </div>
     </>
   )
