@@ -21,7 +21,6 @@ type OrderDetail = {
   status: OrderStatus | null
   total_amount: number
   created_at: string | null
-  updated_at?: string | null
   buyer: {
     full_name: string | null
     contact_email: string | null
@@ -90,12 +89,6 @@ export default async function OrderDetailPage({ params }: OrderDetailPageProps) 
             <p className="text-sm text-on-surface-variant">Created</p>
             <p className="text-on-surface mt-1">
               {order.created_at ? new Date(order.created_at).toLocaleString() : 'N/A'}
-            </p>
-          </div>
-          <div>
-            <p className="text-sm text-on-surface-variant">Last Updated</p>
-            <p className="text-on-surface mt-1">
-              {order.updated_at ? new Date(order.updated_at).toLocaleString() : 'N/A'}
             </p>
           </div>
         </div>

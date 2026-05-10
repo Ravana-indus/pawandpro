@@ -1,6 +1,5 @@
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { EntityHeader } from '@/components/admin/EntityHeader'
@@ -137,11 +136,9 @@ export default async function ListingDetailPage({ params }: ListingDetailPagePro
         {typedListing.image_url ? (
           <div className="pt-2">
             <p className="text-sm text-on-surface-variant mb-2">Image</p>
-            <Image
+            <img
               src={typedListing.image_url}
               alt={typedListing.name}
-              width={800}
-              height={480}
               className="w-full max-w-lg rounded-xl h-auto"
             />
           </div>

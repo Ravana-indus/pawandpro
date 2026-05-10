@@ -160,12 +160,10 @@ export async function transitionAdminOrderStatus(orderId: string, status: string
       return { success: false, error: beforeError?.message ?? 'Order not found' }
     }
 
-    const nowIso = new Date().toISOString()
     const { data: after, error: updateError } = await supabase
       .from('orders')
       .update({
         status: parsedStatus,
-        updated_at: nowIso,
       } as unknown as Database['public']['Tables']['orders']['Update'])
       .eq('id', orderId)
       .select('*')

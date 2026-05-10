@@ -277,7 +277,7 @@ describe('transitionAdminOrderStatus', () => {
     expect(requireAdminPermission).not.toHaveBeenCalled()
   })
 
-  it('writes orders.updated_at and audit with reason', async () => {
+  it('writes order status change audit with reason', async () => {
     const { supabase, spies } = createOrderSupabaseMock()
     vi.mocked(requireAdminPermission).mockResolvedValue(createAdminContext(supabase))
 
@@ -288,7 +288,6 @@ describe('transitionAdminOrderStatus', () => {
     expect(spies.update).toHaveBeenCalledWith(
       expect.objectContaining({
         status: 'Delivered',
-        updated_at: expect.any(String),
       }),
     )
     expect(writeAdminAuditLog).toHaveBeenCalledWith(
