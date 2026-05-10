@@ -1,9 +1,11 @@
 import React from "react"
+import Link from "next/link"
 import { KPICard } from "@/components/KPICard"
-import { getAnalyticsDashboard } from "@/lib/queries/admin"
+import { AdminHealthPanel } from "@/components/admin/AdminHealthPanel"
+import { getAdminDashboardMetrics } from "@/lib/admin/queries/dashboard"
 
 export default async function AdminDashboardPage() {
-  const metrics = await getAnalyticsDashboard()
+  const metrics = await getAdminDashboardMetrics()
 
   return (
     <div className="space-y-6">
@@ -19,7 +21,6 @@ export default async function AdminDashboardPage() {
         <KPICard
           title="Total Users"
           value={metrics.totalUsers}
-          change={{ value: 12, type: 'increase' }}
           icon="people"
           color="primary"
         />
@@ -32,7 +33,6 @@ export default async function AdminDashboardPage() {
         <KPICard
           title="Total Orders"
           value={metrics.totalOrders}
-          change={{ value: 8, type: 'increase' }}
           icon="shopping_cart"
           color="secondary"
         />
@@ -54,41 +54,52 @@ export default async function AdminDashboardPage() {
           icon="flag"
           color="error"
         />
+        <KPICard
+          title="Open Bookings"
+          value={metrics.openBookings}
+          icon="calendar_month"
+          color="secondary"
+        />
       </div>
 
-      {/* Quick Actions */}
-      <div className="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/20">
-        <h2 className="text-lg font-bold text-on-surface mb-4">Quick Actions</h2>
-        <div className="flex flex-wrap gap-3">
-          <a
-            href="/admin/verifications"
-            className="px-4 py-2 rounded-xl bg-tertiary/10 text-tertiary font-medium hover:bg-tertiary/20 flex items-center gap-2"
-          >
-            <span className="material-symbols-outlined text-sm">check_circle</span>
-            Review Verifications
-          </a>
-          <a
-            href="/admin/community/queue"
-            className="px-4 py-2 rounded-xl bg-error/10 text-error font-medium hover:bg-error/20 flex items-center gap-2"
-          >
-            <span className="material-symbols-outlined text-sm">flag</span>
-            Moderate Content
-          </a>
-          <a
-            href="/admin/users"
-            className="px-4 py-2 rounded-xl bg-primary/10 text-primary font-medium hover:bg-primary/20 flex items-center gap-2"
-          >
-            <span className="material-symbols-outlined text-sm">manage_accounts</span>
-            Manage Users
-          </a>
-          <a
-            href="/admin/audit-logs"
-            className="px-4 py-2 rounded-xl bg-secondary/10 text-secondary font-medium hover:bg-secondary/20 flex items-center gap-2"
-          >
-            <span className="material-symbols-outlined text-sm">history</span>
-            View Audit Logs
-          </a>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Quick Actions */}
+        <div className="bg-surface-container-low p-6 rounded-2xl border border-outline-variant/20">
+          <h2 className="text-lg font-bold text-on-surface mb-4">Quick Actions</h2>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/admin/verifications"
+              className="px-4 py-2 rounded-xl bg-tertiary/10 text-tertiary font-medium hover:bg-tertiary/20 flex items-center gap-2"
+            >
+              <span className="material-symbols-outlined text-sm">check_circle</span>
+              Review Verifications
+            </Link>
+            <Link
+              href="/admin/community/queue"
+              className="px-4 py-2 rounded-xl bg-error/10 text-error font-medium hover:bg-error/20 flex items-center gap-2"
+            >
+              <span className="material-symbols-outlined text-sm">flag</span>
+              Moderate Content
+            </Link>
+            <Link
+              href="/admin/users"
+              className="px-4 py-2 rounded-xl bg-primary/10 text-primary font-medium hover:bg-primary/20 flex items-center gap-2"
+            >
+              <span className="material-symbols-outlined text-sm">manage_accounts</span>
+              Manage Users
+            </Link>
+            <Link
+              href="/admin/audit-logs"
+              className="px-4 py-2 rounded-xl bg-secondary/10 text-secondary font-medium hover:bg-secondary/20 flex items-center gap-2"
+            >
+              <span className="material-symbols-outlined text-sm">history</span>
+              View Audit Logs
+            </Link>
+          </div>
         </div>
+
+        {/* Health Panel */}
+        <AdminHealthPanel />
       </div>
 
       {/* Recent Activity would go here - placeholder */}
