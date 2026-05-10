@@ -4,7 +4,7 @@ import React from 'react'
 import { useRouter } from 'next/navigation'
 import { EntityForm } from '@/components/admin/EntityForm'
 import { FormField } from '@/components/admin/FormField'
-import { updateListing } from '@/lib/actions/admin'
+import { updateAdminListingMetadata } from '@/lib/admin/mutations/marketplace'
 
 const speciesOptions = [
   { value: 'Dog', label: 'Dog' },
@@ -16,6 +16,7 @@ const speciesOptions = [
 ]
 
 const sexOptions = [
+  { value: '', label: 'Not specified' },
   { value: 'Male', label: 'Male' },
   { value: 'Female', label: 'Female' },
 ]
@@ -33,6 +34,7 @@ const statusOptions = [
 ]
 
 const certificationOptions = [
+  { value: '', label: 'Not specified' },
   { value: 'Gold', label: 'Gold' },
   { value: 'Silver', label: 'Silver' },
   { value: 'Verified', label: 'Verified' },
@@ -60,7 +62,7 @@ export function ListingEditForm({ listing }: ListingEditFormProps) {
   const router = useRouter()
 
   async function handleUpdateListing(formData: FormData) {
-    const result = await updateListing(listing.id, formData)
+    const result = await updateAdminListingMetadata(listing.id, formData)
     if (result.success) {
       router.push(`/admin/marketplace/listings/${listing.id}`)
       router.refresh()

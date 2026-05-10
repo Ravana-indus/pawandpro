@@ -6,6 +6,7 @@ import { writeAdminAuditLog } from '@/lib/admin/audit'
 import type { AdminAuditWriterClient } from '@/lib/admin/audit'
 import { requireAdminPermission } from '@/lib/admin/permissions'
 import type { AdminPermission } from '@/lib/admin/types'
+import { deleteAdminListing, updateAdminListingMetadata } from '@/lib/admin/mutations/marketplace'
 import {
   updateUserSchema,
   banUserSchema,
@@ -339,14 +340,15 @@ export async function createListing(formData: FormData) {
 
     const validated = listingSchema.parse(data)
 
-    const { data: listing, error } = await (supabase.from as any)('listings')
+    const { data: listing, error } = await supabase
+      .from('pet_listings')
       .insert(validated as any)
       .select()
       .single()
 
     if (error) return { error: error.message }
 
-    await logAudit(supabase, userId, 'create_listing', 'listings', (listing as any).id, { name: validated.name })
+    await logAudit(supabase, userId, 'create_listing', 'pet_listings', listing.id, { name: validated.name })
     revalidatePath('/admin/marketplace/listings')
     return { success: true, listing }
   } catch (e) {
@@ -356,48 +358,11 @@ export async function createListing(formData: FormData) {
 }
 
 export async function updateListing(id: string, formData: FormData) {
-  try {
-    const { supabase, userId } = await requireAdmin('updateListing')
-
-    const data: Record<string, unknown> = {}
-    const fields = ['name', 'species', 'breed', 'sex', 'age', 'price', 'seller_id', 'type', 'status', 'certification_tier', 'image_url']
-    for (const field of fields) {
-      const value = formData.get(field)
-      if (value !== null && value !== '') {
-        if (field === 'price') {
-          data[field] = Number(value)
-        } else {
-          data[field] = value
-        }
-      }
-    }
-
-    const { error } = await (supabase.from as any)('listings').update(data as any).eq('id', id)
-
-    if (error) return { error: error.message }
-
-    await logAudit(supabase, userId, 'update_listing', 'listings', id, { fields: Object.keys(data) as any })
-    revalidatePath('/admin/marketplace/listings')
-    return { success: true }
-  } catch (e) {
-    return { error: e instanceof Error ? e.message : 'Unknown error' }
-  }
+  return updateAdminListingMetadata(id, formData)
 }
 
-export async function deleteListing(id: string) {
-  try {
-    const { supabase, userId } = await requireAdmin('deleteListing')
-    const { error } = await (supabase.from as any)('listings').delete().eq('id', id)
-
-    if (error) return { error: error.message }
-
-    await logAudit(supabase, userId, 'delete_listing', 'listings', id, {})
-    revalidatePath('/admin/marketplace/listings')
-    revalidatePath(`/admin/marketplace/listings/${id}`)
-    return { success: true }
-  } catch (e) {
-    return { error: e instanceof Error ? e.message : 'Unknown error' }
-  }
+export async function deleteListing(id: string, reason?: string) {
+  return deleteAdminListing(id, reason ?? '')
 }
 
 export async function updateOrderStatus(id: string, status: string) {

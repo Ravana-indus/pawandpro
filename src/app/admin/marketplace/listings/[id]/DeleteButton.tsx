@@ -11,14 +11,27 @@ interface DeleteButtonProps {
 
 export function DeleteButton({ listingId }: DeleteButtonProps) {
   const [open, setOpen] = useState(false)
-  const [isPending, startTransition] = useTransition()
+  const [error, setError] = useState<string | null>(null)
+  const [, startTransition] = useTransition()
   const router = useRouter()
 
-  function handleDelete() {
+  function handleDelete(reason?: string) {
+    const trimmedReason = reason?.trim() ?? ''
+    if (!trimmedReason) {
+      setError('Reason is required to delete a listing.')
+      return
+    }
+
+    setError(null)
     startTransition(async () => {
-      await deleteListing(listingId)
-      router.push('/admin/marketplace/listings')
-      router.refresh()
+      const result = await deleteListing(listingId, trimmedReason)
+      if (result.success) {
+        router.push('/admin/marketplace/listings')
+        router.refresh()
+        return
+      }
+
+      setError(typeof result.error === 'string' ? result.error : 'Failed to delete listing')
     })
   }
 
@@ -31,12 +44,15 @@ export function DeleteButton({ listingId }: DeleteButtonProps) {
       >
         Delete
       </button>
+      {error ? <p className="mt-2 text-sm text-error">{error}</p> : null}
       <ConfirmDialog
         open={open}
         title="Delete Listing"
         message="Are you sure you want to delete this listing? This action cannot be undone."
         confirmLabel="Delete"
         variant="danger"
+        showNotes
+        notesPlaceholder="Reason for deletion (required)"
         onConfirm={handleDelete}
         onCancel={() => setOpen(false)}
       />

@@ -21,6 +21,8 @@ export const banUserSchema = z.object({
   durationDays: z.number().int().min(1).max(365).optional(),
 })
 
+export const reasonSchema = z.string().min(3).max(500)
+
 export const productSchema = z.object({
   name: z.string().min(1, 'Name is required').max(200),
   brand: z.string().optional(),
@@ -43,6 +45,19 @@ export const listingSchema = z.object({
   status: z.enum(['Available', 'Pending', 'Sold']).optional(),
   certification_tier: z.enum(['Gold', 'Silver', 'Verified', 'Shelter']).optional(),
   image_url: z.string().url().optional(),
+})
+
+export const listingMetadataSchema = z.object({
+  name: z.string().min(1),
+  species: z.enum(['Dog', 'Cat', 'Bird', 'Fish', 'Small Pet', 'Reptile']),
+  breed: z.string().nullable().optional(),
+  sex: z.enum(['Male', 'Female']).nullable().optional(),
+  age: z.string().nullable().optional(),
+  price: z.number().positive(),
+  type: z.enum(['Buy', 'Adopt', 'Rehome']),
+  status: z.enum(['Available', 'Pending', 'Sold']).optional(),
+  certification_tier: z.enum(['Gold', 'Silver', 'Verified', 'Shelter']).nullable().optional(),
+  image_url: z.string().url().nullable().optional(),
 })
 
 export const orderStatusSchema = z.enum([
