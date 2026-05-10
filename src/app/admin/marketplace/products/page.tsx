@@ -1,16 +1,31 @@
 import React from "react"
-import { createClient } from "@/lib/supabase/server"
 import { ProductsPageClient } from "@/components/admin/ProductsPageClient"
+import { listAdminProducts } from "@/lib/admin/queries/marketplace"
 
-export default async function ProductsPage() {
-  const supabase = await createClient()
-  const { data: products } = await supabase
-    .from('products')
-    .select('*, seller:profiles!products_seller_id_fkey(full_name, contact_email)')
-    .order('created_at', { ascending: false })
-    .limit(50)
+interface ProductsPageProps {
+  searchParams: Promise<Record<string, string | string[] | undefined>>
+}
+
+function readParam(
+  params: Record<string, string | string[] | undefined>,
+  key: string,
+) {
+  const value = params[key]
+  return Array.isArray(value) ? value[0] : value
+}
+
+export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+  const params = await searchParams
+  const result = await listAdminProducts({
+    page: readParam(params, "page"),
+    perPage: readParam(params, "perPage"),
+    search: readParam(params, "search"),
+    status: readParam(params, "status"),
+    sort: readParam(params, "sort"),
+    direction: readParam(params, "direction"),
+  })
 
   return (
-    <ProductsPageClient products={products || []} />
+    <ProductsPageClient result={result} />
   )
 }

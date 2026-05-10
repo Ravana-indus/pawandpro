@@ -2,19 +2,40 @@
 
 import React, { useState, useTransition } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { deleteProduct } from '@/lib/actions/admin'
-import { DataTable } from '@/components/DataTable'
+import { AdminDataTable } from '@/components/admin/AdminDataTable'
+import { AdminFilterBar } from '@/components/admin/AdminFilterBar'
+import { AdminPagination } from '@/components/admin/AdminPagination'
 import { ConfirmDialog } from '@/components/ConfirmDialog'
+import type { AdminListResult } from '@/lib/admin/types'
+import type { AdminProductListItem } from '@/lib/admin/queries/marketplace'
 
 interface ProductsPageClientProps {
-  products: Record<string, unknown>[]
+  result: AdminListResult<AdminProductListItem>
 }
 
-export function ProductsPageClient({ products }: ProductsPageClientProps) {
+const PRODUCT_STATUS_OPTIONS = [
+  { value: 'Active', label: 'Active' },
+  { value: 'Inactive', label: 'Inactive' },
+  { value: 'Out of Stock', label: 'Out of Stock' },
+]
+
+const PRODUCT_SORT_OPTIONS = [
+  { value: 'created_at', label: 'Created At' },
+  { value: 'name', label: 'Name' },
+  { value: 'price', label: 'Price' },
+  { value: 'brand', label: 'Brand' },
+  { value: 'category', label: 'Category' },
+  { value: 'stock_quantity', label: 'Stock Quantity' },
+  { value: 'status', label: 'Status' },
+]
+
+export function ProductsPageClient({ result }: ProductsPageClientProps) {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [deleteTarget, setDeleteTarget] = useState<{ id: string; name: string } | null>(null)
-  const [isPending, startTransition] = useTransition()
+  const [, startTransition] = useTransition()
 
   const columns = [
     { key: 'name', label: 'Name', sortable: true },
@@ -58,6 +79,9 @@ export function ProductsPageClient({ products }: ProductsPageClientProps) {
     </div>
   )
 
+  const queryEntries = Object.fromEntries(searchParams.entries())
+  delete queryEntries.page
+
   return (
     <>
       <div className="space-y-6">
@@ -67,7 +91,26 @@ export function ProductsPageClient({ products }: ProductsPageClientProps) {
           </h1>
           <p className="text-on-surface-variant">Manage all products in the marketplace</p>
         </div>
-        <DataTable columns={columns} data={products} actions={actions} />
+        <AdminFilterBar
+          basePath="/admin/marketplace/products"
+          searchPlaceholder="Search name, brand, category..."
+          statusOptions={PRODUCT_STATUS_OPTIONS}
+          sortOptions={PRODUCT_SORT_OPTIONS}
+          defaults={{
+            search: searchParams.get('search') ?? '',
+            status: searchParams.get('status') ?? '',
+            sort: searchParams.get('sort') ?? 'created_at',
+            direction: searchParams.get('direction') === 'asc' ? 'asc' : 'desc',
+            perPage: result.perPage,
+          }}
+        />
+        <AdminDataTable columns={columns} data={result.data as Record<string, unknown>[]} actions={actions} />
+        <AdminPagination
+          basePath="/admin/marketplace/products"
+          page={result.page}
+          totalPages={result.totalPages}
+          query={queryEntries}
+        />
       </div>
 
       <ConfirmDialog

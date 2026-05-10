@@ -2,20 +2,40 @@
 
 import React, { useState, useTransition } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { DataTable } from "@/components/DataTable"
+import { useRouter, useSearchParams } from "next/navigation"
+import { AdminDataTable } from "@/components/admin/AdminDataTable"
+import { AdminFilterBar } from "@/components/admin/AdminFilterBar"
+import { AdminPagination } from "@/components/admin/AdminPagination"
 import { ConfirmDialog } from "@/components/ConfirmDialog"
 import { deleteListing } from "@/lib/actions/admin"
+import type { AdminListResult } from "@/lib/admin/types"
+import type { AdminListingListItem } from "@/lib/admin/queries/marketplace"
 
 interface ListingsPageClientProps {
-  listings: Record<string, unknown>[]
+  result: AdminListResult<AdminListingListItem>
 }
 
-export function ListingsPageClient({ listings }: ListingsPageClientProps) {
+const LISTING_STATUS_OPTIONS = [
+  { value: "Available", label: "Available" },
+  { value: "Pending", label: "Pending" },
+  { value: "Sold", label: "Sold" },
+]
+
+const LISTING_SORT_OPTIONS = [
+  { value: "created_at", label: "Created At" },
+  { value: "name", label: "Name" },
+  { value: "price", label: "Price" },
+  { value: "species", label: "Species" },
+  { value: "type", label: "Type" },
+  { value: "status", label: "Status" },
+]
+
+export function ListingsPageClient({ result }: ListingsPageClientProps) {
   const [deleteId, setDeleteId] = useState<string | null>(null)
   const [deleteError, setDeleteError] = useState<string | null>(null)
   const [, startTransition] = useTransition()
   const router = useRouter()
+  const searchParams = useSearchParams()
 
   function handleDelete(reason?: string) {
     if (!deleteId) return
@@ -39,6 +59,9 @@ export function ListingsPageClient({ listings }: ListingsPageClientProps) {
       setDeleteError(typeof result.error === "string" ? result.error : "Failed to delete listing")
     })
   }
+
+  const queryEntries = Object.fromEntries(searchParams.entries())
+  delete queryEntries.page
 
   const columns = [
     { key: "name", label: "Name", sortable: true },
@@ -94,7 +117,26 @@ export function ListingsPageClient({ listings }: ListingsPageClientProps) {
         </h1>
         <p className="text-on-surface-variant">Manage all pet listings in the marketplace</p>
       </div>
-      <DataTable columns={columns} data={listings} actions={actions} />
+      <AdminFilterBar
+        basePath="/admin/marketplace/listings"
+        searchPlaceholder="Search name, species, breed, type..."
+        statusOptions={LISTING_STATUS_OPTIONS}
+        sortOptions={LISTING_SORT_OPTIONS}
+        defaults={{
+          search: searchParams.get("search") ?? "",
+          status: searchParams.get("status") ?? "",
+          sort: searchParams.get("sort") ?? "created_at",
+          direction: searchParams.get("direction") === "asc" ? "asc" : "desc",
+          perPage: result.perPage,
+        }}
+      />
+      <AdminDataTable columns={columns} data={result.data as Record<string, unknown>[]} actions={actions} />
+      <AdminPagination
+        basePath="/admin/marketplace/listings"
+        page={result.page}
+        totalPages={result.totalPages}
+        query={queryEntries}
+      />
       {deleteError ? <p className="text-sm text-error">{deleteError}</p> : null}
       <ConfirmDialog
         open={!!deleteId}

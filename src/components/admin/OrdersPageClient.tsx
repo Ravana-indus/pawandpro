@@ -2,13 +2,17 @@
 
 import React, { useTransition } from "react"
 import Link from "next/link"
-import { DataTable } from "@/components/DataTable"
+import { useRouter, useSearchParams } from "next/navigation"
+import { AdminDataTable } from "@/components/admin/AdminDataTable"
+import { AdminFilterBar } from "@/components/admin/AdminFilterBar"
+import { AdminPagination } from "@/components/admin/AdminPagination"
 import { ConfirmDialog } from "@/components/ConfirmDialog"
 import { cancelOrder } from "@/lib/actions/admin"
-import { useRouter } from "next/navigation"
+import type { AdminListResult } from "@/lib/admin/types"
+import type { AdminOrderListItem } from "@/lib/admin/queries/marketplace"
 
 interface OrdersPageClientProps {
-  orders: Record<string, unknown>[]
+  result: AdminListResult<AdminOrderListItem>
 }
 
 function StatusBadge({ status }: { status: string }) {
@@ -23,9 +27,23 @@ function StatusBadge({ status }: { status: string }) {
   )
 }
 
-export function OrdersPageClient({ orders }: OrdersPageClientProps) {
+const ORDER_STATUS_OPTIONS = [
+  { value: "Processing", label: "Processing" },
+  { value: "In Transit", label: "In Transit" },
+  { value: "Delivered", label: "Delivered" },
+  { value: "Cancelled", label: "Cancelled" },
+]
+
+const ORDER_SORT_OPTIONS = [
+  { value: "created_at", label: "Created At" },
+  { value: "total_amount", label: "Total Amount" },
+  { value: "status", label: "Status" },
+]
+
+export function OrdersPageClient({ result }: OrdersPageClientProps) {
   const router = useRouter()
-  const [isPending, startTransition] = useTransition()
+  const searchParams = useSearchParams()
+  const [, startTransition] = useTransition()
   const [cancelDialogOpen, setCancelDialogOpen] = React.useState(false)
   const [orderToCancel, setOrderToCancel] = React.useState<string | null>(null)
 
@@ -68,6 +86,9 @@ export function OrdersPageClient({ orders }: OrdersPageClientProps) {
     </div>
   )
 
+  const queryEntries = Object.fromEntries(searchParams.entries())
+  delete queryEntries.page
+
   return (
     <>
       <div className="space-y-6">
@@ -77,7 +98,26 @@ export function OrdersPageClient({ orders }: OrdersPageClientProps) {
           </h1>
           <p className="text-on-surface-variant">Manage all marketplace orders</p>
         </div>
-        <DataTable columns={columns} data={orders} actions={actions} />
+        <AdminFilterBar
+          basePath="/admin/marketplace/orders"
+          searchPlaceholder="Search status, shipping, payment..."
+          statusOptions={ORDER_STATUS_OPTIONS}
+          sortOptions={ORDER_SORT_OPTIONS}
+          defaults={{
+            search: searchParams.get("search") ?? "",
+            status: searchParams.get("status") ?? "",
+            sort: searchParams.get("sort") ?? "created_at",
+            direction: searchParams.get("direction") === "asc" ? "asc" : "desc",
+            perPage: result.perPage,
+          }}
+        />
+        <AdminDataTable columns={columns} data={result.data as Record<string, unknown>[]} actions={actions} />
+        <AdminPagination
+          basePath="/admin/marketplace/orders"
+          page={result.page}
+          totalPages={result.totalPages}
+          query={queryEntries}
+        />
       </div>
       <ConfirmDialog
         open={cancelDialogOpen}
