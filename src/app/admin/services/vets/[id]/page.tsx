@@ -8,10 +8,11 @@ import { getHospitals } from "@/lib/queries/admin"
 import Link from "next/link"
 
 interface VetDetailPageProps {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 export default async function VetDetailPage({ params }: VetDetailPageProps) {
+  const { id } = await params
   const supabase = await createClient()
 
   const { data: vet } = await supabase
@@ -24,7 +25,7 @@ export default async function VetDetailPage({ params }: VetDetailPageProps) {
         service_fee
       )
     `)
-    .eq('id', params.id)
+    .eq('id', id)
     .eq('role', 'VET')
     .single()
 
@@ -40,7 +41,7 @@ export default async function VetDetailPage({ params }: VetDetailPageProps) {
         name
       )
     `)
-    .eq('vet_id', params.id)
+    .eq('vet_id', id)
 
   const hospitalsResult = await getHospitals()
   const hospitals = (hospitalsResult.data || []).map((h: any) => ({
