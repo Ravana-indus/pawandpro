@@ -69,6 +69,12 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
           <FormField label="Category" name="category" type="text" defaultValue={product.category || ''} />
           <FormField label="Price" name="price" type="number" defaultValue={product.price} required />
           <FormField label="Stock Quantity" name="stock_quantity" type="number" defaultValue={product.stock_quantity ?? 0} required />
+          <FormField
+            label="Details (JSON)"
+            name="details"
+            type="textarea"
+            defaultValue={product.details ? JSON.stringify(product.details, null, 2) : '{}'}
+          />
         </EntityForm>
       </div>
     )
@@ -139,9 +145,22 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
           {typeof product.details === 'object' && product.details !== null && Object.keys(product.details as object).length > 0 && (
             <div className="mt-6">
               <label className="text-sm font-medium text-on-surface-variant">Details</label>
-              <pre className="mt-2 p-4 bg-surface-container-low rounded-xl text-sm overflow-x-auto">
-                {JSON.stringify(product.details, null, 2)}
-              </pre>
+              <div className="mt-2 p-4 bg-surface-container-low rounded-xl space-y-3">
+                {Object.entries(product.details as Record<string, unknown>).map(([key, value]) => (
+                  <div key={key} className="flex justify-between items-start gap-4">
+                    <span className="text-sm text-on-surface-variant capitalize">
+                      {key.replace(/_/g, ' ')}
+                    </span>
+                    <span className="text-sm text-on-surface text-right font-medium">
+                      {Array.isArray(value)
+                        ? value.join(', ')
+                        : typeof value === 'object'
+                          ? JSON.stringify(value)
+                          : String(value)}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>
