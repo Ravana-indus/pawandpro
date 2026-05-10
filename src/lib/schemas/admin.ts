@@ -28,7 +28,7 @@ export const productSchema = z.object({
   price: z.number().positive('Price must be positive'),
   stock_quantity: z.number().int().min(0),
   seller_id: z.string().uuid().optional(),
-  details: z.record(z.any()).optional(),
+  details: z.record(z.string(), z.unknown()).optional(),
 })
 
 export const listingSchema = z.object({
