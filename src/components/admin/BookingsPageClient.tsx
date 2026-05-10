@@ -1,7 +1,9 @@
 "use client"
 
 import React from "react"
+import Link from "next/link"
 import { DataTable } from "@/components/DataTable"
+import { StatusBadge } from "@/components/admin/StatusBadge"
 
 interface BookingsPageClientProps {
   bookings: Record<string, unknown>[]
@@ -15,15 +17,7 @@ export function BookingsPageClient({ bookings }: BookingsPageClientProps) {
     { key: "customer", label: "Customer", render: (v: unknown) => (v as {full_name: string})?.full_name || 'N/A' },
     { key: "pet", label: "Pet", render: (v: unknown) => (v as {name: string})?.name || 'N/A' },
     { key: "scheduled_at", label: "Date", sortable: true, render: (v: unknown) => new Date(String(v)).toLocaleDateString() },
-    { key: "status", label: "Status", render: (v: unknown) => (
-      <span className={`px-2 py-1 rounded-lg text-xs font-medium ${
-        v === 'Completed' ? 'bg-green-100 text-green-700' :
-        v === 'Scheduled' ? 'bg-blue-100 text-blue-700' :
-        'bg-gray-100 text-gray-600'
-      }`}>
-        {String(v)}
-      </span>
-    )},
+    { key: "status", label: "Status", render: (v: unknown) => <StatusBadge status={String(v)} /> },
     { key: "fee", label: "Fee", render: (v: unknown) => v ? `$${Number(v).toFixed(2)}` : 'N/A' },
   ]
 
@@ -35,7 +29,18 @@ export function BookingsPageClient({ bookings }: BookingsPageClientProps) {
         </h1>
         <p className="text-on-surface-variant">View and manage all service bookings</p>
       </div>
-      <DataTable columns={columns} data={bookings} />
+      <DataTable
+        columns={columns}
+        data={bookings}
+        actions={(row) => (
+          <Link
+            href={`/admin/services/bookings/${row.id}`}
+            className="text-primary hover:underline text-sm"
+          >
+            View
+          </Link>
+        )}
+      />
     </div>
   )
 }

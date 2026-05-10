@@ -607,6 +607,27 @@ export async function updateBookingStatus(id: string, status: string) {
   }
 }
 
+export async function cancelBooking(id: string) {
+  try {
+    await requireAdmin('cancelBooking')
+
+    const supabase = await createClient()
+    const { error } = await supabase
+      .from('service_bookings')
+      .update({ status: 'Cancelled', updated_at: new Date().toISOString() } as any)
+      .eq('id', id)
+
+    if (error) return { error: error.message }
+
+    await logAudit('cancel_booking', 'service_bookings', id, { status: 'Cancelled' })
+    revalidatePath('/admin/services/bookings')
+    revalidatePath(`/admin/services/bookings/${id}`)
+    return { success: true }
+  } catch (e) {
+    return { error: e instanceof Error ? e.message : 'Unknown error' }
+  }
+}
+
 export async function approvePost(id: string) {
   try {
     await requireAdmin('approvePost')
