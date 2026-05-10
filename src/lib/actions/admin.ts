@@ -3,6 +3,8 @@
 import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
+import { requireAdminPermission } from '@/lib/admin/permissions'
+import type { AdminPermission } from '@/lib/admin/types'
 import {
   updateUserSchema,
   banUserSchema,
@@ -16,22 +18,45 @@ import {
   verificationActionSchema,
 } from '@/lib/schemas/admin'
 
+const ADMIN_ACTION_PERMISSION: Record<string, AdminPermission> = {
+  updateUser: 'manage_users',
+  banUser: 'manage_users',
+  unbanUser: 'manage_users',
+  handleVerification: 'verify_sellers',
+  createProduct: 'manage_marketplace',
+  updateProduct: 'manage_marketplace',
+  deleteProduct: 'manage_marketplace',
+  createListing: 'manage_marketplace',
+  updateListing: 'manage_marketplace',
+  deleteListing: 'manage_marketplace',
+  updateOrderStatus: 'manage_orders',
+  cancelOrder: 'manage_orders',
+  createHospital: 'manage_vets',
+  updateHospital: 'manage_vets',
+  linkVetToHospital: 'manage_vets',
+  createAdoptionCenter: 'manage_adoption',
+  updateAdoptionCenter: 'manage_adoption',
+  deleteAdoptionCenter: 'manage_adoption',
+  updateProviderStatus: 'manage_services',
+  updateBookingStatus: 'manage_services',
+  cancelBooking: 'manage_services',
+  approvePost: 'moderate_content',
+  deletePost: 'moderate_content',
+  togglePinPost: 'moderate_content',
+  approveComment: 'moderate_content',
+  deleteComment: 'moderate_content',
+  resolveModerationItem: 'moderate_content',
+}
+
 async function requireAdmin(action: string) {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) throw new Error('Not authenticated')
+  const requiredPermission = ADMIN_ACTION_PERMISSION[action] ?? 'manage_platform_settings'
+  const adminContext = await requireAdminPermission(requiredPermission)
 
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('id, role, full_name')
-    .eq('id', user.id)
-    .single()
-
-  if (!profile || (profile.role !== 'ADMIN' && profile.role !== 'SUPER_ADMIN')) {
-    throw new Error('Unauthorized: Admin access required')
+  if (!adminContext.profile) {
+    throw new Error(`Unauthorized: ${action} requires admin access`)
   }
 
-  return { supabase, userId: user.id, profile }
+  return adminContext
 }
 
 async function logAudit(
@@ -145,7 +170,7 @@ export async function unbanUser(userId: string) {
 
 export async function handleVerification(formData: FormData) {
   try {
-    const { supabase } = await requireAdmin('handleVerification')
+    const { supabase, userId } = await requireAdmin('handleVerification')
 
     const data = {
       sellerId: formData.get('sellerId') as string,
@@ -159,7 +184,7 @@ export async function handleVerification(formData: FormData) {
     const verificationUpdate: Record<string, unknown> = {
       status: validated.status === 'approved' ? 'approved' : 'rejected',
       reviewed_at: new Date().toISOString(),
-      reviewed_by: (await requireAdmin('handleVerification')).userId,
+      reviewed_by: userId,
     }
 
     if (validated.tier) {

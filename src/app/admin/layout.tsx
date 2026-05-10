@@ -1,6 +1,7 @@
 import React from "react"
 import { redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
+import { profileCanAccessAdmin } from "@/lib/admin/permissions"
 import { AdminSidebar } from "@/components/AdminSidebar"
 import { AdminTopBar } from "@/components/AdminTopBar"
 
@@ -22,8 +23,7 @@ export default async function AdminLayout({
     .eq("id", user.id)
     .single()
 
-  const adminRoles = ["SUPER_ADMIN", "ADMIN", "MARKETPLACE_STAFF"]
-  if (!profile || !profile.role || !adminRoles.includes(profile.role)) {
+  if (!profileCanAccessAdmin(profile)) {
     redirect("/dashboard")
   }
 
