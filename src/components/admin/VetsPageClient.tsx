@@ -1,7 +1,9 @@
 "use client"
 
 import React from "react"
+import Link from "next/link"
 import { DataTable } from "@/components/DataTable"
+import { StatusBadge } from "@/components/admin/StatusBadge"
 
 interface VetsPageClientProps {
   vets: Record<string, unknown>[]
@@ -13,23 +15,19 @@ export function VetsPageClient({ vets, hospitals }: VetsPageClientProps) {
     { key: "full_name", label: "Name", sortable: true },
     { key: "contact_email", label: "Email", sortable: true },
     { key: "specialization", label: "Specialization", render: (v: unknown) => String(v || 'General') },
-    { key: "is_verified", label: "Verified", render: (v: unknown) => (
-      <span className={`px-2 py-1 rounded-lg text-xs font-medium ${v ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
-        {v ? 'Verified' : 'Pending'}
-      </span>
-    )},
+    { key: "is_verified", label: "Verified", render: (v: unknown) => <StatusBadge status={v ? 'verified' : 'unverified'} /> },
     { key: "service_fee", label: "Fee", render: (v: unknown) => v ? `$${Number(v).toFixed(2)}` : 'N/A' },
     { key: "created_at", label: "Joined", sortable: true, render: (v: unknown) => new Date(String(v)).toLocaleDateString() },
   ]
 
   const actions = (row: Record<string, unknown>) => (
     <div className="flex gap-2 justify-end">
-      <button className="px-3 py-1 rounded-lg text-xs font-medium bg-primary/10 text-primary hover:bg-primary/20">
+      <Link
+        href={`/admin/services/vets/${row.id as string}`}
+        className="px-3 py-1 rounded-lg text-xs font-medium bg-primary/10 text-primary hover:bg-primary/20"
+      >
         View
-      </button>
-      <button className="px-3 py-1 rounded-lg text-xs font-medium bg-tertiary/10 text-tertiary hover:bg-tertiary/20">
-        Link Hospital
-      </button>
+      </Link>
     </div>
   )
 
@@ -51,12 +49,13 @@ export function VetsPageClient({ vets, hospitals }: VetsPageClientProps) {
               <div className="text-sm text-on-surface-variant">{hospital.address}</div>
             </div>
             <div className="flex items-center gap-2">
-              <span className={`px-2 py-1 rounded-lg text-xs font-medium ${hospital.is_verified ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'}`}>
-                {hospital.is_verified ? 'Verified' : 'Pending'}
-              </span>
-              <button className="px-3 py-1 rounded-lg text-xs font-medium bg-primary/10 text-primary hover:bg-primary/20">
+              <StatusBadge status={hospital.is_verified ? 'verified' : 'unverified'} />
+              <Link
+                href={`/admin/services/vets/hospitals/${hospital.id}`}
+                className="px-3 py-1 rounded-lg text-xs font-medium bg-primary/10 text-primary hover:bg-primary/20"
+              >
                 Manage
-              </button>
+              </Link>
             </div>
           </div>
         ))}
