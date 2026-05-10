@@ -364,6 +364,7 @@ export async function deleteListing(id: string) {
 
     await logAudit('delete_listing', 'listings', id, {})
     revalidatePath('/admin/marketplace/listings')
+    revalidatePath(`/admin/marketplace/listings/${id}`)
     return { success: true }
   } catch (e) {
     return { error: e instanceof Error ? e.message : 'Unknown error' }

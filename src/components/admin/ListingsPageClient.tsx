@@ -1,13 +1,30 @@
 "use client"
 
-import React from "react"
+import React, { useState, useTransition } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { DataTable } from "@/components/DataTable"
+import { ConfirmDialog } from "@/components/ConfirmDialog"
+import { deleteListing } from "@/lib/actions/admin"
 
 interface ListingsPageClientProps {
   listings: Record<string, unknown>[]
 }
 
 export function ListingsPageClient({ listings }: ListingsPageClientProps) {
+  const [deleteId, setDeleteId] = useState<string | null>(null)
+  const [, startTransition] = useTransition()
+  const router = useRouter()
+
+  function handleDelete() {
+    if (!deleteId) return
+    startTransition(async () => {
+      await deleteListing(deleteId)
+      router.refresh()
+    })
+    setDeleteId(null)
+  }
+
   const columns = [
     { key: "name", label: "Name", sortable: true },
     { key: "seller", label: "Seller", render: (v: unknown) => (v as { full_name: string } | null)?.full_name || 'N/A' },
@@ -39,10 +56,10 @@ export function ListingsPageClient({ listings }: ListingsPageClientProps) {
 
   const actions = (row: Record<string, unknown>) => (
     <div className="flex gap-2 justify-end">
-      <button className="px-3 py-1 rounded-lg text-xs font-medium bg-primary/10 text-primary hover:bg-primary/20">
+      <Link href={`/admin/marketplace/listings/${row.id as string}`} className="px-3 py-1 rounded-lg text-xs font-medium bg-primary/10 text-primary hover:bg-primary/20">
         Edit
-      </button>
-      <button className="px-3 py-1 rounded-lg text-xs font-medium bg-error/10 text-error hover:bg-error/20">
+      </Link>
+      <button onClick={() => setDeleteId(row.id as string)} className="px-3 py-1 rounded-lg text-xs font-medium bg-error/10 text-error hover:bg-error/20">
         Delete
       </button>
     </div>
@@ -57,6 +74,15 @@ export function ListingsPageClient({ listings }: ListingsPageClientProps) {
         <p className="text-on-surface-variant">Manage all pet listings in the marketplace</p>
       </div>
       <DataTable columns={columns} data={listings} actions={actions} />
+      <ConfirmDialog
+        open={!!deleteId}
+        title="Delete Listing"
+        message="Are you sure you want to delete this listing? This action cannot be undone."
+        confirmLabel="Delete"
+        variant="danger"
+        onConfirm={handleDelete}
+        onCancel={() => setDeleteId(null)}
+      />
     </div>
   )
 }
