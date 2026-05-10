@@ -13,11 +13,11 @@ interface User {
   full_name: string | null
   contact_email: string | null
   phone: string | null
-  role: string
-  is_verified: boolean
+  role: string | null
+  is_verified: boolean | null
   verification_status: string | null
   banned_until: string | null
-  created_at: string
+  created_at: string | null
 }
 
 interface UserDetailClientProps {
@@ -87,8 +87,8 @@ export function UserDetailClient({ user }: UserDetailClientProps) {
           <FormField label="Full Name" name="full_name" type="text" defaultValue={user.full_name || ''} required />
           <FormField label="Contact Email" name="contact_email" type="email" defaultValue={user.contact_email || ''} required />
           <FormField label="Phone" name="phone" type="text" defaultValue={user.phone || ''} />
-          <FormField label="Role" name="role" type="select" defaultValue={user.role} options={ROLE_OPTIONS} required />
-          <FormField label="Verified" name="is_verified" type="checkbox" defaultValue={user.is_verified} />
+          <FormField label="Role" name="role" type="select" defaultValue={user.role || ''} options={ROLE_OPTIONS} required />
+          <FormField label="Verified" name="is_verified" type="checkbox" defaultValue={user.is_verified ?? false} />
         </EntityForm>
       </div>
     )
@@ -173,7 +173,7 @@ export function UserDetailClient({ user }: UserDetailClientProps) {
             </div>
             <div>
               <label className="text-sm font-medium text-on-surface-variant">Created</label>
-              <p className="text-on-surface mt-1">{new Date(user.created_at).toLocaleDateString()}</p>
+              <p className="text-on-surface mt-1">{user.created_at ? new Date(user.created_at).toLocaleDateString() : 'N/A'}</p>
             </div>
           </div>
         </div>
