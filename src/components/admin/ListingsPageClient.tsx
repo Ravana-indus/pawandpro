@@ -30,6 +30,7 @@ export function ListingsPageClient({ listings }: ListingsPageClientProps) {
     startTransition(async () => {
       const result = await deleteListing(deleteId, trimmedReason)
       if (result.success) {
+        setDeleteError(null)
         router.refresh()
         setDeleteId(null)
         return
@@ -73,7 +74,13 @@ export function ListingsPageClient({ listings }: ListingsPageClientProps) {
       <Link href={`/admin/marketplace/listings/${row.id as string}`} className="px-3 py-1 rounded-lg text-xs font-medium bg-primary/10 text-primary hover:bg-primary/20">
         Edit
       </Link>
-      <button onClick={() => setDeleteId(row.id as string)} className="px-3 py-1 rounded-lg text-xs font-medium bg-error/10 text-error hover:bg-error/20">
+      <button
+        onClick={() => {
+          setDeleteError(null)
+          setDeleteId(row.id as string)
+        }}
+        className="px-3 py-1 rounded-lg text-xs font-medium bg-error/10 text-error hover:bg-error/20"
+      >
         Delete
       </button>
     </div>
