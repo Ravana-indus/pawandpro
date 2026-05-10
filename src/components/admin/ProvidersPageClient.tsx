@@ -2,30 +2,56 @@
 
 import React, { useTransition } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { DataTable } from '@/components/DataTable'
-import { updateProviderStatus } from '@/lib/actions/admin'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { AdminDataTable } from '@/components/admin/AdminDataTable'
+import { AdminFilterBar } from '@/components/admin/AdminFilterBar'
+import { ActionReasonDialog } from '@/components/admin/ActionReasonDialog'
+import { updateAdminProviderVerification } from '@/lib/admin/mutations/services'
 import { StatusBadge } from '@/components/admin/StatusBadge'
+import type { AdminListResult } from '@/lib/admin/types'
+import type { AdminProviderListItem } from '@/lib/admin/queries/services'
 
 interface ProvidersPageClientProps {
-  data: Record<string, unknown>[]
+  result: AdminListResult<AdminProviderListItem>
 }
 
-export function ProvidersPageClient({ data }: ProvidersPageClientProps) {
+const PROVIDER_STATUS_OPTIONS = [
+  { value: "verified", label: "Verified" },
+  { value: "unverified", label: "Unverified" },
+]
+
+const PROVIDER_SORT_OPTIONS = [
+  { value: "updated_at", label: "Updated At" },
+  { value: "service_type", label: "Service Type" },
+  { value: "specialization", label: "Specialization" },
+  { value: "service_fee", label: "Service Fee" },
+  { value: "is_verified", label: "Verification" },
+]
+
+export function ProvidersPageClient({ result }: ProvidersPageClientProps) {
   const [, startTransition] = useTransition()
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const queryEntries = Object.fromEntries(searchParams.entries())
+  delete queryEntries.page
 
   const handleVerifyToggle = (id: string, currentVerified: boolean) => {
-    startTransition(async () => {
-      await updateProviderStatus(id, !currentVerified)
-      router.refresh()
-    })
+    return async (reason: string) => {
+      const actionResult = await updateAdminProviderVerification(id, !currentVerified, reason)
+      if (actionResult.success) {
+        startTransition(() => {
+          router.refresh()
+        })
+      }
+
+      return actionResult
+    }
   }
 
   const columns = [
     { key: "full_name", label: "Name", sortable: true, render: (_: unknown, row: Record<string, unknown>) => ((row.profile as {full_name: string})?.full_name || 'N/A') },
     { key: "service_type", label: "Service Type", sortable: true },
-    { key: "specialization", label: "Specialization" },
+    { key: "specialization", label: "Specialization", render: (v: unknown) => v ? String(v) : "General" },
     { key: "is_verified", label: "Verified", render: (v: unknown) => (
       <StatusBadge status={v ? 'verified' : 'pending'} />
     )},
@@ -45,16 +71,13 @@ export function ProvidersPageClient({ data }: ProvidersPageClientProps) {
       >
         View
       </Link>
-      <button
-        onClick={() => handleVerifyToggle(row.id as string, row.is_verified as boolean)}
-        className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors ${
-          row.is_verified
-            ? 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200'
-            : 'bg-green-100 text-green-700 hover:bg-green-200'
-        }`}
-      >
-        {row.is_verified ? 'Unverify' : 'Verify'}
-      </button>
+      <ActionReasonDialog
+        triggerLabel={row.is_verified ? "Unverify" : "Verify"}
+        title={row.is_verified ? "Unverify Provider" : "Verify Provider"}
+        description="Provide a reason for this verification change."
+        confirmLabel={row.is_verified ? "Unverify Provider" : "Verify Provider"}
+        onConfirm={handleVerifyToggle(row.id as string, row.is_verified as boolean)}
+      />
     </div>
   )
 
@@ -66,7 +89,30 @@ export function ProvidersPageClient({ data }: ProvidersPageClientProps) {
         </h1>
         <p className="text-on-surface-variant">Manage groomers, trainers, and transporters</p>
       </div>
-      <DataTable columns={columns} data={data} actions={actions} />
+      <AdminFilterBar
+        basePath="/admin/services/providers"
+        searchPlaceholder="Search service type, specialization, license..."
+        statusOptions={PROVIDER_STATUS_OPTIONS}
+        sortOptions={PROVIDER_SORT_OPTIONS}
+        defaults={{
+          search: searchParams.get("search") ?? "",
+          status: searchParams.get("status") ?? "",
+          sort: searchParams.get("sort") ?? "updated_at",
+          direction: searchParams.get("direction") === "asc" ? "asc" : "desc",
+          perPage: result.perPage,
+        }}
+      />
+      <AdminDataTable
+        columns={columns}
+        data={result.data as Record<string, unknown>[]}
+        actions={actions}
+        pagination={{
+          basePath: "/admin/services/providers",
+          page: result.page,
+          totalPages: result.totalPages,
+          query: queryEntries,
+        }}
+      />
     </div>
   )
 }

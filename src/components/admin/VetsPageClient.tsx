@@ -2,21 +2,69 @@
 
 import React from "react"
 import Link from "next/link"
-import { DataTable } from "@/components/DataTable"
+import { useSearchParams } from "next/navigation"
+import { AdminDataTable } from "@/components/admin/AdminDataTable"
+import { AdminFilterBar } from "@/components/admin/AdminFilterBar"
 import { StatusBadge } from "@/components/admin/StatusBadge"
+import type { AdminListResult } from "@/lib/admin/types"
+import type { AdminHospitalListItem } from "@/lib/admin/queries/services"
 
 interface VetsPageClientProps {
-  vets: Record<string, unknown>[]
-  hospitals: { id: string; name: string; address: string | null; is_verified: boolean | null }[]
+  result: AdminListResult<Record<string, unknown>>
+  hospitals: AdminHospitalListItem[]
 }
 
-export function VetsPageClient({ vets, hospitals }: VetsPageClientProps) {
+const VET_SORT_OPTIONS = [
+  { value: "created_at", label: "Joined Date" },
+  { value: "full_name", label: "Name" },
+  { value: "contact_email", label: "Email" },
+]
+
+function getVetServiceDetails(row: Record<string, unknown>) {
+  const value = row.service_provider_details
+  if (Array.isArray(value)) {
+    return (value[0] ?? {}) as Record<string, unknown>
+  }
+
+  if (value && typeof value === "object") {
+    return value as Record<string, unknown>
+  }
+
+  return {}
+}
+
+export function VetsPageClient({ result, hospitals }: VetsPageClientProps) {
+  const searchParams = useSearchParams()
+  const queryEntries = Object.fromEntries(searchParams.entries())
+  delete queryEntries.page
+
   const columns = [
     { key: "full_name", label: "Name", sortable: true },
     { key: "contact_email", label: "Email", sortable: true },
-    { key: "specialization", label: "Specialization", render: (v: unknown) => String(v || 'General') },
-    { key: "is_verified", label: "Verified", render: (v: unknown) => <StatusBadge status={v ? 'verified' : 'unverified'} /> },
-    { key: "service_fee", label: "Fee", render: (v: unknown) => v ? `$${Number(v).toFixed(2)}` : 'N/A' },
+    {
+      key: "specialization",
+      label: "Specialization",
+      render: (_: unknown, row: Record<string, unknown>) => {
+        const details = getVetServiceDetails(row)
+        return String(details.specialization || "General")
+      },
+    },
+    {
+      key: "is_verified",
+      label: "Verified",
+      render: (_: unknown, row: Record<string, unknown>) => {
+        const details = getVetServiceDetails(row)
+        return <StatusBadge status={details.is_verified ? 'verified' : 'unverified'} />
+      },
+    },
+    {
+      key: "service_fee",
+      label: "Fee",
+      render: (_: unknown, row: Record<string, unknown>) => {
+        const details = getVetServiceDetails(row)
+        return details.service_fee ? `$${Number(details.service_fee).toFixed(2)}` : 'N/A'
+      },
+    },
     { key: "created_at", label: "Joined", sortable: true, render: (v: unknown) => new Date(String(v)).toLocaleDateString() },
   ]
 
@@ -61,7 +109,29 @@ export function VetsPageClient({ vets, hospitals }: VetsPageClientProps) {
         ))}
       </div>
 
-      <DataTable columns={columns} data={vets} actions={actions} />
+      <AdminFilterBar
+        basePath="/admin/services/vets"
+        searchPlaceholder="Search vet name or email..."
+        sortOptions={VET_SORT_OPTIONS}
+        defaults={{
+          search: searchParams.get("search") ?? "",
+          sort: searchParams.get("sort") ?? "created_at",
+          direction: searchParams.get("direction") === "asc" ? "asc" : "desc",
+          perPage: result.perPage,
+        }}
+      />
+
+      <AdminDataTable
+        columns={columns}
+        data={result.data}
+        actions={actions}
+        pagination={{
+          basePath: "/admin/services/vets",
+          page: result.page,
+          totalPages: result.totalPages,
+          query: queryEntries,
+        }}
+      />
     </div>
   )
 }

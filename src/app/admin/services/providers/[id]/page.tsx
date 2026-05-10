@@ -1,9 +1,11 @@
 import React from "react"
 import { notFound } from "next/navigation"
-import { createClient } from "@/lib/supabase/server"
 import { EntityHeader } from "@/components/admin/EntityHeader"
 import { StatusBadge } from "@/components/admin/StatusBadge"
-import { VerifyToggleButton } from "./VerifyToggleButton"
+import { AuditTimeline } from "@/components/admin/AuditTimeline"
+import { DetailSection } from "@/components/admin/DetailSection"
+import { getAdminProviderDetail } from "@/lib/admin/queries/services"
+import { updateAdminProviderVerification } from "@/lib/admin/mutations/services"
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -11,24 +13,21 @@ interface PageProps {
 
 export default async function ProviderDetailPage({ params }: PageProps) {
   const { id } = await params
-  const supabase = await createClient()
-
-  const { data: provider, error } = await supabase
-    .from('service_provider_details')
-    .select(`
-      *,
-      profile:profiles!service_provider_details_profile_id_fkey (
-        id,
-        full_name,
-        contact_email,
-        created_at
-      )
-    `)
-    .eq('id', id)
-    .single()
+  const { data: provider, error } = await getAdminProviderDetail(id)
 
   if (error || !provider) {
     notFound()
+  }
+
+  const nextVerificationState = !provider.is_verified
+  const memberSince = provider.profile?.created_at
+    ? new Date(provider.profile.created_at).toLocaleDateString()
+    : 'Unknown'
+
+  async function updateVerificationAction(formData: FormData) {
+    "use server"
+    const reason = String(formData.get("reason") || "")
+    await updateAdminProviderVerification(id, nextVerificationState, reason)
   }
 
   return (
@@ -40,7 +39,7 @@ export default async function ProviderDetailPage({ params }: PageProps) {
         backLabel="← Back to Providers"
       />
 
-      <div className="bg-surface rounded-xl border border-outline-variant p-6 space-y-4">
+      <DetailSection title="Provider Details" description="Operational profile and verification state.">
         <div className="grid grid-cols-2 gap-6">
           <div>
             <label className="text-sm text-on-surface-variant">Service Type</label>
@@ -71,7 +70,7 @@ export default async function ProviderDetailPage({ params }: PageProps) {
           <div>
             <label className="text-sm text-on-surface-variant">Member Since</label>
             <p className="text-lg font-medium text-on-surface">
-              {new Date((provider.profile as { created_at?: string }).created_at || Date.now()).toLocaleDateString()}
+              {memberSince}
             </p>
           </div>
         </div>
@@ -93,14 +92,42 @@ export default async function ProviderDetailPage({ params }: PageProps) {
             </div>
           </div>
         </div>
+      </DetailSection>
 
-        <div className="flex justify-end pt-4">
-          <VerifyToggleButton
-            providerId={provider.id}
-            isVerified={provider.is_verified}
+      <DetailSection
+        title={provider.is_verified ? "Unverify Provider" : "Verify Provider"}
+        description="Verification changes require an audit reason."
+      >
+        <form action={updateVerificationAction} className="space-y-3">
+          <label htmlFor="provider-reason" className="block text-sm font-medium text-on-surface">
+            Reason
+          </label>
+          <textarea
+            id="provider-reason"
+            name="reason"
+            required
+            minLength={3}
+            maxLength={500}
+            placeholder="Document why this verification status is being changed"
+            className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-high px-3 py-2 text-sm text-on-surface"
+            rows={4}
           />
-        </div>
-      </div>
+          <button
+            type="submit"
+            className={`rounded-xl px-4 py-2 text-sm font-medium ${
+              provider.is_verified
+                ? "bg-yellow-100 text-yellow-800 hover:bg-yellow-200"
+                : "bg-green-100 text-green-800 hover:bg-green-200"
+            }`}
+          >
+            {provider.is_verified ? "Unverify Provider" : "Verify Provider"}
+          </button>
+        </form>
+      </DetailSection>
+
+      <DetailSection title="Audit Timeline" description="Recent administrative actions for this provider.">
+        <AuditTimeline targetType="service_provider_details" targetId={provider.id} />
+      </DetailSection>
     </div>
   )
 }

@@ -1,9 +1,11 @@
 import React from "react"
-import { createClient } from "@/lib/supabase/server"
 import Link from "next/link"
 import { EntityHeader } from "@/components/admin/EntityHeader"
 import { StatusBadge } from "@/components/admin/StatusBadge"
-import { CancelBookingButton } from "@/components/admin/CancelBookingButton"
+import { AuditTimeline } from "@/components/admin/AuditTimeline"
+import { DetailSection } from "@/components/admin/DetailSection"
+import { cancelAdminBooking } from "@/lib/admin/mutations/services"
+import { getAdminBookingDetail } from "@/lib/admin/queries/services"
 
 interface BookingDetailPageProps {
   params: Promise<{ id: string }>
@@ -11,18 +13,7 @@ interface BookingDetailPageProps {
 
 export default async function BookingDetailPage({ params }: BookingDetailPageProps) {
   const { id } = await params
-  const supabase = await createClient()
-
-  const { data: booking } = await supabase
-    .from('service_bookings')
-    .select(`
-      *,
-      provider:profiles!service_bookings_provider_id_fkey(full_name),
-      customer:profiles!service_bookings_customer_id_fkey(full_name),
-      pet:pets(name)
-    `)
-    .eq('id', id)
-    .single()
+  const { data: booking } = await getAdminBookingDetail(id)
 
   if (!booking) {
     return (
@@ -34,16 +25,21 @@ export default async function BookingDetailPage({ params }: BookingDetailPagePro
     )
   }
 
+  async function cancelBookingAction(formData: FormData) {
+    "use server"
+    const reason = String(formData.get("reason") || "")
+    await cancelAdminBooking(id, reason)
+  }
+
   return (
     <div className="space-y-6">
       <EntityHeader
         title={`Booking ${id.slice(0, 8)}...`}
         subtitle={`${booking.service_type} - ${new Date(booking.scheduled_at).toLocaleDateString()}`}
         backHref="/admin/services/bookings"
-        actions={booking.status !== 'Cancelled' && <CancelBookingButton bookingId={booking.id} />}
       />
 
-      <div className="bg-surface-container-low rounded-xl p-6 space-y-4">
+      <DetailSection title="Booking Details" description="Operational snapshot for this service booking.">
         <div className="grid grid-cols-2 gap-6">
           <div>
             <h3 className="text-sm font-medium text-on-surface-variant mb-1">Service Type</h3>
@@ -85,7 +81,37 @@ export default async function BookingDetailPage({ params }: BookingDetailPagePro
             <p className="text-on-surface">{booking.notes}</p>
           </div>
         )}
-      </div>
+      </DetailSection>
+
+      {booking.status !== "Cancelled" ? (
+        <DetailSection title="Cancel Booking" description="Cancellation requires an audit reason.">
+          <form action={cancelBookingAction} className="space-y-3">
+            <label htmlFor="cancel-reason" className="block text-sm font-medium text-on-surface">
+              Reason
+            </label>
+            <textarea
+              id="cancel-reason"
+              name="reason"
+              required
+              minLength={3}
+              maxLength={500}
+              placeholder="Describe why this booking is being cancelled"
+              className="w-full rounded-xl border border-outline-variant/30 bg-surface-container-high px-3 py-2 text-sm text-on-surface"
+              rows={4}
+            />
+            <button
+              type="submit"
+              className="rounded-xl bg-error px-4 py-2 text-sm font-medium text-on-error hover:opacity-90"
+            >
+              Cancel Booking
+            </button>
+          </form>
+        </DetailSection>
+      ) : null}
+
+      <DetailSection title="Audit Timeline" description="Recent administrative actions for this booking.">
+        <AuditTimeline targetType="service_bookings" targetId={booking.id} />
+      </DetailSection>
     </div>
   )
 }

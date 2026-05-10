@@ -1,21 +1,31 @@
 import React from "react"
-import { createClient } from "@/lib/supabase/server"
 import { BookingsPageClient } from "@/components/admin/BookingsPageClient"
+import { listAdminBookings } from "@/lib/admin/queries/services"
 
-export default async function BookingsPage() {
-  const supabase = await createClient()
-  const { data: bookings } = await supabase
-    .from('service_bookings')
-    .select(`
-      *,
-      provider:profiles!service_bookings_provider_id_fkey(full_name),
-      customer:profiles!service_bookings_customer_id_fkey(full_name),
-      pet:pets(name)
-    `)
-    .order('scheduled_at', { ascending: false })
-    .limit(50)
+interface BookingsPageProps {
+  searchParams: Promise<Record<string, string | string[] | undefined>>
+}
+
+function readParam(
+  params: Record<string, string | string[] | undefined>,
+  key: string,
+) {
+  const value = params[key]
+  return Array.isArray(value) ? value[0] : value
+}
+
+export default async function BookingsPage({ searchParams }: BookingsPageProps) {
+  const params = await searchParams
+  const result = await listAdminBookings({
+    page: readParam(params, "page"),
+    perPage: readParam(params, "perPage"),
+    search: readParam(params, "search"),
+    status: readParam(params, "status"),
+    sort: readParam(params, "sort"),
+    direction: readParam(params, "direction"),
+  })
 
   return (
-    <BookingsPageClient bookings={bookings || []} />
+    <BookingsPageClient result={result} />
   )
 }
