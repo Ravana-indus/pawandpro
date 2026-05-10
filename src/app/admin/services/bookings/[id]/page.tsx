@@ -71,11 +71,11 @@ export default async function BookingDetailPage({ params }: BookingDetailPagePro
           </div>
           <div>
             <h3 className="text-sm font-medium text-on-surface-variant mb-1">Scheduled At</h3>
-            <p className="text-on-surface">{new Date(booking.scheduled_at).toLocaleString()}</p>
+            <p className="text-on-surface">{new Date(booking.scheduled_at!).toLocaleString()}</p>
           </div>
           <div>
             <h3 className="text-sm font-medium text-on-surface-variant mb-1">Created At</h3>
-            <p className="text-on-surface">{new Date(booking.created_at).toLocaleString()}</p>
+            <p className="text-on-surface">{new Date(booking.created_at!).toLocaleString()}</p>
           </div>
         </div>
 

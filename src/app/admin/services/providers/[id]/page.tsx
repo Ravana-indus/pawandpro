@@ -20,7 +20,8 @@ export default async function ProviderDetailPage({ params }: PageProps) {
       profile:profiles!service_provider_details_profile_id_fkey (
         id,
         full_name,
-        contact_email
+        contact_email,
+        created_at
       )
     `)
     .eq('id', id)
@@ -70,7 +71,7 @@ export default async function ProviderDetailPage({ params }: PageProps) {
           <div>
             <label className="text-sm text-on-surface-variant">Member Since</label>
             <p className="text-lg font-medium text-on-surface">
-              {new Date(provider.created_at).toLocaleDateString()}
+              {new Date((provider.profile as { created_at?: string }).created_at || Date.now()).toLocaleDateString()}
             </p>
           </div>
         </div>

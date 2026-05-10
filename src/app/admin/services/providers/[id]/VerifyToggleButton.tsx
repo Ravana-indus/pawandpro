@@ -6,16 +6,18 @@ import { updateProviderStatus } from '@/lib/actions/admin'
 
 interface VerifyToggleButtonProps {
   providerId: string
-  isVerified: boolean
+  isVerified: boolean | null | undefined
 }
 
 export function VerifyToggleButton({ providerId, isVerified }: VerifyToggleButtonProps) {
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
+  const isVerifiedBool = !!isVerified
+
   const handleToggle = () => {
     startTransition(async () => {
-      await updateProviderStatus(providerId, !isVerified)
+      await updateProviderStatus(providerId, !isVerifiedBool)
       router.refresh()
     })
   }
@@ -25,12 +27,12 @@ export function VerifyToggleButton({ providerId, isVerified }: VerifyToggleButto
       onClick={handleToggle}
       disabled={isPending}
       className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-        isVerified
+        isVerifiedBool
           ? 'bg-yellow-100 text-yellow-800 hover:bg-yellow-200'
           : 'bg-green-100 text-green-800 hover:bg-green-200'
       } ${isPending ? 'opacity-50 cursor-wait' : ''}`}
     >
-      {isPending ? 'Updating...' : isVerified ? 'Unverify' : 'Verify'}
+      {isPending ? 'Updating...' : isVerifiedBool ? 'Unverify' : 'Verify'}
     </button>
   )
 }
