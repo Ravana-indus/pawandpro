@@ -1,5 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { deleteAdminListing, updateAdminListingMetadata } from './marketplace'
+import {
+  deleteAdminListing,
+  transitionAdminListingStatus,
+  transitionAdminOrderStatus,
+  updateAdminListingCertification,
+  updateAdminListingMetadata,
+} from './marketplace'
 import { writeAdminAuditLog } from '../audit'
 import { requireAdminPermission } from '../permissions'
 
@@ -92,6 +98,47 @@ function createSupabaseMock() {
   return {
     supabase: { from },
     spies: { from, update, select, deleteFn },
+  }
+}
+
+function createOrderSupabaseMock() {
+  const beforeOrder = {
+    id: 'order-1',
+    status: 'Processing',
+    total_amount: 250,
+  }
+
+  const update = vi.fn().mockImplementation((payload: Record<string, unknown>) => ({
+    eq: vi.fn().mockReturnValue({
+      select: vi.fn().mockReturnValue({
+        single: vi.fn().mockResolvedValue({
+          data: {
+            ...beforeOrder,
+            ...payload,
+          },
+          error: null,
+        }),
+      }),
+    }),
+  }))
+
+  const select = vi.fn().mockReturnValue({
+    eq: vi.fn().mockReturnValue({
+      single: vi.fn().mockResolvedValue({
+        data: beforeOrder,
+        error: null,
+      }),
+    }),
+  })
+
+  const from = vi.fn().mockReturnValue({
+    select,
+    update,
+  })
+
+  return {
+    supabase: { from },
+    spies: { from, select, update },
   }
 }
 
@@ -212,5 +259,72 @@ describe('deleteAdminListing', () => {
         action: 'delete_listing',
       }),
     )
+  })
+})
+
+describe('transitionAdminOrderStatus', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  it('validates status', async () => {
+    const result = await transitionAdminOrderStatus('order-1', 'Unknown', 'Operational correction')
+
+    expect(result).toEqual({
+      success: false,
+      error: expect.any(String),
+    })
+    expect(requireAdminPermission).not.toHaveBeenCalled()
+  })
+
+  it('writes orders.updated_at and audit with reason', async () => {
+    const { supabase, spies } = createOrderSupabaseMock()
+    vi.mocked(requireAdminPermission).mockResolvedValue(createAdminContext(supabase))
+
+    const result = await transitionAdminOrderStatus('order-1', 'Delivered', 'Carrier confirmed delivery')
+
+    expect(result.success).toBe(true)
+    expect(spies.from).toHaveBeenCalledWith('orders')
+    expect(spies.update).toHaveBeenCalledWith(
+      expect.objectContaining({
+        status: 'Delivered',
+        updated_at: expect.any(String),
+      }),
+    )
+    expect(writeAdminAuditLog).toHaveBeenCalledWith(
+      expect.anything(),
+      expect.objectContaining({
+        action: 'transition_order_status',
+        targetType: 'orders',
+        targetId: 'order-1',
+        reason: 'Carrier confirmed delivery',
+      }),
+    )
+  })
+})
+
+describe('listing workflow reason requirements', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+  })
+
+  it('listing status transition requires reason', async () => {
+    const result = await transitionAdminListingStatus('listing-1', 'Sold', '')
+
+    expect(result).toEqual({
+      success: false,
+      error: expect.any(String),
+    })
+    expect(requireAdminPermission).not.toHaveBeenCalled()
+  })
+
+  it('listing certification update requires reason', async () => {
+    const result = await updateAdminListingCertification('listing-1', 'Gold', '')
+
+    expect(result).toEqual({
+      success: false,
+      error: expect.any(String),
+    })
+    expect(requireAdminPermission).not.toHaveBeenCalled()
   })
 })

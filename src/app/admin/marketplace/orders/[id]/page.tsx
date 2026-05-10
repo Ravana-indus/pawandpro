@@ -1,130 +1,180 @@
-import React from "react"
-import { createClient } from "@/lib/supabase/server"
-import { notFound } from "next/navigation"
-import Link from "next/link"
-import { updateOrderStatus } from "@/lib/actions/admin"
-import { EntityHeader } from "@/components/admin/EntityHeader"
-import { Metadata } from "next"
+import React from 'react'
+import Link from 'next/link'
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { createClient } from '@/lib/supabase/server'
+import { EntityHeader } from '@/components/admin/EntityHeader'
+import { StatusBadge } from '@/components/admin/StatusBadge'
+import { DetailSection } from '@/components/admin/DetailSection'
+import { AuditTimeline } from '@/components/admin/AuditTimeline'
+import { ActionReasonDialog } from '@/components/admin/ActionReasonDialog'
+import { transitionAdminOrderStatus } from '@/lib/admin/mutations/marketplace'
 
 interface OrderDetailPageProps {
   params: Promise<{ id: string }>
 }
+
+type OrderStatus = 'Processing' | 'In Transit' | 'Delivered' | 'Cancelled'
+
+type OrderDetail = {
+  id: string
+  status: OrderStatus | null
+  total_amount: number
+  created_at: string | null
+  updated_at?: string | null
+  buyer: {
+    full_name: string | null
+    contact_email: string | null
+  } | null
+  order_items: Array<{
+    id: string
+    quantity: number
+    price_at_purchase: number
+    product: { id: string; name: string } | null
+    pet_listing: { id: string; name: string } | null
+  }>
+}
+
+const ORDER_STATUS_OPTIONS: OrderStatus[] = ['Processing', 'In Transit', 'Delivered', 'Cancelled']
 
 export async function generateMetadata({ params }: OrderDetailPageProps): Promise<Metadata> {
   const { id } = await params
   return { title: `Order ${id.slice(0, 8)}... - Admin` }
 }
 
-async function OrderDetailClient({
-  order,
-}: {
-  order: {
-    id: string
-    total_amount: number
-    status: string
-    created_at: string
-    updated_at: string
-    buyer: { full_name: string | null; contact_email: string | null } | null
-  }
-}) {
-  "use client"
+export default async function OrderDetailPage({ params }: OrderDetailPageProps) {
+  const { id } = await params
+  const supabase = await createClient()
 
-  const statuses = ['Processing', 'In Transit', 'Delivered', 'Cancelled']
+  const { data, error } = await supabase
+    .from('orders')
+    .select(
+      '*, buyer:profiles!orders_buyer_id_fkey(full_name, contact_email), order_items(*, product:products(*), pet_listing:pet_listings(*))',
+    )
+    .eq('id', id)
+    .single()
 
-  const handleStatusChange = async (newStatus: string) => {
-    "use server"
-    await updateOrderStatus(order.id, newStatus)
+  if (error || !data) {
+    notFound()
   }
+
+  const order = data as unknown as OrderDetail
+  const nextStatuses = ORDER_STATUS_OPTIONS.filter((status) => status !== order.status)
 
   return (
     <div className="space-y-6">
       <EntityHeader
         title={`Order ${order.id.slice(0, 8)}...`}
-        subtitle="Order Details"
+        subtitle="Marketplace order operational detail"
         backHref="/admin/marketplace/orders"
         backLabel="Back to Orders"
       />
 
-      <div className="bg-surface-container-lowest rounded-2xl p-6 space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-4">
-            <div>
-              <label className="text-sm text-on-surface-variant">Order ID</label>
-              <p className="text-on-surface font-mono text-sm">{order.id}</p>
-            </div>
-            <div>
-              <label className="text-sm text-on-surface-variant">Buyer</label>
-              <p className="text-on-surface">{order.buyer?.full_name || 'N/A'}</p>
-            </div>
-            <div>
-              <label className="text-sm text-on-surface-variant">Buyer Email</label>
-              <p className="text-on-surface">{order.buyer?.contact_email || 'N/A'}</p>
+      <DetailSection title="Order Summary">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p className="text-sm text-on-surface-variant">Order ID</p>
+            <p className="text-sm font-mono text-on-surface mt-1">{order.id}</p>
+          </div>
+          <div>
+            <p className="text-sm text-on-surface-variant">Status</p>
+            <div className="mt-1">
+              <StatusBadge status={order.status || 'Processing'} />
             </div>
           </div>
-          <div className="space-y-4">
-            <div>
-              <label className="text-sm text-on-surface-variant">Total Amount</label>
-              <p className="text-on-surface text-xl font-bold">${Number(order.total_amount).toFixed(2)}</p>
-            </div>
-            <div>
-              <label className="text-sm text-on-surface-variant">Created</label>
-              <p className="text-on-surface">{order.created_at ? new Date(order.created_at).toLocaleDateString() : 'N/A'}</p>
-            </div>
-            <div>
-              <label className="text-sm text-on-surface-variant">Last Updated</label>
-              <p className="text-on-surface">{order.updated_at ? new Date(order.updated_at).toLocaleDateString() : 'N/A'}</p>
-            </div>
+          <div>
+            <p className="text-sm text-on-surface-variant">Total Amount</p>
+            <p className="text-on-surface font-semibold mt-1">${Number(order.total_amount).toFixed(2)}</p>
+          </div>
+          <div>
+            <p className="text-sm text-on-surface-variant">Created</p>
+            <p className="text-on-surface mt-1">
+              {order.created_at ? new Date(order.created_at).toLocaleString() : 'N/A'}
+            </p>
+          </div>
+          <div>
+            <p className="text-sm text-on-surface-variant">Last Updated</p>
+            <p className="text-on-surface mt-1">
+              {order.updated_at ? new Date(order.updated_at).toLocaleString() : 'N/A'}
+            </p>
           </div>
         </div>
+      </DetailSection>
 
-        <div>
-          <label className="text-sm text-on-surface-variant block mb-2">Status</label>
-          <select
-            value={order.status || 'Processing'}
-            onChange={(e) => handleStatusChange(e.target.value)}
-            className="w-full md:w-64 px-3 py-2 rounded-xl bg-surface-container-high border border-outline text-on-surface"
-          >
-            {statuses.map((s) => (
-              <option key={s} value={s}>{s}</option>
+      <DetailSection title="Buyer Contact">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <p className="text-sm text-on-surface-variant">Buyer Name</p>
+            <p className="text-on-surface mt-1">{order.buyer?.full_name || 'N/A'}</p>
+          </div>
+          <div>
+            <p className="text-sm text-on-surface-variant">Buyer Email</p>
+            <p className="text-on-surface mt-1">{order.buyer?.contact_email || 'N/A'}</p>
+          </div>
+        </div>
+      </DetailSection>
+
+      <DetailSection title="Order Items">
+        {order.order_items.length === 0 ? (
+          <p className="text-sm text-on-surface-variant">No items on this order.</p>
+        ) : (
+          <ul className="space-y-3">
+            {order.order_items.map((item) => {
+              const productLink = item.product ? `/admin/marketplace/products/${item.product.id}` : null
+              const listingLink = item.pet_listing ? `/admin/marketplace/listings/${item.pet_listing.id}` : null
+              return (
+                <li key={item.id} className="border border-outline-variant/20 rounded-xl p-3">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="space-y-1">
+                      {productLink ? (
+                        <Link href={productLink} className="text-primary hover:underline font-medium">
+                          Product: {item.product?.name}
+                        </Link>
+                      ) : null}
+                      {listingLink ? (
+                        <Link href={listingLink} className="text-primary hover:underline font-medium block">
+                          Listing: {item.pet_listing?.name}
+                        </Link>
+                      ) : null}
+                      {!productLink && !listingLink ? (
+                        <p className="text-on-surface">Unknown item</p>
+                      ) : null}
+                    </div>
+                    <div className="text-sm text-on-surface-variant text-right">
+                      <p>Qty: {item.quantity}</p>
+                      <p>${Number(item.price_at_purchase).toFixed(2)} each</p>
+                    </div>
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+        )}
+      </DetailSection>
+
+      <DetailSection title="Status Actions" description="Status transitions require an operational reason and are audit logged.">
+        {nextStatuses.length === 0 ? (
+          <p className="text-sm text-on-surface-variant">No alternate status transitions available.</p>
+        ) : (
+          <div className="flex flex-wrap gap-2">
+            {nextStatuses.map((status) => (
+              <ActionReasonDialog
+                key={status}
+                triggerLabel={`Mark ${status}`}
+                title={`Change status to ${status}`}
+                description="Provide the reason for this status transition."
+                confirmLabel={`Confirm ${status}`}
+                confirmVariant={status === 'Cancelled' ? 'destructive' : 'default'}
+                onConfirm={transitionAdminOrderStatus.bind(null, order.id, status)}
+              />
             ))}
-          </select>
-        </div>
-      </div>
+          </div>
+        )}
+      </DetailSection>
 
-      <div className="flex gap-3">
-        <Link
-          href="/admin/marketplace/orders"
-          className="px-4 py-2 rounded-xl bg-surface-container-high text-on-surface hover:bg-surface-container-low transition-colors"
-        >
-          Back to Orders
-        </Link>
-      </div>
+      <DetailSection title="Audit Timeline">
+        <AuditTimeline targetType="orders" targetId={order.id} />
+      </DetailSection>
     </div>
   )
-}
-
-export default async function OrderDetailPage({ params }: OrderDetailPageProps) {
-  const { id } = await params
-  const supabase = await createClient()
-
-  const { data: order } = await supabase
-    .from('orders')
-    .select('*, buyer:profiles!orders_buyer_id_fkey(full_name, contact_email)')
-    .eq('id', id)
-    .single()
-
-  if (!order) {
-    notFound()
-  }
-
-  const typedOrder = order as unknown as {
-    id: string
-    total_amount: number
-    status: string
-    created_at: string
-    updated_at: string
-    buyer: { full_name: string | null; contact_email: string | null } | null
-  }
-
-  return <OrderDetailClient order={typedOrder} />
 }
