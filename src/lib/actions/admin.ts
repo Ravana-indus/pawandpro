@@ -279,6 +279,7 @@ export async function deleteProduct(id: string) {
 
     await logAudit('delete_product', 'products', id, {})
     revalidatePath('/admin/marketplace/products')
+    revalidatePath(`/admin/marketplace/products/${id}`)
     return { success: true }
   } catch (e) {
     return { error: e instanceof Error ? e.message : 'Unknown error' }
@@ -384,6 +385,8 @@ export async function updateOrderStatus(id: string, status: string) {
     if (error) return { error: error.message }
 
     await logAudit('update_order_status', 'orders', id, { status: validated })
+    revalidatePath('/admin/marketplace/orders')
+    revalidatePath(`/admin/marketplace/orders/${id}`)
     return { success: true }
   } catch (e) {
     if (e instanceof z.ZodError) return { error: 'Invalid status' }
