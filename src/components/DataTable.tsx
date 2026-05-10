@@ -24,6 +24,8 @@ interface DataTableProps {
   actions?: (row: Record<string, unknown>) => React.ReactNode
   selectable?: boolean
   onSelect?: (selectedIds: string[]) => void
+  emptyMessage?: string
+  isLoading?: boolean
 }
 
 export function DataTable({
@@ -36,6 +38,8 @@ export function DataTable({
   actions,
   selectable,
   onSelect,
+  emptyMessage,
+  isLoading,
 }: DataTableProps) {
   const [selectedIds, setSelectedIds] = useState<string[]>([])
 
@@ -123,6 +127,23 @@ export function DataTable({
               )}
             </tr>
           ))}
+          {isLoading && (
+            <tr>
+              <td colSpan={columns.length + (selectable ? 1 : 0) + (actions ? 1 : 0)} className="px-4 py-8">
+                <div className="flex items-center justify-center gap-2 text-on-surface-variant">
+                  <span className="material-symbols-outlined animate-spin">refresh</span>
+                  Loading...
+                </div>
+              </td>
+            </tr>
+          )}
+          {!isLoading && data.length === 0 && (
+            <tr>
+              <td colSpan={columns.length + (selectable ? 1 : 0) + (actions ? 1 : 0)} className="px-4 py-8 text-center text-on-surface-variant">
+                {emptyMessage || 'No data found'}
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
 
