@@ -695,6 +695,7 @@ export async function approveComment(id: string) {
     if (error) return { error: error.message }
 
     await logAudit('approve_comment', 'community_comments', id, {})
+    revalidatePath('/admin/community/comments')
     return { success: true }
   } catch (e) {
     return { error: e instanceof Error ? e.message : 'Unknown error' }
@@ -711,6 +712,7 @@ export async function deleteComment(id: string) {
     if (error) return { error: error.message }
 
     await logAudit('delete_comment', 'community_comments', id, {})
+    revalidatePath('/admin/community/comments')
     return { success: true }
   } catch (e) {
     return { error: e instanceof Error ? e.message : 'Unknown error' }
