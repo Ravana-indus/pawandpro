@@ -6,7 +6,6 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { deleteProduct } from '@/lib/actions/admin'
 import { AdminDataTable } from '@/components/admin/AdminDataTable'
 import { AdminFilterBar } from '@/components/admin/AdminFilterBar'
-import { AdminPagination } from '@/components/admin/AdminPagination'
 import { ConfirmDialog } from '@/components/ConfirmDialog'
 import type { AdminListResult } from '@/lib/admin/types'
 import type { AdminProductListItem } from '@/lib/admin/queries/marketplace'
@@ -104,12 +103,16 @@ export function ProductsPageClient({ result }: ProductsPageClientProps) {
             perPage: result.perPage,
           }}
         />
-        <AdminDataTable columns={columns} data={result.data as Record<string, unknown>[]} actions={actions} />
-        <AdminPagination
-          basePath="/admin/marketplace/products"
-          page={result.page}
-          totalPages={result.totalPages}
-          query={queryEntries}
+        <AdminDataTable
+          columns={columns}
+          data={result.data as Record<string, unknown>[]}
+          actions={actions}
+          pagination={{
+            basePath: '/admin/marketplace/products',
+            page: result.page,
+            totalPages: result.totalPages,
+            query: queryEntries,
+          }}
         />
       </div>
 

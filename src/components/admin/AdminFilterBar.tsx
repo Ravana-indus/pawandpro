@@ -1,8 +1,3 @@
-"use client"
-
-import React, { useTransition } from "react"
-import { useRouter } from "next/navigation"
-
 import type { AdminSortDirection } from "@/lib/admin/types"
 
 export interface AdminFilterOption {
@@ -25,10 +20,6 @@ interface AdminFilterBarProps {
   }
 }
 
-function parseDirection(value: FormDataEntryValue | null): AdminSortDirection {
-  return value === "asc" ? "asc" : "desc"
-}
-
 export function AdminFilterBar({
   basePath,
   searchPlaceholder = "Search...",
@@ -37,42 +28,10 @@ export function AdminFilterBar({
   perPageOptions = [10, 25, 50, 100],
   defaults,
 }: AdminFilterBarProps) {
-  const router = useRouter()
-  const [isPending, startTransition] = useTransition()
-
-  function updateQuery(formData: FormData) {
-    const params = new URLSearchParams(window.location.search)
-    const search = String(formData.get("search") ?? "").trim()
-    const status = String(formData.get("status") ?? "").trim()
-    const sort = String(formData.get("sort") ?? "").trim()
-    const direction = parseDirection(formData.get("direction"))
-    const perPage = String(formData.get("perPage") ?? "").trim()
-
-    if (search) params.set("search", search)
-    else params.delete("search")
-
-    if (status) params.set("status", status)
-    else params.delete("status")
-
-    if (sort) params.set("sort", sort)
-    else params.delete("sort")
-
-    params.set("direction", direction)
-
-    if (perPage) params.set("perPage", perPage)
-    else params.delete("perPage")
-
-    params.delete("page")
-
-    const query = params.toString()
-    router.push(query ? `${basePath}?${query}` : basePath)
-  }
-
   return (
     <form
-      action={(formData) => {
-        startTransition(() => updateQuery(formData))
-      }}
+      method="get"
+      action={basePath}
       className="grid gap-3 rounded-xl border border-outline-variant/20 bg-surface-container-low p-4 md:grid-cols-6"
     >
       <input
@@ -134,8 +93,7 @@ export function AdminFilterBar({
       <div className="md:col-span-6 flex items-center gap-3">
         <button
           type="submit"
-          disabled={isPending}
-          className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-on-primary disabled:opacity-60"
+          className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-on-primary"
         >
           Apply
         </button>

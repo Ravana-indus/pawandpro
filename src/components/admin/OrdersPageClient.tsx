@@ -5,7 +5,6 @@ import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { AdminDataTable } from "@/components/admin/AdminDataTable"
 import { AdminFilterBar } from "@/components/admin/AdminFilterBar"
-import { AdminPagination } from "@/components/admin/AdminPagination"
 import { ConfirmDialog } from "@/components/ConfirmDialog"
 import { cancelOrder } from "@/lib/actions/admin"
 import type { AdminListResult } from "@/lib/admin/types"
@@ -111,12 +110,16 @@ export function OrdersPageClient({ result }: OrdersPageClientProps) {
             perPage: result.perPage,
           }}
         />
-        <AdminDataTable columns={columns} data={result.data as Record<string, unknown>[]} actions={actions} />
-        <AdminPagination
-          basePath="/admin/marketplace/orders"
-          page={result.page}
-          totalPages={result.totalPages}
-          query={queryEntries}
+        <AdminDataTable
+          columns={columns}
+          data={result.data as Record<string, unknown>[]}
+          actions={actions}
+          pagination={{
+            basePath: "/admin/marketplace/orders",
+            page: result.page,
+            totalPages: result.totalPages,
+            query: queryEntries,
+          }}
         />
       </div>
       <ConfirmDialog
