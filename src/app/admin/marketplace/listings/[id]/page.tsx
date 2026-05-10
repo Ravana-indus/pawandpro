@@ -60,7 +60,7 @@ export default async function ListingDetailPage({ params }: ListingDetailPagePro
           </div>
           <DetailField label="Seller" value={listing.seller?.full_name || 'N/A'} />
           <DetailField label="Seller Email" value={listing.seller?.contact_email || 'N/A'} />
-          <DetailField label="Created" value={new Date(listing.created_at).toLocaleDateString()} />
+          <DetailField label="Created" value={listing.created_at ? new Date(listing.created_at).toLocaleDateString() : 'N/A'} />
         </div>
 
         {listing.image_url && (
