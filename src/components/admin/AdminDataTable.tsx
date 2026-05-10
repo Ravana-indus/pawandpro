@@ -5,7 +5,9 @@ import type React from "react"
 import { DataTable } from "@/components/DataTable"
 import { AdminPagination } from "@/components/admin/AdminPagination"
 
-type AdminDataTableProps = React.ComponentProps<typeof DataTable> & {
+type BaseDataTableProps = Omit<React.ComponentProps<typeof DataTable>, "pagination">
+
+type AdminDataTableProps = BaseDataTableProps & {
   pagination?: {
     basePath: string
     page: number
