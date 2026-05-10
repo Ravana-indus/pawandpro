@@ -30,7 +30,7 @@ export default async function OrderHistoryPage() {
   const mappedOrders = orders?.map(order => ({
     id: order.id.slice(0, 8).toUpperCase(),
     status: order.status,
-    date: new Date(order.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+    date: order.created_at ? new Date(order.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : 'N/A',
     total: order.total_amount,
     items: (order.order_items as unknown as any[]).map((item: any) => {
        if (item.pet_listing) {

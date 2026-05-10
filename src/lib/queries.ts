@@ -21,7 +21,7 @@ export async function getProducts(options: {
   return (data || []).map(row => ({
     ...row,
     details: row.details as unknown as ProductDetails,
-    inStock: row.stock_quantity > 0
+    inStock: (row.stock_quantity ?? 0) > 0
   })) as Product[];
 }
 
@@ -38,7 +38,7 @@ export async function getProductById(id: string) {
   return {
     ...data,
     details: data.details as unknown as ProductDetails,
-    inStock: data.stock_quantity > 0
+    inStock: (data.stock_quantity ?? 0) > 0
   } as Product;
 }
 
@@ -121,7 +121,7 @@ export async function searchAll(query: string) {
     products: (productsRes.data || []).map(row => ({
       ...row,
       details: row.details as unknown as ProductDetails,
-      inStock: row.stock_quantity > 0
+inStock: (row.stock_quantity ?? 0) > 0
     })) as Product[],
     pets: (petsRes.data || []) as unknown as PetListing[],
     vets: (vetsRes.data || []).map(row => ({

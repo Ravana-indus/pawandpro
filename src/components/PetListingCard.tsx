@@ -39,7 +39,7 @@ export function PetListingCard({ pet }: PetListingCardProps) {
         </Link>
         <div className={`absolute top-4 left-4 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest flex items-center gap-1 border shadow-sm backdrop-blur-md bg-white/90 $                {getBadgeColor(pet.certification_tier)}`}>
            <span className="material-symbols-outlined text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>
-              {getBadgeIcon(pet.certification_tier)}
+              {getBadgeIcon(pet.certification_tier || '')}
             </span>
             {pet.certification_tier}
         </div>

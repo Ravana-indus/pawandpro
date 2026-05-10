@@ -1,13 +1,42 @@
 "use client"
 
-import React from "react"
+import React, { useTransition, useState } from "react"
+import { useRouter } from "next/navigation"
 import { DataTable } from "@/components/DataTable"
+import { ConfirmDialog } from "@/components/ConfirmDialog"
+import { approvePost, deletePost, togglePinPost } from "@/lib/actions/admin"
 
 interface PostsPageClientProps {
   data: Record<string, unknown>[]
 }
 
 export function PostsPageClient({ data }: PostsPageClientProps) {
+  const router = useRouter()
+  const [isPending, startTransition] = useTransition()
+  const [deleteId, setDeleteId] = useState<string | null>(null)
+
+  const handleApprove = (id: string) => {
+    startTransition(async () => {
+      await approvePost(id)
+      router.refresh()
+    })
+  }
+
+  const handleTogglePin = (id: string, isPinned: boolean) => {
+    startTransition(async () => {
+      await togglePinPost(id, !isPinned)
+      router.refresh()
+    })
+  }
+
+  const handleDelete = (id: string) => {
+    startTransition(async () => {
+      await deletePost(id)
+      router.push('/admin/community/posts')
+    })
+    setDeleteId(null)
+  }
+
   const columns = [
     { key: "title", label: "Title", sortable: true },
     { key: "author", label: "Author", render: (v: unknown) => (v as {full_name: string})?.full_name || 'N/A' },
@@ -27,12 +56,30 @@ export function PostsPageClient({ data }: PostsPageClientProps) {
 
   const actions = (row: Record<string, unknown>) => (
     <div className="flex gap-2 justify-end">
-      {!row.is_approved && (
-        <button className="px-3 py-1 rounded-lg text-xs font-medium bg-green-100 text-green-700 hover:bg-green-200">
+      {row.is_approved ? (
+        <span className="px-3 py-1 rounded-lg text-xs font-medium bg-gray-100 text-gray-500">
+          Approved
+        </span>
+      ) : (
+        <button
+          onClick={() => handleApprove(row.id as string)}
+          disabled={isPending}
+          className="px-3 py-1 rounded-lg text-xs font-medium bg-green-100 text-green-700 hover:bg-green-200 disabled:opacity-50"
+        >
           Approve
         </button>
       )}
-      <button className="px-3 py-1 rounded-lg text-xs font-medium bg-error/10 text-error hover:bg-error/20">
+      <button
+        onClick={() => handleTogglePin(row.id as string, Boolean(row.is_pinned))}
+        disabled={isPending}
+        className={`px-3 py-1 rounded-lg text-xs font-medium ${row.is_pinned ? 'bg-primary/10 text-primary hover:bg-primary/20' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'} disabled:opacity-50`}
+      >
+        {row.is_pinned ? 'Unpin' : 'Pin'}
+      </button>
+      <button
+        onClick={() => setDeleteId(row.id as string)}
+        className="px-3 py-1 rounded-lg text-xs font-medium bg-error/10 text-error hover:bg-error/20"
+      >
         Delete
       </button>
     </div>
@@ -47,6 +94,15 @@ export function PostsPageClient({ data }: PostsPageClientProps) {
         <p className="text-on-surface-variant">Moderate and manage community posts</p>
       </div>
       <DataTable columns={columns} data={data} actions={actions} />
+      <ConfirmDialog
+        open={deleteId !== null}
+        title="Delete Post"
+        message="Are you sure you want to delete this post? This action cannot be undone."
+        confirmLabel="Delete"
+        variant="warning"
+        onConfirm={() => deleteId && handleDelete(deleteId)}
+        onCancel={() => setDeleteId(null)}
+      />
     </div>
   )
 }

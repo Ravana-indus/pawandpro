@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
-export async function createPost(formData: FormData) {
+export async function createPost(formData: FormData): Promise<void> {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) throw new Error('Not authenticated')
@@ -13,7 +13,7 @@ export async function createPost(formData: FormData) {
   const content = formData.get('content') as string
   const type = formData.get('type') as string || 'discussion'
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('community_posts')
     .insert({
       author_id: user.id,
@@ -22,14 +22,12 @@ export async function createPost(formData: FormData) {
       type,
       is_approved: true
     })
-    .select()
-    .single()
 
-  if (error) return { error: error.message }
+  if (error) throw new Error(error.message)
 
   revalidatePath('/community')
   revalidatePath('/dashboard')
-  return { success: true, post: data }
+  redirect('/community')
 }
 
 export async function updatePost(formData: FormData) {
@@ -97,7 +95,7 @@ export async function deletePost(formData: FormData) {
   return redirect('/community')
 }
 
-export async function createComment(formData: FormData) {
+export async function createComment(formData: FormData): Promise<void> {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) throw new Error('Not authenticated')
@@ -106,7 +104,7 @@ export async function createComment(formData: FormData) {
   const content = formData.get('content') as string
   const parentCommentId = formData.get('parent_comment_id') as string || null
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('community_comments')
     .insert({
       post_id: postId,
@@ -115,14 +113,11 @@ export async function createComment(formData: FormData) {
       parent_comment_id: parentCommentId,
       is_approved: true
     })
-    .select()
-    .single()
 
-  if (error) return { error: error.message }
+  if (error) throw new Error(error.message)
 
   revalidatePath(`/community/post/${postId}`)
   revalidatePath('/community')
-  return { success: true, comment: data }
 }
 
 export async function updateComment(formData: FormData) {

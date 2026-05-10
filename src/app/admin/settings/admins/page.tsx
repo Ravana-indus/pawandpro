@@ -1,14 +1,11 @@
 import React from "react"
+import { getUsers } from "@/lib/queries/admin"
+import { AdminsPageClient } from "@/components/admin/AdminsPageClient"
 
-export default function AdminsManagementPage() {
+export default async function AdminsManagementPage() {
+  const { data: admins } = await getUsers({ role: "ADMIN" }, { page: 1, per_page: 100 })
+
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-headline font-extrabold text-on-surface tracking-tight mb-2">
-          Admin Management
-        </h1>
-        <p className="text-on-surface-variant">Coming soon</p>
-      </div>
-    </div>
+    <AdminsPageClient initialAdmins={admins || []} />
   )
 }

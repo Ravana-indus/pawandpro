@@ -25,8 +25,6 @@ export async function signUp(formData: FormData) {
     options: {
       data: {
         full_name,
-      },
-      app_metadata: {
         role,
       },
     },

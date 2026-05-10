@@ -23,7 +23,7 @@ export default async function AdminLayout({
     .single()
 
   const adminRoles = ["SUPER_ADMIN", "ADMIN", "MARKETPLACE_STAFF"]
-  if (!profile || !adminRoles.includes(profile.role)) {
+  if (!profile || !profile.role || !adminRoles.includes(profile.role)) {
     redirect("/dashboard")
   }
 

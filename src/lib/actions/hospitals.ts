@@ -2,7 +2,6 @@
 
 import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
-import { logAudit } from './audit'
 
 export async function createHospital(formData: FormData) {
   const supabase = await createClient()
@@ -41,7 +40,6 @@ export async function createHospital(formData: FormData) {
 
   if (error) return { error: error.message }
 
-  await logAudit('create_hospital', 'hospital', data.id, { name })
   revalidatePath('/admin/services/vets')
   return { success: true, hospital: data }
 }
@@ -82,7 +80,6 @@ export async function updateHospital(formData: FormData) {
 
   if (error) return { error: error.message }
 
-  await logAudit('update_hospital', 'hospital', id, { name })
   revalidatePath('/admin/services/vets')
   return { success: true }
 }
@@ -114,7 +111,6 @@ export async function addVetToHospital(formData: FormData) {
 
   if (error) return { error: error.message }
 
-  await logAudit('add_vet_to_hospital', 'hospital', hospitalId, { vetId })
   revalidatePath('/admin/services/vets')
   return { success: true }
 }
@@ -145,7 +141,6 @@ export async function removeVetFromHospital(formData: FormData) {
 
   if (error) return { error: error.message }
 
-  await logAudit('remove_vet_from_hospital', 'hospital', hospitalId, { vetId })
   revalidatePath('/admin/services/vets')
   return { success: true }
 }
@@ -174,7 +169,6 @@ export async function deleteHospital(formData: FormData) {
 
   if (error) return { error: error.message }
 
-  await logAudit('delete_hospital', 'hospital', id, {})
   revalidatePath('/admin/services/vets')
   return { success: true }
 }
