@@ -13,22 +13,18 @@ interface AuditLogsPageClientProps {
 
 const ACTION_OPTIONS = [
   { value: "", label: "All Actions" },
-  { value: "update_user", label: "Update User" },
   { value: "ban_user", label: "Ban User" },
   { value: "unban_user", label: "Unban User" },
-  { value: "handle_verification", label: "Handle Verification" },
-  { value: "create_product", label: "Create Product" },
-  { value: "update_product", label: "Update Product" },
-  { value: "delete_product", label: "Delete Product" },
-  { value: "create_listing", label: "Create Listing" },
-  { value: "update_listing", label: "Update Listing" },
-  { value: "delete_listing", label: "Delete Listing" },
-  { value: "update_order_status", label: "Update Order Status" },
+  { value: "review_verification", label: "Handle Verification" },
+  { value: "update_hospital", label: "Update Hospital" },
+  { value: "update_adoption_center", label: "Update Adoption Center" },
   { value: "cancel_booking", label: "Cancel Booking" },
-  { value: "approve_post", label: "Approve Post" },
-  { value: "delete_post", label: "Delete Post" },
-  { value: "approve_comment", label: "Approve Comment" },
-  { value: "delete_comment", label: "Delete Comment" },
+  { value: "resolve_moderation_item", label: "Resolve Moderation" },
+  { value: "remove_post", label: "Remove Post" },
+  { value: "remove_comment", label: "Remove Comment" },
+  { value: "invite_admin", label: "Invite Admin" },
+  { value: "remove_admin", label: "Remove Admin" },
+  { value: "update_admin_permission", label: "Update Admin Permission" },
 ]
 
 const TARGET_TYPE_OPTIONS = [

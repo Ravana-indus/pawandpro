@@ -1,11 +1,23 @@
 import React from "react"
-import { getUsers } from "@/lib/queries/admin"
+import { listAdminStaff } from "@/lib/admin/queries/platform"
 import { AdminsPageClient } from "@/components/admin/AdminsPageClient"
 
 export default async function AdminsManagementPage() {
-  const { data: admins } = await getUsers({ role: "ADMIN" }, { page: 1, per_page: 100 })
+  const result = await listAdminStaff({
+    page: 1,
+    perPage: 100,
+    role: "ADMIN",
+  })
+
+  const adminRoleResult = await listAdminStaff({
+    page: 1,
+    perPage: 100,
+    role: "SUPER_ADMIN",
+  })
+
+  const allAdmins = [...(result.data || []), ...(adminRoleResult.data || [])]
 
   return (
-    <AdminsPageClient initialAdmins={admins || []} />
+    <AdminsPageClient initialAdmins={allAdmins as Record<string, unknown>[]} />
   )
 }

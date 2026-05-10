@@ -1,20 +1,32 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useTransition } from 'react'
 import { EntityForm } from '@/components/admin/EntityForm'
 import { FormField } from '@/components/admin/FormField'
+import { inviteAdmin } from '@/lib/admin/mutations/platform'
+import { useRouter } from 'next/navigation'
 
 function toast(message: string) {
   alert(message)
 }
 
 export function InviteAdminForm() {
+  const router = useRouter()
+  const [isPending, startTransition] = useTransition()
+
   async function handleInvite(formData: FormData) {
     const email = formData.get('email') as string
     const role = formData.get('role') as string
-    console.log('Invite:', { email, role })
-    toast('Invitation sent')
-    return { success: true }
+
+    const result = await inviteAdmin(email, role)
+
+    if (result.success) {
+      toast('Admin invitation sent')
+      startTransition(() => router.refresh())
+      return { success: true }
+    } else {
+      return { success: false, error: result.error || 'Failed to send invitation' }
+    }
   }
 
   return (

@@ -6,6 +6,7 @@ import { DataTable } from '@/components/DataTable'
 import { StatusBadge } from '@/components/admin/StatusBadge'
 import { ConfirmDialog } from '@/components/ConfirmDialog'
 import { InviteAdminForm } from '@/components/admin/InviteAdminForm'
+import { removeAdmin } from '@/lib/admin/mutations/platform'
 
 interface AdminsPageClientProps {
   initialAdmins: Record<string, unknown>[]
@@ -21,6 +22,16 @@ export function AdminsPageClient({ initialAdmins }: AdminsPageClientProps) {
     { key: 'is_verified', label: 'Verified', render: (v: unknown) => <StatusBadge status={v ? 'verified' : 'unverified'} /> },
     { key: 'created_at', label: 'Joined', render: (v: unknown) => new Date(String(v)).toLocaleDateString() },
   ]
+
+  async function handleRemoveAdmin(userId: string) {
+    const result = await removeAdmin(userId)
+    if (result.success) {
+      window.location.reload()
+    } else {
+      alert(result.error || 'Failed to remove admin')
+    }
+    setConfirmRemove(null)
+  }
 
   const actions = (row: Record<string, unknown>) => (
     <button
@@ -57,10 +68,10 @@ export function AdminsPageClient({ initialAdmins }: AdminsPageClientProps) {
       <ConfirmDialog
         open={!!confirmRemove}
         title="Remove Admin"
-        message="Coming soon — backend action not yet implemented."
-        confirmLabel="OK"
-        variant="info"
-        onConfirm={() => setConfirmRemove(null)}
+        message="Are you sure you want to remove this user's admin privileges?"
+        confirmLabel="Remove"
+        variant="danger"
+        onConfirm={() => confirmRemove && handleRemoveAdmin(confirmRemove)}
         onCancel={() => setConfirmRemove(null)}
       />
     </div>
