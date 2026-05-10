@@ -1,91 +1,20 @@
-import React from "react"
-import Link from "next/link"
-import { DataTable } from "@/components/DataTable"
-import { getUsers } from "@/lib/queries/admin"
-import { banUser, suspendUser } from "@/lib/actions/admin"
+import React from 'react'
+import { getUsers } from '@/lib/queries/admin'
+import { UsersPageClient } from '@/components/admin/UsersPageClient'
 
-export default async function UsersPage() {
-  const result = await getUsers({}, { page: 1, per_page: 25 })
+interface UsersPageProps {
+  searchParams: Promise<{ role?: string; status?: string; search?: string; page?: string }>
+}
 
-  const columns = [
-    { key: "full_name", label: "Name", sortable: true },
-    { key: "contact_email", label: "Email", sortable: true },
-    { key: "role", label: "Role", sortable: true },
-    { key: "is_verified", label: "Verified", sortable: true, render: (v: unknown) => (
-      <span className={`px-2 py-1 rounded-lg text-xs font-medium ${v ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'}`}>
-        {v ? 'Verified' : 'Unverified'}
-      </span>
-    )},
-    { key: "verification_status", label: "Status", render: (v: unknown) => (
-      <span className="px-2 py-1 rounded-lg text-xs font-medium bg-blue-100 text-blue-700">
-        {String(v || 'N/A')}
-      </span>
-    )},
-    { key: "created_at", label: "Joined", sortable: true, render: (v: unknown) => (
-      new Date(String(v)).toLocaleDateString()
-    )},
-  ]
+export default async function UsersPage({ searchParams }: UsersPageProps) {
+  const params = await searchParams
+  const filters = {
+    role: params.role as 'CUSTOMER' | 'BREEDER' | 'INDIVIDUAL_SELLER' | 'VET' | 'ADOPTION_PROVIDER' | undefined,
+    status: params.status as 'active' | 'banned' | 'pending' | undefined,
+    search: params.search,
+  }
+  const page = Number(params.page) || 1
+  const result = await getUsers(filters, { page, per_page: 25 })
 
-  const actions = (row: Record<string, unknown>) => (
-    <div className="flex gap-2 justify-end">
-      <Link
-        href={`/admin/users/${row.id}`}
-        className="px-3 py-1 rounded-lg text-xs font-medium bg-primary/10 text-primary hover:bg-primary/20"
-      >
-        View
-      </Link>
-      <button className="px-3 py-1 rounded-lg text-xs font-medium bg-warning/10 text-warning hover:bg-warning/20">
-        Suspend
-      </button>
-      <button className="px-3 py-1 rounded-lg text-xs font-medium bg-error/10 text-error hover:bg-error/20">
-        Ban
-      </button>
-    </div>
-  )
-
-  return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-headline font-extrabold text-on-surface tracking-tight mb-2">
-          User Management
-        </h1>
-        <p className="text-on-surface-variant">Manage all platform users, roles, and permissions</p>
-      </div>
-
-      <div className="flex gap-4 bg-surface-container-low p-4 rounded-xl">
-        <select className="px-4 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/20">
-          <option value="">All Roles</option>
-          <option value="CUSTOMER">Customer</option>
-          <option value="BREEDER">Breeder</option>
-          <option value="INDIVIDUAL_SELLER">Individual Seller</option>
-          <option value="VET">Veterinarian</option>
-          <option value="ADOPTION_PROVIDER">Adoption Provider</option>
-        </select>
-        <select className="px-4 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/20">
-          <option value="">All Status</option>
-          <option value="active">Active</option>
-          <option value="pending">Pending</option>
-          <option value="banned">Banned</option>
-        </select>
-        <input
-          type="search"
-          placeholder="Search by name or email..."
-          className="flex-1 px-4 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/20"
-        />
-      </div>
-
-      <DataTable
-        columns={columns}
-        data={result.data || []}
-        actions={actions}
-        selectable
-        pagination={{
-          page: result.page,
-          perPage: result.per_page,
-          total: result.total,
-          onPageChange: () => {}
-        }}
-      />
-    </div>
-  )
+  return <UsersPageClient initialData={result.data || []} total={result.total} page={page} filters={filters} />
 }
