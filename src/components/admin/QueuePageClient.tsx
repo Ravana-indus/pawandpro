@@ -5,14 +5,17 @@ import { useRouter } from "next/navigation"
 import { DataTable } from "@/components/DataTable"
 import { ConfirmDialog } from "@/components/ConfirmDialog"
 import { StatusBadge } from "@/components/admin/StatusBadge"
-import { resolveModerationItem } from "@/lib/actions/admin"
+import { resolveAdminModerationItem } from "@/lib/admin/mutations/trust-safety"
 
 interface QueuePageClientProps {
   data: Record<string, unknown>[]
   currentStatus?: string
+  total?: number
+  page?: number
+  perPage?: number
 }
 
-export function QueuePageClient({ data, currentStatus = "all" }: QueuePageClientProps) {
+export function QueuePageClient({ data, currentStatus = "all", total, page = 1, perPage = 25 }: QueuePageClientProps) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [removeItemId, setRemoveItemId] = React.useState<string | null>(null)
@@ -25,21 +28,26 @@ export function QueuePageClient({ data, currentStatus = "all" }: QueuePageClient
     { key: "reviewed", label: "Reviewed" },
   ]
 
-  function updateStatus(status: string) {
+  function goToPage(newPage: number) {
+    const params = new URLSearchParams(window.location.search)
+    params.set('page', String(newPage))
     startTransition(() => {
-      const params = new URLSearchParams(window.location.search)
-      if (status !== "all") params.set("status", status)
-      else params.delete("status")
+      router.push(`/admin/community/queue?${params.toString()}`)
+    })
+  }
+
+  function updateStatus(status: string) {
+    const params = new URLSearchParams(window.location.search)
+    if (status !== "all") params.set("status", status)
+    else params.delete("status")
+    params.delete("page")
+    startTransition(() => {
       router.push(`/admin/community/queue?${params.toString()}`)
     })
   }
 
   async function handleAction(itemId: string, action: "dismiss" | "review" | "remove", notes?: string) {
-    const formData = new FormData()
-    formData.append("itemId", itemId)
-    formData.append("action", action)
-    if (notes) formData.append("notes", notes)
-    await resolveModerationItem(formData)
+    await resolveAdminModerationItem(itemId, action, notes || 'Admin action')
     router.refresh()
   }
 
@@ -109,7 +117,7 @@ export function QueuePageClient({ data, currentStatus = "all" }: QueuePageClient
         ))}
       </div>
 
-      <DataTable columns={columns} data={data} actions={actions} isLoading={isPending} />
+      <DataTable columns={columns} data={data} actions={actions} isLoading={isPending} pagination={total !== undefined ? { page, perPage, total, onPageChange: goToPage } : undefined} />
 
       <ConfirmDialog
         open={!!removeItemId}

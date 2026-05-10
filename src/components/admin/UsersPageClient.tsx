@@ -6,20 +6,23 @@ import { useRouter } from 'next/navigation'
 import { DataTable } from '@/components/DataTable'
 import { ConfirmDialog } from '@/components/ConfirmDialog'
 import { StatusBadge } from '@/components/admin/StatusBadge'
-import { banUser, unbanUser } from '@/lib/actions/admin'
+import { banAdminUser, unbanAdminUser } from '@/lib/admin/mutations/trust-safety'
 
 interface UsersPageClientProps {
-  initialData: Record<string, unknown>[]
+  users: Record<string, unknown>[]
   total: number
   page: number
-  filters: { role?: string; status?: 'active' | 'banned' | 'pending'; search?: string }
+  perPage?: number
+  filters: { role?: string | null; status?: string | null; search?: string | null }
 }
 
-export function UsersPageClient({ initialData, total, page, filters }: UsersPageClientProps) {
+export function UsersPageClient({ users, total, page, perPage = 25, filters }: UsersPageClientProps) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [confirmBan, setConfirmBan] = useState<string | null>(null)
   const [confirmUnban, setConfirmUnban] = useState<string | null>(null)
+  const [banNotes, setBanNotes] = useState<string>('')
+  const [unbanNotes, setUnbanNotes] = useState<string>('')
 
   function updateQuery(key: string, value: string) {
     const params = new URLSearchParams(window.location.search)
@@ -40,17 +43,16 @@ export function UsersPageClient({ initialData, total, page, filters }: UsersPage
   }
 
   async function handleBan(userId: string) {
-    const formData = new FormData()
-    formData.append('userId', userId)
-    formData.append('reason', 'Admin action')
-    await banUser(formData)
+    await banAdminUser(userId, banNotes || 'Admin action', undefined)
     setConfirmBan(null)
+    setBanNotes('')
     router.refresh()
   }
 
   async function handleUnban(userId: string) {
-    await unbanUser(userId)
+    await unbanAdminUser(userId, unbanNotes || 'Admin action')
     setConfirmUnban(null)
+    setUnbanNotes('')
     router.refresh()
   }
 
@@ -103,19 +105,19 @@ export function UsersPageClient({ initialData, total, page, filters }: UsersPage
 
       <DataTable
         columns={columns}
-        data={initialData}
+        data={users}
         actions={actions}
         isLoading={isPending}
         pagination={{
           page,
-          perPage: 25,
+          perPage,
           total,
           onPageChange: goToPage,
         }}
       />
 
-      <ConfirmDialog open={!!confirmBan} title="Ban User" message="Are you sure you want to ban this user?" onConfirm={() => confirmBan && handleBan(confirmBan)} onCancel={() => setConfirmBan(null)} />
-      <ConfirmDialog open={!!confirmUnban} title="Unban User" message="Are you sure you want to unban this user?" variant="info" onConfirm={() => confirmUnban && handleUnban(confirmUnban)} onCancel={() => setConfirmUnban(null)} />
+      <ConfirmDialog open={!!confirmBan} title="Ban User" message="Are you sure you want to ban this user?" confirmLabel="Ban" variant="danger" showNotes notesPlaceholder="Reason for ban" onConfirm={() => confirmBan && handleBan(confirmBan)} onCancel={() => setConfirmBan(null)} />
+      <ConfirmDialog open={!!confirmUnban} title="Unban User" message="Are you sure you want to unban this user?" confirmLabel="Unban" variant="info" showNotes notesPlaceholder="Reason for unban" onConfirm={() => confirmUnban && handleUnban(confirmUnban)} onCancel={() => setConfirmUnban(null)} />
     </div>
   )
 }

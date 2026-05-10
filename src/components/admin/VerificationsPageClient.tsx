@@ -5,36 +5,48 @@ import { useRouter } from 'next/navigation'
 import { DataTable } from '@/components/DataTable'
 import { StatusBadge } from '@/components/admin/StatusBadge'
 import { ConfirmDialog } from '@/components/ConfirmDialog'
-import { handleVerification } from '@/lib/actions/admin'
+import { reviewAdminVerification } from '@/lib/admin/mutations/trust-safety'
 
 interface VerificationsPageClientProps {
   data: Record<string, unknown>[]
   total: number
+  page?: number
+  perPage?: number
+  filters?: { search?: string | null; status?: string | null }
 }
 
-export function VerificationsPageClient({ data, total }: VerificationsPageClientProps) {
+export function VerificationsPageClient({ data, total, page = 1, perPage = 25, filters }: VerificationsPageClientProps) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [confirmReject, setConfirmReject] = useState<string | null>(null)
   const [approveTier, setApproveTier] = useState<{id: string; tier: string} | null>(null)
 
+  function goToPage(newPage: number) {
+    const params = new URLSearchParams(window.location.search)
+    params.set('page', String(newPage))
+    startTransition(() => {
+      router.push(`/admin/verifications?${params.toString()}`)
+    })
+  }
+
+  function updateSearch(key: string, value: string) {
+    const params = new URLSearchParams(window.location.search)
+    if (value) params.set(key, value)
+    else params.delete(key)
+    params.delete('page')
+    startTransition(() => {
+      router.push(`/admin/verifications?${params.toString()}`)
+    })
+  }
+
   async function doApprove(userId: string, tier: string) {
-    const formData = new FormData()
-    formData.append('sellerId', userId)
-    formData.append('status', 'approved')
-    formData.append('tier', tier)
-    formData.append('notes', 'Approved by admin')
-    await handleVerification(formData)
+    await reviewAdminVerification(userId, 'approved', tier as 'Gold' | 'Silver' | 'Verified' | 'Shelter', 'Approved by admin')
     setApproveTier(null)
     startTransition(() => router.refresh())
   }
 
   async function doReject(userId: string) {
-    const formData = new FormData()
-    formData.append('sellerId', userId)
-    formData.append('status', 'rejected')
-    formData.append('notes', 'Rejected by admin')
-    await handleVerification(formData)
+    await reviewAdminVerification(userId, 'rejected', undefined, 'Rejected by admin')
     setConfirmReject(null)
     startTransition(() => router.refresh())
   }
@@ -88,7 +100,32 @@ export function VerificationsPageClient({ data, total }: VerificationsPageClient
         </div>
       </div>
 
-      <DataTable columns={columns} data={data} actions={actions} isLoading={isPending} />
+      <DataTable columns={columns} data={data} actions={actions} isLoading={isPending} pagination={total !== undefined ? { page, perPage, total, onPageChange: goToPage } : undefined} />
+
+      {filters && (
+        <div className="flex gap-4 bg-surface-container-low p-4 rounded-xl">
+          <input
+            type="search"
+            placeholder="Search by name or email..."
+            defaultValue={filters.search || ''}
+            onChange={(e) => {
+              const v = e.target.value
+              if (v.length > 2 || v === '') updateSearch('search', v)
+            }}
+            className="flex-1 px-4 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/20"
+          />
+          <select
+            value={filters.status || ''}
+            onChange={(e) => updateSearch('status', e.target.value)}
+            className="px-4 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/20"
+          >
+            <option value="">All Status</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </div>
+      )}
 
       {approveTier && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">

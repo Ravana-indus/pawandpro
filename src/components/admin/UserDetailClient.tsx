@@ -2,7 +2,8 @@
 
 import React, { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
-import { updateUser, banUser, unbanUser } from '@/lib/actions/admin'
+import { updateUser } from '@/lib/actions/admin'
+import { banAdminUser, unbanAdminUser } from '@/lib/admin/mutations/trust-safety'
 import { EntityForm } from '@/components/admin/EntityForm'
 import { FormField } from '@/components/admin/FormField'
 import { ConfirmDialog } from '@/components/ConfirmDialog'
@@ -58,11 +59,7 @@ export function UserDetailClient({ user }: UserDetailClientProps) {
 
   const confirmBan = (notes?: string) => {
     startTransition(async () => {
-      const formData = new FormData()
-      formData.append('userId', user.id)
-      formData.append('reason', notes || 'No reason provided')
-      formData.append('durationDays', '30')
-      await banUser(formData)
+      await banAdminUser(user.id, notes || 'No reason provided', 30)
       router.refresh()
     })
     setShowBanDialog(false)
@@ -70,7 +67,7 @@ export function UserDetailClient({ user }: UserDetailClientProps) {
 
   const handleUnban = () => {
     startTransition(async () => {
-      await unbanUser(user.id)
+      await unbanAdminUser(user.id, 'Unbanned by admin')
       router.refresh()
     })
   }

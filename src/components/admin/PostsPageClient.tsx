@@ -4,16 +4,39 @@ import React, { useTransition, useState } from "react"
 import { useRouter } from "next/navigation"
 import { DataTable } from "@/components/DataTable"
 import { ConfirmDialog } from "@/components/ConfirmDialog"
+import { removeAdminPost } from "@/lib/admin/mutations/trust-safety"
 import { approvePost, deletePost, togglePinPost } from "@/lib/actions/admin"
 
 interface PostsPageClientProps {
   data: Record<string, unknown>[]
+  total?: number
+  page?: number
+  perPage?: number
+  filters?: { search?: string | null; isApproved?: string | null; type?: string | null }
 }
 
-export function PostsPageClient({ data }: PostsPageClientProps) {
+export function PostsPageClient({ data, total, page = 1, perPage = 25, filters }: PostsPageClientProps) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [deleteId, setDeleteId] = useState<string | null>(null)
+
+  function goToPage(newPage: number) {
+    const params = new URLSearchParams(window.location.search)
+    params.set('page', String(newPage))
+    startTransition(() => {
+      router.push(`/admin/community/posts?${params.toString()}`)
+    })
+  }
+
+  function updateFilter(key: string, value: string) {
+    const params = new URLSearchParams(window.location.search)
+    if (value) params.set(key, value)
+    else params.delete(key)
+    params.delete('page')
+    startTransition(() => {
+      router.push(`/admin/community/posts?${params.toString()}`)
+    })
+  }
 
   const handleApprove = (id: string) => {
     startTransition(async () => {
@@ -31,10 +54,10 @@ export function PostsPageClient({ data }: PostsPageClientProps) {
 
   const handleDelete = (id: string) => {
     startTransition(async () => {
-      await deletePost(id)
+      await removeAdminPost(id, 'Deleted by admin')
+      setDeleteId(null)
       router.push('/admin/community/posts')
     })
-    setDeleteId(null)
   }
 
   const columns = [
@@ -93,7 +116,41 @@ export function PostsPageClient({ data }: PostsPageClientProps) {
         </h1>
         <p className="text-on-surface-variant">Moderate and manage community posts</p>
       </div>
-      <DataTable columns={columns} data={data} actions={actions} />
+      {filters && (
+        <div className="flex gap-4 bg-surface-container-low p-4 rounded-xl">
+          <input
+            type="search"
+            placeholder="Search posts..."
+            defaultValue={filters.search || ''}
+            onChange={(e) => {
+              const v = e.target.value
+              if (v.length > 2 || v === '') updateFilter('search', v)
+            }}
+            className="flex-1 px-4 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/20"
+          />
+          <select
+            value={filters.isApproved || ''}
+            onChange={(e) => updateFilter('isApproved', e.target.value)}
+            className="px-4 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/20"
+          >
+            <option value="">All Status</option>
+            <option value="true">Approved</option>
+            <option value="false">Pending</option>
+          </select>
+          <select
+            value={filters.type || ''}
+            onChange={(e) => updateFilter('type', e.target.value)}
+            className="px-4 py-2 rounded-xl bg-surface-container-lowest border border-outline-variant/20"
+          >
+            <option value="">All Types</option>
+            <option value="General">General</option>
+            <option value="Question">Question</option>
+            <option value="Advice">Advice</option>
+            <option value="Story">Story</option>
+          </select>
+        </div>
+      )}
+      <DataTable columns={columns} data={data} actions={actions} isLoading={isPending} pagination={total !== undefined ? { page, perPage, total, onPageChange: goToPage } : undefined} />
       <ConfirmDialog
         open={deleteId !== null}
         title="Delete Post"

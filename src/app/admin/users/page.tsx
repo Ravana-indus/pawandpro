@@ -1,20 +1,38 @@
 import React from 'react'
-import { getUsers } from '@/lib/queries/admin'
+import { listAdminUsers } from '@/lib/admin/queries/trust-safety'
 import { UsersPageClient } from '@/components/admin/UsersPageClient'
 
 interface UsersPageProps {
-  searchParams: Promise<{ role?: string; status?: string; search?: string; page?: string }>
+  searchParams: Promise<{ page?: string; perPage?: string; role?: string; status?: string; search?: string; sort?: string; direction?: string }>
 }
 
 export default async function UsersPage({ searchParams }: UsersPageProps) {
   const params = await searchParams
-  const filters = {
-    role: params.role as 'CUSTOMER' | 'BREEDER' | 'INDIVIDUAL_SELLER' | 'VET' | 'ADOPTION_PROVIDER' | undefined,
-    status: params.status as 'active' | 'banned' | 'pending' | undefined,
-    search: params.search,
-  }
   const page = Number(params.page) || 1
-  const result = await getUsers(filters, { page, per_page: 25 })
+  const perPage = Number(params.perPage) || 25
+  const role = params.role || null
+  const status = params.status || null
+  const search = params.search || null
+  const sort = params.sort || null
+  const direction = params.direction || null
 
-  return <UsersPageClient initialData={result.data || []} total={result.total} page={page} filters={filters} />
+  const result = await listAdminUsers({
+    page,
+    perPage,
+    role,
+    status,
+    search,
+    sort,
+    direction,
+  })
+
+  return (
+    <UsersPageClient
+      users={result.data || []}
+      total={result.total}
+      page={page}
+      perPage={perPage}
+      filters={{ role, status, search }}
+    />
+  )
 }

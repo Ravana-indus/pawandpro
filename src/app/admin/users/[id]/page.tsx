@@ -1,8 +1,9 @@
 import React from "react"
 import { notFound } from "next/navigation"
-import { createClient } from "@/lib/supabase/server"
+import { getAdminUserDetail } from "@/lib/admin/queries/trust-safety"
 import { EntityHeader } from "@/components/admin/EntityHeader"
 import { UserDetailClient } from "@/components/admin/UserDetailClient"
+import { AuditTimeline } from "@/components/admin/AuditTimeline"
 
 interface UserDetailPageProps {
   params: Promise<{ id: string }>
@@ -10,17 +11,14 @@ interface UserDetailPageProps {
 
 export default async function UserDetailPage({ params }: UserDetailPageProps) {
   const { id } = await params
-  const supabase = await createClient()
 
-  const { data: profile, error } = await supabase
-    .from('profiles')
-    .select('*')
-    .eq('id', id)
-    .single()
+  const result = await getAdminUserDetail(id)
 
-  if (error || !profile) {
+  if (result.error || !result.data) {
     notFound()
   }
+
+  const profile = result.data
 
   return (
     <div className="space-y-6">
@@ -31,6 +29,7 @@ export default async function UserDetailPage({ params }: UserDetailPageProps) {
         backLabel="Users"
       />
       <UserDetailClient user={profile} />
+      <AuditTimeline targetType="profiles" targetId={profile.id} />
     </div>
   )
 }
