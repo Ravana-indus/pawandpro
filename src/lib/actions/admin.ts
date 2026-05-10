@@ -1,8 +1,9 @@
 'use server'
 
-import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { z } from 'zod'
+import { writeAdminAuditLog } from '@/lib/admin/audit'
+import type { AdminAuditWriterClient } from '@/lib/admin/audit'
 import { requireAdminPermission } from '@/lib/admin/permissions'
 import type { AdminPermission } from '@/lib/admin/types'
 import {
@@ -60,20 +61,33 @@ async function requireAdmin(action: string) {
 }
 
 async function logAudit(
+  supabase: AdminAuditWriterClient,
+  actorId: string,
   action: string,
   targetType: string,
   targetId: string,
-  details?: any
+  details?: Record<string, unknown>
 ) {
+  const reason = typeof details?.reason === 'string' ? details.reason : undefined
+  const before = details && 'before' in details ? details.before : undefined
+  const after = details && 'after' in details ? details.after : undefined
+  const metadata = details
+    ? Object.fromEntries(
+        Object.entries(details).filter(([key]) => key !== 'reason' && key !== 'before' && key !== 'after')
+      )
+    : undefined
+
   try {
-    const supabase = await createClient()
-    await (supabase.from as any)('audit_log').insert({
+    await writeAdminAuditLog(supabase, {
+      actorId,
       action,
-      target_type: targetType,
-      target_id: targetId,
-      details: details ?? null,
-      created_at: new Date().toISOString(),
-    } as any)
+      targetType,
+      targetId,
+      reason,
+      before,
+      after,
+      metadata,
+    })
   } catch {
     console.error('Audit log failed:', action, targetType, targetId)
   }
@@ -83,7 +97,7 @@ async function logAudit(
 
 export async function updateUser(id: string, formData: FormData) {
   try {
-    const { supabase } = await requireAdmin('updateUser')
+    const { supabase, userId } = await requireAdmin('updateUser')
 
     const data = {
       full_name: formData.get('full_name') as string,
@@ -103,7 +117,7 @@ export async function updateUser(id: string, formData: FormData) {
 
     if (error) return { error: error.message }
 
-    await logAudit('update_user', 'profiles', id, { fields: Object.keys(validated) })
+    await logAudit(supabase, userId, 'update_user', 'profiles', id, { fields: Object.keys(validated) })
     revalidatePath('/admin/users')
     return { success: true }
   } catch (e) {
@@ -114,7 +128,7 @@ export async function updateUser(id: string, formData: FormData) {
 
 export async function banUser(formData: FormData) {
   try {
-    const { supabase } = await requireAdmin('banUser')
+    const { supabase, userId } = await requireAdmin('banUser')
 
     const data = {
       userId: formData.get('userId') as string,
@@ -135,7 +149,7 @@ export async function banUser(formData: FormData) {
 
     if (error) return { error: error.message }
 
-    await logAudit('ban_user', 'profiles', validated.userId, {
+    await logAudit(supabase, userId, 'ban_user', 'profiles', validated.userId, {
       reason: validated.reason,
       durationDays: validated.durationDays,
       bannedUntil,
@@ -150,9 +164,7 @@ export async function banUser(formData: FormData) {
 
 export async function unbanUser(userId: string) {
   try {
-    await requireAdmin('unbanUser')
-
-    const supabase = await createClient()
+    const { supabase, userId: actorId } = await requireAdmin('unbanUser')
     const { error } = await supabase
       .from('profiles')
       .update({ banned_until: null })
@@ -160,7 +172,7 @@ export async function unbanUser(userId: string) {
 
     if (error) return { error: error.message }
 
-    await logAudit('unban_user', 'profiles', userId, {})
+    await logAudit(supabase, actorId, 'unban_user', 'profiles', userId, {})
     revalidatePath('/admin/users')
     return { success: true }
   } catch (e) {
@@ -208,7 +220,7 @@ export async function handleVerification(formData: FormData) {
       .update(profileUpdate as any)
       .eq('id', validated.sellerId)
 
-    await logAudit('handle_verification', 'seller_verifications', validated.sellerId, {
+    await logAudit(supabase, userId, 'handle_verification', 'seller_verifications', validated.sellerId, {
       status: validated.status,
       tier: validated.tier,
       notes: validated.notes,
@@ -225,7 +237,7 @@ export async function handleVerification(formData: FormData) {
 
 export async function createProduct(formData: FormData) {
   try {
-    await requireAdmin('createProduct')
+    const { supabase, userId } = await requireAdmin('createProduct')
 
     const data = {
       name: formData.get('name') as string,
@@ -239,7 +251,6 @@ export async function createProduct(formData: FormData) {
 
     const validated = productSchema.parse(data)
 
-    const supabase = await createClient()
     const { data: product, error } = await supabase
       .from('products')
       .insert(validated as any)
@@ -248,7 +259,7 @@ export async function createProduct(formData: FormData) {
 
     if (error) return { error: error.message }
 
-    await logAudit('create_product', 'products', product.id, { name: validated.name })
+    await logAudit(supabase, userId, 'create_product', 'products', product.id, { name: validated.name })
     revalidatePath('/admin/marketplace/products')
     return { success: true, product }
   } catch (e) {
@@ -259,7 +270,7 @@ export async function createProduct(formData: FormData) {
 
 export async function updateProduct(id: string, formData: FormData) {
   try {
-    await requireAdmin('updateProduct')
+    const { supabase, userId } = await requireAdmin('updateProduct')
 
     const data: Record<string, unknown> = {}
     const fields = ['name', 'brand', 'category', 'price', 'stock_quantity', 'seller_id', 'details']
@@ -276,7 +287,6 @@ export async function updateProduct(id: string, formData: FormData) {
       }
     }
 
-    const supabase = await createClient()
     const { error } = await supabase
       .from('products')
       .update(data as any)
@@ -284,7 +294,7 @@ export async function updateProduct(id: string, formData: FormData) {
 
     if (error) return { error: error.message }
 
-    await logAudit('update_product', 'products', id, { fields: Object.keys(data) })
+    await logAudit(supabase, userId, 'update_product', 'products', id, { fields: Object.keys(data) })
     revalidatePath('/admin/marketplace/products')
     revalidatePath(`/admin/marketplace/products/${id}`)
     return { success: true }
@@ -295,14 +305,12 @@ export async function updateProduct(id: string, formData: FormData) {
 
 export async function deleteProduct(id: string) {
   try {
-    await requireAdmin('deleteProduct')
-
-    const supabase = await createClient()
+    const { supabase, userId } = await requireAdmin('deleteProduct')
     const { error } = await supabase.from('products').delete().eq('id', id)
 
     if (error) return { error: error.message }
 
-    await logAudit('delete_product', 'products', id, {})
+    await logAudit(supabase, userId, 'delete_product', 'products', id, {})
     revalidatePath('/admin/marketplace/products')
     revalidatePath(`/admin/marketplace/products/${id}`)
     return { success: true }
@@ -313,7 +321,7 @@ export async function deleteProduct(id: string) {
 
 export async function createListing(formData: FormData) {
   try {
-    await requireAdmin('createListing')
+    const { supabase, userId } = await requireAdmin('createListing')
 
     const data = {
       name: formData.get('name') as string,
@@ -331,7 +339,6 @@ export async function createListing(formData: FormData) {
 
     const validated = listingSchema.parse(data)
 
-    const supabase = await createClient()
     const { data: listing, error } = await (supabase.from as any)('listings')
       .insert(validated as any)
       .select()
@@ -339,7 +346,7 @@ export async function createListing(formData: FormData) {
 
     if (error) return { error: error.message }
 
-    await logAudit('create_listing', 'listings', (listing as any).id, { name: validated.name })
+    await logAudit(supabase, userId, 'create_listing', 'listings', (listing as any).id, { name: validated.name })
     revalidatePath('/admin/marketplace/listings')
     return { success: true, listing }
   } catch (e) {
@@ -350,7 +357,7 @@ export async function createListing(formData: FormData) {
 
 export async function updateListing(id: string, formData: FormData) {
   try {
-    await requireAdmin('updateListing')
+    const { supabase, userId } = await requireAdmin('updateListing')
 
     const data: Record<string, unknown> = {}
     const fields = ['name', 'species', 'breed', 'sex', 'age', 'price', 'seller_id', 'type', 'status', 'certification_tier', 'image_url']
@@ -365,12 +372,11 @@ export async function updateListing(id: string, formData: FormData) {
       }
     }
 
-    const supabase = await createClient()
     const { error } = await (supabase.from as any)('listings').update(data as any).eq('id', id)
 
     if (error) return { error: error.message }
 
-    await logAudit('update_listing', 'listings', id, { fields: Object.keys(data) as any })
+    await logAudit(supabase, userId, 'update_listing', 'listings', id, { fields: Object.keys(data) as any })
     revalidatePath('/admin/marketplace/listings')
     return { success: true }
   } catch (e) {
@@ -380,14 +386,12 @@ export async function updateListing(id: string, formData: FormData) {
 
 export async function deleteListing(id: string) {
   try {
-    await requireAdmin('deleteListing')
-
-    const supabase = await createClient()
+    const { supabase, userId } = await requireAdmin('deleteListing')
     const { error } = await (supabase.from as any)('listings').delete().eq('id', id)
 
     if (error) return { error: error.message }
 
-    await logAudit('delete_listing', 'listings', id, {})
+    await logAudit(supabase, userId, 'delete_listing', 'listings', id, {})
     revalidatePath('/admin/marketplace/listings')
     revalidatePath(`/admin/marketplace/listings/${id}`)
     return { success: true }
@@ -398,11 +402,10 @@ export async function deleteListing(id: string) {
 
 export async function updateOrderStatus(id: string, status: string) {
   try {
-    await requireAdmin('updateOrderStatus')
+    const { supabase, userId } = await requireAdmin('updateOrderStatus')
 
     const validated = orderStatusSchema.parse(status)
 
-    const supabase = await createClient()
     const { error } = await supabase
       .from('orders')
       .update({ status: validated as any, updated_at: new Date().toISOString() } as any)
@@ -410,7 +413,7 @@ export async function updateOrderStatus(id: string, status: string) {
 
     if (error) return { error: error.message }
 
-    await logAudit('update_order_status', 'orders', id, { status: validated })
+    await logAudit(supabase, userId, 'update_order_status', 'orders', id, { status: validated })
     revalidatePath('/admin/marketplace/orders')
     revalidatePath(`/admin/marketplace/orders/${id}`)
     return { success: true }
@@ -428,7 +431,7 @@ export async function cancelOrder(id: string) {
 
 export async function createHospital(formData: FormData) {
   try {
-    await requireAdmin('createHospital')
+    const { supabase, userId } = await requireAdmin('createHospital')
 
     const data = {
       name: formData.get('name') as string,
@@ -442,7 +445,6 @@ export async function createHospital(formData: FormData) {
 
     const validated = hospitalSchema.parse(data)
 
-    const supabase = await createClient()
     const { data: hospital, error } = await supabase
       .from('hospitals')
       .insert(validated)
@@ -451,7 +453,7 @@ export async function createHospital(formData: FormData) {
 
     if (error) return { error: error.message }
 
-    await logAudit('create_hospital', 'hospitals', hospital.id, { name: validated.name })
+    await logAudit(supabase, userId, 'create_hospital', 'hospitals', hospital.id, { name: validated.name })
     revalidatePath('/admin/services/vets')
     return { success: true, hospital }
   } catch (e) {
@@ -462,7 +464,7 @@ export async function createHospital(formData: FormData) {
 
 export async function updateHospital(id: string, formData: FormData) {
   try {
-    await requireAdmin('updateHospital')
+    const { supabase, userId } = await requireAdmin('updateHospital')
 
     const data: Record<string, unknown> = {}
     const fields = ['name', 'address', 'phone', 'email', 'license_number', 'admin_id', 'is_verified']
@@ -477,7 +479,6 @@ export async function updateHospital(id: string, formData: FormData) {
       }
     }
 
-    const supabase = await createClient()
     const { error } = await supabase
       .from('hospitals')
       .update({ ...data, updated_at: new Date().toISOString() } as any)
@@ -485,7 +486,7 @@ export async function updateHospital(id: string, formData: FormData) {
 
     if (error) return { error: error.message }
 
-    await logAudit('update_hospital', 'hospitals', id, { fields: Object.keys(data) })
+    await logAudit(supabase, userId, 'update_hospital', 'hospitals', id, { fields: Object.keys(data) })
     revalidatePath('/admin/services/vets')
     return { success: true }
   } catch (e) {
@@ -495,16 +496,14 @@ export async function updateHospital(id: string, formData: FormData) {
 
 export async function linkVetToHospital(vetId: string, hospitalId: string) {
   try {
-    await requireAdmin('linkVetToHospital')
-
-    const supabase = await createClient()
+    const { supabase, userId } = await requireAdmin('linkVetToHospital')
     const { error } = await supabase
       .from('hospital_vets')
       .insert({ vet_id: vetId, hospital_id: hospitalId })
 
     if (error) return { error: error.message }
 
-    await logAudit('link_vet_to_hospital', 'hospital_vets', `${vetId}-${hospitalId}`, { vetId, hospitalId })
+    await logAudit(supabase, userId, 'link_vet_to_hospital', 'hospital_vets', `${vetId}-${hospitalId}`, { vetId, hospitalId })
     revalidatePath('/admin/services/vets')
     return { success: true }
   } catch (e) {
@@ -514,7 +513,7 @@ export async function linkVetToHospital(vetId: string, hospitalId: string) {
 
 export async function createAdoptionCenter(formData: FormData) {
   try {
-    await requireAdmin('createAdoptionCenter')
+    const { supabase, userId } = await requireAdmin('createAdoptionCenter')
 
     const data = {
       name: formData.get('name') as string,
@@ -529,7 +528,6 @@ export async function createAdoptionCenter(formData: FormData) {
 
     const validated = adoptionCenterSchema.parse(data)
 
-    const supabase = await createClient()
     const { data: center, error } = await supabase
       .from('adoption_centers')
       .insert(validated)
@@ -538,7 +536,7 @@ export async function createAdoptionCenter(formData: FormData) {
 
     if (error) return { error: error.message }
 
-    await logAudit('create_adoption_center', 'adoption_centers', center.id, { name: validated.name })
+    await logAudit(supabase, userId, 'create_adoption_center', 'adoption_centers', center.id, { name: validated.name })
     return { success: true, center }
   } catch (e) {
     if (e instanceof z.ZodError) return { error: e.issues[0].message }
@@ -548,7 +546,7 @@ export async function createAdoptionCenter(formData: FormData) {
 
 export async function updateAdoptionCenter(id: string, formData: FormData) {
   try {
-    await requireAdmin('updateAdoptionCenter')
+    const { supabase, userId } = await requireAdmin('updateAdoptionCenter')
 
     const data: Record<string, unknown> = {}
     const fields = ['name', 'type', 'address', 'phone', 'email', 'license_number', 'owner_id', 'is_verified']
@@ -563,7 +561,6 @@ export async function updateAdoptionCenter(id: string, formData: FormData) {
       }
     }
 
-    const supabase = await createClient()
     const { error } = await supabase
       .from('adoption_centers')
       .update(data as any)
@@ -571,7 +568,7 @@ export async function updateAdoptionCenter(id: string, formData: FormData) {
 
     if (error) return { error: error.message }
 
-    await logAudit('update_adoption_center', 'adoption_centers', id, { fields: Object.keys(data) })
+    await logAudit(supabase, userId, 'update_adoption_center', 'adoption_centers', id, { fields: Object.keys(data) })
     return { success: true }
   } catch (e) {
     return { error: e instanceof Error ? e.message : 'Unknown error' }
@@ -580,14 +577,12 @@ export async function updateAdoptionCenter(id: string, formData: FormData) {
 
 export async function deleteAdoptionCenter(id: string) {
   try {
-    await requireAdmin('deleteAdoptionCenter')
-
-    const supabase = await createClient()
+    const { supabase, userId } = await requireAdmin('deleteAdoptionCenter')
     const { error } = await supabase.from('adoption_centers').delete().eq('id', id)
 
     if (error) return { error: error.message }
 
-    await logAudit('delete_adoption_center', 'adoption_centers', id, {})
+    await logAudit(supabase, userId, 'delete_adoption_center', 'adoption_centers', id, {})
     return { success: true }
   } catch (e) {
     return { error: e instanceof Error ? e.message : 'Unknown error' }
@@ -596,9 +591,7 @@ export async function deleteAdoptionCenter(id: string) {
 
 export async function updateProviderStatus(id: string, isVerified: boolean) {
   try {
-    await requireAdmin('updateProviderStatus')
-
-    const supabase = await createClient()
+    const { supabase, userId } = await requireAdmin('updateProviderStatus')
     const { error } = await supabase
       .from('service_provider_details')
       .update({ is_verified: isVerified })
@@ -606,7 +599,7 @@ export async function updateProviderStatus(id: string, isVerified: boolean) {
 
     if (error) return { error: error.message }
 
-    await logAudit('update_provider_status', 'service_provider_details', id, { is_verified: isVerified })
+    await logAudit(supabase, userId, 'update_provider_status', 'service_provider_details', id, { is_verified: isVerified })
     return { success: true }
   } catch (e) {
     return { error: e instanceof Error ? e.message : 'Unknown error' }
@@ -615,9 +608,7 @@ export async function updateProviderStatus(id: string, isVerified: boolean) {
 
 export async function updateBookingStatus(id: string, status: string) {
   try {
-    await requireAdmin('updateBookingStatus')
-
-    const supabase = await createClient()
+    const { supabase, userId } = await requireAdmin('updateBookingStatus')
     const { error } = await supabase
       .from('appointments')
       .update({ status: status as any, updated_at: new Date().toISOString() } as any)
@@ -625,7 +616,7 @@ export async function updateBookingStatus(id: string, status: string) {
 
     if (error) return { error: error.message }
 
-    await logAudit('update_booking_status', 'appointments', id, { status })
+    await logAudit(supabase, userId, 'update_booking_status', 'appointments', id, { status })
     return { success: true }
   } catch (e) {
     return { error: e instanceof Error ? e.message : 'Unknown error' }
@@ -634,9 +625,7 @@ export async function updateBookingStatus(id: string, status: string) {
 
 export async function cancelBooking(id: string) {
   try {
-    await requireAdmin('cancelBooking')
-
-    const supabase = await createClient()
+    const { supabase, userId } = await requireAdmin('cancelBooking')
     const { error } = await supabase
       .from('service_bookings')
       .update({ status: 'Cancelled', updated_at: new Date().toISOString() } as any)
@@ -644,7 +633,7 @@ export async function cancelBooking(id: string) {
 
     if (error) return { error: error.message }
 
-    await logAudit('cancel_booking', 'service_bookings', id, { status: 'Cancelled' })
+    await logAudit(supabase, userId, 'cancel_booking', 'service_bookings', id, { status: 'Cancelled' })
     revalidatePath('/admin/services/bookings')
     revalidatePath(`/admin/services/bookings/${id}`)
     return { success: true }
@@ -655,9 +644,7 @@ export async function cancelBooking(id: string) {
 
 export async function approvePost(id: string) {
   try {
-    await requireAdmin('approvePost')
-
-    const supabase = await createClient()
+    const { supabase, userId } = await requireAdmin('approvePost')
     const { error } = await supabase
       .from('community_posts')
       .update({ is_approved: true })
@@ -665,7 +652,7 @@ export async function approvePost(id: string) {
 
     if (error) return { error: error.message }
 
-    await logAudit('approve_post', 'community_posts', id, {})
+    await logAudit(supabase, userId, 'approve_post', 'community_posts', id, {})
     return { success: true }
   } catch (e) {
     return { error: e instanceof Error ? e.message : 'Unknown error' }
@@ -674,14 +661,12 @@ export async function approvePost(id: string) {
 
 export async function deletePost(id: string) {
   try {
-    await requireAdmin('deletePost')
-
-    const supabase = await createClient()
+    const { supabase, userId } = await requireAdmin('deletePost')
     const { error } = await supabase.from('community_posts').delete().eq('id', id)
 
     if (error) return { error: error.message }
 
-    await logAudit('delete_post', 'community_posts', id, {})
+    await logAudit(supabase, userId, 'delete_post', 'community_posts', id, {})
     return { success: true }
   } catch (e) {
     return { error: e instanceof Error ? e.message : 'Unknown error' }
@@ -690,9 +675,7 @@ export async function deletePost(id: string) {
 
 export async function togglePinPost(id: string, isPinned: boolean) {
   try {
-    await requireAdmin('togglePinPost')
-
-    const supabase = await createClient()
+    const { supabase, userId } = await requireAdmin('togglePinPost')
     const { error } = await supabase
       .from('community_posts')
       .update({ is_pinned: isPinned })
@@ -700,7 +683,7 @@ export async function togglePinPost(id: string, isPinned: boolean) {
 
     if (error) return { error: error.message }
 
-    await logAudit('toggle_pin_post', 'community_posts', id, { is_pinned: isPinned })
+    await logAudit(supabase, userId, 'toggle_pin_post', 'community_posts', id, { is_pinned: isPinned })
     return { success: true }
   } catch (e) {
     return { error: e instanceof Error ? e.message : 'Unknown error' }
@@ -709,9 +692,7 @@ export async function togglePinPost(id: string, isPinned: boolean) {
 
 export async function approveComment(id: string) {
   try {
-    await requireAdmin('approveComment')
-
-    const supabase = await createClient()
+    const { supabase, userId } = await requireAdmin('approveComment')
     const { error } = await supabase
       .from('community_comments')
       .update({ is_approved: true })
@@ -719,7 +700,7 @@ export async function approveComment(id: string) {
 
     if (error) return { error: error.message }
 
-    await logAudit('approve_comment', 'community_comments', id, {})
+    await logAudit(supabase, userId, 'approve_comment', 'community_comments', id, {})
     revalidatePath('/admin/community/comments')
     return { success: true }
   } catch (e) {
@@ -729,14 +710,12 @@ export async function approveComment(id: string) {
 
 export async function deleteComment(id: string) {
   try {
-    await requireAdmin('deleteComment')
-
-    const supabase = await createClient()
+    const { supabase, userId } = await requireAdmin('deleteComment')
     const { error } = await supabase.from('community_comments').delete().eq('id', id)
 
     if (error) return { error: error.message }
 
-    await logAudit('delete_comment', 'community_comments', id, {})
+    await logAudit(supabase, userId, 'delete_comment', 'community_comments', id, {})
     revalidatePath('/admin/community/comments')
     return { success: true }
   } catch (e) {
@@ -770,7 +749,7 @@ export async function resolveModerationItem(formData: FormData) {
 
     if (error) return { error: error.message }
 
-    await logAudit('resolve_moderation', 'moderation_queue', validated.itemId, {
+    await logAudit(supabase, userId, 'resolve_moderation', 'moderation_queue', validated.itemId, {
       action: validated.action,
       notes: validated.notes,
     })
