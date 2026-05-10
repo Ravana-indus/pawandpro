@@ -24,12 +24,41 @@ describe("parseAdminPagination", () => {
       to: 99,
     })
   })
+
+  it("rejects malformed numeric coercions and falls back to defaults", () => {
+    expect(parseAdminPagination({ page: "2.5", perPage: "1e309" })).toEqual({
+      page: 1,
+      perPage: 25,
+      from: 0,
+      to: 24,
+    })
+  })
+
+  it("rejects non-finite and non-integer number inputs", () => {
+    expect(
+      parseAdminPagination({
+        page: Number.POSITIVE_INFINITY,
+        perPage: 0,
+      }),
+    ).toEqual({
+      page: 1,
+      perPage: 25,
+      from: 0,
+      to: 24,
+    })
+  })
 })
 
 describe("totalPages", () => {
   it("calculates total pages and floors to a minimum of 1", () => {
     expect(totalPages(250, 25)).toBe(10)
     expect(totalPages(0, 25)).toBe(1)
+  })
+
+  it("defensively handles invalid perPage values", () => {
+    expect(totalPages(25, 0)).toBe(1)
+    expect(totalPages(25, Number.POSITIVE_INFINITY)).toBe(1)
+    expect(totalPages(25, Number.NaN)).toBe(1)
   })
 })
 
