@@ -13,16 +13,30 @@ interface ListingsPageClientProps {
 
 export function ListingsPageClient({ listings }: ListingsPageClientProps) {
   const [deleteId, setDeleteId] = useState<string | null>(null)
+  const [deleteError, setDeleteError] = useState<string | null>(null)
   const [, startTransition] = useTransition()
   const router = useRouter()
 
-  function handleDelete() {
+  function handleDelete(reason?: string) {
     if (!deleteId) return
+
+    const trimmedReason = reason?.trim() ?? ""
+    if (!trimmedReason) {
+      setDeleteError("Reason is required to delete a listing.")
+      return
+    }
+
+    setDeleteError(null)
     startTransition(async () => {
-      await deleteListing(deleteId)
-      router.refresh()
+      const result = await deleteListing(deleteId, trimmedReason)
+      if (result.success) {
+        router.refresh()
+        setDeleteId(null)
+        return
+      }
+
+      setDeleteError(typeof result.error === "string" ? result.error : "Failed to delete listing")
     })
-    setDeleteId(null)
   }
 
   const columns = [
@@ -74,14 +88,20 @@ export function ListingsPageClient({ listings }: ListingsPageClientProps) {
         <p className="text-on-surface-variant">Manage all pet listings in the marketplace</p>
       </div>
       <DataTable columns={columns} data={listings} actions={actions} />
+      {deleteError ? <p className="text-sm text-error">{deleteError}</p> : null}
       <ConfirmDialog
         open={!!deleteId}
         title="Delete Listing"
         message="Are you sure you want to delete this listing? This action cannot be undone."
         confirmLabel="Delete"
         variant="danger"
+        showNotes
+        notesPlaceholder="Reason for deletion (required)"
         onConfirm={handleDelete}
-        onCancel={() => setDeleteId(null)}
+        onCancel={() => {
+          setDeleteId(null)
+          setDeleteError(null)
+        }}
       />
     </div>
   )
